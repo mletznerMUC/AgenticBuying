@@ -7,7 +7,7 @@ where AI agents discover, negotiate, and transact advertising/media buys. The pr
 primarily compares two emerging protocol families:
 
 - **AdCP** (Ad Context Protocol) — https://adcontextprotocol.org
-- **AAMP** (Agentic Advertising & Marketing Protocols / agentic ad marketplace protocols)
+- **AAMP** (Agentic Advertising Management Protocols — IAB Tech Lab)
 
 The outcome is a **multi-page static HTML website** that provides:
 
