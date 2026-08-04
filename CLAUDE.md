@@ -28,7 +28,9 @@ workflows.html         Sample agentic buying workflows
 resources.html         Specs, articles, talks, repos
 assets/css/            Shared stylesheet(s)
 assets/js/             Shared JavaScript (nav, no build step)
-docs/                  Internal docs: workflow, architecture decisions
+docs/DESIGN.md         Design guide: visual system, badge rules, imagery, a11y
+docs/WORKFLOW.md       The agent-based development workflow
+docs/research/         Sourced research notes behind the site's content
 .claude/agents/        Specialized subagent definitions
 .github/workflows/     Claude agent automation, CI
 .nojekyll              Disables Jekyll processing on GitHub Pages
@@ -48,12 +50,17 @@ directly from the `main` branch ("Deploy from a branch" → `main` → `/ (root)
 - Accessibility: semantic HTML, one `<h1>` per page, alt text on images,
   sufficient color contrast.
 - All external links use `rel="noopener"` and cite their source and date.
+- **Read `docs/DESIGN.md` before any visual or markup change.** It defines the
+  design direction, the banned "AI slop" patterns, the status-badge rules, the
+  inline-SVG imagery grammar, and the accessibility floor.
 
 ## Content rules
 
 - Every factual claim about AdCP or AAMP must carry a source link and a
   "last verified" date, because this space moves fast.
-- Distinguish clearly between **shipped**, **announced**, and **speculative**.
+- Distinguish claims by evidence strength using the four badge states —
+  **shipped**, **announced**, **reported**, **speculative**. Badges mark
+  exceptions: unbadged prose means verified/shipped. See `docs/DESIGN.md` §5.
 - Comparison content must be neutral in tone — describe, don't advocate.
 
 ## Development workflow (agent-based)

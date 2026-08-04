@@ -29,27 +29,34 @@
     <p class="lead">A deep dive into the Ad Context Protocol: what it standardizes, who
     governs it, and which capabilities are real today.</p>
     <p class="source">Primary source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a></p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+    </ul>
 
     <h2>What it is</h2>
-    <p><span class="badge shipped">shipped</span> AdCP (Ad Context Protocol) is an open
+    <p>AdCP (Ad Context Protocol) is an open
     standard that lets AI agents manage advertising operations: inventory discovery, media
     buying, creative management, audience and signal activation, and serve-time decisioning.
     The specification defines two layers — planning-time negotiation between buyer and seller
     agents, and impression-time decisioning.</p>
     <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a> · last verified 2026-08-04</p>
-    <p><span class="badge shipped">shipped</span> AdCP launched on October 15, 2025 with six
+    <p>AdCP launched on October 15, 2025 with six
     founding members — Yahoo, PubMatic, Scope3, Optable, Swivel, and Triton Digital — each
     committing engineering resources plus $10,000 per year. The initial public release was
     labeled v2.0.0 and included Media Buy, Curation, and Audience Activation (Signals)
     protocols, built on Anthropic's Model Context Protocol (MCP).</p>
     <p class="source">Source: <a href="https://ppc.land/ad-context-protocol-adcp-launches-for-advertising-automation/" rel="noopener">PPC Land</a>, corroborated by <a href="https://tritondigital.com/news-item/October-15-2025/yahoo-pubmatic-and-others-launch-new-standardfor-agentic-advertising" rel="noopener">Triton Digital</a> and <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a> · last verified 2026-08-04</p>
-    <p><span class="badge shipped">shipped</span> The protocol positions itself as "parallel to
+    <p>The protocol positions itself as "parallel to
     OpenRTB, not a replacement": rather than extending real-time bidding, it defines a
     purpose-built task language (discover products, create media buy, generate creative,
     activate audience) carried over MCP or Google's Agent2Agent (A2A) transports.</p>
     <p class="source">Source: <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a>; <a href="https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/" rel="noopener">Star Global</a> · last verified 2026-08-04</p>
     <h3>Governance and licensing</h3>
-    <p><span class="badge shipped">shipped</span> AdCP is governed by AgenticAdvertising.org
+    <p>AdCP is governed by AgenticAdvertising.org
     (also called the Agentic Advertising Organization, "AAO"), a Delaware-incorporated
     nonprofit trade association whose 501(c)(6) status is pending. It has four equally
     weighted voting classes — brands, agencies, publishers, and technology providers — and
@@ -59,15 +66,16 @@
     <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a> · last verified 2026-08-04</p>
 
     <h2>Capabilities</h2>
-    <p><span class="badge shipped">shipped</span> The current specification spans six protocol
+    <p>The current specification spans six protocol
     surfaces — Media Buy, Creative, Signals, Accounts, Governance, and Sponsored Intelligence —
     plus the Trusted Match Protocol for serve-time execution across web, mobile, connected TV
     (CTV), AI assistants, and retail.</p>
     <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a> · last verified 2026-08-04</p>
-    <p><span class="badge shipped">shipped</span> Secondary sources report that AdCP reached
+    <p>Secondary sources report that AdCP reached
     general availability on its 3.0 spec line in 2026. Note: the "GA" claim appears in
     secondary sources only; no primary announcement from AgenticAdvertising.org has been
-    located, so the GA label should be read with that caveat. On GitHub, the spec is on an
+    located, so the GA label should be read with that caveat.
+    <span class="badge reported">reported</span> On GitHub, the spec is on an
     active v3.1.x line: the latest tagged release as of this writing is v3.1.10 (August 4),
     with a weekly-plus release cadence through July and August (v3.1.3 was withdrawn for a
     semver violation).</p>
@@ -77,13 +85,13 @@
     <p class="source">Source: <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp" rel="noopener">The Current</a> · last verified 2026-08-04</p>
 
     <h2>Adoption &amp; ecosystem</h2>
-    <p><span class="badge shipped">shipped</span> AgenticAdvertising.org's membership is
+    <p>AgenticAdvertising.org's membership is
     reported at between 104+ and 117+ member companies, with the figures differing by report
     date; the exact current count is unverified because no dated primary membership page has
-    been confirmed. Members named across sources include Yahoo, PubMatic, Scope3, Samba TV,
+    been confirmed. <span class="badge reported">reported</span> Members named across sources include Yahoo, PubMatic, Scope3, Samba TV,
     The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till, Raptive, and Affinity.</p>
     <p class="source">Source: <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a>; <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land</a> · last verified 2026-08-04</p>
-    <p><span class="badge shipped">shipped</span> The first cross-platform agentic media buys
+    <p>The first cross-platform agentic media buys
     were announced on January 6, 2026 by NBCUniversal, agency RPA, FreeWheel, and Newton
     Research: buy-side agents negotiated with sell-side agents over MCP, including live NFL
     playoff linear inventory for a brand's Q1 2026 investment. FreeWheel built an Ad Context
@@ -111,7 +119,7 @@
           <tr>
             <td>2026</td>
             <td>General availability reported for the 3.0 spec line (secondary sources only; no primary GA announcement located).</td>
-            <td><span class="badge shipped">shipped</span></td>
+            <td><span class="badge reported">reported</span></td>
           </tr>
           <tr>
             <td>2026-07/08</td>

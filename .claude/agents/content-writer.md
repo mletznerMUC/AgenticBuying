@@ -21,8 +21,15 @@ clear, neutral page content.
 3. Every factual claim keeps its source: link the source inline and include
    the "last verified" date the research note provides, using the site's
    established citation markup.
-4. Preserve the shipped / announced / speculative classification visibly in
-   the content (the site has badge styles for these).
+4. Badge claims by evidence strength using the four states defined in
+   `docs/DESIGN.md` §5 — `shipped`, `announced`, `reported`, `speculative`.
+   Two rules matter most: **badges mark exceptions**, so unbadged prose means
+   verified/shipped and you must not badge every claim; and **a badge
+   qualifies a claim, not a paragraph** — lead with it when the paragraph is
+   one claim, place it immediately after the sentence it qualifies when the
+   caveat sits inside an otherwise-verified paragraph.
+5. Where sources conflict, state the conflict in the prose and badge the claim
+   `reported`. Never silently pick a number or a date.
 
 ## Style
 

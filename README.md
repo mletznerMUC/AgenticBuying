@@ -47,5 +47,11 @@ npx --yes html-validate "*.html"       # validate (same as CI)
 ## Content principles
 
 - Every factual claim carries a **source link** and a **"last verified" date**.
-- Capabilities are labeled **shipped**, **announced**, or **speculative**.
+- Claims are badged by evidence strength — **shipped**, **announced**,
+  **reported**, **speculative** — and badges mark exceptions: unbadged prose
+  means verified and shipped.
 - Comparison content is neutral — describe, don't advocate.
+
+The visual system, the banned "AI slop" patterns, the badge rules, the imagery
+grammar, and the accessibility floor are defined in
+**[docs/DESIGN.md](docs/DESIGN.md)**.
