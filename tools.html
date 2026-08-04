@@ -39,8 +39,9 @@
 
     <h2>How to read this directory</h2>
     <p>Entries are grouped by what a practitioner would reach for: the specifications and
-    software development kits (SDKs) that implement a protocol, the buy-side platforms and
-    agents that use them, and the Model Context Protocol (MCP) servers that ad platforms have
+    software development kits (SDKs) that implement a protocol, the supply-side tools a
+    publisher or SSP deploys to sell through an agent, the buy-side platforms and agents that
+    buy through one, and the Model Context Protocol (MCP) servers that ad platforms have
     published for their own APIs. Each entry says what the tool does and which protocol it
     speaks — AdCP (Ad Context Protocol), AAMP (Agentic Advertising Management Protocols), or
     MCP alone. Listing is not endorsement, and the directory covers only tools for which a
@@ -57,9 +58,10 @@
         surfaces — Media Buy, Creative, Signals, Accounts, Governance, and Sponsored
         Intelligence — plus the Trusted Match Protocol for serve-time execution, with tasks
         carried over MCP or Google's Agent2Agent (A2A) transport. It is licensed Apache 2.0
-        with express patent grants, and the Prebid community maintains the reference sell-side
-        implementation, kept separate from spec governance. The latest tagged release is
-        v3.1.10 (August 4, 2026) on a weekly-plus cadence.</p>
+        with express patent grants, and spec governance is deliberately separated from
+        implementation — the sell-side reference implementation is listed under supply-side
+        tools below. The latest tagged release is v3.1.10 (August 4, 2026) on a weekly-plus
+        cadence.</p>
         <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a> · last verified 2026-08-04</p>
       </li>
       <li class="card">
@@ -94,13 +96,57 @@
         benchmarked.</p>
         <p class="source">Source: <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire</a>; <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04</p>
       </li>
+    </ul>
+
+    <h2>Supply-side tools &amp; sell-side agents</h2>
+    <p>What a publisher, ad server, or SSP (supply-side platform) would deploy to make
+    inventory available to buying agents. Both protocol families place the sell side behind an
+    agent that answers discovery requests and confirms deals, so the tools here are servers and
+    agent implementations rather than dashboards.</p>
+    <ul class="card-grid">
+      <li class="card">
+        <h3>Prebid sell-side reference implementation</h3>
+        <p>The reference implementation of AdCP's sell-side, maintained by the Prebid community
+        rather than by the standards body — AdCP separates spec governance from implementation
+        by design. It is the starting point for a publisher or SSP standing up an AdCP sales
+        agent.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a> · last verified 2026-08-04</p>
+      </li>
       <li class="card">
         <h3>FreeWheel Ad Context Protocol server</h3>
         <p>A sell-side AdCP server that FreeWheel built for the agentic buys announced on
         January 6, 2026 with NBCUniversal, agency RPA, and Newton Research, in which buy-side
         agents negotiated with sell-side agents over MCP across premium video — including live
-        NFL playoff linear inventory.</p>
+        NFL playoff linear inventory. This is the one sell-side deployment in this directory
+        confirmed to have transacted.</p>
         <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a> · last verified 2026-08-04</p>
+      </li>
+      <li class="card">
+        <h3>AAMP Seller Agent</h3>
+        <p>The sell-side half of AAMP's transaction-ready SDK pair: it publishes rate cards and
+        confirms deals against a buyer agent, built on OpenDirect 2.1 with AdCOM, audit trails,
+        and human-approval guardrails. AAMP 2.3 added a pricing-provenance field so an agent
+        cannot invent a price it was not given.</p>
+        <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a> · last verified 2026-08-04</p>
+      </li>
+      <li class="card">
+        <h3>AAMP Registry Agent</h3>
+        <p>AAMP's agent-discovery and transparency component: how a buying agent finds the
+        sell-side agents it can transact with. It sits under the framework's "neutral agent
+        transparency" pillar. <span class="badge reported">reported</span> The repository is
+        public, but whether the transparency registry service itself has shipped — as opposed
+        to remaining a pillar-level ambition — could not be verified from accessible sources.</p>
+        <p class="source">Source: <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-08-04</p>
+      </li>
+      <li class="card">
+        <h3>Publishers &amp; sell-side platforms in the AdCP coalition</h3>
+        <p>AdCP launched from a largely supply-side coalition: Yahoo, PubMatic, Scope3, Optable,
+        Swivel, and Triton Digital (audio) founded it in October 2025.
+        <span class="badge reported">reported</span> Members named across later coverage include
+        Magnite, Samba TV, The Weather Company, LG Ad Solutions, Raptive, and Affinity, which
+        joined to bring OEM and browser inventory into the standard. Treat this as a membership
+        list, not a deployment list — see the gaps note below.</p>
+        <p class="source">Source: <a href="https://tritondigital.com/news-item/October-15-2025/yahoo-pubmatic-and-others-launch-new-standardfor-agentic-advertising" rel="noopener">Triton Digital</a>; <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> · last verified 2026-08-04</p>
       </li>
     </ul>
 
