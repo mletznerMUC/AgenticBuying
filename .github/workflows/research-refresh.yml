@@ -1,5 +1,5 @@
-# Monthly research refresh: re-verify what the site claims, find what changed,
-# and open a PR. A human reviews and merges — this never writes to main.
+# Twice-monthly research refresh: re-verify what the site claims, find what
+# changed, and open a PR. A human reviews and merges — never writes to main.
 #
 # The site's product is calibrated confidence about a fast-moving topic, so the
 # "last verified" dates are load-bearing. This job exists to keep them honest.
@@ -7,10 +7,11 @@ name: Research Refresh
 
 on:
   schedule:
-    # 06:00 UTC on the 1st of each month. The ecosystem moves on a monthly
-    # rhythm (spec releases, working-group announcements), so monthly
-    # re-verification matches how fast the facts actually change.
-    - cron: "0 6 1 * *"
+    # 06:00 UTC on the 1st and 15th. Was monthly; the first real run found
+    # eight claims already wrong and a release line deprecated three days
+    # earlier, so a month is longer than the facts stay true. Roughly
+    # fortnightly keeps the verification window inside the release cadence.
+    - cron: "0 6 1,15 * *"
   workflow_dispatch:
     inputs:
       focus:
@@ -57,7 +58,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
-            You are running this repository's monthly research refresh. Read
+            You are running this repository's twice-monthly research refresh. Read
             CLAUDE.md, docs/DESIGN.md, docs/research/README.md, and the current
             research note it points to before doing anything else. Follow the
             method in .claude/agents/research-analyst.md.

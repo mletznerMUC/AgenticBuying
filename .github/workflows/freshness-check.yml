@@ -1,4 +1,4 @@
-# Weekly freshness check. The monthly refresh can fail quietly — a missing
+# Weekly freshness check. The refresh can fail quietly — a missing
 # secret, an API error, a PR nobody merges — and stale dates on this site look
 # exactly like fresh ones. This job makes that failure visible by opening an
 # issue, so silence is never mistaken for currency.
@@ -19,9 +19,11 @@ jobs:
     timeout-minutes: 10
     env:
       # Content older than this many days is treated as stale. The refresh runs
-      # monthly, so this allows one missed cycle plus review time before it
-      # escalates.
-      MAX_AGE_DAYS: 45
+      # on the 1st and 15th, so a cycle is ~15 days; this allows one missed
+      # cycle plus review time before it escalates. Keep this in step with the
+      # cron in research-refresh.yml — a threshold looser than two cycles stops
+      # catching anything.
+      MAX_AGE_DAYS: 21
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v5

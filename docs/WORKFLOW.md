@@ -103,10 +103,10 @@ claim carries a source and a "last verified" date. That makes staleness
 invisible — a page verified eight months ago looks exactly as authoritative as
 one verified yesterday. Two scheduled workflows close that gap.
 
-### Monthly: `research-refresh.yml`
+### Twice monthly: `research-refresh.yml`
 
-Runs at 06:00 UTC on the 1st, and on demand via **Actions → Research Refresh →
-Run workflow** (which takes an optional `focus` topic). It:
+Runs at 06:00 UTC on the **1st and 15th**, and on demand via **Actions → Research
+Refresh → Run workflow** (which takes an optional `focus` topic). It:
 
 1. Re-verifies the claims currently on the site against their cited sources.
 2. Searches for developments since the last verification date.
@@ -129,8 +129,10 @@ refresh, and should say so rather than manufacturing edits.
 
 The refresh can fail quietly — an expired API key, an error, a pull request
 nobody merges. This job runs every Monday, finds the newest `last verified` date
-across the pages, and if it is more than **45 days** old (one missed cycle plus
-review time) opens or updates a `freshness`-labeled issue. It also fails loudly
+across the pages, and if it is more than **21 days** old (one missed cycle plus
+review time, against a ~15-day cycle) opens or updates a `freshness`-labeled
+issue. Keep that threshold in step with the refresh cron: a limit looser than
+two cycles stops catching anything. It also fails loudly
 if it can find no verification dates at all, which would mean the citation
 format broke.
 

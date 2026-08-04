@@ -56,7 +56,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           # The action refuses non-human actors by default, which is the right
           # default — it stops a bot-authored event from driving an agent run.
-          # But the monthly research refresh opens its PR as claude[bot], and
+          # But the research refresh opens its PR as claude[bot], and
           # those PRs are exactly the ones most worth reviewing: they change
           # sourced claims without a human having written a line. Allow that one
           # bot by name rather than "*", so any other bot still cannot trigger a
