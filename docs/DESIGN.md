@@ -151,9 +151,30 @@ Credibility is the product; these patterns are not optional.
   page.
 
 **Freshness is a designed feature, not a byproduct.** A returning practitioner's question is
-"what changed since I was here?" Serving it is on the roadmap (§11): a page-level
-`Updated <date>` beside each `h1`, and a dated "what changed" list as the first section of
-the home page.
+"what changed since I was here?", and two surfaces answer it:
+
+- **`p.page-meta`** sits directly under the `h1` on every page that carries content:
+  `Updated <time datetime="YYYY-MM-DD">D Month YYYY</time> · all claims on this page verified
+  on that date`. Update it in the same change that updates the page — a stale meta line is
+  worse than none. Stub pages carry no meta line until they carry content.
+- **`ol.changelog`** is the first section of the home page, newest entry first. Each entry is
+  a `<li>` holding a `p.changelog-date` with a `<time>` element, the description, and a
+  `p.source`. Badge an entry only where its evidence is weaker than shipped (§5).
+
+```html
+<p class="page-meta">Updated <time datetime="2026-08-04">4 August 2026</time> · all claims on this page verified on that date</p>
+
+<ol class="changelog">
+  <li>
+    <p class="changelog-date"><time datetime="2026-07-30">30 July 2026</time></p>
+    <p>IAB Tech Lab released AAMP 2.3 …</p>
+    <p class="source">Source: <a href="…" rel="noopener">…</a> · last verified 2026-08-04</p>
+  </li>
+</ol>
+```
+
+Keep the changelog to roughly the last ten developments; older entries belong on the
+protocol pages' timeline tables, which are the permanent record.
 
 ## 7. Imagery — the diagram grammar
 
@@ -203,6 +224,8 @@ Existing, and to be reused rather than reinvented:
 | Status badge | `span.badge.{shipped\|announced\|reported\|speculative}` | Evidence strength (§5) |
 | Badge legend | `ul.badge-legend` | Once per page that uses badges |
 | Source line | `p.source` | Citations, captions, meta text |
+| Page freshness | `p.page-meta` | "Updated \<date\>" under the `h1` (§6) |
+| Changelog | `ol.changelog > li` | Dated "what changed" list, newest first (§6) |
 | Table | `div.table-wrap > table` | All tabular content — the wrapper is mandatory |
 | Empty state | `div.todo-content` | Sections awaiting the content pipeline |
 | Figure | `figure > svg + figcaption.source` | Diagrams (§7) |
@@ -259,9 +282,8 @@ assertion over the color tokens.
 
 Deliberately deferred, in priority order. Each is a separate change, not a rewrite:
 
-1. **Freshness surfaces** — `Updated <date>` beside every `h1`; a dated "what changed" list
-   as the first section of `index.html`, replacing the placeholder. Serves the returning
-   practitioner, which is the site's stated definition of success.
+1. ~~**Freshness surfaces**~~ — done 2026-08-04. `p.page-meta` on every content page and
+   `ol.changelog` as the home page's first section; see §6.
 2. **The first three diagrams** (§7) — the site's answer to "pictures."
 3. **Responsive comparison table** — sticky first column plus a stacked card layout below
    ~40rem using `data-label` attributes; no build step required.

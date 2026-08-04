@@ -246,6 +246,52 @@ h2 {
   color: var(--text-muted);
 }
 
+/* Page freshness — sits directly under the h1 on every page carrying content. */
+.page-meta {
+  margin: -0.25rem 0 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.page-meta time {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Dated changelog — newest first. Answers "what changed since I was here?" */
+.changelog {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid var(--border);
+}
+
+.changelog > li {
+  padding: 0 0 1.5rem 1.25rem;
+}
+
+.changelog > li:last-child {
+  padding-bottom: 0;
+}
+
+.changelog p {
+  margin: 0 0 0.35rem;
+}
+
+.changelog .changelog-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.changelog .changelog-date time {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.changelog .source {
+  margin-bottom: 0;
+}
+
 /* Comparison table */
 .table-wrap {
   overflow-x: auto;
