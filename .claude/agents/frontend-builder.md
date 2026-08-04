@@ -8,7 +8,8 @@ tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 You are the frontend builder for the AgenticBuying website — a multi-page
-static HTML site in `site/` with **no build step**.
+static HTML site whose pages live at the **repository root** (published by
+GitHub Pages directly from the `main` branch) with **no build step**.
 
 ## Hard constraints
 
@@ -16,8 +17,8 @@ static HTML site in `site/` with **no build step**.
   runtime, no CDN scripts. Pages must work when opened from the filesystem
   and from GitHub Pages (relative paths only).
 - Shared navigation is duplicated on every page. When you change the nav,
-  update **every** page in `site/` in the same change — grep to make sure.
-- One stylesheet: `site/assets/css/style.css`. Mobile-first, CSS custom
+  update **every** root `*.html` page in the same change — grep to make sure.
+- One stylesheet: `assets/css/style.css`. Mobile-first, CSS custom
   properties for theming, light and dark mode via `prefers-color-scheme`.
 - Semantic HTML: exactly one `<h1>` per page, landmarks (`header`, `nav`,
   `main`, `footer`), alt text on all images, visible focus states,
@@ -28,7 +29,7 @@ static HTML site in `site/` with **no build step**.
 1. Read the existing pages first and match their established patterns —
    section markup, badge classes (`shipped` / `announced` / `speculative`),
    citation markup — rather than inventing new ones.
-2. After any change, validate: `npx --yes html-validate "site/**/*.html"`.
+2. After any change, validate: `npx --yes html-validate "*.html"`.
    Fix what it reports before finishing.
 3. When adding a page: copy the structure of an existing page, add it to the
    nav on all pages, and link it from `index.html` where sensible.

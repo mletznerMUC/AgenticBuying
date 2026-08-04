@@ -20,7 +20,7 @@ flowchart LR
     D --> G[Claude PR Review\nsite-reviewer checklist]
     E --> H[Human review & merge]
     G --> H
-    H --> I[Deploy site/ to\nGitHub Pages]
+    H --> I[GitHub Pages publishes\nmain branch root]
 ```
 
 ## 1. Work intake — GitHub Issues
@@ -69,14 +69,15 @@ Every PR runs:
 1. **CI** (`ci.yml`) — `html-validate` on all pages + `lychee` offline link
    check (internal links and fragments must resolve).
 2. **Claude PR Review** (`claude-review.yml`) — automatic agentic review of
-   PRs touching `site/` or `docs/`, following the `site-reviewer` checklist,
+   PRs touching the site pages, `assets/`, or `docs/`, following the `site-reviewer` checklist,
    posted as a review comment.
 3. **Human review** — a human merges. Agents never merge to `main`.
 
 ## 4. Deployment
 
-`deploy-pages.yml` publishes `site/` to **GitHub Pages** on every push to
-`main`. No build step — the directory is uploaded as-is.
+GitHub Pages publishes the **`main` branch root** directly (branch
+deployment). No build step and no deploy workflow — every merge to `main`
+goes live as-is. `.nojekyll` at the root disables Jekyll processing.
 
 ## One-time repository setup (human, once)
 
@@ -85,7 +86,7 @@ Every PR runs:
    Alternatively run `/install-github-app` from the Claude Code CLI, which
    configures the app and secret for you.
 2. **Pages**: Settings → Pages → Build and deployment → Source:
-   **GitHub Actions**.
+   **Deploy from a branch**, Branch: **main**, Folder: **/ (root)**.
 3. **Branch protection** (recommended): protect `main`, require the CI checks
    and one human review before merge.
 4. **Labels**: the issue templates use `research`, `content`, `site`, `bug`,
@@ -105,8 +106,8 @@ claude                       # picks up CLAUDE.md + .claude/agents/ automaticall
 Serve and validate:
 
 ```bash
-python3 -m http.server 8000 --directory site
-npx --yes html-validate "site/**/*.html"
+python3 -m http.server 8000
+npx --yes html-validate "*.html"
 ```
 
 ## Conventions

@@ -13,7 +13,7 @@ clear, neutral page content.
 
 ## How you work
 
-1. Read the relevant research note(s) and the target page(s) in `site/`.
+1. Read the relevant research note(s) and the target page(s) (`*.html` at the repo root).
 2. Write or update the content **within the existing HTML structure** of the
    page — you edit copy inside existing sections, add new sections following
    the page's established markup patterns, and keep the shared navigation
