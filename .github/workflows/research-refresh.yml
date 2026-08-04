@@ -1,0 +1,119 @@
+# Monthly research refresh: re-verify what the site claims, find what changed,
+# and open a PR. A human reviews and merges — this never writes to main.
+#
+# The site's product is calibrated confidence about a fast-moving topic, so the
+# "last verified" dates are load-bearing. This job exists to keep them honest.
+name: Research Refresh
+
+on:
+  schedule:
+    # 06:00 UTC on the 1st of each month. The ecosystem moves on a monthly
+    # rhythm (spec releases, working-group announcements), so monthly
+    # re-verification matches how fast the facts actually change.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Optional topic to prioritize (e.g. 'live AdCP sales endpoints')"
+        required: false
+        type: string
+
+# Never run two refreshes at once; a second one would duplicate the PR.
+concurrency:
+  group: research-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+      id-token: write
+    env:
+      HAS_ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      FOCUS: ${{ inputs.focus }}
+    steps:
+      - name: Notice when ANTHROPIC_API_KEY is not configured
+        if: env.HAS_ANTHROPIC_KEY != 'true'
+        run: |
+          echo "::notice::Skipping research refresh: ANTHROPIC_API_KEY secret is not set." \
+            "Add it under Settings → Secrets and variables → Actions (see docs/WORKFLOW.md)."
+
+      - name: Checkout repository
+        if: env.HAS_ANTHROPIC_KEY == 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Research refresh
+        if: env.HAS_ANTHROPIC_KEY == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are running this repository's monthly research refresh. Read
+            CLAUDE.md, docs/DESIGN.md, docs/research/README.md, and the current
+            research note it points to before doing anything else. Follow the
+            method in .claude/agents/research-analyst.md.
+
+            Today's date is the run date — use it for every "verified" date you
+            write, and never write a date you did not actually verify on.
+
+            ## What to do
+
+            1. RE-VERIFY. Work through the claims currently on the site and check
+               each against its cited source. A claim is only re-verified if you
+               actually reached the source and it still supports the claim.
+            2. FIND WHAT CHANGED. Search for developments since the last
+               verification date: new spec releases and version numbers, adoption
+               announcements, governance changes, and anything that contradicts
+               what a page currently says.
+            3. ANSWER OPEN QUESTIONS. docs/research/README.md carries the
+               unresolved questions from the last cycle. Try to close them, and
+               report what remains open.
+
+            ## What to write
+
+            - A NEW dated research note at docs/research/<topic>-<yyyy-mm-dd>.md
+              in the required format (Summary; Findings table of claim | status |
+              source | date verified; Impact on existing pages; Open questions).
+              Do not overwrite the previous note — the notes are an evidence
+              trail over time.
+            - Update docs/research/README.md so "Current notes" points at the new
+              note and the carried-forward open questions match reality.
+            - Update the site pages, following docs/DESIGN.md exactly:
+              * Correct any claim the sources no longer support, and change its
+                badge if the evidence strength changed.
+              * Add genuinely new developments to the ol.changelog on index.html,
+                newest first, each with its own source line.
+              * Update the p.page-meta "Updated" line ONLY on pages whose claims
+                you actually re-verified.
+
+            ## Rules that matter more than completeness
+
+            - NEVER bump a "last verified" date for a claim you did not
+              re-check. A date that launders an unverified claim is worse than a
+              stale one, and it destroys the only thing this site sells.
+            - Badges mark exceptions (DESIGN.md §5). If evidence weakened —
+              a source disappeared, sources now disagree — move the claim to
+              `reported` rather than deleting the caveat.
+            - Keep the tone neutral; the site describes, it does not advocate.
+            - Do not touch the shared nav or footer, and never remove the AI
+              transparency notice or the copyright line.
+            - If the focus input is set, prioritize it: ${{ inputs.focus }}
+
+            ## Finishing
+
+            Run `npx --yes html-validate "*.html"` and fix anything it reports.
+            Then create a branch named claude/research-refresh-<yyyy-mm-dd>,
+            commit, and open a pull request describing what changed, what was
+            re-verified, what could not be verified, and which open questions
+            remain. Do NOT merge — a human reviews it.
+
+            If nothing material changed, say so in the PR body rather than
+            manufacturing edits; a refresh that confirms the site is still
+            accurate is a successful refresh.
+          claude_args: |
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"
