@@ -205,14 +205,25 @@ Rules:
 </figure>
 ```
 
-- Accessibility: `role="img"` plus a `<title>` referenced by `aria-labelledby`. If the
-  diagram carries information not in the surrounding prose, describe it in the prose too.
+- Accessibility: `role="img"` plus a `<title>` referenced by `aria-labelledby`. The `<title>`
+  must describe what the diagram *shows*, not merely name it — it is the only content a
+  screen-reader user gets. If the diagram carries information not in the surrounding prose,
+  put it in the prose too.
 - Keep figures under ~10 KB of markup. No embedded rasters, no external requests, ever.
 
-**First three figures to build** (in priority order): the stack diagram showing where AdCP
-and AAMP sit relative to OpenRTB/OpenDirect and MCP/A2A (for `comparison.html`); an
-agent-to-agent buy sequence (for `workflows.html`); and the AAMP component map (for
-`aamp.html`).
+**Sizing.** `figure svg` is `width: 100%` with `min-width: 26rem`; below that the
+`.figure-wrap` scrolls rather than shrinking the type past legibility. Verify at 360px that
+the *page* does not scroll horizontally — only the figure does. Design tall rather than wide,
+and keep the viewBox around 560 units so 13.5px diagram text stays readable when scaled.
+
+**Fitting labels.** SVG text does not wrap. Break labels into separate `<text>` lines
+yourself, and size boxes for the longest label they must hold — a two-column grid of 264-unit
+nodes fits component names that a three-column grid of 170-unit nodes clips.
+
+**The three built figures** — copy their structure rather than inventing a new one:
+`comparison.html` (the stack: both families over MCP/A2A, AdCP parallel to OpenRTB vs. AAMP
+extending it), `aamp.html` (the AAMP component map), `workflows.html` (the six-message
+agent-to-agent buy sequence).
 
 ## 8. Component inventory
 
@@ -228,7 +239,8 @@ Existing, and to be reused rather than reinvented:
 | Changelog | `ol.changelog > li` | Dated "what changed" list, newest first (§6) |
 | Table | `div.table-wrap > table` | All tabular content — the wrapper is mandatory |
 | Empty state | `div.todo-content` | Sections awaiting the content pipeline |
-| Figure | `figure > svg + figcaption.source` | Diagrams (§7) |
+| Figure | `figure > div.figure-wrap > svg`, then `figcaption.source` | Diagrams (§7) |
+| Diagram parts | `.dgm-band`, `.dgm-node`, `.dgm-title`, `.dgm-text`, `.dgm-line`, `.dgm-line-dashed`, `.dgm-lifeline`, `.dgm-arrow` | The shared drawing grammar (§7) |
 
 Rules: no new component without a second use case. No inline `style` attributes. New styles
 go in `assets/css/style.css` — the single stylesheet — never in a `<style>` block on a page.
@@ -284,7 +296,8 @@ Deliberately deferred, in priority order. Each is a separate change, not a rewri
 
 1. ~~**Freshness surfaces**~~ — done 2026-08-04. `p.page-meta` on every content page and
    `ol.changelog` as the home page's first section; see §6.
-2. **The first three diagrams** (§7) — the site's answer to "pictures."
+2. ~~**The first three diagrams**~~ — done 2026-08-04. Stack diagram, AAMP component map,
+   and buy sequence; the grammar and sizing rules they established are in §7.
 3. **Responsive comparison table** — sticky first column plus a stacked card layout below
    ~40rem using `data-label` attributes; no build step required.
 4. **Remaining tokens** — spacing, type scale, and radius are still hardcoded values

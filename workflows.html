@@ -28,9 +28,80 @@
     <h1>Sample agentic buying workflows</h1>
     <p class="lead">End-to-end walkthroughs of how agent-driven media buying works in
     practice — from brief to discovery, negotiation, activation, and reporting.</p>
+    <p class="page-meta">Updated <time datetime="2026-08-04">4 August 2026</time> · all claims on this page verified on that date</p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+    </ul>
 
-    <h2>Workflow catalog</h2>
-    <div class="todo-content"><p>Content pending — this section is filled by the research-analyst → content-writer pipeline. Track progress in the <a href="https://github.com/mletznerMUC/AgenticBuying/issues" rel="noopener">issue tracker</a>.</p></div>
+    <h2>Agent-to-agent media buy over AdCP</h2>
+    <p>AdCP models a media buy as a sequence of named agent tasks rather than as a bidding
+    exchange: a buy-side agent discovers products, creates a media buy, supplies or generates
+    creative, and receives delivery reporting. The tasks are carried over MCP or A2A, so the
+    same sequence works across web, mobile, connected TV, and linear inventory.</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a> · last verified 2026-08-04</p>
+
+    <figure>
+      <div class="figure-wrap">
+        <svg viewBox="0 0 560 420" role="img" aria-labelledby="fig-seq-title">
+          <title id="fig-seq-title">A buy-side agent and a sell-side agent exchange six messages: discover products, return products and availability, create media buy, confirm the buy with creative requirements, deliver creative, and return delivery reporting.</title>
+          <defs>
+            <marker id="seq-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="dgm-arrow" d="M 0 0 L 10 5 L 0 10 z" />
+            </marker>
+          </defs>
+
+          <rect class="dgm-node" x="40" y="8" width="180" height="46" rx="6" />
+          <text class="dgm-title" x="130" y="37" text-anchor="middle">Buy-side agent</text>
+
+          <rect class="dgm-node" x="340" y="8" width="180" height="46" rx="6" />
+          <text class="dgm-title" x="430" y="37" text-anchor="middle">Sell-side agent</text>
+
+          <path class="dgm-lifeline" d="M 130 54 L 130 404" />
+          <path class="dgm-lifeline" d="M 430 54 L 430 404" />
+
+          <text class="dgm-text" x="280" y="96" text-anchor="middle">1. discover products</text>
+          <path class="dgm-line" d="M 134 108 L 422 108" marker-end="url(#seq-arrow)" />
+
+          <text class="dgm-text" x="280" y="148" text-anchor="middle">2. products and availability</text>
+          <path class="dgm-line" d="M 426 160 L 138 160" marker-end="url(#seq-arrow)" />
+
+          <text class="dgm-text" x="280" y="200" text-anchor="middle">3. create media buy</text>
+          <path class="dgm-line" d="M 134 212 L 422 212" marker-end="url(#seq-arrow)" />
+
+          <text class="dgm-text" x="280" y="252" text-anchor="middle">4. confirm buy + creative requirements</text>
+          <path class="dgm-line" d="M 426 264 L 138 264" marker-end="url(#seq-arrow)" />
+
+          <text class="dgm-text" x="280" y="304" text-anchor="middle">5. generate and deliver creative</text>
+          <path class="dgm-line" d="M 134 316 L 422 316" marker-end="url(#seq-arrow)" />
+
+          <text class="dgm-text" x="280" y="356" text-anchor="middle">6. delivery and reporting</text>
+          <path class="dgm-line" d="M 426 368 L 138 368" marker-end="url(#seq-arrow)" />
+        </svg>
+      </div>
+      <figcaption class="source">Figure 1 — The AdCP task sequence for a single media buy. In current
+      deployments a human still approves the buy: AAMP's Buyer and Seller Agent SDKs ship
+      human-approval guardrails, and WPP's Buyer Agent for Video recommends while humans approve.
+      Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>;
+      <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a>;
+      <a href="https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/" rel="noopener">MarTech Edition</a> · last verified 2026-08-04</figcaption>
+    </figure>
+
+    <h3>The sequence executed in production</h3>
+    <p>On January 6, 2026, NBCUniversal, agency RPA, FreeWheel, and Newton Research announced the
+    first cross-platform agentic media buys running this pattern: buy-side agents negotiated with
+    sell-side agents over MCP for a brand's first-quarter 2026 investment, including live NFL
+    playoff linear inventory. FreeWheel built an Ad Context Protocol server for the effort.
+    Publicly confirmed production endpoints remain limited beyond this case.</p>
+    <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> · last verified 2026-08-04</p>
+
+    <h2>Planned workflows</h2>
+    <div class="todo-content"><p>The AAMP Agentic Direct flow — buyer agent to registry to seller
+    agent, negotiating on OpenDirect 2.1 rate cards with audit trails and human-approval gates —
+    is the next workflow to be documented. Track progress in the <a href="https://github.com/mletznerMUC/AgenticBuying/issues" rel="noopener">issue tracker</a>.</p></div>
   </main>
   <footer class="site-footer">
     <div class="inner">

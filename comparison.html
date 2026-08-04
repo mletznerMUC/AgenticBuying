@@ -91,6 +91,56 @@
     inherited.</p>
     <p class="source">Source: <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a>; <a href="https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/" rel="noopener">Star Global</a>; <a href="https://perform.digital/blogs/adcp-vs-aamp/" rel="noopener">Perform Digital</a> · last verified 2026-08-04</p>
 
+    <figure>
+      <div class="figure-wrap">
+        <svg viewBox="0 0 560 372" role="img" aria-labelledby="fig-stack-title">
+          <title id="fig-stack-title">Both protocol families run over the same agent transports. AdCP defines new task schemas positioned parallel to OpenRTB; AAMP extends the existing IAB Tech Lab standards with agentic layers.</title>
+          <defs>
+            <marker id="stack-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="dgm-arrow" d="M 0 0 L 10 5 L 0 10 z" />
+            </marker>
+          </defs>
+
+          <rect class="dgm-band" x="8" y="8" width="544" height="54" rx="6" />
+          <text class="dgm-title" x="280" y="32" text-anchor="middle">Agent transports</text>
+          <text class="dgm-text" x="280" y="51" text-anchor="middle">MCP (Model Context Protocol) · A2A (Agent2Agent)</text>
+
+          <path class="dgm-line" d="M 140 62 L 140 100" marker-end="url(#stack-arrow)" />
+          <path class="dgm-line" d="M 420 62 L 420 100" marker-end="url(#stack-arrow)" />
+
+          <rect class="dgm-node" x="8" y="102" width="264" height="122" rx="6" />
+          <text class="dgm-title" x="140" y="128" text-anchor="middle">AdCP</text>
+          <text class="dgm-text" x="140" y="152" text-anchor="middle">New, purpose-built</text>
+          <text class="dgm-text" x="140" y="170" text-anchor="middle">agent task schemas:</text>
+          <text class="dgm-text" x="140" y="188" text-anchor="middle">discover products,</text>
+          <text class="dgm-text" x="140" y="206" text-anchor="middle">create media buy, …</text>
+
+          <rect class="dgm-node" x="288" y="102" width="264" height="122" rx="6" />
+          <text class="dgm-title" x="420" y="128" text-anchor="middle">AAMP</text>
+          <text class="dgm-text" x="420" y="152" text-anchor="middle">Agentic layers over</text>
+          <text class="dgm-text" x="420" y="170" text-anchor="middle">existing standards:</text>
+          <text class="dgm-text" x="420" y="188" text-anchor="middle">Agentic Direct, Buyer/</text>
+          <text class="dgm-text" x="420" y="206" text-anchor="middle">Seller/Registry agents, …</text>
+
+          <path class="dgm-line dgm-line-dashed" d="M 140 224 L 140 292" />
+          <text class="dgm-text" x="152" y="252">parallel to OpenRTB,</text>
+          <text class="dgm-text" x="152" y="270">not a replacement</text>
+
+          <path class="dgm-line" d="M 420 224 L 420 292" marker-end="url(#stack-arrow)" />
+          <text class="dgm-text" x="432" y="262">extends</text>
+
+          <rect class="dgm-band" x="8" y="294" width="544" height="62" rx="6" />
+          <text class="dgm-title" x="280" y="320" text-anchor="middle">Existing programmatic standards</text>
+          <text class="dgm-text" x="280" y="342" text-anchor="middle">OpenRTB · OpenDirect 2.1 · AdCOM · VAST</text>
+        </svg>
+      </div>
+      <figcaption class="source">Figure 1 — Where each protocol family sits. Both run over MCP and A2A;
+      the difference is whether the domain vocabulary is newly defined (AdCP) or inherited from the
+      existing IAB Tech Lab stack (AAMP). Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>;
+      <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>;
+      <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a> · last verified 2026-08-04</figcaption>
+    </figure>
+
     <h3>Governance and licensing</h3>
     <p>AdCP is governed by AgenticAdvertising.org,
     a Delaware-incorporated trade association (501(c)(6) status pending) with four equally
