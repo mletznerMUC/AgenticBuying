@@ -44,7 +44,9 @@ directly from the `main` branch ("Deploy from a branch" → `main` → `/ (root)
 - **Plain HTML/CSS/JS only. No build step, no framework, no bundler.**
   Every page must open correctly from the filesystem and from GitHub Pages.
 - Shared navigation is duplicated per page (no server-side includes); keep it
-  identical across pages — update all pages when the nav changes.
+  identical across pages — update all pages when the nav changes. The same
+  applies to the footer, which carries the AI transparency notice and the
+  copyright line — never drop either when editing a page.
 - Mobile-first responsive CSS in `assets/css/style.css`. Support light and
   dark mode via `prefers-color-scheme`.
 - Accessibility: semantic HTML, one `<h1>` per page, alt text on images,

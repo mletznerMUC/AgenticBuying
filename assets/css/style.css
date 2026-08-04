@@ -467,5 +467,14 @@ th {
 .site-footer .inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.7rem;
+  max-width: 60rem;
+}
+
+.site-footer p:last-child {
+  margin-bottom: 0;
 }

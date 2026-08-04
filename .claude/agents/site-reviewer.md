@@ -43,6 +43,8 @@ severity. You do not edit files.
 **Site integrity**
 - Run `npx --yes html-validate "*.html"` and report failures.
 - Shared nav is identical across all pages (diff the nav blocks).
+- Footer is identical across all pages and still carries the AI transparency
+  notice and the copyright line (`docs/DESIGN.md` §6).
 - All internal links resolve to files that exist; relative paths only.
 - External links use `rel="noopener"`.
 
