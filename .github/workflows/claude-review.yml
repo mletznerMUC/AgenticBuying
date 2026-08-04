@@ -1,11 +1,14 @@
 # Automatic agentic code review on every pull request that touches the site
 # or docs. Uses the site-reviewer conventions from .claude/agents/.
 #
-# NOTE on claude_args: --allowedTools REPLACES the action's defaults, it does
-# not add to them. An earlier version listed only the html-validate command,
-# which left the agent unable to read files or post its review — it ran for
-# three minutes, logged seven permission denials, and finished silently. Any
-# tool the review needs must be listed explicitly, including the comment tools.
+# NOTE: do not add --allowedTools here. It REPLACES the action's default
+# toolset rather than extending it, and the defaults are what let the agent
+# read the diff and post its review. Two attempts to hand-write that list both
+# failed silently: the first (html-validate only) ran 3 minutes with 7
+# permission denials; the second, which guessed at the comment tool names, ran
+# 10 minutes over 51 turns, cost $3.60, hit 15 denials — and still posted
+# nothing. The reviewer does not need its own html-validate: the ci workflow
+# already validates every PR.
 name: Claude PR Review
 
 on:
@@ -89,5 +92,3 @@ jobs:
             severity, each naming the file and line and suggesting a concrete
             fix. If everything passes, say so briefly rather than inventing
             nits.
-          claude_args: |
-            --allowedTools "Read,Grep,Glob,Bash(npx --yes html-validate:*),Bash(git diff:*),Bash(git log:*),mcp__github_comment__update_claude_comment,mcp__github_inline_comment__create_inline_comment"
