@@ -58,47 +58,96 @@
     <p class="source">Source: <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a>; <a href="https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/" rel="noopener">Star Global</a> · last verified 2026-08-04</p>
     <h3>Governance and licensing</h3>
     <p>AdCP is governed by AgenticAdvertising.org
-    (also called the Agentic Advertising Organization, "AAO"), a Delaware-incorporated
-    nonprofit trade association whose 501(c)(6) status is pending. It has four equally
-    weighted voting classes — brands, agencies, publishers, and technology providers — and
-    deliberately separates spec governance from implementation: the Prebid community maintains
-    the reference sell-side implementation. The spec repository is licensed under Apache 2.0
-    with express patent grants, and contributors are bound by an IPR policy.</p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a> · last verified 2026-08-04</p>
+    (also called the Agentic Advertising Organization, "AAO"), a Delaware-incorporated nonprofit
+    trade association. It has four equally weighted voting classes — brands, agencies, publishers,
+    and technology providers — and deliberately separates spec governance from implementation: the
+    Prebid community maintains the reference sell-side implementation. The spec repository is
+    licensed under Apache 2.0 with express patent grants, and contributors are bound by an IPR
+    policy. <span class="badge reported">reported</span> Its tax status is described inconsistently
+    by its own sources: the specification repository calls it "a pending 501(c)(6) nonprofit trade
+    association," while the organization's About page states that it is a Delaware 501(c)(6)
+    nonprofit and lists an employer identification number, and also describes the organization as
+    being in a "formation phase."</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://agenticadvertising.org/about" rel="noopener">AgenticAdvertising.org — About</a> · last verified 2026-08-04</p>
+    <p>The organization's bylaws provide for a 40-director elected board drawn from those same four
+    member categories; the interim advisors it names are Randall Rothenberg, former CEO of the
+    Interactive Advertising Bureau, and Matthew Egol, formerly of Booz &amp; Company. Membership is
+    paid and tiered, from an Explorer tier at $50 per year to a Leader tier at $50,000 per year,
+    with voting rights attached to contributor seats rather than to the lowest tier.</p>
+    <p class="source">Source: <a href="https://agenticadvertising.org/about" rel="noopener">AgenticAdvertising.org — About</a>; <a href="https://agenticadvertising.org/membership" rel="noopener">AgenticAdvertising.org — Membership</a> · last verified 2026-08-04</p>
 
     <h2>Capabilities</h2>
-    <p>The current specification spans six protocol
-    surfaces — Media Buy, Creative, Signals, Accounts, Governance, and Sponsored Intelligence —
-    plus the Trusted Match Protocol for serve-time execution across web, mobile, connected TV
-    (CTV), AI assistants, and retail.</p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a> · last verified 2026-08-04</p>
-    <p>Secondary sources report that AdCP reached
-    general availability on its 3.0 spec line in 2026. Note: the "GA" claim appears in
-    secondary sources only; no primary announcement from AgenticAdvertising.org has been
-    located, so the GA label should be read with that caveat.
-    <span class="badge reported">reported</span> On GitHub, the spec is on an
-    active v3.1.x line: the latest tagged release as of this writing is v3.1.10 (August 4),
-    with a weekly-plus release cadence through July and August (v3.1.3 was withdrawn for a
-    semver violation).</p>
-    <p class="source">Source: <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp" rel="noopener">The Current</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
-    <p><span class="badge announced">announced</span> Roadmap items — not yet shipped —
-    include curation, creative generation, and performance attribution.</p>
-    <p class="source">Source: <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp" rel="noopener">The Current</a> · last verified 2026-08-04</p>
+    <p>The current specification spans seven
+    negotiation-layer surfaces — Media Buy, Creative, Signals, Accounts, Governance, Brand, and
+    Sponsored Intelligence — plus the Trusted Match Protocol, which covers Context Match and
+    Identity Match, for serve-time execution across web, mobile, connected TV (CTV), AI assistants,
+    and retail. The documentation marks Sponsored Intelligence, which covers brand sessions inside
+    AI assistants, as experimental.</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation</a> · last verified 2026-08-04</p>
+    <p>The 3.0 line reached general availability: the
+    specification documentation states that "v2 is unsupported as of 3.0 GA and fully deprecated on
+    August 1, 2026 (UTC)." No GA date for 3.0 itself is published, so the milestone is documented
+    while its date is not. Version 3.0 widened the protocol to brand identity and rights
+    (a brand.json standard and a community brand registry), creative workflow
+    upgrades, governance, collections and installments, and 20 media channels including broadcast
+    television — up from nine channels in v2.</p>
+    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation — what's new in 3.0</a> · last verified 2026-08-04</p>
+    <p>Version 3.1 is the current stable minor
+    version, and every 3.1 change is additive over 3.0: new fields are optional and no required
+    field was removed, so a 3.0-conformant client keeps working. On GitHub the spec is on an active
+    v3.1.x line — the latest tagged release is v3.1.10, published August 4, 2026, at a weekly-plus
+    cadence — while a parallel v3.0.x maintenance line still receives releases (v3.0.22 on July 24,
+    the same day as v3.1.5). Release v3.1.3 was withdrawn: the project states it "added a stable
+    protocol schema field in a patch release, violating the 3.1.x release contract," and directs
+    implementers to 3.1.2 as the stable 3.1 target, which is the version the documentation pins.</p>
+    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
+    <p><span class="badge reported">reported</span> Secondary sources list curation, creative
+    generation, and performance attribution as roadmap items still to come. Treat that list as
+    indicative rather than current: the shipped 3.0 and 3.1 surfaces already overlap it — curation
+    was in the v2.0.0 launch scope, 3.0 added creative workflow upgrades, and 3.1 added
+    vendor-attested measurement — and no roadmap published by AgenticAdvertising.org was located.</p>
+    <p class="source">Source: <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp" rel="noopener">The Current</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation</a> · last verified 2026-08-04</p>
 
     <h2>Adoption &amp; ecosystem</h2>
     <p>AgenticAdvertising.org's membership is
-    reported at between 104+ and 117+ member companies, with the figures differing by report
-    date; the exact current count is unverified because no dated primary membership page has
-    been confirmed. <span class="badge reported">reported</span> Members named across sources include Yahoo, PubMatic, Scope3, Samba TV,
-    The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till, Raptive, and Affinity.</p>
-    <p class="source">Source: <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a>; <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land</a> · last verified 2026-08-04</p>
+    reported at between 104+ and 117+ member companies, with the figures differing by report date.
+    <span class="badge reported">reported</span> The organization publishes no count of its own:
+    neither its About page nor its membership page states a figure, and its partner directory
+    returned no entries when checked. Members named across secondary sources include Yahoo,
+    PubMatic, Scope3, Samba TV, The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till,
+    Raptive, and Affinity.</p>
+    <p class="source">Source: <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a>; <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://agenticadvertising.org/about" rel="noopener">AgenticAdvertising.org — About</a>; <a href="https://agenticadvertising.org/members" rel="noopener">partner directory</a> · last verified 2026-08-04</p>
+    <p>The organization also runs a public agent
+    registry listing sales, creative, and signals agents that implement AdCP, filterable by agent
+    type, status, and compliance.</p>
+    <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a> · last verified 2026-08-04</p>
+    <h3>Deployments</h3>
+    <p>The first agent-to-agent media buy was a real
+    transaction rather than a demonstration: a Scope3 buyer agent and a Swivel seller agent
+    transacted LG Ads programmatic inventory, with money changing hands and two humans approving.
+    <span class="badge reported">reported</span> The date is given inconsistently — MediaPost reports
+    the buy as executed on October 15, 2025 and shown publicly on October 16, while
+    adcontextprotocol.org dates the execution itself to October 16.</p>
+    <p class="source">Source: <a href="https://www.mediapost.com/publications/article/409937/the-first-agentic-media-buy-more-to-come.html" rel="noopener">MediaPost</a>; <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a> · last verified 2026-08-04</p>
     <p>The first cross-platform agentic media buys
-    were announced on January 6, 2026 by NBCUniversal, agency RPA, FreeWheel, and Newton
-    Research: buy-side agents negotiated with sell-side agents over MCP, including live NFL
-    playoff linear inventory for a brand's Q1 2026 investment. FreeWheel built an Ad Context
-    Protocol server for the effort. Beyond that case, publicly confirmed production AdCP sales
-    endpoints remain limited — membership is broader than verified live deployment.</p>
-    <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> · last verified 2026-08-04</p>
+    were announced on January 6, 2026 by NBCUniversal, agency RPA, FreeWheel, and Newton Research:
+    buy-side agents negotiated with sell-side agents over MCP across linear and digital, including
+    live football playoff inventory for a brand's first-quarter 2026 investment — which NBCUniversal
+    calls the first time AI agents automated live sports inventory on linear television.
+    <span class="badge reported">reported</span> That FreeWheel built specifically an Ad Context
+    Protocol server for the effort is a secondary-source attribution: the NBCUniversal announcement
+    names only MCP.</p>
+    <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> (the AdCP-server attribution) · last verified 2026-08-04</p>
+    <p>Four further AdCP deployments are documented,
+    so membership is no longer the only evidence of use. PubMatic and agency Butler/Till ran an
+    AdCP-enabled agentic connected-TV campaign for the Clubtails brand in December 2025, planned and
+    optimized by agents without a demand-side platform workflow. Optable's Audience Agent was
+    integrated into PubMatic AgenticOS in March 2026, positioned as an early live example of AdCP
+    across production programmatic infrastructure. DanAds and Sigma Software launched a Sales Agent
+    for Publishers built natively on AdCP in June 2026, with theScore and RTL AdAlliance as launch
+    customers. And the Prebid Sales Agent — the sell-side reference implementation — states that it
+    is built on AdCP and offers production deployment guidance.</p>
+    <p class="source">Source: <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/" rel="noopener">ExchangeWire</a>; <a href="https://docs.prebid.org/agents/salesagent.html" rel="noopener">Prebid Sales Agent documentation</a> · last verified 2026-08-04</p>
 
     <h2>Timeline of developments</h2>
     <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
@@ -114,29 +163,54 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-01-06</th>
-            <td role="cell" data-label="Development">NBCUniversal, RPA, FreeWheel, and Newton Research announce the first cross-platform agentic media buys, including live NFL playoff linear inventory, negotiated agent-to-agent over MCP.</td>
-            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
-          </tr>
-          <tr role="row">
-            <th role="rowheader" scope="row">2026</th>
-            <td role="cell" data-label="Development">General availability reported for the 3.0 spec line (secondary sources only; no primary GA announcement located).</td>
+            <th role="rowheader" scope="row">2025-10-15/16</th>
+            <td role="cell" data-label="Development">First agent-to-agent media buy: a Scope3 buyer agent and a Swivel seller agent transact LG Ads inventory for real money. Sources differ on whether the buy ran on the 15th or the 16th.</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-07/08</th>
-            <td role="cell" data-label="Development">Active v3.1.x release cadence (weekly-plus); latest tagged release v3.1.10 on August 4; v3.1.3 withdrawn for a semver violation.</td>
+            <th role="rowheader" scope="row">2025-12-15</th>
+            <td role="cell" data-label="Development">PubMatic and Butler/Till run an AdCP-enabled agentic connected-TV campaign for Clubtails, with no demand-side platform workflow.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <td role="cell" data-label="Development">Roadmap</td>
-            <td role="cell" data-label="Development">Curation, creative generation, and performance attribution.</td>
-            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+            <th role="rowheader" scope="row">2026-01-06</th>
+            <td role="cell" data-label="Development">NBCUniversal, RPA, FreeWheel, and Newton Research announce the first cross-platform agentic media buys, including live football playoff linear inventory, negotiated agent-to-agent over MCP.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026-03-12</th>
+            <td role="cell" data-label="Development">Optable's Audience Agent is integrated into PubMatic AgenticOS, described as an early live example of AdCP on production programmatic infrastructure.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026-06-24</th>
+            <td role="cell" data-label="Development">DanAds and Sigma Software launch a Sales Agent for Publishers built natively on AdCP, with theScore and RTL AdAlliance as launch customers.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026 (date not published)</th>
+            <td role="cell" data-label="Development">The 3.0 line reaches general availability. The documentation refers to "3.0 GA" but gives no date for it.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026-07/08</th>
+            <td role="cell" data-label="Development">Active v3.1.x cadence (weekly-plus); latest tagged release v3.1.10 on August 4. A v3.0.x maintenance line runs alongside it; v3.1.3 was withdrawn for adding a schema field in a patch release.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026-08-01</th>
+            <td role="cell" data-label="Development">AdCP v2 is fully deprecated (UTC), having been unsupported since 3.0 GA.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Roadmap</th>
+            <td role="cell" data-label="Development">Curation, creative generation, and performance attribution — a secondary-source list that the shipped 3.0 and 3.1 surfaces now partly overlap, so read it as indicative rather than current.</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://ppc.land/ad-context-protocol-adcp-launches-for-advertising-automation/" rel="noopener">PPC Land</a>; <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
+    <p class="source">Sources: <a href="https://ppc.land/ad-context-protocol-adcp-launches-for-advertising-automation/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/409937/the-first-agentic-media-buy-more-to-come.html" rel="noopener">MediaPost</a>; <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land (Optable)</a>; <a href="https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/" rel="noopener">ExchangeWire</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
   </main>
   <footer class="site-footer">
     <div class="inner">

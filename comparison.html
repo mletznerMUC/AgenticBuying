@@ -53,7 +53,7 @@
         <tbody role="rowgroup">
           <tr role="row">
             <th role="rowheader" scope="row">Scope</th>
-            <td role="cell" data-label="AdCP">New agent task language over MCP and A2A; six spec surfaces plus the serve-time Trusted Match Protocol.</td>
+            <td role="cell" data-label="AdCP">New agent task language over MCP and A2A; seven spec surfaces plus the serve-time Trusted Match Protocol.</td>
             <td role="cell" data-label="AAMP">Agentic layers over OpenRTB, OpenDirect 2.1, AdCOM and VAST, using MCP and A2A as interfaces.</td>
           </tr>
           <tr role="row">
@@ -63,13 +63,13 @@
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Transaction support</th>
-            <td role="cell" data-label="AdCP">First cross-platform agentic buys executed January 2026 over MCP.</td>
-            <td role="cell" data-label="AAMP">Buyer and Seller Agent SDKs since 2.0; pricing provenance added in 2.3.</td>
+            <td role="cell" data-label="AdCP">First agent-to-agent buy October 2025; first cross-platform buys January 2026.</td>
+            <td role="cell" data-label="AAMP">Buyer and Seller Agent SDKs since 2.0; pricing guardrails added in 2.3.</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Adoption</th>
-            <td role="cell" data-label="AdCP">104+ to 117+ members reported; confirmed production endpoints limited to one case. <span class="badge reported">reported</span></td>
-            <td role="cell" data-label="AAMP">Kochava StationOne open beta; Amazon Bedrock and Databricks compatibility in 2.3.</td>
+            <td role="cell" data-label="AdCP">104+ to 117+ members reported, no count published; five documented deployments. <span class="badge reported">reported</span></td>
+            <td role="cell" data-label="AAMP">PMG's Alli in production; Kochava StationOne open beta; a live Agent Registry.</td>
           </tr>
         </tbody>
       </table>
@@ -150,37 +150,46 @@
 
     <h3>Governance and licensing</h3>
     <p>AdCP is governed by AgenticAdvertising.org,
-    a Delaware-incorporated trade association (501(c)(6) status pending) with four equally
-    weighted voting classes (brands, agencies, publishers, technology providers); the Prebid
-    community maintains the reference sell-side implementation, and the spec is Apache 2.0
-    licensed with express patent grants and an IPR policy. AAMP is developed by IAB Tech Lab's
-    Agentic Task Force with member working groups; its repositories are versioned
-    independently, and licensing is mixed — notably, the Agentic Real Time Framework (ARTF) is
-    published under AGPL v3.</p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab repositories</a> · last verified 2026-08-04</p>
+    a Delaware-incorporated trade association with four equally weighted voting classes (brands,
+    agencies, publishers, technology providers) and bylaws providing for a 40-director elected
+    board; the Prebid community maintains the reference sell-side implementation, and the spec is
+    Apache 2.0 licensed with express patent grants and an IPR policy.
+    <span class="badge reported">reported</span> Its own sources disagree on whether its 501(c)(6)
+    status is pending or granted. AAMP is developed by IAB Tech Lab's Agentic Task Force with member
+    working groups and organized under three pillars — Agentic Foundations, Agentic Protocols, and
+    Trust and Transparency. Its repositories are versioned independently and licensing is mixed:
+    most are Apache 2.0, the Agentic Real Time Framework (ARTF) is AGPL v3, and the registry
+    example carries no license.</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://agenticadvertising.org/about" rel="noopener">AgenticAdvertising.org — About</a>; <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab repositories</a> · last verified 2026-08-04</p>
 
     <h3>Maturity and release cadence</h3>
     <p>AdCP is on a v3.1.x line with a weekly-plus
-    release cadence (latest tagged release v3.1.10, August 4); secondary sources describe the
-    3.0 line as generally available in 2026, though no primary GA announcement has been
-    located. AAMP's most recent milestone is version 2.3 (July 30, 2026), following 2.0 in
-    April 2026 (one secondary source says June; April is better sourced). The contents of AAMP
-    2.1 and 2.2 are not documented in accessible sources.
-    <span class="badge reported">reported</span></p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://adgentek.ai/glossary/ad-context-protocol/" rel="noopener">Adgentek glossary</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (AAMP 2.3)</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a> · last verified 2026-08-04</p>
+    release cadence (latest tagged release v3.1.10, August 4, 2026), with 3.1 as the current stable
+    minor version and a v3.0.x maintenance line running alongside it. Its documentation refers to
+    3.0 having reached general availability and records v2 as fully deprecated on August 1, 2026,
+    though no date for the GA milestone itself is published. AAMP's most recent milestone is version
+    2.3 (July 30, 2026), following 2.0 in April 2026.
+    <span class="badge reported">reported</span> The AAMP 2.0 date remains disputed — three
+    secondary sources say April, one says June, and IAB Tech Lab's own post carries no dateline —
+    and the contents of AAMP 2.1 and 2.2 are not documented in any source located, so the two
+    version histories are not equally legible.</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (AAMP 2.3)</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a> · last verified 2026-08-04</p>
 
     <h3>Transactions and adoption evidence</h3>
     <p>Both sides can point to real activity, of
-    different kinds. On the AdCP side, NBCUniversal, agency RPA, FreeWheel, and Newton
-    Research announced the first cross-platform agentic media buys in January 2026, with
-    buy-side agents negotiating sell-side agents over MCP for live NFL playoff linear
-    inventory; AgenticAdvertising.org membership is reported at between 104+ and 117+
-    companies (exact count unverified). On the AAMP side, Kochava's StationOne offers an open
-    beta for standards-compliant agentic workflows without real spend, and AAMP 2.3 added
-    Amazon Bedrock and Databricks compatibility. Trade press in July 2026 characterized
-    overall agentic buying adoption as "inevitable, but incremental," with governance
+    different kinds, and the evidence on each side is now thicker than a membership list. On the
+    AdCP side there are five documented deployments: the first agent-to-agent buy between Scope3 and
+    Swivel agents on LG Ads inventory in October 2025; PubMatic and Butler/Till's agentic
+    connected-TV campaign in December 2025; the NBCUniversal, RPA, FreeWheel and Newton Research
+    cross-platform buys in January 2026, including live football playoff linear inventory; Optable's
+    Audience Agent inside PubMatic AgenticOS from March 2026; and the DanAds and Sigma Software Sales
+    Agent for Publishers with theScore and RTL AdAlliance from June 2026. On the AAMP side, PMG has
+    the Buyer Agent architecture and Agent Registry in production inside its Alli operating system,
+    IAB Tech Lab's Agent Registry is open for anyone to register, and Kochava's StationOne offers an
+    open beta for standards-compliant workflows without real spend. Trade press in July 2026 still
+    characterized overall agentic buying adoption as "inevitable, but incremental," with governance
     outpacing transaction volume on both stacks.</p>
-    <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land (Kochava)</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://www.mediapost.com/publications/article/409937/the-first-agentic-media-buy-more-to-come.html" rel="noopener">MediaPost (first buy)</a>; <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a>; <a href="https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/" rel="noopener">ExchangeWire</a>; <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land (Kochava)</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
 
     <h3>Rivalry or complementarity?</h3>
     <p>In late 2025, trade press framed the two
@@ -194,7 +203,10 @@
     alongside each other; others continue to frame it as a race between competing standards.
     No formal interoperability agreement, liaison, or joint working group between
     AgenticAdvertising.org and IAB Tech Lab is documented as of August 4, 2026 —
-    complementarity claims are analyst interpretation, not organizational commitments.</p>
+    complementarity claims are analyst interpretation, not organizational commitments. Two
+    observations bear on the reading: IAB Tech Lab's AAMP standards page does not mention AdCP at
+    all, and one of the analyses arguing for complementarity itself notes that there is no joint
+    technical roadmap between the two, only parallel ones.</p>
     <p class="source">Source: <a href="https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/" rel="noopener">Star Global</a> (complementary view); <a href="https://perform.digital/blogs/adcp-vs-aamp/" rel="noopener">Perform Digital</a> and <a href="https://ripleymedia.substack.com/p/adcp-vs-iab-tech-lab-ive-seen-this" rel="noopener">Ripley Media</a> (rivalry view) · last verified 2026-08-04</p>
   </main>
   <footer class="site-footer">
