@@ -6,8 +6,7 @@ note here.
 
 ## Current notes
 
-- [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP monthly
-  refresh*, verified 2026-08-04. **The note behind the current content of every
+- [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP refresh*, verified 2026-08-04. **The note behind the current content of every
   page.** Re-verification against primary sources corrected eight claims and
   closed five open questions; read it before changing any page.
 - [`../../memory.md`](../../memory.md) — *State of AdCP and AAMP*, verified
@@ -18,7 +17,7 @@ note here.
 
 ## Convention for new notes
 
-New notes are produced by the monthly **Research Refresh** workflow (see
+New notes are produced by the twice-monthly **Research Refresh** workflow (see
 [`../WORKFLOW.md`](../WORKFLOW.md) §5) or by a research-task issue. Notes
 accumulate rather than being overwritten — the sequence of dated notes is the
 record of what was believed when.
