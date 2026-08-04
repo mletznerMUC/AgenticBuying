@@ -56,12 +56,16 @@
     <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://www.iab.com/video/get-aampd-iab-tech-labs-agentic-ad-management-protocol/" rel="noopener">IAB video</a> · last verified 2026-08-04</p>
     <h3>Governance</h3>
     <p>AAMP is developed by IAB Tech Lab's Agentic
-    Task Force together with member companies and working groups. The framework is presented
-    as three complementary pillars: execution infrastructure, shared standards, and neutral
-    agent transparency. Whether the transparency pillar's registry service has actually
-    shipped, as opposed to remaining a pillar-level ambition, could not be verified from
-    accessible sources. <span class="badge reported">reported</span></p>
-    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a>; <a href="https://iabcanada.com/iab-tech-lab-introducing-aamp-a-new-framework-for-agentic-advertising-standards/" rel="noopener">IAB Canada</a> · last verified 2026-08-04</p>
+    Task Force together with member companies and working groups. The standards page presents the
+    framework as three pillars: Agentic Foundations, Agentic Protocols, and Trust and
+    Transparency.</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a> · last verified 2026-08-04</p>
+    <p>The Trust and Transparency pillar's Agent
+    Registry is live rather than an ambition: IAB Tech Lab states that it "is open to members, and
+    non-members, and is free for anyone to sign up and register," and describes it as providing
+    neutral agent transparency and accountability across the ecosystem. The registry's public code
+    repository, by contrast, is published as an example implementation and carries no license.</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a> · last verified 2026-08-04</p>
 
     <h2>Capabilities</h2>
     <p>AAMP's public code lives across multiple
@@ -69,8 +73,16 @@
     Direct (core communication and orchestration), Buyer Agent, Seller Agent, Registry Agent,
     the Agentic Real Time Framework (ARTF, written in Rust, AGPL v3), Agentic Audiences,
     iab-agentic-primitives (a shared contract library), and agentic-mobile. Commit activity
-    continued through late July 2026.</p>
+    ran through August 4, 2026, with the Buyer Agent pushed that day and the Seller Agent on
+    July 30. Licensing is genuinely mixed: most components are Apache 2.0, ARTF is AGPL v3,
+    Agentic Audiences carries a non-standard license declaration, and the registry example
+    repository carries none.</p>
     <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a> · last verified 2026-08-04</p>
+    <p>The standards page also names framework
+    components that are not separate repositories: an Agentic Ad Object derived from AdCOM and an
+    Agentic Deals API. It describes Agentic Audiences as the former LiveRamp User Context Protocol,
+    which is the work this site's timeline records as being rebranded in January 2026.</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a> · last verified 2026-08-04</p>
 
     <figure>
       <div class="figure-wrap">
@@ -120,9 +132,10 @@
           <text class="dgm-text" x="280" y="473" text-anchor="middle">OpenDirect 2.1 · OpenRTB · AdCOM · VAST</text>
         </svg>
       </div>
-      <figcaption class="source">Figure 1 — AAMP's public components and what each one does. Each repository
-      is versioned independently and licensing is mixed: ARTF is published under AGPL v3 while other
-      components are Apache-style. Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>;
+      <figcaption class="source">Figure 1 — The six component repositories the AAMP repository lists, and what
+      each one does. Each is versioned independently and licensing is mixed: ARTF is published under AGPL v3
+      while most other components are Apache 2.0. The standards page names further framework components that
+      are not separate repositories — see the prose above. Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>;
       <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>;
       <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-08-04</figcaption>
     </figure>
@@ -131,16 +144,23 @@
     cards, and execute programmatic deals with audit trails and human-approval guardrails. The
     SDKs are built on OpenDirect 2.1, incorporate AdCOM, and integrate with OpenRTB and
     Prebid; the release also included an Agentic Audiences OpenRTB extension, a Prebid module,
-    and an open-source scorer. Sources conflict on the release date: IAB Tech Lab and
-    LexisNexis coverage indicate April 2026 (announcements around April 23–24), while one
-    secondary source says 2.0 landed in June; April is the better-sourced date.
+    and an open-source scorer. Sources conflict on the release date: three secondary sources put it
+    in April 2026 — LexisNexis, an IAB New Zealand post dated April 29 describing the SDKs as
+    downloadable working software, and the standards page's own April 23 revision date — while one
+    secondary analysis says 2.0 landed in June. April is the better-sourced date, but IAB Tech Lab's
+    own release post carries no visible dateline, so no primary date could be read.
     <span class="badge reported">reported</span></p>
-    <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks" rel="noopener">LexisNexis</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks" rel="noopener">LexisNexis</a>; <a href="https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0" rel="noopener">IAB New Zealand</a> · last verified 2026-08-04</p>
     <p>AAMP 2.3, released July 30, 2026, targets
-    enterprise-ready deployment: a pricing-provenance field so agents cannot invent prices, a
+    enterprise-ready deployment: pricing guardrails so agents cannot invent prices, with
+    server-side trust verification described as covering "every price-moving path"; a
     vendor-approval gate in the Buyer Agent tied to the IAB Diligence Platform and SafeGuard
-    Privacy, OpenRTB-based audience embeddings with a Prebid module, compatibility with Amazon
-    Bedrock and Databricks, and finalization of key standards.</p>
+    Privacy; deterministic spend commitments that require human approval outside set value
+    thresholds; Agentic Audiences v1.0 declared ready for transactions; and broader platform
+    support — Amazon Bedrock AgentCore, Databricks, buying on Meta, and Google Ad Manager
+    reporting. The release credits open-source contributions from HyperMindz (a Deals Sync API
+    MCP server) and Mixpeek (a content taxonomy parser for IAB Content Taxonomy v3), alongside
+    SafeGuard Privacy and Adform.</p>
     <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
     <p><span class="badge announced">announced</span> For ARTF, IAB Tech Lab has claimed that
     a containerized, same-data-center architecture can cut bid request-response latency by up
@@ -148,18 +168,26 @@
     claim and has not been independently benchmarked.</p>
     <p class="source">Source: <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04</p>
     <p>Gap note: the contents and dates of AAMP 2.1 and 2.2 are not documented in accessible
-    sources; only 2.0 and 2.3 are.</p>
+    sources; only 2.0 and 2.3 are. The 2.3 release itself names no earlier version, and repeated
+    searching this cycle found no article describing a 2.1 or 2.2 release.</p>
 
     <h2>Adoption &amp; ecosystem</h2>
+    <p>PMG integrated AAMP's Buyer Agent
+    architecture, Sub-Agent architecture, and Agent Registry into Alli, its own operating system,
+    announced April 7, 2026. IAB Tech Lab describes Alli as being used across the agency to manage
+    media buying, integrate data providers, and coordinate with demand-side platforms, which makes
+    this the AAMP deployment on this page that runs in a production agency environment rather than
+    a test workspace.</p>
+    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire</a> · last verified 2026-08-04</p>
     <p>Kochava integrated the AAMP Buyer Agent SDK
     into its StationOne platform as an open-source "IAB Workspace," announced March 24, 2026,
     with an open/public beta in Q1–Q2 2026. It lets buyers test standards-compliant agentic
     workflows on OpenDirect 2.1 without committing real spend.</p>
     <p class="source">Source: <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a> · last verified 2026-08-04</p>
-    <p>On the platform side, AAMP 2.3 added
-    compatibility with Amazon Bedrock and Databricks. In the broader market, trade press in
-    July 2026 characterized agentic media buying adoption overall as "inevitable, but
-    incremental," with industry emphasis on governance over speed.</p>
+    <p>On the platform side, AAMP 2.3 added support
+    for Amazon Bedrock AgentCore and Databricks, buying on Meta, and Google Ad Manager reporting.
+    In the broader market, trade press in July 2026 characterized agentic media buying adoption
+    overall as "inevitable, but incremental," with industry emphasis on governance over speed.</p>
     <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
 
     <h2>Timeline of developments</h2>
@@ -186,24 +214,29 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-04 (one source says June)</th>
-            <td role="cell" data-label="Development">AAMP 2.0: transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1, with audit trails and human-approval guardrails. April is the better-sourced date.</td>
-            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
-          </tr>
-          <tr role="row">
             <th role="rowheader" scope="row">2026-03-24</th>
             <td role="cell" data-label="Development">Kochava announces open-source StationOne "IAB Workspace" using the AAMP Buyer Agent SDK; open beta in Q1–Q2 2026.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
+            <th role="rowheader" scope="row">2026-04-07</th>
+            <td role="cell" data-label="Development">PMG integrates the AAMP Buyer Agent architecture, Sub-Agent architecture, and Agent Registry into its Alli operating system, in production use.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">2026-04 (one source says June)</th>
+            <td role="cell" data-label="Development">AAMP 2.0: transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1, with audit trails and human-approval guardrails. April is the better-sourced date.</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
             <th role="rowheader" scope="row">2026-07-30</th>
-            <td role="cell" data-label="Development">AAMP 2.3: pricing-provenance field, privacy-diligence vendor gate, OpenRTB audience embeddings, Amazon Bedrock and Databricks compatibility.</td>
+            <td role="cell" data-label="Development">AAMP 2.3: pricing guardrails, privacy-diligence vendor gate, Agentic Audiences v1.0, Bedrock AgentCore and Databricks support, Meta buying, Google Ad Manager reporting.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire (ARTF v1.0)</a>; <a href="https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/" rel="noopener">IAB Tech Lab roadmap</a>; <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (2.0)</a>; <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (2.3)</a> · last verified 2026-08-04</p>
+    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire (ARTF v1.0)</a>; <a href="https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/" rel="noopener">IAB Tech Lab roadmap</a>; <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (2.0)</a>; <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (2.3)</a> · last verified 2026-08-04</p>
   </main>
   <footer class="site-footer">
     <div class="inner">

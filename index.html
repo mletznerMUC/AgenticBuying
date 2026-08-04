@@ -45,16 +45,27 @@
       <li>
         <p class="changelog-date"><time datetime="2026-08-04">4 August 2026</time></p>
         <p>AdCP tagged release v3.1.10, continuing a weekly-plus cadence on the v3.1.x line
-        through July and August. Release v3.1.3 was withdrawn earlier in that run for a
-        semantic-versioning violation.</p>
+        through July and August. A parallel v3.0.x maintenance line is still receiving releases
+        alongside it (v3.0.22 on 24 July). Release v3.1.3 was withdrawn during that run for adding
+        a schema field in a patch release, which the project states violates its 3.1.x release
+        contract; the documentation pins 3.1.2 as the stable 3.1 target.</p>
         <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
       </li>
       <li>
+        <p class="changelog-date"><time datetime="2026-08-01">1 August 2026</time></p>
+        <p>AdCP v2 was fully deprecated. The specification documentation states that v2 became
+        unsupported when 3.0 reached general availability and was fully deprecated on this date;
+        3.1 is the current stable minor version and is additive over 3.0, so a 3.0-conformant
+        client keeps working.</p>
+        <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation — what's new in 3.0</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">what's new in 3.1</a> · last verified 2026-08-04</p>
+      </li>
+      <li>
         <p class="changelog-date"><time datetime="2026-07-30">30 July 2026</time></p>
-        <p>IAB Tech Lab released AAMP 2.3, aimed at enterprise deployment: a pricing-provenance
-        field so agents cannot invent prices, a vendor-approval gate in the Buyer Agent tied to
-        the IAB Diligence Platform and SafeGuard Privacy, OpenRTB-based audience embeddings with
-        a Prebid module, and compatibility with Amazon Bedrock and Databricks.</p>
+        <p>IAB Tech Lab released AAMP 2.3, aimed at enterprise deployment: pricing guardrails with
+        server-side trust verification on every price-moving path, a vendor-approval gate in the
+        Buyer Agent tied to the IAB Diligence Platform and SafeGuard Privacy, Agentic Audiences
+        v1.0 ready for transactions, and broader platform support — Amazon Bedrock AgentCore,
+        Databricks, buying on Meta, and Google Ad Manager reporting.</p>
         <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
       </li>
       <li>
@@ -65,6 +76,21 @@
         <p class="source">Source: <a href="https://www.exchangewire.com/blog/2026/07/08/adform-reinforces-commitment-to-open-standards-for-agentic-advertising/" rel="noopener">ExchangeWire</a> · last verified 2026-08-04</p>
       </li>
       <li>
+        <p class="changelog-date"><time datetime="2026-06-24">24 June 2026</time></p>
+        <p>DanAds and Sigma Software launched a Sales Agent for Publishers built natively on AdCP,
+        mapping DanAds' existing inventory, packaging, and permission model onto AdCP primitives.
+        It launched with theScore and RTL AdAlliance, and RTL AdAlliance put a seller agent on its
+        AdManager platform to give agents access to its European Total Video inventory.</p>
+        <p class="source">Source: <a href="https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/" rel="noopener">ExchangeWire</a> · last verified 2026-08-04</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-06-19">19 June 2026</time></p>
+        <p>Two buy-side launches in the same week: WPP released a Buyer Agent for Video, an
+        AI-driven planning tool, and Yahoo DSP announced an Agent Network of 23 partners. Neither
+        announcement states which agentic protocol it uses.</p>
+        <p class="source">Source: <a href="https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/" rel="noopener">MarTech Edition</a> · last verified 2026-08-04</p>
+      </li>
+      <li>
         <p class="changelog-date"><time datetime="2026-06-17">17 June 2026</time></p>
         <p>Microsoft Advertising shipped an official MCP server, read-only: agents can read live
         campaign data, but changes still require a human. Pinterest also launched an ads MCP
@@ -72,29 +98,35 @@
         <p class="source">Source: <a href="https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide" rel="noopener">Digital Applied</a> · last verified 2026-08-04</p>
       </li>
       <li>
-        <p class="changelog-date"><time datetime="2026-04-23">April 2026</time></p>
-        <p>AAMP 2.0 delivered transaction-ready Buyer and Seller Agent SDKs built on
-        OpenDirect 2.1, able to negotiate, share rate cards, and execute deals with audit trails
-        and human-approval guardrails. <span class="badge reported">reported</span> Sources
-        conflict on the date: IAB Tech Lab and LexisNexis coverage indicate April 2026, while one
-        secondary source says June; April is the better-sourced date.</p>
-        <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks" rel="noopener">LexisNexis</a> · last verified 2026-08-04</p>
+        <p class="changelog-date"><time datetime="2026-04-07">7 April 2026</time></p>
+        <p>PMG integrated AAMP's Buyer Agent architecture, Sub-Agent architecture, and Agent
+        Registry into its Alli operating system, which the agency uses to manage media buying,
+        integrate data providers, and coordinate with demand-side platforms. It is the first AAMP
+        deployment tracked here that runs in an agency's production environment rather than a
+        test workspace.</p>
+        <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire</a> · last verified 2026-08-04</p>
       </li>
       <li>
-        <p class="changelog-date"><time datetime="2026-03-24">24 March 2026</time></p>
-        <p>Kochava put the AAMP Buyer Agent into open beta through its open-source StationOne
-        "IAB Workspace," letting buyers test standards-compliant agentic workflows on
-        OpenDirect 2.1 without committing real spend.</p>
-        <p class="source">Source: <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a> · last verified 2026-08-04</p>
+        <p class="changelog-date"><time datetime="2026-03-12">12 March 2026</time></p>
+        <p>Optable's Audience Agent was integrated into PubMatic AgenticOS, letting buying agents
+        discover and activate publisher first-party audience signals without the underlying data
+        being transferred. The companies position it as an early live example of AdCP running
+        across production programmatic infrastructure, with activation through PubMatic
+        Activate.</p>
+        <p class="source">Source: <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.optable.co/newsroom/optable-and-pubmatic-partner" rel="noopener">Optable</a> · last verified 2026-08-04</p>
       </li>
       <li>
-        <p class="changelog-date"><time datetime="2026-01-06">6 January 2026</time></p>
-        <p>NBCUniversal, agency RPA, FreeWheel, and Newton Research announced the first
-        cross-platform agentic media buys: buy-side agents negotiated with sell-side agents over
-        MCP, including live NFL playoff linear inventory.</p>
-        <p class="source">Source: <a href="https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/" rel="noopener">NBCUniversal</a> · last verified 2026-08-04</p>
+        <p class="changelog-date"><time datetime="2025-12-15">15 December 2025</time></p>
+        <p>PubMatic and agency Butler/Till ran an AdCP-enabled agentic campaign across connected
+        TV for the Clubtails brand, planned, executed, and optimized by agents with no demand-side
+        platform workflow and no manual optimization desk. PubMatic describes AdCP as the protocol
+        carrying agent-to-system communication in that workflow.</p>
+        <p class="source">Source: <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
       </li>
     </ol>
+    <p class="source">Older developments — AdCP's launch, the first agent-to-agent buy, the
+    NBCUniversal cross-platform buys, AAMP 2.0, and Kochava's open beta — are kept in the timeline
+    tables on the <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages.</p>
 
     <h2>Start here</h2>
     <ul class="card-grid">
