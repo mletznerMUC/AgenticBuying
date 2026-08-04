@@ -23,7 +23,7 @@ jobs:
       MAX_AGE_DAYS: 45
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Measure how old the newest verification is
         id: age
