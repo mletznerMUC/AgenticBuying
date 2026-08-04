@@ -55,8 +55,14 @@ the GitHub Action:
 - **`frontend-builder`** — owns HTML structure, CSS, JS. Plain static site,
   no build step. Keeps the duplicated nav in sync across all pages and runs
   `html-validate` after changes.
-- **`site-reviewer`** — read-only review checklist: sourcing, neutrality,
-  cross-page consistency, link integrity, accessibility, valid HTML.
+- **`site-reviewer`** — read-only review checklist: sourcing, badge discipline,
+  neutrality, design-guide compliance, cross-page consistency, link integrity,
+  accessibility, valid HTML.
+
+All three of the writing/building agents work against **[`DESIGN.md`](DESIGN.md)**,
+the binding design guide: visual direction, the banned "AI slop" patterns, the
+four-state status-badge system, the inline-SVG imagery grammar, the component
+inventory, and the accessibility floor. Read it before any visual or markup change.
 
 The separation enforces the content pipeline: **facts are researched before
 they are written, and written before they are styled** — and each stage is
