@@ -47,6 +47,9 @@ the GitHub Action:
 - **`research-analyst`** — web research on AdCP/AAMP; outputs sourced research
   notes in `docs/research/`. Never writes HTML. Every claim gets a source URL,
   a status (shipped/announced/speculative), and a verification date.
+- **`web-search-researcher`** — deep multi-source web research utility
+  (fan-out searches, fetch, cited synthesis). The raw-research layer beneath
+  `research-analyst`: it returns findings to its caller and writes no files.
 - **`content-writer`** — turns research notes into neutral page copy inside
   the existing HTML structure. Never invents facts, never restructures layout.
 - **`frontend-builder`** — owns HTML structure, CSS, JS. Plain static site,

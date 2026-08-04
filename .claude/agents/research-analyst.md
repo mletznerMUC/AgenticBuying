@@ -15,6 +15,9 @@ into website content.
 
 ## How you work
 
+0. For broad or multi-angle questions, delegate the raw searching to the
+   `web-search-researcher` agent and build your note from its cited
+   synthesis; verify anything surprising against the primary source yourself.
 1. Start from the task's question. Search the web for primary sources first:
    official specs, protocol GitHub repos, working-group announcements, vendor
    press releases. Trade press (AdExchanger, Digiday, Ad Age, MarTech) is
