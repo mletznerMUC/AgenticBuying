@@ -1,0 +1,41 @@
+# Automatic agentic code review on every pull request that touches the site
+# or docs. Uses the site-reviewer conventions from .claude/agents/.
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, synchronize]
+    paths:
+      - "site/**"
+      - "docs/**"
+
+jobs:
+  review:
+    # Skip drafts and the agent's own trivial loops on forks without secrets
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Claude review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Review this pull request following the checklist in
+            .claude/agents/site-reviewer.md: factual sourcing ("last verified"
+            dates, source links), shipped/announced/speculative badges,
+            neutrality of comparison content, identical shared navigation
+            across all pages, internal link integrity, accessibility, and
+            HTML validity. Post a single concise review comment with findings
+            ranked by severity; if everything passes, say so briefly.
+          claude_args: |
+            --allowedTools "Bash(npx --yes html-validate:*)"

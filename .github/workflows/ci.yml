@@ -1,0 +1,33 @@
+# Quality gate for every PR and push to main: HTML validation + link checking.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate HTML
+        run: npx --yes html-validate "site/**/*.html"
+
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Internal/offline only in CI to keep it deterministic; external
+          # links are verified editorially with "last verified" dates.
+          args: --offline --include-fragments --no-progress "site/**/*.html"
+          fail: true

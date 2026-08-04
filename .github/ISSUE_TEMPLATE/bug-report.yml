@@ -1,0 +1,27 @@
+name: Bug report
+description: Something on the website is broken, wrong, or outdated.
+title: "[bug] "
+labels: ["bug", "agent-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add `@claude` in the description (or a comment) to have the agent fix this.
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      placeholder: e.g. comparison.html, section "Transaction support"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What is wrong / what did you expect
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshot, source link showing the fact is outdated, browser/device info, etc.

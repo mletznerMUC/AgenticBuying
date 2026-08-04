@@ -1,0 +1,27 @@
+name: Site feature
+description: New page, layout, navigation, styling, or interaction on the website.
+title: "[site] "
+labels: ["site", "agent-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add `@claude` in the description (or a comment) to have the agent pick this up.
+        Remember the constraint: plain HTML/CSS/JS, no build step.
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature description
+      description: What should be built or changed, and why.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Works on mobile and desktop
+        - [ ] Works in dark mode
+        - [ ] Nav updated on all pages
+    validations:
+      required: true
