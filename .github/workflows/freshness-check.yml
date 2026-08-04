@@ -16,6 +16,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       # Content older than this many days is treated as stale. The refresh runs
       # monthly, so this allows one missed cycle plus review time before it

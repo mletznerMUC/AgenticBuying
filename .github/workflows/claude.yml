@@ -21,6 +21,9 @@ jobs:
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
+    # Implementation work runs longer than a review, but a hung agent job would
+    # otherwise burn API tokens up to GitHub's 6-hour default.
+    timeout-minutes: 30
     permissions:
       contents: write
       pull-requests: write
