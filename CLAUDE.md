@@ -64,6 +64,8 @@ full description. Summary:
    which implements the request on a branch and opens a PR.
 3. Specialized subagents in `.claude/agents/` split the work:
    - `research-analyst` — tracks and verifies AdCP/AAMP developments
+   - `web-search-researcher` — deep multi-source web research utility that
+     `research-analyst` and others delegate raw searches to
    - `content-writer` — turns research into neutral, sourced page content
    - `frontend-builder` — implements pages, styling, and navigation
    - `site-reviewer` — reviews changes for accuracy, consistency, a11y
