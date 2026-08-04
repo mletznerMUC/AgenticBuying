@@ -74,9 +74,17 @@ Every PR runs:
 
 1. **CI** (`ci.yml`) — `html-validate` on all pages + `lychee` offline link
    check (internal links and fragments must resolve).
-2. **Claude PR Review** (`claude-review.yml`) — automatic agentic review of
-   PRs touching the site pages, `assets/`, or `docs/`, following the `site-reviewer` checklist,
-   posted as a review comment.
+2. **Claude PR Review** (`claude-review.yml`) — automatic agentic review of PRs
+   touching the site pages, `assets/`, or `docs/`, posted as a review comment.
+   It reviews against both the `site-reviewer` checklist and
+   [`DESIGN.md`](DESIGN.md), in priority order: sourcing (link + "last
+   verified" date on every claim), badge discipline including a badge-inflation
+   check, neutrality, nav and footer parity — the footer must keep the AI
+   transparency notice and the copyright line — design-guide compliance
+   (no banned "AI slop" patterns, inline-SVG imagery, reused components, no
+   hardcoded colors), and accessibility and link integrity.
+   The job needs the `ANTHROPIC_API_KEY` secret; without it, it emits a setup
+   notice and passes rather than failing the PR, so forks stay green.
 3. **Human review** — a human merges. Agents never merge to `main`.
 
 ## 4. Deployment
