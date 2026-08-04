@@ -26,6 +26,10 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # The refresh does dozens of live fetches across seven pages; the first
+    # real run took about 27 minutes end to end. This leaves headroom while
+    # still capping a hung run well short of GitHub's 6-hour default.
+    timeout-minutes: 45
     permissions:
       contents: write
       pull-requests: write

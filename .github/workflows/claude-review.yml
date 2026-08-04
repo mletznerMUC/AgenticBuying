@@ -21,6 +21,10 @@ jobs:
     # Skip drafts and the agent's own trivial loops on forks without secrets
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    # An agent job that hangs would otherwise run to GitHub's 6-hour default,
+    # burning API tokens silently. A review of a large PR takes minutes, so
+    # this is generous; if it trips, that is a signal worth investigating.
+    timeout-minutes: 20
     permissions:
       contents: read
       pull-requests: write
