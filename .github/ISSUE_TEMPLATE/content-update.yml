@@ -1,0 +1,46 @@
+name: Content update
+description: Add or change content on the website (facts, comparisons, tools, workflows).
+title: "[content] "
+labels: ["content", "agent-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add `@claude` in the description (or a comment) to have the agent pick this up.
+        Content changes need sources — unsourced claims will not merge.
+  - type: dropdown
+    id: page
+    attributes:
+      label: Page(s)
+      multiple: true
+      options:
+        - index
+        - adcp
+        - aamp
+        - comparison
+        - tools
+        - workflows
+        - resources
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change
+      description: Describe the content to add, update, or remove.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Source links backing the change (required for factual claims).
+  - type: dropdown
+    id: status
+    attributes:
+      label: Development status of the described capability
+      options:
+        - shipped
+        - announced
+        - speculative
+        - n/a (not a protocol claim)

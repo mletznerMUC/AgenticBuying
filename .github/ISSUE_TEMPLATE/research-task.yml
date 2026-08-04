@@ -1,0 +1,46 @@
+name: Research task
+description: Investigate a development in agentic buying (AdCP, AAMP, ecosystem) and produce a sourced research note.
+title: "[research] "
+labels: ["research", "agent-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add `@claude` in the description (or a comment) to have the agent pick this up.
+        The `research-analyst` subagent will produce a sourced research note in `docs/research/`.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: What development, protocol area, or announcement should be researched?
+      placeholder: e.g. AdCP media-buy task support in DSPs, AAMP working group membership
+    validations:
+      required: true
+  - type: textarea
+    id: questions
+    attributes:
+      label: Questions to answer
+      description: Concrete questions the research note must answer.
+      placeholder: |
+        - Which vendors have shipped support?
+        - What is announced but not shipped?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Known sources / starting points
+      description: Links you already have (spec, press release, repo, article).
+  - type: dropdown
+    id: pages
+    attributes:
+      label: Likely affected site pages
+      multiple: true
+      options:
+        - index
+        - adcp
+        - aamp
+        - comparison
+        - tools
+        - workflows
+        - resources
