@@ -42,12 +42,33 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
-            Review this pull request following the checklist in
-            .claude/agents/site-reviewer.md: factual sourcing ("last verified"
-            dates, source links), shipped/announced/speculative badges,
-            neutrality of comparison content, identical shared navigation
-            across all pages, internal link integrity, accessibility, and
-            HTML validity. Post a single concise review comment with findings
-            ranked by severity; if everything passes, say so briefly.
+            Review this pull request against two documents, reading both
+            before you start: .claude/agents/site-reviewer.md (the review
+            checklist) and docs/DESIGN.md (the binding design guide).
+
+            Check, in priority order:
+            1. Sourcing — every new or changed factual claim carries a source
+               link and a "last verified" date.
+            2. Badge discipline (DESIGN.md §5) — the four states are used
+               correctly, badges mark exceptions rather than every claim, and
+               a badge's scope is unambiguous. Flag badge inflation: a page
+               where one state accounts for the large majority of badges is a
+               defect.
+            3. Neutrality — comparison content describes rather than
+               advocates; neither protocol gets favorable visual or verbal
+               treatment.
+            4. Shared markup — nav and footer identical across all pages, and
+               the footer still carries the AI transparency notice and the
+               copyright line.
+            5. Design guide compliance — no banned "AI slop" patterns (§1),
+               imagery is inline SVG with caption and source (§7), components
+               reused rather than reinvented, no hardcoded hex colors (§3, §8).
+            6. Accessibility and integrity — heading structure, meaning never
+               carried by color alone, internal links resolve, HTML validates.
+
+            Post a single concise review comment with findings ranked by
+            severity, each naming the file and line and suggesting a concrete
+            fix. If everything passes, say so briefly rather than inventing
+            nits.
           claude_args: |
             --allowedTools "Bash(npx --yes html-validate:*)"
