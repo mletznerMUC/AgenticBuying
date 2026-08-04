@@ -238,6 +238,7 @@ Existing, and to be reused rather than reinvented:
 | Page freshness | `p.page-meta` | "Updated \<date\>" under the `h1` (§6) |
 | Changelog | `ol.changelog > li` | Dated "what changed" list, newest first (§6) |
 | Table | `div.table-wrap > table` | All tabular content — the wrapper is mandatory |
+| Stacked table | `div.table-wrap.table-stack` + roles + `data-label` | Tables that must stay readable below 40rem (§9) |
 | Empty state | `div.todo-content` | Sections awaiting the content pipeline |
 | Figure | `figure > div.figure-wrap > svg`, then `figcaption.source` | Diagrams (§7) |
 | Diagram parts | `.dgm-band`, `.dgm-node`, `.dgm-title`, `.dgm-text`, `.dgm-line`, `.dgm-line-dashed`, `.dgm-lifeline`, `.dgm-arrow` | The shared drawing grammar (§7) |
@@ -255,10 +256,38 @@ stretched-link pseudo-element — do not ship a card whose body is dead.
   and `rem` sizing so layouts reflow without media queries. Add a breakpoint only when
   reflow genuinely fails.
 - **Verify every change at 360px, 768px, and 1280px**, in both color schemes.
-- Tables are the hard case. `.table-wrap` gives horizontal scroll, which is adequate for
-  short cells and inadequate for the paragraph-length cells in `comparison.html`. Until the
-  roadmap fix (§11) lands, keep comparison table cells short — one or two lines — and put
-  the detail in the prose sections below.
+- **Tables.** Every table sits in `div.table-wrap` (horizontal scroll) and its row headers
+  are `position: sticky` at the left edge, so the row being read stays identifiable while
+  scrolling. Add `table-stack` to the wrapper and the table becomes one card per row below
+  40rem: the `th[scope="row"]` is the card title and each `td` shows its column name from a
+  `data-label` attribute.
+  - Keep table cells to **one or two lines**. A table is for facts you can compare at a
+    glance; paragraph-length cells belong in the prose sections, and a summary table should
+    say where the detail lives.
+  - Changing `display` strips a table's implicit semantics, so a stacked table must carry
+    explicit ARIA roles (`table`, `rowgroup`, `row`, `columnheader`, `rowheader`, `cell`)
+    to restore them. `html-validate` flags those roles as redundant because it cannot see
+    the CSS, so each stacked table carries a scoped directive stating why:
+
+```html
+<!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+<div class="table-wrap table-stack">
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row"><th role="columnheader" scope="col">Dimension</th>…</tr>
+    </thead>
+    <tbody role="rowgroup">
+      <tr role="row">
+        <th role="rowheader" scope="row">Scope</th>
+        <td role="cell" data-label="AdCP">…</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+  Disable a lint rule only this way — scoped to the element, with the reason written out.
+  Never switch a rule off globally to make one pattern pass.
 - Accessibility floor (WCAG 2.1 AA):
   - Text contrast ≥ 4.5:1 in **both** schemes. The badge palette is verified: lowest ratio
     5.84:1. Re-check with a contrast calculator whenever a color token changes.
@@ -298,8 +327,8 @@ Deliberately deferred, in priority order. Each is a separate change, not a rewri
    `ol.changelog` as the home page's first section; see §6.
 2. ~~**The first three diagrams**~~ — done 2026-08-04. Stack diagram, AAMP component map,
    and buy sequence; the grammar and sizing rules they established are in §7.
-3. **Responsive comparison table** — sticky first column plus a stacked card layout below
-   ~40rem using `data-label` attributes; no build step required.
+3. ~~**Responsive comparison table**~~ — done 2026-08-04. Sticky row headers, a stacked
+   card layout below 40rem, and the at-a-glance cells compressed to glance length; see §9.
 4. **Remaining tokens** — spacing, type scale, and radius are still hardcoded values
    scattered through the stylesheet. Tokenizing them is a pure refactor with zero visual
    change, and it makes every later change cheaper.
