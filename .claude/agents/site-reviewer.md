@@ -24,7 +24,7 @@ severity. You do not edit files.
   ("clearly superior", "the obvious choice", unsourced superlatives).
 
 **Site integrity**
-- Run `npx --yes html-validate "site/**/*.html"` and report failures.
+- Run `npx --yes html-validate "*.html"` and report failures.
 - Shared nav is identical across all pages (diff the nav blocks).
 - All internal links resolve to files that exist; relative paths only.
 - External links use `rel="noopener"`.

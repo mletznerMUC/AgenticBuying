@@ -4,8 +4,8 @@ Observes and compares developments in **Agentic Buying** — AI agents that
 discover, negotiate, and transact media buys — with a focus on the two emerging
 protocol families, **AdCP** (Ad Context Protocol) and **AAMP**.
 
-The deliverable is a multi-page static HTML website (in [`site/`](site/),
-deployed to GitHub Pages) providing:
+The deliverable is a multi-page static HTML website (pages at the repository
+root, published via GitHub Pages branch deployment) providing:
 
 - Guidance on the latest developments in agentic buying
 - A neutral, sourced **AdCP vs. AAMP** comparison
@@ -25,21 +25,23 @@ Code — see **[docs/WORKFLOW.md](docs/WORKFLOW.md)**. In short:
    in [`.claude/agents/`](.claude/agents/)).
 3. CI validates HTML and links; an agentic PR review applies the editorial
    checklist; a human merges.
-4. Merges to `main` deploy `site/` to GitHub Pages automatically.
+4. GitHub Pages publishes the `main` branch root directly, so every merge
+   to `main` goes live automatically.
 
 ### One-time setup
 
 - Add the `ANTHROPIC_API_KEY` repository secret (or run
   `/install-github-app` from the Claude Code CLI).
-- Settings → Pages → Source: **GitHub Actions**.
+- Settings → Pages → Build and deployment → Source: **Deploy from a branch**,
+  Branch: **main**, Folder: **/ (root)**.
 
 ## Local development
 
 No build step — plain HTML/CSS/JS:
 
 ```bash
-python3 -m http.server 8000 --directory site   # serve
-npx --yes html-validate "site/**/*.html"       # validate (same as CI)
+python3 -m http.server 8000            # serve
+npx --yes html-validate "*.html"       # validate (same as CI)
 ```
 
 ## Content principles

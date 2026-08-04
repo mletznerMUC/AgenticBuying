@@ -28,7 +28,7 @@ into website content.
    Never let an announcement masquerade as a shipped capability.
 4. Note disagreements between sources explicitly instead of resolving them
    silently.
-5. Check the existing site content (`site/*.html`) for claims your research
+5. Check the existing site content (`*.html` at the repo root) for claims your research
    contradicts or outdates, and list them.
 
 ## Output format

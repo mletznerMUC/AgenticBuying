@@ -19,20 +19,23 @@ The outcome is a **multi-page static HTML website** that provides:
 ## Repository layout
 
 ```
-site/                  The deliverable website (deployed to GitHub Pages)
-  index.html           Landing page: what agentic buying is, latest headlines
-  adcp.html            AdCP deep dive
-  aamp.html            AAMP deep dive
-  comparison.html      Side-by-side AdCP vs. AAMP comparison
-  tools.html           Tools & platform directory
-  workflows.html       Sample agentic buying workflows
-  resources.html       Specs, articles, talks, repos
-  assets/css/          Shared stylesheet(s)
-  assets/js/           Shared JavaScript (nav, no build step)
+index.html             Landing page: what agentic buying is, latest headlines
+adcp.html              AdCP deep dive
+aamp.html              AAMP deep dive
+comparison.html        Side-by-side AdCP vs. AAMP comparison
+tools.html             Tools & platform directory
+workflows.html         Sample agentic buying workflows
+resources.html         Specs, articles, talks, repos
+assets/css/            Shared stylesheet(s)
+assets/js/             Shared JavaScript (nav, no build step)
 docs/                  Internal docs: workflow, architecture decisions
 .claude/agents/        Specialized subagent definitions
-.github/workflows/     Claude agent automation, CI, Pages deploy
+.github/workflows/     Claude agent automation, CI
+.nojekyll              Disables Jekyll processing on GitHub Pages
 ```
+
+The website pages live at the **repository root** so GitHub Pages can publish
+directly from the `main` branch ("Deploy from a branch" → `main` → `/ (root)`).
 
 ## Tech constraints
 
@@ -40,7 +43,7 @@ docs/                  Internal docs: workflow, architecture decisions
   Every page must open correctly from the filesystem and from GitHub Pages.
 - Shared navigation is duplicated per page (no server-side includes); keep it
   identical across pages — update all pages when the nav changes.
-- Mobile-first responsive CSS in `site/assets/css/style.css`. Support light and
+- Mobile-first responsive CSS in `assets/css/style.css`. Support light and
   dark mode via `prefers-color-scheme`.
 - Accessibility: semantic HTML, one `<h1>` per page, alt text on images,
   sufficient color contrast.
@@ -69,8 +72,8 @@ full description. Summary:
    - `content-writer` — turns research into neutral, sourced page content
    - `frontend-builder` — implements pages, styling, and navigation
    - `site-reviewer` — reviews changes for accuracy, consistency, a11y
-4. CI validates HTML and internal links on every PR; merges to `main`
-   auto-deploy `site/` to GitHub Pages.
+4. CI validates HTML and internal links on every PR; GitHub Pages publishes
+   the `main` branch root directly (branch deployment, no build step).
 
 ## Conventions
 
@@ -85,8 +88,8 @@ No build step. Useful local commands:
 
 ```bash
 # Serve the site locally
-python3 -m http.server 8000 --directory site
+python3 -m http.server 8000
 
 # Validate HTML (same as CI)
-npx --yes html-validate "site/**/*.html"
+npx --yes html-validate "*.html"
 ```

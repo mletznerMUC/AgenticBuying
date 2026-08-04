@@ -17,7 +17,7 @@ jobs:
           node-version: "22"
 
       - name: Validate HTML
-        run: npx --yes html-validate "site/**/*.html"
+        run: npx --yes html-validate "*.html"
 
   check-links:
     runs-on: ubuntu-latest
@@ -29,5 +29,5 @@ jobs:
         with:
           # Internal/offline only in CI to keep it deterministic; external
           # links are verified editorially with "last verified" dates.
-          args: --offline --include-fragments --no-progress "site/**/*.html"
+          args: --offline --include-fragments --no-progress "*.html"
           fail: true
