@@ -293,8 +293,76 @@ h2 {
 }
 
 /* Comparison table */
-.table-wrap {
+.table-wrap,
+.figure-wrap {
   overflow-x: auto;
+}
+
+/* Figures — inline SVG diagrams only (see docs/DESIGN.md §7).
+   Diagrams scale with the column but never below a legible width: past that
+   point .figure-wrap scrolls instead of shrinking the type. */
+figure {
+  margin: 1.75rem 0;
+}
+
+figure svg {
+  display: block;
+  width: 100%;
+  min-width: 26rem;
+  height: auto;
+}
+
+figure figcaption {
+  margin-top: 0.6rem;
+}
+
+/* Shared diagram grammar: bands are context, nodes are the things being
+   compared, lines are relationships. Everything inherits theme tokens so one
+   drawing works in both color schemes. */
+.dgm-band {
+  fill: var(--bg-alt);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.dgm-node {
+  fill: var(--bg-alt);
+  stroke: var(--text-muted);
+  stroke-width: 2;
+}
+
+.dgm-title {
+  fill: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dgm-text {
+  fill: var(--text-muted);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+}
+
+.dgm-line {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.75;
+}
+
+.dgm-line-dashed {
+  stroke-dasharray: 6 5;
+}
+
+.dgm-lifeline {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+}
+
+.dgm-arrow {
+  fill: var(--text-muted);
 }
 
 table {
