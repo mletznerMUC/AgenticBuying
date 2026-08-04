@@ -19,13 +19,24 @@ jobs:
       pull-requests: write
       issues: read
       id-token: write
+    env:
+      # secrets context is unavailable in job-level `if`, so gate steps via env
+      HAS_ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
     steps:
+      - name: Notice when ANTHROPIC_API_KEY is not configured
+        if: env.HAS_ANTHROPIC_KEY != 'true'
+        run: |
+          echo "::notice::Skipping agentic PR review: ANTHROPIC_API_KEY secret is not set." \
+            "Add it under Settings → Secrets and variables → Actions (see docs/WORKFLOW.md)."
+
       - name: Checkout repository
+        if: env.HAS_ANTHROPIC_KEY == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       - name: Claude review
+        if: env.HAS_ANTHROPIC_KEY == 'true'
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
