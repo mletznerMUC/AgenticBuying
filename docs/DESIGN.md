@@ -176,6 +176,16 @@ Credibility is the product; these patterns are not optional.
 Keep the changelog to roughly the last ten developments; older entries belong on the
 protocol pages' timeline tables, which are the permanent record.
 
+**Footer disclosures.** The footer carries three paragraphs, in this order: what the site is,
+the **AI transparency notice**, and the copyright line. Like the nav, the footer is duplicated
+markup that must stay **byte-identical across every page** — change it everywhere in the same
+commit, and never drop the disclosure or the copyright when editing a page. The notice states
+that content is researched and drafted with AI assistance with a human editor in the loop,
+that every change is reviewed and approved by a person before publication, and who holds
+editorial responsibility; it references the transparency provisions of the EU AI Act
+(Regulation (EU) 2024/1689). Keep it factual — describe the actual process, and do not claim
+certification, approval, or compliance beyond disclosing how the content is made.
+
 ## 7. Imagery — the diagram grammar
 
 The site needs pictures, and its pictures are **diagrams**. This is not a compromise: a
