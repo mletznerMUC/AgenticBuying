@@ -332,8 +332,13 @@ Deliberately deferred, in priority order. Each is a separate change, not a rewri
 4. **Remaining tokens** — spacing, type scale, and radius are still hardcoded values
    scattered through the stylesheet. Tokenizing them is a pure refactor with zero visual
    change, and it makes every later change cheaper.
-5. **Clickable cards** (§8) and visibly marked stub nav links, so no navigation item
-   promises a page that is still a placeholder.
+5. **Clickable cards** (§8). The stub-marking half of this item is resolved — every page
+   now carries content, so no navigation item promises an empty page. Note that the
+   `tools.html` cards deliberately keep plain-text headings: several entries (Yahoo DSP,
+   HorizonOS Blu, WPP Buyer Agent for Video) have no canonical product URL, only news
+   coverage, and linking a heading to a trade-press article would misrepresent the
+   destination. Clickable cards therefore apply to grids whose entries have a real target,
+   not to that one — or they wait until canonical URLs exist.
 6. **Masthead** — optionally, a single self-hosted display face for the wordmark only.
    Evaluate against §1 before adopting: it must add identity without adding ornament.
 
