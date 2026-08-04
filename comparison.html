@@ -38,31 +38,38 @@
     </ul>
 
     <h2>At a glance</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th scope="col">Dimension</th><th scope="col">AdCP</th><th scope="col">AAMP</th></tr>
+    <p>Each dimension is summarized here and expanded, with its own sources, in the
+    detailed comparison below.</p>
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Dimension</th>
+            <th role="columnheader" scope="col">AdCP</th>
+            <th role="columnheader" scope="col">AAMP</th>
+          </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Scope</th>
-            <td>Purpose-built task language for agents (discover products, create media buy, generate creative, activate audience) over MCP or A2A; six spec surfaces plus the serve-time Trusted Match Protocol. Positioned as "parallel to OpenRTB, not a replacement."</td>
-            <td>Umbrella framework extending existing IAB Tech Lab standards (OpenRTB, OpenDirect 2.1, AdCOM, VAST) with agentic layers — Agentic Direct, Buyer/Seller/Registry Agents, ARTF, Agentic Audiences — using MCP and A2A as agent interfaces.</td>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Scope</th>
+            <td role="cell" data-label="AdCP">New agent task language over MCP and A2A; six spec surfaces plus the serve-time Trusted Match Protocol.</td>
+            <td role="cell" data-label="AAMP">Agentic layers over OpenRTB, OpenDirect 2.1, AdCOM and VAST, using MCP and A2A as interfaces.</td>
           </tr>
-          <tr>
-            <th scope="row">Governance</th>
-            <td>AgenticAdvertising.org, a nonprofit trade association (501(c)(6) status pending) with four equally weighted voting classes: brands, agencies, publishers, technology providers. Spec governance separated from implementation; Prebid maintains the sell-side reference. Apache 2.0 license with patent grants.</td>
-            <td>IAB Tech Lab's Agentic Task Force with member companies and working groups; framed as three pillars (execution infrastructure, shared standards, neutral agent transparency). Mixed licensing: Apache-style components alongside ARTF under AGPL v3.</td>
+          <tr role="row">
+            <th role="rowheader" scope="row">Governance</th>
+            <td role="cell" data-label="AdCP">AgenticAdvertising.org nonprofit; four equally weighted voting classes; Apache 2.0.</td>
+            <td role="cell" data-label="AAMP">IAB Tech Lab's Agentic Task Force; mixed licensing, with ARTF under AGPL v3.</td>
           </tr>
-          <tr>
-            <th scope="row">Transaction support</th>
-            <td>First cross-platform agentic media buys executed January 2026 (NBCUniversal, RPA, FreeWheel, Newton Research) over MCP, including live NFL playoff linear inventory.</td>
-            <td>Transaction-ready Buyer and Seller Agent SDKs since AAMP 2.0 (negotiation, rate cards, deal execution with audit trails and human-approval guardrails); AAMP 2.3 adds a pricing-provenance field so agents cannot invent prices.</td>
+          <tr role="row">
+            <th role="rowheader" scope="row">Transaction support</th>
+            <td role="cell" data-label="AdCP">First cross-platform agentic buys executed January 2026 over MCP.</td>
+            <td role="cell" data-label="AAMP">Buyer and Seller Agent SDKs since 2.0; pricing provenance added in 2.3.</td>
           </tr>
-          <tr>
-            <th scope="row">Adoption</th>
-            <td>104+ to 117+ member companies reported for AgenticAdvertising.org (exact current count unverified). <span class="badge reported">reported</span> Publicly confirmed production endpoints are so far limited to the FreeWheel/NBCUniversal case.</td>
-            <td>Kochava StationOne open beta (sandbox workflows on OpenDirect 2.1, no real spend); AAMP 2.3 compatibility with Amazon Bedrock and Databricks.</td>
+          <tr role="row">
+            <th role="rowheader" scope="row">Adoption</th>
+            <td role="cell" data-label="AdCP">104+ to 117+ members reported; confirmed production endpoints limited to one case. <span class="badge reported">reported</span></td>
+            <td role="cell" data-label="AAMP">Kochava StationOne open beta; Amazon Bedrock and Databricks compatibility in 2.3.</td>
           </tr>
         </tbody>
       </table>
