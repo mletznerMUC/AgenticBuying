@@ -1,0 +1,82 @@
+# Weekly freshness check. The monthly refresh can fail quietly — a missing
+# secret, an API error, a PR nobody merges — and stale dates on this site look
+# exactly like fresh ones. This job makes that failure visible by opening an
+# issue, so silence is never mistaken for currency.
+name: Freshness Check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Content older than this many days is treated as stale. The refresh runs
+      # monthly, so this allows one missed cycle plus review time before it
+      # escalates.
+      MAX_AGE_DAYS: 45
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Measure how old the newest verification is
+        id: age
+        run: |
+          set -euo pipefail
+          newest=$(grep -ho 'last verified [0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}' ./*.html \
+            | grep -o '[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}' | sort -u | tail -1)
+          if [ -z "$newest" ]; then
+            echo "::error::No 'last verified' dates found in the site pages. Either the pages lost their citations or the citation format changed."
+            exit 1
+          fi
+          age=$(( ( $(date -u +%s) - $(date -u -d "$newest" +%s) ) / 86400 ))
+          echo "Newest verification date: $newest ($age days old)"
+          {
+            echo "newest=$newest"
+            echo "days=$age"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report freshness
+        run: |
+          if [ "${{ steps.age.outputs.days }}" -le "$MAX_AGE_DAYS" ]; then
+            echo "::notice::Content is current — newest verification ${{ steps.age.outputs.newest }}, ${{ steps.age.outputs.days }} days old."
+          else
+            echo "::warning::Content is stale — newest verification ${{ steps.age.outputs.newest }}, ${{ steps.age.outputs.days }} days old (limit $MAX_AGE_DAYS)."
+          fi
+
+      - name: Open or update a staleness issue
+        if: steps.age.outputs.days > env.MAX_AGE_DAYS
+        run: |
+          set -euo pipefail
+          title="Content is stale: nothing verified since ${{ steps.age.outputs.newest }}"
+          body=$(cat <<EOF
+          The newest \`last verified\` date across the site is
+          **${{ steps.age.outputs.newest }}**, which is
+          **${{ steps.age.outputs.days }} days** old. The threshold is
+          ${MAX_AGE_DAYS} days.
+
+          Every claim on this site is published with a verification date, so
+          stale content does not look stale to a reader — it looks authoritative.
+
+          To resolve, run the **Research Refresh** workflow (Actions → Research
+          Refresh → Run workflow), review the pull request it opens, and merge it.
+          If the refresh is failing, check that the \`ANTHROPIC_API_KEY\` secret
+          is still valid.
+
+          _Opened automatically by the freshness check._
+          EOF
+          )
+          gh label create freshness --description "Content currency" --color d4c5f9 2>/dev/null || true
+          existing=$(gh issue list --state open --label freshness --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            echo "Updating existing issue #$existing"
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --label freshness --body "$body"
+          fi

@@ -93,10 +93,55 @@ GitHub Pages publishes the **`main` branch root** directly (branch
 deployment). No build step and no deploy workflow — every merge to `main`
 goes live as-is. `.nojekyll` at the root disables Jekyll processing.
 
+## 5. The refresh cycle — keeping content current
+
+Everything above describes how a *change* gets made. This section describes how
+the site stays true when nobody asks it to.
+
+The site's product is calibrated confidence about a fast-moving topic: every
+claim carries a source and a "last verified" date. That makes staleness
+invisible — a page verified eight months ago looks exactly as authoritative as
+one verified yesterday. Two scheduled workflows close that gap.
+
+### Monthly: `research-refresh.yml`
+
+Runs at 06:00 UTC on the 1st, and on demand via **Actions → Research Refresh →
+Run workflow** (which takes an optional `focus` topic). It:
+
+1. Re-verifies the claims currently on the site against their cited sources.
+2. Searches for developments since the last verification date.
+3. Tries to close the open questions carried in
+   [`research/README.md`](research/README.md).
+4. Writes a **new dated note** in `docs/research/` — notes accumulate, forming
+   an evidence trail over time rather than being overwritten.
+5. Updates the pages: corrects claims, adjusts badges where evidence strength
+   changed, adds new developments to the home page changelog, and refreshes the
+   `page-meta` date **only on pages it actually re-verified**.
+6. Opens a pull request. It never merges — a human reviews, exactly as with any
+   other change.
+
+The rule the prompt enforces hardest: **never bump a "last verified" date for a
+claim that was not re-checked.** A date that launders an unverified claim is
+worse than a stale one. A refresh that confirms nothing changed is a successful
+refresh, and should say so rather than manufacturing edits.
+
+### Weekly: `freshness-check.yml`
+
+The refresh can fail quietly — an expired API key, an error, a pull request
+nobody merges. This job runs every Monday, finds the newest `last verified` date
+across the pages, and if it is more than **45 days** old (one missed cycle plus
+review time) opens or updates a `freshness`-labeled issue. It also fails loudly
+if it can find no verification dates at all, which would mean the citation
+format broke.
+
+Both jobs skip with a setup notice when `ANTHROPIC_API_KEY` is absent, so a fork
+never fails on them.
+
 ## One-time repository setup (human, once)
 
 1. **Secret**: Settings → Secrets and variables → Actions → add
-   `ANTHROPIC_API_KEY` (used by `claude.yml` and `claude-review.yml`).
+   `ANTHROPIC_API_KEY` (used by `claude.yml`, `claude-review.yml`, and
+   `research-refresh.yml`).
    Alternatively run `/install-github-app` from the Claude Code CLI, which
    configures the app and secret for you.
 2. **Pages**: Settings → Pages → Build and deployment → Source:

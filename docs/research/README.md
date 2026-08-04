@@ -13,6 +13,11 @@ note here.
 
 ## Convention for new notes
 
+New notes are produced by the monthly **Research Refresh** workflow (see
+[`../WORKFLOW.md`](../WORKFLOW.md) §5) or by a research-task issue. Notes
+accumulate rather than being overwritten — the sequence of dated notes is the
+record of what was believed when.
+
 - One note per topic, in this directory: `<topic>-<yyyy-mm-dd>.md`
 - Required sections: Summary; Findings (claim | status | source | date verified);
   Impact on existing pages; Open questions
