@@ -8,10 +8,12 @@
   --accent: #1a56db;
   --accent-contrast: #ffffff;
   --border: #d9dee5;
-  --shipped: #0e7a3d;
+  --shipped: #0c6b35;
   --shipped-bg: #e3f5ea;
   --announced: #8a5a00;
   --announced-bg: #fdf1d7;
+  --reported: #41506b;
+  --reported-bg: #eceff4;
   --speculative: #6b21a8;
   --speculative-bg: #f1e6fb;
   --max-width: 68rem;
@@ -30,6 +32,8 @@
     --shipped-bg: #12301e;
     --announced: #e5b95c;
     --announced-bg: #33270e;
+    --reported: #aebbd0;
+    --reported-bg: #232a36;
     --speculative: #c99cf0;
     --speculative-bg: #2a1838;
   }
@@ -152,16 +156,31 @@ h2 {
   margin-top: 0;
 }
 
-/* Status badges — shipped / announced / speculative */
+/* Status badges — evidence strength behind a claim.
+   Four states, weakest evidence last:
+     shipped      verified as released / in production
+     announced    publicly committed but not yet shipped (incl. unbenchmarked vendor claims)
+     reported     secondary sources only, or the figure/date is disputed
+     speculative  analyst interpretation, not settled fact
+   Unbadged prose means "shipped" — badges mark exceptions, not every claim.
+   Each state carries three signifiers so meaning never rests on color alone:
+   the text label, a leading glyph, and a border style. */
 .badge {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  padding: 0.1rem 0.6rem;
-  vertical-align: middle;
+  letter-spacing: 0.01em;
+  border: 1px solid currentColor;
+  border-radius: 0.2rem;
+  padding: 0.05rem 0.5rem;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+/* Glyphs use empty alternative text so screen readers announce the label only. */
+.badge::before {
+  margin-right: 0.35em;
+  font-size: 0.9em;
 }
 
 .badge.shipped {
@@ -169,14 +188,56 @@ h2 {
   background: var(--shipped-bg);
 }
 
+.badge.shipped::before {
+  content: "\25CF" / "";
+}
+
 .badge.announced {
   color: var(--announced);
   background: var(--announced-bg);
 }
 
+.badge.announced::before {
+  content: "\25D0" / "";
+}
+
+.badge.reported {
+  color: var(--reported);
+  background: var(--reported-bg);
+  border-style: dashed;
+}
+
+.badge.reported::before {
+  content: "\25CB" / "";
+}
+
 .badge.speculative {
   color: var(--speculative);
   background: var(--speculative-bg);
+  border-style: dashed;
+}
+
+.badge.speculative::before {
+  content: "\25C7" / "";
+}
+
+/* Badge legend — sits on every page where badges appear. */
+.badge-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-alt);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.badge-legend li {
+  flex: 1 1 14rem;
 }
 
 /* Source citations: <p class="source">Source: <a …>…</a> · last verified 2026-08-04</p> */
