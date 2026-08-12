@@ -60,6 +60,7 @@ jobs:
     timeout-minutes: 2
     outputs:
       enabled: ${{ steps.check.outputs.enabled }}
+      discover: ${{ steps.check.outputs.discover }}
     env:
       HAS_ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
     steps:
@@ -71,6 +72,18 @@ jobs:
             echo "::notice::Skipping research refresh: ANTHROPIC_API_KEY secret is not set." \
               "Add it under Settings → Secrets and variables → Actions (see docs/WORKFLOW.md)."
             echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+          # Discovery (an unbounded web search) is the priciest stage, so run it
+          # only ONCE a month — on the 1st — plus on any manual dispatch. The
+          # 15th run still verifies existing claims, and the deterministic AdCP
+          # release watch catches new releases between runs, so nothing volatile
+          # goes unnoticed for long. Both scheduled dates share one cron, so we
+          # distinguish them by the day of month.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$(date -u +%d)" = "01" ]; then
+            echo "discover=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Skipping discovery this run (only runs on the 1st and on manual dispatch); verification still runs."
+            echo "discover=false" >> "$GITHUB_OUTPUT"
           fi
 
   # ---------------------------------------------------------------------------
@@ -224,8 +237,12 @@ jobs:
             Do not edit any site page, the manifest, or open a PR — a later job
             does that. Your only writes are the JSON verdict file. Never record a
             verified_date for a claim you did not actually re-check.
+          # Sonnet, not the default Opus: verification is mechanical (fetch a
+          # source, check it still says what we claim) and runs across many
+          # shards, so it is the biggest token line. Sonnet is enough and much
+          # cheaper. The nuanced page editing stays on Opus (see apply).
           claude_args: |
-            --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
+            --model sonnet --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
 
       - name: Upload verdict
         uses: actions/upload-artifact@v4
@@ -244,7 +261,7 @@ jobs:
   # ---------------------------------------------------------------------------
   discover:
     needs: [guard, inventory, verify]
-    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' }}
+    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.guard.outputs.discover == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -281,8 +298,10 @@ jobs:
 
             Do not edit any site page, the manifest, or open a PR — a later job
             does that. Your only write is the Markdown file.
+          # Sonnet, not Opus — a search-and-summarize pass doesn't need Opus, and
+          # this is the single priciest agent per run.
           claude_args: |
-            --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
+            --model sonnet --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
 
       - name: Upload discoveries
         uses: actions/upload-artifact@v4
@@ -395,5 +414,9 @@ jobs:
             claims checked, claims changed, sources unreachable, new developments
             added, open questions closed / still open. Do NOT merge — a human
             reviews it.
+          # Deliberately Opus (the default — no --model here): apply rewrites page
+          # prose and badges against docs/DESIGN.md, where nuance matters and a
+          # mistake ships to the live site. It is only ONE agent per run, so the
+          # quality is worth it. Verify/discover are the Sonnet stages above.
           claude_args: |
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"
