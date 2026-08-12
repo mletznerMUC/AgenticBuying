@@ -1,21 +1,43 @@
-# Twice-monthly research refresh: re-verify what the site claims, find what
-# changed, and open a PR. A human reviews and merges — never writes to main.
+# Twice-monthly research refresh, restructured as a pipeline so a slow run can
+# no longer lose all its work:
 #
-# The site's product is calibrated confidence about a fast-moving topic, so the
-# "last verified" dates are load-bearing. This job exists to keep them honest.
+#   guard → inventory → verify (matrix, fan-out) ─┐
+#                     └─ discover ────────────────┴→ apply → PR
+#
+# WHY THIS SHAPE. The old design did everything in one 45-minute agent step:
+# re-verify every claim, search for what's new, write the note, edit the pages,
+# open the PR. A run that timed out produced *nothing* — no partial note, no
+# partial verification. And re-verification (a bounded list of known URLs)
+# competed for the same budget as discovery (an unbounded web search), so the
+# open-ended half could starve the half the site's "last verified" dates
+# actually depend on.
+#
+# Now verification is sharded across parallel jobs over docs/research/claims.yaml
+# (the claim manifest), each shard time-boxed and each writing a durable verdict
+# artifact. Discovery runs on its own budget. A final "apply" job turns the
+# verdicts + discoveries into page edits, a dated note, and a PR. A human still
+# reviews and merges — this never writes to main.
+#
+# The manifest also lets each run check only what is *due* (everything
+# high-volatility every cycle; slower-moving claims on a rotation), so per-run
+# work is bounded by construction rather than scaling with the whole site.
 name: Research Refresh
 
 on:
   schedule:
-    # 06:00 UTC on the 1st and 15th. Was monthly; the first real run found
-    # eight claims already wrong and a release line deprecated three days
-    # earlier, so a month is longer than the facts stay true. Roughly
-    # fortnightly keeps the verification window inside the release cadence.
+    # 06:00 UTC on the 1st and 15th. Roughly fortnightly keeps the verification
+    # window inside AdCP's weekly-plus release cadence.
     - cron: "0 6 1,15 * *"
   workflow_dispatch:
     inputs:
+      scope:
+        description: "Which claims to verify: 'due' (default) or 'all' for a full sweep"
+        required: false
+        default: "due"
+        type: choice
+        options: ["due", "all"]
       focus:
-        description: "Optional topic to prioritize (e.g. 'live AdCP sales endpoints')"
+        description: "Optional discovery topic to prioritize (e.g. 'live AdCP sales endpoints')"
         required: false
         type: string
 
@@ -24,101 +46,341 @@ concurrency:
   group: research-refresh
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
-  refresh:
+  # ---------------------------------------------------------------------------
+  # Gate the whole pipeline on the API key. Without it (e.g. a fork), every
+  # downstream job skips and the workflow stays green — the same fork-friendly
+  # behaviour the single-job version had.
+  # ---------------------------------------------------------------------------
+  guard:
     runs-on: ubuntu-latest
-    # The refresh does dozens of live fetches across seven pages; the first
-    # real run took about 27 minutes end to end. This leaves headroom while
-    # still capping a hung run well short of GitHub's 6-hour default.
-    timeout-minutes: 45
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: read
-      id-token: write
+    timeout-minutes: 2
+    outputs:
+      enabled: ${{ steps.check.outputs.enabled }}
     env:
       HAS_ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
-      FOCUS: ${{ inputs.focus }}
     steps:
-      - name: Notice when ANTHROPIC_API_KEY is not configured
-        if: env.HAS_ANTHROPIC_KEY != 'true'
+      - id: check
         run: |
-          echo "::notice::Skipping research refresh: ANTHROPIC_API_KEY secret is not set." \
-            "Add it under Settings → Secrets and variables → Actions (see docs/WORKFLOW.md)."
+          if [ "$HAS_ANTHROPIC_KEY" = "true" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Skipping research refresh: ANTHROPIC_API_KEY secret is not set." \
+              "Add it under Settings → Secrets and variables → Actions (see docs/WORKFLOW.md)."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Checkout repository
-        if: env.HAS_ANTHROPIC_KEY == 'true'
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+  # ---------------------------------------------------------------------------
+  # Read the claim manifest, pick the claims that are due this cycle, and split
+  # them into shards. Pure Python, no LLM — deterministic and fast.
+  # ---------------------------------------------------------------------------
+  inventory:
+    needs: guard
+    if: needs.guard.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      due_count: ${{ steps.plan.outputs.due_count }}
+    steps:
+      - uses: actions/checkout@v5
 
-      - name: Research refresh
-        if: env.HAS_ANTHROPIC_KEY == 'true'
+      - name: Plan which claims to verify
+        id: plan
+        env:
+          # 'all' forces a full sweep (first-run baseline, or a deliberate audit);
+          # 'due' is the scheduled default. Scheduled runs have no input → 'due'.
+          SCOPE: ${{ inputs.scope || 'due' }}
+          SHARD_SIZE: "6"
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 - <<'PY'
+          import os, json, datetime, sys
+          import yaml
+
+          run_date = datetime.date.fromisoformat(
+              os.popen("date -u +%F").read().strip())
+          scope = os.environ.get("SCOPE", "due")
+          shard_size = int(os.environ.get("SHARD_SIZE", "6"))
+
+          path = "docs/research/claims.yaml"
+          if not os.path.exists(path):
+              print(f"::error::{path} not found — the manifest is the shard source.")
+              sys.exit(1)
+          claims = (yaml.safe_load(open(path)) or {}).get("claims", []) or []
+
+          # How stale a claim may get before it is due again, by volatility.
+          # High-volatility claims (release numbers, live-deployment counts) are
+          # always due; weaker claims (reported/speculative) ride the medium
+          # cadence because their evidence is the shakiest.
+          MAX_AGE = {"high": 10, "medium": 25, "low": 75}
+
+          def age_days(c):
+              try:
+                  lv = datetime.date.fromisoformat(str(c.get("last_verified")))
+                  return (run_date - lv).days
+              except Exception:
+                  return 10**9  # never verified / unparseable → treat as very stale
+
+          def is_due(c):
+              if scope == "all":
+                  return True
+              if c.get("volatility") == "high":
+                  return True
+              if c.get("status") in ("reported", "speculative"):
+                  return age_days(c) >= MAX_AGE["medium"]
+              return age_days(c) >= MAX_AGE.get(c.get("volatility", "medium"), 25)
+
+          due = [c["id"] for c in claims if c.get("id") and is_due(c)]
+          shards = [due[i:i + shard_size] for i in range(0, len(due), shard_size)]
+          include = [{"shard": str(i), "ids": ",".join(s)} for i, s in enumerate(shards)]
+          matrix = {"include": include}
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("matrix=" + json.dumps(matrix) + "\n")
+              f.write("due_count=" + str(len(due)) + "\n")
+          print(f"{len(claims)} claims in manifest; {len(due)} due ({scope}); "
+                f"{len(shards)} shard(s).")
+          PY
+
+  # ---------------------------------------------------------------------------
+  # One parallel job per shard. Each verifies a handful of claims against their
+  # cited sources and writes a durable verdict artifact. fail-fast:false so one
+  # unreachable source can't sink the others; a short timeout bounds each shard.
+  # ---------------------------------------------------------------------------
+  verify:
+    needs: [guard, inventory]
+    if: needs.guard.outputs.enabled == 'true' && needs.inventory.outputs.due_count != '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix: ${{ fromJson(needs.inventory.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Verify shard ${{ matrix.shard }}
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
-            You are running this repository's twice-monthly research refresh. Read
-            CLAUDE.md, docs/DESIGN.md, docs/research/README.md, and the current
-            research note it points to before doing anything else. Follow the
-            method in .claude/agents/research-analyst.md.
+            You are re-verifying a shard of this site's published claims against
+            their cited sources. Read docs/research/claims.yaml and, if useful for
+            context, docs/DESIGN.md §5 (the four badge states) and
+            .claude/agents/research-analyst.md (the verification method).
 
-            Today's date is the run date — use it for every "verified" date you
-            write, and never write a date you did not actually verify on.
+            Today's date is the run date; use it as the verified date for any
+            claim you actually reach and confirm.
+
+            ## Your claims (verify ONLY these ids)
+
+            ${{ matrix.ids }}
+
+            ## For each id
+
+            1. Look it up in claims.yaml to get its `claim`, `sources`, and
+               current `status`.
+            2. Fetch the source(s). A claim counts as re-verified ONLY if you
+               actually reached the source and it still supports the claim.
+            3. Decide the outcome:
+               - reached the source and it still supports the claim → still
+                 supported, keep or tighten the status;
+               - reached the source but it no longer supports the claim, or the
+                 facts changed → not supported / changed, and say what it now says;
+               - could not reach any primary source → set reached_source false and
+                 suggest `reported` (per DESIGN.md, secondary-only ⇒ reported).
+
+            ## Output — write a JSON file, nothing else
+
+            Write your results to `verdicts/shard-${{ matrix.shard }}.json` as a
+            JSON array, one object per id:
+
+            {
+              "id": "<claim id>",
+              "reached_source": true | false,
+              "still_supported": true | false,
+              "suggested_status": "shipped" | "announced" | "reported" | "speculative",
+              "evidence_url": "<the URL that settled it>",
+              "note": "<one sentence: what the source now says, or why unreachable>",
+              "verified_date": "<run date, YYYY-MM-DD>"
+            }
+
+            Do not edit any site page, the manifest, or open a PR — a later job
+            does that. Your only writes are the JSON verdict file. Never record a
+            verified_date for a claim you did not actually re-check.
+          claude_args: |
+            --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
+
+      - name: Upload verdict
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdict-${{ matrix.shard }}
+          path: verdicts/shard-${{ matrix.shard }}.json
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Discovery runs on its own budget, in parallel with verification: search for
+  # what changed since the last cycle and try to close the open questions.
+  # ---------------------------------------------------------------------------
+  discover:
+    needs: [guard, inventory]
+    if: needs.guard.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Discover new developments
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are the discovery pass of the research refresh. Read CLAUDE.md,
+            docs/DESIGN.md, docs/research/README.md and the current research note
+            it points to, and follow .claude/agents/research-analyst.md.
+
+            Today's date is the run date. Search for developments since the last
+            verification date: new AdCP/AAMP spec releases and version numbers,
+            adoption and partnership announcements, governance changes, and
+            anything that contradicts what a page currently says. Then work
+            through the open questions carried in docs/research/README.md and try
+            to close them.
+            ${{ inputs.focus && format('Prioritize this focus topic: {0}', inputs.focus) || '' }}
+
+            ## Output — write a Markdown file, nothing else
+
+            Write `discoveries/discoveries.md` with two sections:
+            - **New developments** — each as: a one-line claim, a suggested badge
+              status (shipped/announced/reported/speculative), the source URL, and
+              the source date. Only include items you found a real source for.
+            - **Open questions** — which of the carried questions you closed (with
+              the evidence) and which remain open.
+
+            Do not edit any site page, the manifest, or open a PR — a later job
+            does that. Your only write is the Markdown file.
+          claude_args: |
+            --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
+
+      - name: Upload discoveries
+        uses: actions/upload-artifact@v4
+        with:
+          name: discoveries
+          path: discoveries/discoveries.md
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Turn the verdicts + discoveries into page edits, a dated note, and a PR.
+  # Runs even if some verify shards failed (if: !cancelled), so partial results
+  # still land. This is the only job that writes to the repo / opens a PR.
+  # ---------------------------------------------------------------------------
+  apply:
+    needs: [guard, inventory, verify, discover]
+    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.inventory.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Download verdicts
+        # Whenever verification actually ran — even if some shards failed
+        # (fail-fast is off, so the job result is 'failure' on a partial), we
+        # still want the verdicts the successful shards uploaded. Only skip when
+        # verify was skipped outright (nothing was due).
+        if: needs.verify.result != 'skipped'
+        uses: actions/download-artifact@v4
+        with:
+          path: _verdicts
+          pattern: verdict-*
+          merge-multiple: true
+
+      - name: Download discoveries
+        if: needs.discover.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          path: _discoveries
+          name: discoveries
+
+      - name: Apply results and open PR
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are the apply stage of the research refresh. Two upstream stages
+            have already done the research; your job is to turn their output into
+            reviewed-quality edits and a pull request. Read CLAUDE.md,
+            docs/DESIGN.md (follow it exactly), and docs/research/README.md first.
+
+            Today's date is the run date. Never write a "last verified" or
+            "verified" date that the verdicts below do not actually support — a
+            date that launders an unchecked claim is worse than a stale one.
+
+            ## Inputs on disk
+
+            - `_verdicts/` — JSON verdict files from the verification shards (may
+              be absent if nothing was due this cycle). Each entry: id,
+              reached_source, still_supported, suggested_status, evidence_url,
+              note, verified_date.
+            - `_discoveries/discoveries.md` — new developments and open-question
+              updates (may be absent).
+            - `docs/research/claims.yaml` — the claim manifest, keyed by the same ids.
 
             ## What to do
 
-            1. RE-VERIFY. Work through the claims currently on the site and check
-               each against its cited source. A claim is only re-verified if you
-               actually reached the source and it still supports the claim.
-            2. FIND WHAT CHANGED. Search for developments since the last
-               verification date: new spec releases and version numbers, adoption
-               announcements, governance changes, and anything that contradicts
-               what a page currently says.
-            3. ANSWER OPEN QUESTIONS. docs/research/README.md carries the
-               unresolved questions from the last cycle. Try to close them, and
-               report what remains open.
-
-            ## What to write
-
-            - A NEW dated research note at docs/research/<topic>-<yyyy-mm-dd>.md
-              in the required format (Summary; Findings table of claim | status |
-              source | date verified; Impact on existing pages; Open questions).
-              Do not overwrite the previous note — the notes are an evidence
-              trail over time.
-            - Update docs/research/README.md so "Current notes" points at the new
-              note and the carried-forward open questions match reality.
-            - Update the site pages, following docs/DESIGN.md exactly:
-              * Correct any claim the sources no longer support, and change its
-                badge if the evidence strength changed.
-              * Add genuinely new developments to the ol.changelog on index.html,
-                newest first, each with its own source line.
-              * Update the p.page-meta "Updated" line ONLY on pages whose claims
-                you actually re-verified.
+            1. UPDATE THE MANIFEST (docs/research/claims.yaml). For each verdict:
+               still_supported & reached_source → set that claim's `last_verified`
+               to its verified_date and set `status` to suggested_status; changed →
+               update `claim`/`status`; not reached → set `status: reported`. Also
+               set the top-level `meta.updated` to the run date.
+            2. EDIT THE PAGES, per DESIGN.md:
+               * For a claim whose verdict changed it, correct the prose on the
+                 page(s) listed in its manifest entry and update its badge.
+               * Move a claim to the `reported` badge if its source became
+                 unreachable or sources now disagree — do not delete the caveat.
+               * Add genuinely new developments (from discoveries.md) to the
+                 ol.changelog on index.html, newest first, each with its own
+                 source line.
+               * Update a page's p.page-meta "Updated" line ONLY if a claim on
+                 that page was actually re-verified this run.
+            3. WRITE A NEW dated note docs/research/<topic>-<run-date>.md in the
+               required format (Summary; Findings table of claim | status | source
+               | date verified; Impact on existing pages; Open questions),
+               synthesizing the verdicts and discoveries. Do not overwrite older
+               notes — they are an evidence trail. Point docs/research/README.md's
+               "Current notes" at it and refresh the carried-forward open questions.
 
             ## Rules that matter more than completeness
 
-            - NEVER bump a "last verified" date for a claim you did not
-              re-check. A date that launders an unverified claim is worse than a
-              stale one, and it destroys the only thing this site sells.
-            - Badges mark exceptions (DESIGN.md §5). If evidence weakened —
-              a source disappeared, sources now disagree — move the claim to
-              `reported` rather than deleting the caveat.
-            - Keep the tone neutral; the site describes, it does not advocate.
-            - Do not touch the shared nav or footer, and never remove the AI
+            - Badges mark exceptions (DESIGN.md §5); unbadged prose means shipped.
+            - Keep the tone neutral — describe, do not advocate.
+            - Never touch the shared nav or footer; never remove the AI
               transparency notice or the copyright line.
-            - If the focus input is set, prioritize it: ${{ inputs.focus }}
+            - If nothing material changed, say so in the PR body rather than
+              manufacturing edits — a refresh that confirms the site is still
+              accurate is a successful refresh.
 
             ## Finishing
 
             Run `npx --yes html-validate "*.html"` and fix anything it reports.
-            Then create a branch named claude/research-refresh-<yyyy-mm-dd>,
-            commit, and open a pull request describing what changed, what was
-            re-verified, what could not be verified, and which open questions
-            remain. Do NOT merge — a human reviews it.
-
-            If nothing material changed, say so in the PR body rather than
-            manufacturing edits; a refresh that confirms the site is still
-            accurate is a successful refresh.
+            Create a branch named claude/research-refresh-<run-date>, commit, and
+            open a pull request. The PR body must include a short summary table:
+            claims checked, claims changed, sources unreachable, new developments
+            added, open questions closed / still open. Do NOT merge — a human
+            reviews it.
           claude_args: |
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"

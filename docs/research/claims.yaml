@@ -1,0 +1,475 @@
+# Claim manifest — the machine-readable index of every sourced claim the site
+# publishes. It is the backbone of the research refresh:
+#
+#   * The refresh's `verify` matrix shards over this file, so re-verification is
+#     a bounded, parallelizable worklist rather than one agent re-reading every
+#     page.
+#   * `volatility` sets how often each claim is re-checked: `high` every cycle;
+#     `medium`/`low` only once they age past a threshold (see the inventory job
+#     in .github/workflows/research-refresh.yml). This keeps each run's work
+#     bounded instead of scaling with the whole site.
+#   * `last_verified` is the coverage ledger — the weekly freshness check and a
+#     glance at this file both tell you what is overdue.
+#
+# This manifest is NOT the evidence trail — the dated notes in this directory
+# are. It records *what* is claimed and *when it was last checked*; the notes
+# record *why* it was believed. Keep the two in step: when the apply stage adds
+# a changelog entry or corrects a claim, it updates the matching row here.
+#
+# Fields per claim:
+#   id            stable kebab-case slug; the shard key — never reuse or renumber
+#   pages         every page the claim appears on (edit all when it changes)
+#   claim         one neutral sentence stating the claim
+#   status        badge state: shipped | announced | reported | speculative
+#   sources       the URL(s) from the claim's citation line
+#   last_verified YYYY-MM-DD the claim was last confirmed against its source
+#   volatility    high | medium | low — how fast the fact tends to move
+meta:
+  schema: 1
+  updated: 2026-08-04
+claims:
+  - id: adcp-latest-release-v3-1-10
+    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
+    claim: "AdCP's latest tagged release is v3.1.10, published 4 August 2026, on a weekly-plus cadence on the v3.1.x line."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp/releases
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
+    last_verified: 2026-08-04
+    volatility: high
+  - id: adcp-parallel-v3-0-x-maintenance-line
+    pages: [index.html, adcp.html, comparison.html]
+    claim: "A parallel AdCP v3.0.x maintenance line still receives releases alongside v3.1.x, e.g. v3.0.22 on 24 July 2026."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp/releases
+    last_verified: 2026-08-04
+    volatility: high
+  - id: adcp-v3-1-3-withdrawn
+    pages: [index.html, adcp.html, tools.html, resources.html]
+    claim: "AdCP release v3.1.3 was withdrawn for adding a schema field in a patch release, violating the 3.1.x contract; 3.1.2 is pinned as the stable 3.1 target."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp/releases
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-v2-fully-deprecated
+    pages: [index.html, adcp.html, comparison.html]
+    claim: "AdCP v2 became unsupported at 3.0 GA and was fully deprecated on 1 August 2026 (UTC)."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-3-1-additive-over-3-0
+    pages: [index.html, adcp.html, comparison.html]
+    claim: "AdCP 3.1 is the current stable minor version and is additive over 3.0, so a 3.0-conformant client keeps working."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-3-0-ga-no-date
+    pages: [adcp.html, comparison.html, resources.html]
+    claim: "AdCP's 3.0 line reached general availability, but no GA date for 3.0 itself is published."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-3-0-scope-channels
+    pages: [adcp.html]
+    claim: "AdCP 3.0 added brand identity/rights (brand.json plus a community brand registry), creative and governance upgrades, and 20 media channels including broadcast TV, up from nine in v2."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-launch-founding-members
+    pages: [adcp.html, comparison.html, tools.html, resources.html]
+    claim: "AdCP launched 15 October 2025 with six founding members (Yahoo, PubMatic, Scope3, Optable, Swivel, Triton Digital), each committing engineering plus $10,000/year; initial release v2.0.0 covered Media Buy, Curation, and Signals over MCP."
+    status: shipped
+    sources:
+      - https://ppc.land/ad-context-protocol-adcp-launches-for-advertising-automation/
+      - https://tritondigital.com/news-item/October-15-2025/yahoo-pubmatic-and-others-launch-new-standardfor-agentic-advertising
+      - https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-two-layer-architecture
+    pages: [adcp.html]
+    claim: "AdCP is an open standard for advertising operations defined across two layers: planning-time negotiation between buyer and seller agents, and impression-time decisioning."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-parallel-to-openrtb
+    pages: [adcp.html, comparison.html]
+    claim: "AdCP positions itself as parallel to OpenRTB, defining a purpose-built agent task language carried over MCP or Google's A2A rather than extending real-time bidding."
+    status: shipped
+    sources:
+      - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
+      - https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-governance-aao
+    pages: [adcp.html, comparison.html, tools.html]
+    claim: "AdCP is governed by AgenticAdvertising.org, a Delaware nonprofit with four equally weighted voting classes; it separates spec governance from the Prebid-maintained reference implementation and licenses the spec Apache 2.0 with patent grants and an IPR policy."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp
+      - https://agenticadvertising.org/about
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-aao-501c6-status-disputed
+    pages: [adcp.html, comparison.html, resources.html]
+    claim: "AgenticAdvertising.org's tax status is described inconsistently by its own sources: the spec repo calls it a pending 501(c)(6), while the About page states it is a Delaware 501(c)(6) with an EIN and a formation phase."
+    status: reported
+    sources:
+      - https://github.com/adcontextprotocol/adcp
+      - https://agenticadvertising.org/about
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-aao-board-and-tiers
+    pages: [adcp.html, comparison.html]
+    claim: "AAO bylaws provide for a 40-director elected board; interim advisors are Randall Rothenberg and Matthew Egol; paid membership tiers run from Explorer ($50/yr) to Leader ($50,000/yr)."
+    status: shipped
+    sources:
+      - https://agenticadvertising.org/about
+      - https://agenticadvertising.org/membership
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-seven-surfaces
+    pages: [adcp.html, comparison.html, tools.html]
+    claim: "AdCP's spec spans seven negotiation surfaces (Media Buy, Creative, Signals, Accounts, Governance, Brand, Sponsored Intelligence) plus the Trusted Match Protocol (Context Match, Identity Match); Sponsored Intelligence is marked experimental."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-roadmap-items
+    pages: [adcp.html]
+    claim: "Secondary sources list curation, creative generation, and performance attribution as AdCP roadmap items, though shipped 3.0/3.1 surfaces already overlap them and no AAO-published roadmap was located."
+    status: reported
+    sources:
+      - https://adgentek.ai/glossary/ad-context-protocol/
+      - https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
+    last_verified: 2026-08-04
+    volatility: low
+  - id: adcp-membership-count
+    pages: [adcp.html, comparison.html, tools.html]
+    claim: "AgenticAdvertising.org membership is reported at between 104+ and 117+ companies with no official count published; named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
+    status: reported
+    sources:
+      - https://adgentek.ai/blog/agentic-advertising-statistics/
+      - https://agenticadvertising.org/about
+      - https://agenticadvertising.org/members
+      - https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/
+    last_verified: 2026-08-04
+    volatility: high
+  - id: adcp-agent-registry
+    pages: [adcp.html, tools.html, resources.html]
+    claim: "AgenticAdvertising.org runs a public agent registry listing sales, creative, and signals agents that implement AdCP, filterable by type, status, and compliance."
+    status: shipped
+    sources:
+      - https://agenticadvertising.org/registry/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: first-agent-to-agent-buy
+    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    claim: "The first agent-to-agent media buy was a real transaction: a Scope3 buyer agent and a Swivel seller agent transacted LG Ads inventory with two humans approving, dated 15 or 16 October 2025 by differing sources."
+    status: reported
+    sources:
+      - https://www.mediapost.com/publications/article/409937/the-first-agentic-media-buy-more-to-come.html
+      - https://adcontextprotocol.org
+    last_verified: 2026-08-04
+    volatility: low
+  - id: nbcuniversal-cross-platform-buys
+    pages: [adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    claim: "On 6 January 2026 NBCUniversal, RPA, FreeWheel, and Newton Research announced the first cross-platform agentic media buys over MCP across linear and digital, including live football playoff inventory."
+    status: shipped
+    sources:
+      - https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: freewheel-adcp-server-attribution
+    pages: [adcp.html, tools.html, workflows.html, resources.html]
+    claim: "The claim that FreeWheel built specifically an AdCP server for the NBCUniversal buys rests on secondary coverage; the NBCUniversal announcement names only MCP."
+    status: reported
+    sources:
+      - https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/
+      - https://adgentek.ai/blog/agentic-advertising-statistics/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: pubmatic-butlertill-clubtails
+    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    claim: "PubMatic and Butler/Till ran an AdCP-enabled agentic connected-TV campaign for Clubtails, announced 15 December 2025, planned and optimized by agents with no demand-side platform workflow."
+    status: shipped
+    sources:
+      - https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/
+      - https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: optable-pubmatic-agenticos
+    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    claim: "Optable's Audience Agent was integrated into PubMatic AgenticOS (announced 12 March 2026), positioned as an early live example of AdCP on production programmatic infrastructure, activating via PubMatic Activate."
+    status: shipped
+    sources:
+      - https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/
+      - https://www.optable.co/newsroom/optable-and-pubmatic-partner
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: danads-sigma-sales-agent
+    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    claim: "DanAds and Sigma Software launched a Sales Agent for Publishers built natively on AdCP on 24 June 2026, with theScore and RTL AdAlliance as launch customers; RTL exposed European Total Video inventory."
+    status: shipped
+    sources:
+      - https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: prebid-sales-agent
+    pages: [adcp.html, tools.html, resources.html]
+    claim: "The Prebid Sales Agent is AdCP's sell-side reference implementation, built on AdCP, exposing inventory to agents over MCP and A2A and integrating with ad servers such as Google Ad Manager."
+    status: shipped
+    sources:
+      - https://docs.prebid.org/agents/salesagent.html
+      - https://prebid.org/product-suite/sales-agent/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: wpp-buyer-agent-for-video
+    pages: [index.html, tools.html, workflows.html, resources.html]
+    claim: "WPP launched its Buyer Agent for Video in June 2026, an AI-driven planning tool that recommends video buys for human approval; the coverage does not state which protocol it uses."
+    status: shipped
+    sources:
+      - https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: yahoo-dsp-agent-network
+    pages: [index.html, tools.html, resources.html]
+    claim: "Yahoo announced an Agent Network for its DSP in June 2026, a 23-partner ecosystem connecting advertisers to AI-powered tools; the coverage does not state which protocol it uses."
+    status: shipped
+    sources:
+      - https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: microsoft-advertising-mcp-server
+    pages: [index.html, tools.html, resources.html]
+    claim: "Microsoft Advertising shipped an official, read-only MCP server on 17 June 2026: agents can read live campaign data but changes still require a human."
+    status: shipped
+    sources:
+      - https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: pinterest-ads-mcp-server
+    pages: [index.html, tools.html, resources.html]
+    claim: "Pinterest launched an MCP server for its ads API in the same period as Microsoft's; the coverage does not detail whether agents can write as well as read."
+    status: shipped
+    sources:
+      - https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: adform-open-standards-commitment
+    pages: [index.html, tools.html, resources.html]
+    claim: "Adform publicly reaffirmed its commitment to open standards for agentic advertising on 8 July 2026, without naming a protocol, product, or implementation timeline."
+    status: announced
+    sources:
+      - https://www.exchangewire.com/blog/2026/07/08/adform-reinforces-commitment-to-open-standards-for-agentic-advertising/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: omnicom-agent-to-agent-buys
+    pages: [tools.html, resources.html]
+    claim: "Omnicom runs live agent-to-agent buys for multiple clients per mid-2026 coverage; neither the protocol used nor the volume transacted is specified."
+    status: shipped
+    sources:
+      - https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html
+      - https://themediaonline.co.za/2026/07/what-happened-to-agentic-media-buying/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: aamp-what-it-is
+    pages: [aamp.html, comparison.html, resources.html]
+    claim: "AAMP is IAB Tech Lab's open-source umbrella framework that extends existing standards (OpenRTB, OpenDirect 2.1, AdCOM, VAST) with agentic layers and uses MCP and A2A as agent interfaces."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
+      - https://github.com/IABTechLab/AAMP
+      - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-naming-feb-2026
+    pages: [aamp.html, comparison.html, resources.html]
+    claim: "IAB Tech Lab formally named the initiative AAMP on 26 February 2026 (announced by CEO Anthony Katsur at Beet Retreat); prior names included the Agentic RTB Framework and User Context Protocol."
+    status: shipped
+    sources:
+      - https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/
+      - https://www.iab.com/video/get-aampd-iab-tech-labs-agentic-ad-management-protocol/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-governance-three-pillars
+    pages: [aamp.html, comparison.html, resources.html]
+    claim: "AAMP is developed by IAB Tech Lab's Agentic Task Force with member working groups and is organized under three pillars: Agentic Foundations, Agentic Protocols, and Trust and Transparency."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-agent-registry-live
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
+    claim: "AAMP's Trust and Transparency Agent Registry is live and free, open to members and non-members to sign up and register; its public code repository is an unlicensed example implementation."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
+      - https://github.com/IABTechLab/AAMP
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-repos-and-licensing
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
+    claim: "AAMP's code lives across independently versioned repos (Agentic Direct, Buyer/Seller/Registry Agent, ARTF, Agentic Audiences, iab-agentic-primitives, agentic-mobile) with mixed licensing: most Apache 2.0, ARTF AGPL v3, registry example unlicensed."
+    status: shipped
+    sources:
+      - https://github.com/IABTechLab/AAMP
+      - https://github.com/orgs/IABTechLab/repositories?q=agentic
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: aamp-additional-components
+    pages: [aamp.html]
+    claim: "AAMP's standards page names further components that are not separate repositories, including an Agentic Ad Object derived from AdCOM and an Agentic Deals API, and describes Agentic Audiences as the former LiveRamp User Context Protocol."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-roadmap-and-ucp-rebrand
+    pages: [aamp.html, resources.html]
+    claim: "IAB Tech Lab unveiled a comprehensive Agentic Roadmap in January 2026 and rebranded the User Context Protocol as Agentic Audiences."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: aamp-2-0-sdks
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
+    claim: "AAMP 2.0 delivered transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1 with AdCOM, audit trails, and human-approval guardrails, plus an Agentic Audiences OpenRTB extension, Prebid module, and scorer; the release date is disputed between April (better-sourced) and June 2026."
+    status: reported
+    sources:
+      - https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/
+      - https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks
+      - https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: aamp-2-3-release
+    pages: [index.html, aamp.html, comparison.html, tools.html, resources.html]
+    claim: "AAMP 2.3, released 30 July 2026, added pricing guardrails with server-side trust verification, an IAB Diligence Platform/SafeGuard Privacy vendor gate, Agentic Audiences v1.0, and support for Bedrock AgentCore, Databricks, Meta buying, and Google Ad Manager reporting."
+    status: shipped
+    sources:
+      - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
+      - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
+      - https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: artf-latency-claim
+    pages: [aamp.html, tools.html, resources.html]
+    claim: "IAB Tech Lab claims ARTF's containerized, same-data-center architecture can cut bid request-response latency by up to roughly 80% (600–800 ms to about 100 ms); the vendor claim is not independently benchmarked."
+    status: announced
+    sources:
+      - https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/
+    last_verified: 2026-08-04
+    volatility: low
+  - id: artf-v1-public-comment
+    pages: [aamp.html, tools.html, resources.html]
+    claim: "The Agentic Real Time Framework (ARTF), written in Rust under AGPL v3, was released as v1.0 for public comment on 13 November 2025, with the comment period extended to 15 January 2026."
+    status: shipped
+    sources:
+      - https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html
+      - https://github.com/orgs/IABTechLab/repositories?q=agentic
+    last_verified: 2026-08-04
+    volatility: low
+  - id: pmg-alli-aamp
+    pages: [index.html, aamp.html, comparison.html, tools.html, resources.html]
+    claim: "PMG integrated AAMP's Buyer Agent architecture, Sub-Agent architecture, and Agent Registry into its Alli operating system, announced 7 April 2026, as an AAMP deployment in a production agency environment."
+    status: shipped
+    sources:
+      - https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: kochava-stationone-beta
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
+    claim: "Kochava integrated the AAMP Buyer Agent SDK into its StationOne open-source 'IAB Workspace', announced 24 March 2026 with an open beta in Q1–Q2 2026 on OpenDirect 2.1 without real spend."
+    status: shipped
+    sources:
+      - https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html
+      - https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/
+    last_verified: 2026-08-04
+    volatility: medium
+  - id: adoption-inevitable-but-incremental
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
+    claim: "Trade press in July 2026 characterized agentic media buying adoption overall as 'inevitable, but incremental,' with governance emphasized over speed."
+    status: shipped
+    sources:
+      - https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html
+    last_verified: 2026-08-04
+    volatility: low
+  - id: standards-showdown-framing
+    pages: [comparison.html]
+    claim: "In late 2025 trade press framed AdCP and IAB Tech Lab as a standards 'showdown', reporting AdCP's launch divided the industry and IAB Tech Lab's January 2026 roadmap showed 'no love for AdCP'."
+    status: shipped
+    sources:
+      - https://digiday.com/media-buying/adcp-vs-iab-tech-lab-inside-programmatic-advertisings-agentic-ai-standards-showdown/
+      - https://ppc.land/ad-context-protocol-divides-advertising-industry-on-agentic-ai-standards/
+      - https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp
+    last_verified: 2026-08-04
+    volatility: low
+  - id: no-formal-interoperability
+    pages: [comparison.html, resources.html]
+    claim: "Whether AdCP and AAMP compete or complement is analyst disagreement; no formal interoperability agreement, liaison, or joint working group is documented as of 4 August 2026, and IAB Tech Lab's AAMP page does not mention AdCP."
+    status: speculative
+    sources:
+      - https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/
+      - https://perform.digital/blogs/adcp-vs-aamp/
+      - https://ripleymedia.substack.com/p/adcp-vs-iab-tech-lab-ive-seen-this
+    last_verified: 2026-08-04
+    volatility: low
+  - id: mcp-transport
+    pages: [resources.html]
+    claim: "MCP (Model Context Protocol) is Anthropic's protocol for agent-to-tool communication and the transport layer both AdCP and AAMP build on."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp
+      - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
+    last_verified: 2026-08-04
+    volatility: low
+  - id: a2a-transport
+    pages: [resources.html]
+    claim: "A2A (Agent2Agent) is Google's agent-to-agent transport, a named agent interface in AAMP and a supported transport in AdCP."
+    status: shipped
+    sources:
+      - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
+    last_verified: 2026-08-04
+    volatility: low
+  - id: ap2-payments-protocol
+    pages: [resources.html]
+    claim: "AP2 (Agent Payments Protocol) is Google's payments/governance layer built on signed mandates; it launched 16 September 2025 with more than 60 partners including PayPal, Mastercard, American Express, Adyen, and Coinbase."
+    status: shipped
+    sources:
+      - https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol
+    last_verified: 2026-08-04
+    volatility: low
+  - id: acp-commerce-protocol
+    pages: [resources.html]
+    claim: "ACP (Agentic Commerce Protocol) is a checkout and commerce protocol from OpenAI and Stripe, live in ChatGPT Instant Checkout, covering the consumer side of an agent transaction."
+    status: shipped
+    sources:
+      - https://orium.com/blog/agentic-payments-acp-ap2-x402
+    last_verified: 2026-08-04
+    volatility: low
+  - id: visa-tap-x402-mastercard-agent-pay
+    pages: [resources.html]
+    claim: "Visa TAP, Coinbase x402, and Mastercard Agent Pay are further agent-payment protocols placed at different layers and typically composed together; their individual shipped status varies and rests on secondary sources."
+    status: reported
+    sources:
+      - https://www.payram.com/blog/acp-vs-ap2-vs-tap
+      - https://www.crossmint.com/learn/agentic-payments-protocols-compared
+    last_verified: 2026-08-04
+    volatility: low
