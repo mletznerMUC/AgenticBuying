@@ -27,7 +27,6 @@ tools.html             Tools & platform directory
 workflows.html         Sample agentic buying workflows
 resources.html         Specs, articles, talks, repos
 assets/css/            Shared stylesheet(s)
-assets/js/             Shared JavaScript (nav, no build step)
 docs/DESIGN.md         Design guide: visual system, badge rules, imagery, a11y
 docs/WORKFLOW.md       The agent-based development workflow
 docs/research/         Sourced research notes behind the site's content
@@ -38,6 +37,11 @@ docs/research/         Sourced research notes behind the site's content
 
 The website pages live at the **repository root** so GitHub Pages can publish
 directly from the `main` branch ("Deploy from a branch" → `main` → `/ (root)`).
+
+The site currently ships **no JavaScript** — navigation and everything else work
+with plain HTML and CSS. JavaScript is permitted (see Tech constraints below); if
+it is ever added, it belongs in `assets/js/`, kept minimal and progressive so the
+site stays fully readable with JS disabled.
 
 ## Tech constraints
 
