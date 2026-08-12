@@ -9,11 +9,11 @@ note here.
 - [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP refresh*, verified 2026-08-04. **The note behind the current content of every
   page.** Re-verification against primary sources corrected eight claims and
   closed five open questions; read it before changing any page.
-- [`../../memory.md`](../../memory.md) — *State of AdCP and AAMP*, verified
-  2026-08-04. The first note, which seeded every page. Superseded in part by the
-  refresh above — where the two disagree, the refresh is the later verification.
-  It lives at the repository root because the task that produced it asked for
-  that filename; new notes follow the convention below.
+- [`adcp-aamp-baseline-2026-08-04.md`](adcp-aamp-baseline-2026-08-04.md) — *State
+  of AdCP and AAMP*, verified 2026-08-04. The first note, which seeded every page.
+  Superseded in part by the refresh above — where the two disagree, the refresh is
+  the later verification. Named `-baseline-` to distinguish it from the same-day
+  refresh; both share the 2026-08-04 date.
 
 ## Convention for new notes
 
