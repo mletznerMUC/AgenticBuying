@@ -1,0 +1,154 @@
+# Fast lane: a cheap, deterministic watch on the single most volatile fact the
+# site tracks — the latest AdCP release. AdCP ships on a weekly-plus cadence, but
+# the full research refresh only runs fortnightly, so between refreshes the
+# headline version can silently fall behind. This job hits the AdCP releases API
+# directly (no LLM, no ANTHROPIC_API_KEY, no hallucination risk), compares the
+# newest release to what the claim manifest records, and raises an issue when
+# they diverge — so a new release can't slip past unnoticed.
+#
+# It is intentionally NARROW: it does not edit pages or open PRs. It only says
+# "a newer release exists" and points a human (or a focused refresh run) at it.
+name: AdCP Release Watch
+
+on:
+  schedule:
+    # Mondays and Thursdays, 07:00 UTC — twice a week keeps pace with AdCP's
+    # weekly-plus release cadence between the fortnightly full refreshes, and
+    # a deterministic API check is cheap enough to run often.
+    - cron: "0 7 * * 1,4"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      # Upstream repo whose releases we track.
+      ADCP_REPO: adcontextprotocol/adcp
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Compare the latest AdCP release to the manifest
+        id: check
+        run: |
+          set -euo pipefail
+
+          manifest="docs/research/claims.yaml"
+          if [ ! -f "$manifest" ]; then
+            echo "::notice::$manifest not present — the release watch reads the expected version from the claim manifest. Merge the research-refresh pipeline first; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Newest non-draft releases from the upstream repo. Fetch tag + date;
+          # a failure here (rate limit, outage) is a skip, not a red run.
+          if ! gh api "repos/${ADCP_REPO}/releases" --paginate \
+                -q '.[] | select(.draft==false) | [.tag_name, (.published_at // "")] | @tsv' \
+                > releases.tsv; then
+            echo "::warning::Could not reach the AdCP releases API this run; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          python3 - "$manifest" <<'PY'
+          import os, re, sys
+
+          manifest = open(sys.argv[1]).read()
+
+          # Expected version = the one the manifest's latest-release claim states.
+          # The claim wording is stable ("latest tagged release is vX.Y.Z"); if it
+          # ever changes shape and no version parses, we skip rather than alarm.
+          m = re.search(r"latest tagged release is v(\d+)\.(\d+)\.(\d+)", manifest)
+          out = open(os.environ["GITHUB_OUTPUT"], "a")
+          if not m:
+              print("::warning::Could not parse the expected AdCP version from the manifest; skipping.")
+              out.write("skip=true\n")
+              sys.exit(0)
+          expected = tuple(int(x) for x in m.groups())
+          expected_str = "v%d.%d.%d" % expected
+
+          # Live latest = highest semver tag among non-draft releases. Comparing by
+          # semver (not by date) means a fresh v3.0.x maintenance release can't
+          # false-positive against the higher v3.1.x line the headline claim tracks.
+          best = None  # (semver_tuple, tag, date)
+          for line in open("releases.tsv"):
+              parts = line.rstrip("\n").split("\t")
+              tag = parts[0] if parts else ""
+              date = parts[1] if len(parts) > 1 else ""
+              mm = re.search(r"(\d+)\.(\d+)\.(\d+)", tag)
+              if not mm:
+                  continue
+              ver = tuple(int(x) for x in mm.groups())
+              if best is None or ver > best[0]:
+                  best = (ver, tag, date)
+
+          if best is None:
+              print("::warning::No semver-tagged AdCP releases found; skipping.")
+              out.write("skip=true\n")
+              sys.exit(0)
+
+          latest, latest_tag, latest_date = best
+          out.write("skip=false\n")
+          out.write(f"expected={expected_str}\n")
+          out.write(f"latest_tag={latest_tag}\n")
+          out.write(f"latest_date={latest_date}\n")
+
+          if latest > expected:
+              print(f"::warning::AdCP {latest_tag} (published {latest_date}) is newer "
+                    f"than the manifest's {expected_str}.")
+              out.write("newer=true\n")
+          elif latest < expected:
+              # Site claims a version GitHub's releases don't show — unusual, worth a
+              # human glance, but not a staleness alarm.
+              print(f"::notice::Manifest records {expected_str} but the newest AdCP "
+                    f"release found is {latest_tag}. Not raising an issue.")
+              out.write("newer=false\n")
+          else:
+              print(f"::notice::AdCP latest release {latest_tag} matches the manifest. Up to date.")
+              out.write("newer=false\n")
+          PY
+
+      - name: Open or update a release-watch issue
+        if: steps.check.outputs.skip != 'true' && steps.check.outputs.newer == 'true'
+        env:
+          EXPECTED: ${{ steps.check.outputs.expected }}
+          LATEST_TAG: ${{ steps.check.outputs.latest_tag }}
+          LATEST_DATE: ${{ steps.check.outputs.latest_date }}
+        run: |
+          set -euo pipefail
+          title="AdCP release watch: ${LATEST_TAG} is newer than the site's ${EXPECTED}"
+          body=$(cat <<EOF
+          The AdCP repository has published **${LATEST_TAG}** (published
+          ${LATEST_DATE:-date unknown}), which is newer than the version the claim
+          manifest records, **${EXPECTED}**.
+
+          The release-line claims on the site are therefore likely behind. To
+          resolve:
+
+          1. Skim the [AdCP releases](https://github.com/${ADCP_REPO}/releases) for
+             what changed since ${EXPECTED}.
+          2. Run the **Research Refresh** workflow (Actions → Research Refresh →
+             Run workflow) — a \`focus\` of "AdCP releases" targets it — and merge
+             the PR it opens. That updates the release claims on the pages and the
+             \`last_verified\` / claim text in \`docs/research/claims.yaml\`, which
+             closes this out.
+
+          This check is deterministic (a direct GitHub API comparison, no model
+          involved); it only flags the gap, it does not edit anything.
+
+          _Opened automatically by the AdCP release watch._
+          EOF
+          )
+          gh label create release-watch --description "Upstream AdCP release tracking" --color 1d76db 2>/dev/null || true
+          existing=$(gh issue list --state open --label release-watch --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            echo "Updating existing issue #$existing"
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --label release-watch --body "$body"
+          fi

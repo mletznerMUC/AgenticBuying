@@ -101,7 +101,7 @@ the site stays true when nobody asks it to.
 The site's product is calibrated confidence about a fast-moving topic: every
 claim carries a source and a "last verified" date. That makes staleness
 invisible — a page verified eight months ago looks exactly as authoritative as
-one verified yesterday. Two scheduled workflows close that gap.
+one verified yesterday. Three scheduled workflows close that gap.
 
 ### Twice monthly: `research-refresh.yml`
 
@@ -136,8 +136,21 @@ two cycles stops catching anything. It also fails loudly
 if it can find no verification dates at all, which would mean the citation
 format broke.
 
-Both jobs skip with a setup notice when `ANTHROPIC_API_KEY` is absent, so a fork
-never fails on them.
+### Twice weekly: `adcp-release-watch.yml`
+
+A cheap, **deterministic** fast lane on the single most volatile fact the site
+tracks — the latest AdCP release. AdCP ships weekly-plus, but the full refresh
+runs only fortnightly, so the headline version can fall behind between cycles.
+This job (Mondays and Thursdays) hits the AdCP releases API directly, compares
+the newest release *by semver* to the version the claim manifest records, and
+opens or updates a `release-watch` issue when a newer one exists. It involves no
+model — a direct API comparison, so no cost and nothing to hallucinate — and it
+only flags the gap: it points a human (or a focused refresh run) at the new
+release, it does not edit pages or open PRs.
+
+The refresh and freshness jobs skip with a setup notice when `ANTHROPIC_API_KEY`
+is absent, so a fork never fails on them. The release watch needs no key — it
+reads a public API — and runs regardless.
 
 ## One-time repository setup (human, once)
 
