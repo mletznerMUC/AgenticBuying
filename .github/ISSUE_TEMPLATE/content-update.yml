@@ -42,5 +42,6 @@ body:
       options:
         - shipped
         - announced
+        - reported
         - speculative
         - n/a (not a protocol claim)
