@@ -27,10 +27,13 @@ Code — see **[docs/WORKFLOW.md](docs/WORKFLOW.md)**. In short:
    checklist; a human merges.
 4. GitHub Pages publishes the `main` branch root directly, so every merge
    to `main` goes live automatically.
-5. A **twice-monthly research refresh** re-verifies every claim against its sources,
-   searches for what changed, and opens a PR; a **weekly freshness check**
-   raises an issue if nothing has been verified in 21 days, so stale content
-   can't quietly pass for current.
+5. A **twice-monthly research refresh** (a sharded verify → discover → apply
+   pipeline over a claim manifest) re-verifies every due claim against its
+   sources, searches for what changed, and opens a PR. Two lightweight watchers
+   back it up: a **weekly freshness check** raises an issue if nothing has been
+   verified in 21 days, and a **twice-weekly AdCP release watch** (a deterministic
+   API check, no LLM) flags a new AdCP release between refreshes — so stale
+   content can't quietly pass for current.
 
 ### One-time setup
 

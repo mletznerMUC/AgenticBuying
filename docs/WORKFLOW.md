@@ -8,20 +8,26 @@ research, writing, building, and first-pass reviewing.
 
 ## The loop
 
+Changes reach the site two ways — a human opening an issue, or the scheduled
+research refresh — but both converge on the same review-and-merge gate, and no
+agent ever merges to `main`.
+
 ```mermaid
 flowchart LR
-    A[Issue created\nfrom template] -->|"@claude" mention| B[Claude Agent\nGitHub Action]
-    B --> C{Subagents}
-    C --> R[research-analyst\nsourced research note]
-    C --> W[content-writer\npage copy]
-    C --> F[frontend-builder\nHTML/CSS/JS]
+    A[Issue from template\n+ @claude mention] --> B[Claude Agent\n+ subagents]
     B --> D[Branch + Pull Request]
-    D --> E[CI: html-validate\n+ link check]
+    RR[Research Refresh\npipeline, 1st & 15th] --> D
+    D --> E[CI: html-validate + links]
     D --> G[Claude PR Review\nsite-reviewer checklist]
     E --> H[Human review & merge]
     G --> H
-    H --> I[GitHub Pages publishes\nmain branch root]
+    H --> P[GitHub Pages publishes\nmain branch root]
+    FC[Freshness check, weekly] -. raises issue .-> A
+    RW[AdCP release watch,\ntwice weekly] -. raises issue .-> A
 ```
+
+The subagents behind the Claude Agent (research, writing, building, reviewing)
+are described in §2; the research-refresh pipeline is detailed in §5.
 
 ## 1. Work intake — GitHub Issues
 
@@ -110,9 +116,14 @@ Refresh → Run workflow** (which takes a `scope` — `due` or `all` — and an 
 `focus` topic). It is a **pipeline of jobs**, not one agent, so a slow run can no
 longer lose all its work:
 
-```
-guard → inventory → verify (matrix, one job per shard) ─┐
-                  └─ discover ──────────────────────────┴→ apply → PR
+```mermaid
+flowchart LR
+    T[Schedule 1st & 15th\nor manual dispatch] --> G[guard\nAPI-key gate]
+    G --> N[inventory\nPython — pick due claims, shard]
+    N --> V[verify — matrix\nmax 2 at a time, Sonnet\nfail-fast off, verdict artifacts]
+    V --> DS[discover\nSonnet, 1st of month only]
+    DS --> A[apply — Opus\nedit pages + manifest, write note]
+    A --> PR[Pull request\nnever auto-merged]
 ```
 
 1. **inventory** (plain Python, no LLM) reads the claim manifest
