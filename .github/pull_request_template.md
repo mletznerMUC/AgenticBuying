@@ -13,7 +13,7 @@
 ## Checklist
 
 - [ ] New/changed factual claims have a source link and "last verified" date
-- [ ] Shipped / announced / speculative status is correct per the sources
+- [ ] Shipped / announced / reported / speculative status is correct per the sources
 - [ ] Shared navigation identical across all pages (if nav touched)
 - [ ] `npx --yes html-validate "*.html"` passes locally
 - [ ] Works in light and dark mode, mobile and desktop (if visual change)

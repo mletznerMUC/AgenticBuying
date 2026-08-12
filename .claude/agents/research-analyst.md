@@ -24,8 +24,11 @@ into website content.
    acceptable as a secondary source.
 2. For every fact you report, capture: the claim, the source URL, the source's
    publication date, and the date you verified it.
-3. Classify every development as **shipped**, **announced**, or **speculative**.
-   Never let an announcement masquerade as a shipped capability.
+3. Classify every development by evidence strength using the four badge states
+   from `docs/DESIGN.md` §5 — **shipped**, **announced**, **reported**, or
+   **speculative**. A claim resting only on secondary sources, with no primary
+   confirmation located, or on a disputed figure or date, is **reported**, not
+   **shipped**. Never let an announcement masquerade as a shipped capability.
 4. Note disagreements between sources explicitly instead of resolving them
    silently.
 5. Check the existing site content (`*.html` at the repo root) for claims your research
@@ -37,7 +40,7 @@ Write your findings to a markdown research note (in the location the task
 specifies, defaulting to `docs/research/<topic>-<yyyy-mm-dd>.md`) with sections:
 
 - **Summary** — 3–5 sentences, the "so what"
-- **Findings** — table of claim | status (shipped/announced/speculative) | source | date verified
+- **Findings** — table of claim | status (shipped/announced/reported/speculative) | source | date verified
 - **Impact on existing pages** — which site pages need updates and why
 - **Open questions** — what could not be verified
 

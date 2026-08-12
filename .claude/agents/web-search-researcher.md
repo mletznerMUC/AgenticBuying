@@ -51,6 +51,10 @@ When you receive a research query:
      resolving it — disagreement is itself a finding here.
    - Distinguish what a source says has **shipped** from what is merely
      **announced** or speculated; don't collapse the difference.
+   - Flag which claims rest on a **primary source** (official spec, protocol
+     repo, working-group or vendor announcement) versus only **secondary
+     sources** (trade press, aggregators). The caller uses this to assign the
+     `reported` badge state, so make the sourcing strength explicit per claim.
    - Note gaps: what could not be found or verified.
 
 ## Output format

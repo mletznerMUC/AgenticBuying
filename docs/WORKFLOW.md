@@ -46,7 +46,7 @@ the GitHub Action:
 
 - **`research-analyst`** — web research on AdCP/AAMP; outputs sourced research
   notes in `docs/research/`. Never writes HTML. Every claim gets a source URL,
-  a status (shipped/announced/speculative), and a verification date.
+  a status (shipped/announced/reported/speculative), and a verification date.
 - **`web-search-researcher`** — deep multi-source web research utility
   (fan-out searches, fetch, cited synthesis). The raw-research layer beneath
   `research-analyst`: it returns findings to its caller and writes no files.
