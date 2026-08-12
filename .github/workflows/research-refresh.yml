@@ -161,7 +161,16 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false
-      max-parallel: 6
+      # Deliberately low. Each shard is a full Claude Code agent making many
+      # Opus (1M-context) calls; the first `scope: all` run set this to 6 and,
+      # with `discover` also running, put ~7 agents on the API at once and
+      # tripped the account's per-minute rate limit — the later-starting agents
+      # were rejected outright (a result with is_error, 1 turn, $0 spent). The
+      # old single-agent refresh ran fine, so keep concurrency near that: 2
+      # verify shards at a time, and `discover` sequenced after (below) so the
+      # peak is 2. Raise this only if the account's rate limits are known to
+      # allow it.
+      max-parallel: 2
       matrix: ${{ fromJson(needs.inventory.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v5
@@ -226,12 +235,16 @@ jobs:
           if-no-files-found: warn
 
   # ---------------------------------------------------------------------------
-  # Discovery runs on its own budget, in parallel with verification: search for
-  # what changed since the last cycle and try to close the open questions.
+  # Discovery: search for what changed since the last cycle and try to close the
+  # open questions. It has no data dependency on verify, but it IS a full agent,
+  # so it runs *after* the verify shards rather than alongside them — that keeps
+  # the peak number of concurrent agents at the matrix's max-parallel (2) and
+  # off the account's rate limit. `!cancelled()` so it still runs when verify
+  # partially failed or was skipped (nothing due).
   # ---------------------------------------------------------------------------
   discover:
-    needs: [guard, inventory]
-    if: needs.guard.outputs.enabled == 'true'
+    needs: [guard, inventory, verify]
+    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
