@@ -120,13 +120,14 @@ guard → inventory → verify (matrix, one job per shard) ─┐
    **due** this cycle, and splits them into shards. Due = everything tagged
    `volatility: high` every run, plus slower-moving claims once they age past a
    threshold; `scope: all` forces a full sweep.
-2. **verify** fans the shards out across parallel jobs (`fail-fast: false`, a
-   short per-shard timeout). Each job re-checks its handful of claims against
-   their cited sources and writes a durable **verdict artifact** — so one
-   unreachable source, or one slow shard, can't sink the rest.
-3. **discover** runs on its own budget, in parallel: it searches for
-   developments since the last cycle and tries to close the open questions in
-   [`research/README.md`](research/README.md).
+2. **verify** fans the shards out across jobs (`fail-fast: false`, a short
+   per-shard timeout, at most two at a time). Each job re-checks its handful of
+   claims against their cited sources and writes a durable **verdict artifact** —
+   so one unreachable source, or one slow shard, can't sink the rest.
+3. **discover** searches for developments since the last cycle and tries to close
+   the open questions in [`research/README.md`](research/README.md). It runs
+   *after* verify (see the concurrency note below) and only on the **1st of the
+   month** (and on manual dispatch) — the 15th run verifies but does not discover.
 4. **apply** turns the verdicts + discoveries into the actual change: it updates
    `claims.yaml`, corrects claims and adjusts badges on the pages, adds new
    developments to the home-page changelog, refreshes each `page-meta` date
@@ -140,6 +141,15 @@ Why the split: re-verification is a *bounded* list of known URLs; discovery is a
 the bounded half — the half the "last verified" dates depend on — and a timeout
 lost everything. Sharding plus per-shard artifacts make progress durable, and the
 manifest keeps each run's work bounded instead of scaling with the whole site.
+
+Concurrency and cost: verify runs at most **two shards at once** and discover runs
+**after** them, so the pipeline never has more than two Claude Code agents on the
+API together — the first `scope: all` run set this higher and tripped the account's
+rate limit. To keep token spend down, **verify and discover run on Sonnet** (fetch
+and check, and search and summarize, don't need Opus), while **apply stays on Opus**
+because it rewrites page prose and badges against the design guide, where a mistake
+ships live. Discovery — the priciest, unbounded stage — runs only monthly (the 1st),
+and the deterministic AdCP release watch covers new releases in between.
 
 The rule the prompts enforce hardest: **never bump a "last verified" date for a
 claim that was not re-checked.** A date that launders an unverified claim is
