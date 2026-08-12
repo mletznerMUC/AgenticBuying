@@ -106,21 +106,42 @@ one verified yesterday. Two scheduled workflows close that gap.
 ### Twice monthly: `research-refresh.yml`
 
 Runs at 06:00 UTC on the **1st and 15th**, and on demand via **Actions → Research
-Refresh → Run workflow** (which takes an optional `focus` topic). It:
+Refresh → Run workflow** (which takes a `scope` — `due` or `all` — and an optional
+`focus` topic). It is a **pipeline of jobs**, not one agent, so a slow run can no
+longer lose all its work:
 
-1. Re-verifies the claims currently on the site against their cited sources.
-2. Searches for developments since the last verification date.
-3. Tries to close the open questions carried in
+```
+guard → inventory → verify (matrix, one job per shard) ─┐
+                  └─ discover ──────────────────────────┴→ apply → PR
+```
+
+1. **inventory** (plain Python, no LLM) reads the claim manifest
+   [`research/claims.yaml`](research/claims.yaml), selects the claims that are
+   **due** this cycle, and splits them into shards. Due = everything tagged
+   `volatility: high` every run, plus slower-moving claims once they age past a
+   threshold; `scope: all` forces a full sweep.
+2. **verify** fans the shards out across parallel jobs (`fail-fast: false`, a
+   short per-shard timeout). Each job re-checks its handful of claims against
+   their cited sources and writes a durable **verdict artifact** — so one
+   unreachable source, or one slow shard, can't sink the rest.
+3. **discover** runs on its own budget, in parallel: it searches for
+   developments since the last cycle and tries to close the open questions in
    [`research/README.md`](research/README.md).
-4. Writes a **new dated note** in `docs/research/` — notes accumulate, forming
-   an evidence trail over time rather than being overwritten.
-5. Updates the pages: corrects claims, adjusts badges where evidence strength
-   changed, adds new developments to the home page changelog, and refreshes the
-   `page-meta` date **only on pages it actually re-verified**.
-6. Opens a pull request. It never merges — a human reviews, exactly as with any
-   other change.
+4. **apply** turns the verdicts + discoveries into the actual change: it updates
+   `claims.yaml`, corrects claims and adjusts badges on the pages, adds new
+   developments to the home-page changelog, refreshes each `page-meta` date
+   **only where a claim on that page was actually re-verified**, writes a **new
+   dated note** in `docs/research/` (notes accumulate — an evidence trail, never
+   overwritten), and opens a pull request with a summary table. It never merges;
+   a human reviews, exactly as with any other change.
 
-The rule the prompt enforces hardest: **never bump a "last verified" date for a
+Why the split: re-verification is a *bounded* list of known URLs; discovery is an
+*unbounded* web search. The old single-job design let the unbounded half starve
+the bounded half — the half the "last verified" dates depend on — and a timeout
+lost everything. Sharding plus per-shard artifacts make progress durable, and the
+manifest keeps each run's work bounded instead of scaling with the whole site.
+
+The rule the prompts enforce hardest: **never bump a "last verified" date for a
 claim that was not re-checked.** A date that launders an unverified claim is
 worse than a stale one. A refresh that confirms nothing changed is a successful
 refresh, and should say so rather than manufacturing edits.

@@ -15,6 +15,20 @@ note here.
   the later verification. Named `-baseline-` to distinguish it from the same-day
   refresh; both share the 2026-08-04 date.
 
+## The claim manifest — `claims.yaml`
+
+[`claims.yaml`](claims.yaml) is the machine-readable index of every sourced claim
+the site publishes: one row per claim, carrying its `pages`, `status` (badge
+state), `sources`, `last_verified` date, and a `volatility` tag. It is the
+backbone of the refresh — the `verify` matrix in
+[`../../.github/workflows/research-refresh.yml`](../../.github/workflows/research-refresh.yml)
+shards over it, and `volatility` decides how often each claim is re-checked.
+
+It is **not** the evidence trail — these dated notes are. The manifest records
+*what* is claimed and *when it was last checked*; a note records *why* it was
+believed at a point in time. Keep them in step: when a refresh corrects a claim
+or adds a development, it updates the matching manifest row in the same change.
+
 ## Convention for new notes
 
 New notes are produced by the twice-monthly **Research Refresh** workflow (see
