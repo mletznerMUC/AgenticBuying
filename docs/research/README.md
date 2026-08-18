@@ -6,13 +6,20 @@ note here.
 
 ## Current notes
 
-- [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP refresh*, verified 2026-08-04. **The note behind the current content of every
-  page.** Re-verification against primary sources corrected eight claims and
-  closed five open questions; read it before changing any page.
+- [`adcp-aamp-2026-08-18.md`](adcp-aamp-2026-08-18.md) — *AdCP and AAMP refresh*,
+  verified 2026-08-18. **The latest note; read it first.** The three due claims all
+  reached their sources: AdCP's release line had moved on (v3.1.15, plus a
+  v3.2.0-beta.0 pre-release), the v3.0.x maintenance line and the unpublished
+  membership count both still hold. Adds five developments and closes four open
+  questions, including why AAMP's announced version history skips 2.1 and 2.2.
+- [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP refresh*, verified 2026-08-04. **The note behind most of the current content of
+  every page.** Re-verification against primary sources corrected eight claims and
+  closed five open questions; read it before changing any page whose claims the
+  2026-08-18 refresh did not touch.
 - [`adcp-aamp-baseline-2026-08-04.md`](adcp-aamp-baseline-2026-08-04.md) — *State
   of AdCP and AAMP*, verified 2026-08-04. The first note, which seeded every page.
-  Superseded in part by the refresh above — where the two disagree, the refresh is
-  the later verification. Named `-baseline-` to distinguish it from the same-day
+  Superseded in part by the refreshes above — where notes disagree, the later
+  verification wins. Named `-baseline-` to distinguish it from the same-day
   refresh; both share the 2026-08-04 date.
 
 ## The claim manifest — `claims.yaml`
@@ -48,25 +55,29 @@ record of what was believed when.
 
 ## Open questions carried forward
 
-The 2026-08-04 refresh closed five of the previous eight questions: the AdCP
-release years, the AdCP 3.0 GA wording, the shipped status of AAMP's agent
-registry, which publishers run live AdCP sales agents, and the absence of any
-formal AdCP–AAMP interoperability arrangement. Eight remain open. The ones that
-most affect the site's accuracy:
+The 2026-08-18 refresh closed four questions: AAMP's undocumented 2.1 and 2.2,
+the HorizonOS Blu entry, `agentic-direct`'s repository activity, and the
+FreeWheel/AdCP attribution. One opened. The ones that most affect the site's
+accuracy:
 
-- **AAMP 2.1 and 2.2 are still undocumented** — only 2.0 and 2.3 have sources,
-  and the 2.3 release names no prior version. The version history on `aamp.html`
-  therefore has a hole in it.
-- **AAMP 2.0's date is not primary-datelined.** April is supported by three
-  secondary sources, dev.to says June, and the IAB Tech Lab post itself carries
-  no visible date — so the claim stays `reported`.
-- **The AAO's 501(c)(6) status is now contested**, not merely pending: the spec
-  repo says "pending", the organization's own About page says it is one. Newly
-  open, and the reason that claim moved to `reported`.
+- **AAMP 2.0's date is not primary-datelined.** April is now supported by four
+  secondary sources plus a GitHub errata note on the `seller-agent` v2.0 tag,
+  dev.to says June, and the IAB Tech Lab post itself carries no visible date —
+  so the claim stays `reported`.
+- **AAMP 2.3's date is disputed between IAB Tech Lab's own channels** — its
+  press-release index says 2026-07-27, PR Newswire, MarTechCube, and PPC Land
+  say 2026-07-30. Newly open. The site publishes 30 July and records the
+  discrepancy.
+- **Whether an "AAMP 2.4" exists as a protocol version.** Component repos carry
+  v2.4.x tags from early August 2026, but no IAB Tech Lab announcement names a
+  2.4 release, so the version framing on the site is badged `reported`.
+- **The AAO's 501(c)(6) status is contested**, not merely pending: the spec repo
+  says "pending", the organization's own About page says it is one. An EIN does
+  not resolve tax-exempt determination; no IRS filing has been checked.
 - **The exact AgenticAdvertising.org member count is unpublished**, not just
-  unfound — 104+ and 117+ circulate only in secondary sources.
-- **HorizonOS Blu buying agents** — removed from `tools.html` because neither
-  cited source mentions Horizon Media. Do not restore without a source.
-- **Whether FreeWheel's server for the NBCUniversal buys is an AdCP server** —
-  the NBCUniversal release names only MCP, so the site now badges that
-  attribution `reported`.
+  unfound — 104+, 113+, and 117+ circulate only in secondary sources.
+- **What AdCP 3.2 ships as stable, and when.** The v3.2.0-beta.0 changelog lists
+  deprecations that will matter to implementers; a pre-release is not a spec
+  release, so the whole line is badged `announced` until one exists.
+- **Fox Broadcasting's agentic transactions** — the only claim on record is a
+  third-party characterization in a MediaPost comment, so nothing is published.

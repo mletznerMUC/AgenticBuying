@@ -30,8 +30,9 @@
     on behalf of advertisers. This site tracks that shift — with a focus on the two emerging
     protocol families, <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> — and
     keeps every claim sourced and dated.</p>
-    <p class="page-meta">Updated <time datetime="2026-08-04">4 August 2026</time> · every claim
-    on this site was verified against its sources on that date</p>
+    <p class="page-meta">Updated <time datetime="2026-08-18">18 August 2026</time> · the
+    18 August refresh re-checked AdCP's release lines and added the developments below; every
+    other claim carries the date it was last verified in its own source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -42,6 +43,56 @@
 
     <h2>What changed</h2>
     <ol class="changelog">
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-17">17 August 2026</time></p>
+        <p><span class="badge announced">announced</span> AdCP published v3.2.0-beta.0, the first
+        pre-release of a 3.2 line. Its changelog lists a promoted media-channel taxonomy, Trusted
+        Match changes to publisher authentication and context targeting, cross-role governance
+        enforcement, new portable and issuer-bound attestation schemas, and several deprecations —
+        the top-level media-buy lifecycle status property, the publisher_domain filter on
+        get_products, and inline provider credentials. It adds no eighth negotiation surface: the
+        changes extend the existing seven. The list was read from the rendered changelog and not
+        diffed against the schema files.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-18</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-16">16 August 2026</time></p>
+        <p>AdCP tagged v3.1.15, the most recent of five v3.1.x patch releases since 4 August
+        (v3.1.11 through v3.1.15). Between them they covered pixel-ratio registry metadata,
+        compliance-storyboard fixes, request-signing documentation, billing-permission handling for
+        sellers without agent billing support, three schema fields whose inline enumerations omitted
+        values from their canonical definitions, and a clarification that exhausting a rate-limit
+        trip runner without observing a RATE_LIMITED response is a test-coverage gap. The v3.0.x
+        maintenance line continued alongside it with v3.0.23 and v3.0.24 on 15 and 16 August.
+        <span class="badge reported">reported</span> The itemized contents of those two v3.0.x
+        patches could not be confirmed beyond their release tags and dates.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-18</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-13">13 August 2026</time></p>
+        <p>InMobi Advertising launched a conversational AI agent for media buyers on Buyer Hub, its
+        self-serve deal platform, and opened Buyer Hub to agencies and managed-service demand-side
+        platforms with role-based access controls. The coverage located does not attribute the agent
+        to either protocol family.</p>
+        <p class="source">Source: <a href="https://www.businesswire.com/news/home/20260813541744/en/InMobi-Advertising-Launches-A-Conversational-AI-Agent-for-Media-Buyers" rel="noopener">Business Wire</a> · last verified 2026-08-18</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-10">10 August 2026</time></p>
+        <p>AAMP's component repositories tagged releases past the 2.3 milestone: buyer-agent v2.4.1
+        on 10 August, seller-agent v2.4.0 and v2.4.1 on 4 and 5 August, and iab-agentic-primitives
+        v0.5.1 on 10 August. <span class="badge reported">reported</span> No IAB Tech Lab press
+        release or blog post names an "AAMP 2.4," so these component tags should not be read as an
+        announced protocol version.</p>
+        <p class="source">Source: <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">IABTechLab buyer-agent releases</a>; <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a>; <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a> · last verified 2026-08-18</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-05">5 August 2026</time></p>
+        <p>PubMatic added a five-step guardrail framework for buying agents to AgenticOS: permission
+        boundaries, business rules, pre-approved asset libraries, human approval through one-time
+        passcodes, and audit trails with drift detection. It was piloted with Rise, a Quad agency,
+        alongside the existing AgenticOS partners Optable and AdRoll.</p>
+        <p class="source">Source: <a href="https://www.mediapost.com/publications/article/417034/agentic-guardrails-create-custom-ad-framework.html" rel="noopener">MediaPost</a>; <a href="https://ppc.land/pubmatic-guardrails-block-ai-agents-from-unapproved-ad-inventory/" rel="noopener">PPC Land</a> · last verified 2026-08-18</p>
+      </li>
       <li>
         <p class="changelog-date"><time datetime="2026-08-04">4 August 2026</time></p>
         <p>AdCP tagged release v3.1.10, continuing a weekly-plus cadence on the v3.1.x line
@@ -83,50 +134,12 @@
         AdManager platform to give agents access to its European Total Video inventory.</p>
         <p class="source">Source: <a href="https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/" rel="noopener">ExchangeWire</a> · last verified 2026-08-04</p>
       </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-06-19">19 June 2026</time></p>
-        <p>Two buy-side launches in the same week: WPP released a Buyer Agent for Video, an
-        AI-driven planning tool, and Yahoo DSP announced an Agent Network of 23 partners. Neither
-        announcement states which agentic protocol it uses.</p>
-        <p class="source">Source: <a href="https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/" rel="noopener">MarTech Edition</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-06-17">17 June 2026</time></p>
-        <p>Microsoft Advertising shipped an official MCP server, read-only: agents can read live
-        campaign data, but changes still require a human. Pinterest also launched an ads MCP
-        server.</p>
-        <p class="source">Source: <a href="https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide" rel="noopener">Digital Applied</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-04-07">7 April 2026</time></p>
-        <p>PMG integrated AAMP's Buyer Agent architecture, Sub-Agent architecture, and Agent
-        Registry into its Alli operating system, which the agency uses to manage media buying,
-        integrate data providers, and coordinate with demand-side platforms. It is the first AAMP
-        deployment tracked here that runs in an agency's production environment rather than a
-        test workspace.</p>
-        <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-03-12">12 March 2026</time></p>
-        <p>Optable's Audience Agent was integrated into PubMatic AgenticOS, letting buying agents
-        discover and activate publisher first-party audience signals without the underlying data
-        being transferred. The companies position it as an early live example of AdCP running
-        across production programmatic infrastructure, with activation through PubMatic
-        Activate.</p>
-        <p class="source">Source: <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.optable.co/newsroom/optable-and-pubmatic-partner" rel="noopener">Optable</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2025-12-15">15 December 2025</time></p>
-        <p>PubMatic and agency Butler/Till ran an AdCP-enabled agentic campaign across connected
-        TV for the Clubtails brand, planned, executed, and optimized by agents with no demand-side
-        platform workflow and no manual optimization desk. PubMatic describes AdCP as the protocol
-        carrying agent-to-system communication in that workflow.</p>
-        <p class="source">Source: <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
-      </li>
     </ol>
     <p class="source">Older developments — AdCP's launch, the first agent-to-agent buy, the
-    NBCUniversal cross-platform buys, AAMP 2.0, and Kochava's open beta — are kept in the timeline
-    tables on the <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages.</p>
+    PubMatic and Butler/Till connected-TV campaign, the NBCUniversal cross-platform buys, Optable's
+    Audience Agent inside PubMatic AgenticOS, AAMP 2.0, PMG's Alli integration, and Kochava's open
+    beta — are kept in the timeline tables on the <a href="adcp.html">AdCP</a> and
+    <a href="aamp.html">AAMP</a> pages.</p>
 
     <h2>Start here</h2>
     <ul class="card-grid">
