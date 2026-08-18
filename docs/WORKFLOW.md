@@ -119,13 +119,22 @@ longer lose all its work:
 ```mermaid
 flowchart LR
     T[Schedule 1st & 15th\nor manual dispatch] --> G[guard\nAPI-key gate]
+    G --> PF[preflight\nHaiku API ping — abort if blocked]
     G --> N[inventory\nPython — pick due claims, shard]
+    PF --> V
     N --> V[verify — matrix\nmax 2 at a time, Sonnet\nfail-fast off, verdict artifacts]
     V --> DS[discover\nSonnet, 1st of month only]
     DS --> A[apply — Opus\nedit pages + manifest, write note]
     A --> PR[Pull request\nnever auto-merged]
 ```
 
+0. **preflight** (deterministic, one cheap Haiku call to the Anthropic API)
+   confirms the key works and the account isn't rate/spend-limited *before* any
+   agents fan out. Because the Claude Code action hides its output, a blocked
+   account otherwise fails opaquely across every agent; the preflight surfaces
+   the real HTTP status and error type in one place, opens a `refresh-blocked`
+   issue, and skips the rest of the pipeline. Verify, discover, and apply all
+   require it to pass.
 1. **inventory** (plain Python, no LLM) reads the claim manifest
    [`research/claims.yaml`](research/claims.yaml), selects the claims that are
    **due** this cycle, and splits them into shards. Due = everything tagged
