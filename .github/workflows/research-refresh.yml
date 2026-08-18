@@ -87,6 +87,79 @@ jobs:
           fi
 
   # ---------------------------------------------------------------------------
+  # Preflight: one tiny, direct Haiku call to the Anthropic API before anything
+  # expensive fans out. WHY: the Claude Code action hides its output "for
+  # security", so when the API rejects a call (bad key, rate/spend limit, out of
+  # credits) every agent fails opaquely with is_error and $0 — which is exactly
+  # how a scheduled run failed silently across several jobs before this existed.
+  # A direct curl shows the real HTTP status and error type in ONE legible place,
+  # and gates verify/discover/apply so a blocked account aborts in seconds
+  # instead of spawning a fleet of doomed agents. It also opens an issue so the
+  # failure isn't buried in the Actions tab.
+  # ---------------------------------------------------------------------------
+  preflight:
+    needs: guard
+    if: needs.guard.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Ping the Anthropic API with a cheap Haiku call
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o resp.json -w "%{http_code}" --max-time 30 \
+            https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d '{"model":"claude-haiku-4-5-20251001","max_tokens":8,"messages":[{"role":"user","content":"ping"}]}') || true
+          echo "Anthropic API returned HTTP ${code:-000}"
+          if [ "${code:-000}" = "200" ]; then
+            echo "::notice::Preflight OK — the key is valid and the account is not rate/spend limited."
+            exit 0
+          fi
+          # Surface the error type/message (never the key — curl keeps it in a
+          # header, and GitHub masks the secret in logs regardless).
+          etype=$(python3 -c "import json;print(json.load(open('resp.json')).get('error',{}).get('type',''))" 2>/dev/null || true)
+          emsg=$(python3 -c "import json;print(json.load(open('resp.json')).get('error',{}).get('message',''))" 2>/dev/null || true)
+          echo "::error::Anthropic API preflight failed (HTTP ${code:-000}, type: ${etype:-unknown}). Refresh aborted before fanning out. ${emsg}"
+          exit 1
+
+      - name: Open or update a blocked-API issue
+        if: failure()
+        run: |
+          set -euo pipefail
+          title="Research refresh blocked: Anthropic API is rejecting requests"
+          body=$(cat <<EOF
+          The refresh preflight — a single cheap Haiku call — could not reach the
+          Anthropic API, so the run was aborted before spawning any agents.
+
+          Check the key behind the \`ANTHROPIC_API_KEY\` secret in the
+          [Anthropic Console](https://console.anthropic.com): usage / spend
+          limits, credit balance and billing, and that the key is still valid.
+          The most recent run's logs show the exact HTTP status and error type.
+
+          Once calls succeed again, re-run **Actions → Research Refresh → Run
+          workflow**. This check is deterministic — no model judgement involved.
+
+          _Opened automatically by the refresh preflight._
+          EOF
+          )
+          gh label create refresh-blocked --description "Automated refresh cannot reach the API" --color b60205 2>/dev/null || true
+          existing=$(gh issue list --state open --label refresh-blocked --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --label refresh-blocked --body "$body"
+          fi
+
+  # ---------------------------------------------------------------------------
   # Read the claim manifest, pick the claims that are due this cycle, and split
   # them into shards. Pure Python, no LLM — deterministic and fast.
   # ---------------------------------------------------------------------------
@@ -165,8 +238,8 @@ jobs:
   # unreachable source can't sink the others; a short timeout bounds each shard.
   # ---------------------------------------------------------------------------
   verify:
-    needs: [guard, inventory]
-    if: needs.guard.outputs.enabled == 'true' && needs.inventory.outputs.due_count != '0'
+    needs: [guard, preflight, inventory]
+    if: needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.inventory.outputs.due_count != '0'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -260,8 +333,8 @@ jobs:
   # partially failed or was skipped (nothing due).
   # ---------------------------------------------------------------------------
   discover:
-    needs: [guard, inventory, verify]
-    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.guard.outputs.discover == 'true' }}
+    needs: [guard, preflight, inventory, verify]
+    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.guard.outputs.discover == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -316,8 +389,8 @@ jobs:
   # still land. This is the only job that writes to the repo / opens a PR.
   # ---------------------------------------------------------------------------
   apply:
-    needs: [guard, inventory, verify, discover]
-    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.inventory.result == 'success' }}
+    needs: [guard, preflight, inventory, verify, discover]
+    if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.inventory.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
