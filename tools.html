@@ -28,7 +28,9 @@
     <h1>Tools &amp; platforms</h1>
     <p class="lead">A curated directory of tools, SDKs, and platforms in the agentic
     buying ecosystem — what they do and which protocols they speak.</p>
-    <p class="page-meta">Updated <time datetime="2026-08-04">4 August 2026</time> · all claims on this page verified on that date</p>
+    <p class="page-meta">Updated <time datetime="2026-08-18">18 August 2026</time> · the 18 August
+    refresh re-checked the AdCP release lines and the membership figures and added three entries;
+    every other claim carries the date it was last verified in its own source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -62,21 +64,27 @@
         serve-time execution, with tasks carried over MCP or Google's Agent2Agent (A2A) transport.
         It is licensed Apache 2.0 with express patent grants, and spec governance is deliberately
         separated from implementation — the sell-side reference implementation is listed under
-        supply-side tools below. The latest tagged release is v3.1.10 (August 4, 2026) on a
+        supply-side tools below. The latest tagged release is v3.1.15 (August 16, 2026) on a
         weekly-plus cadence; implementers targeting the 3.1 line are directed to 3.1.2, since 3.1.3
-        was withdrawn.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation</a> · last verified 2026-08-04</p>
+        was withdrawn. <span class="badge announced">announced</span> A v3.2.0-beta.0 pre-release
+        opened a 3.2 line on August 17, 2026; there is no stable 3.2 release to build against
+        yet.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation</a> · last verified 2026-08-18</p>
       </li>
       <li class="card">
         <h3>AAMP protocol repositories</h3>
         <p>IAB Tech Lab publishes AAMP as a set of independently versioned open-source
         repositories: Agentic Direct (core communication and orchestration), Buyer Agent,
         Seller Agent, Registry Agent, the Agentic Real Time Framework, Agentic Audiences,
-        iab-agentic-primitives (a shared contract library), and agentic-mobile. Commits were active
-        through August 4, 2026, and licensing is mixed across repositories: most are Apache 2.0, the
-        Agentic Real Time Framework is AGPL v3, Agentic Audiences carries a non-standard license
-        declaration, and the registry example carries none.</p>
-        <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a> · last verified 2026-08-04</p>
+        iab-agentic-primitives (a shared contract library), and agentic-mobile. Release tags
+        continued into August 2026 — buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 on
+        August 10, seller-agent v2.4.1 on August 5 — and licensing is mixed across repositories:
+        most are Apache 2.0, the Agentic Real Time Framework is AGPL v3, Agentic Audiences carries a
+        non-standard license declaration, and the registry example carries none.
+        <span class="badge reported">reported</span> Those tags sit above AAMP 2.3, but no IAB Tech
+        Lab announcement names an "AAMP 2.4," so a component tag is not the same thing as an
+        announced protocol version.</p>
+        <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a> · last verified 2026-08-04; the August release tags verified 2026-08-18 from the <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent</a>, <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent</a>, and <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives</a> release feeds</p>
       </li>
       <li class="card">
         <h3>AAMP Buyer &amp; Seller Agent SDKs</h3>
@@ -204,8 +212,30 @@
         optimized by agents with no demand-side platform workflow and no manual optimization desk —
         with PubMatic describing AdCP as the protocol carrying agent-to-system communication.
         Optable's Audience Agent was then integrated into AgenticOS in March 2026, with activation
-        running through PubMatic Activate.</p>
-        <p class="source">Source: <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
+        running through PubMatic Activate. In August 2026 PubMatic added a five-step guardrail
+        framework for buying agents: permission boundaries, business rules, pre-approved asset
+        libraries, human approval through one-time passcodes, and audit trails with drift detection.
+        It was piloted with Rise, a Quad agency, alongside the existing AgenticOS partners Optable
+        and AdRoll.</p>
+        <p class="source">Source: <a href="https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/" rel="noopener">PubMatic</a>; <a href="https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04; the guardrail framework from <a href="https://www.mediapost.com/publications/article/417034/agentic-guardrails-create-custom-ad-framework.html" rel="noopener">MediaPost</a> and <a href="https://ppc.land/pubmatic-guardrails-block-ai-agents-from-unapproved-ad-inventory/" rel="noopener">PPC Land</a> · last verified 2026-08-18</p>
+      </li>
+      <li class="card">
+        <h3>InMobi Buyer Hub</h3>
+        <p>InMobi Advertising's self-serve deal platform, to which it added a conversational AI agent
+        for media buyers on August 13, 2026. The same announcement opened Buyer Hub to agencies and
+        managed-service demand-side platforms with role-based access controls. The coverage located
+        does not state which agentic protocol the agent uses.</p>
+        <p class="source">Source: <a href="https://www.businesswire.com/news/home/20260813541744/en/InMobi-Advertising-Launches-A-Conversational-AI-Agent-for-Media-Buyers" rel="noopener">Business Wire</a> · last verified 2026-08-18</p>
+      </li>
+      <li class="card">
+        <h3>Horizon Media Blu — agentic orchestration layer</h3>
+        <p>An agentic orchestration layer inside Horizon Media's Blu platform, launched June 18, 2026
+        for real-time cross-channel media decisioning with human oversight. The release names testing
+        partners including Disney, Fox, NBCUniversal, TikTok, Databricks, Innovid, Magnite, Kochava,
+        iHeartMedia, and Snap. It describes partner integration over APIs and MCP-standard
+        interfaces and names neither AdCP nor AAMP, so this is an orchestration layer entry rather
+        than a protocol implementation.</p>
+        <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/horizon-media-launches-agentic-orchestration-layer-for-real-time-media-decisioning-302803722.html" rel="noopener">PR Newswire</a>; <a href="https://www.mediapost.com/publications/article/415896/horizon-adds-media-buying-agents-to-its-blu-platfo.html" rel="noopener">MediaPost</a>; <a href="https://www.adweek.com/agencies/horizon-media-builds-the-plumbing-for-agentic-ad-buying/" rel="noopener">Adweek</a> · last verified 2026-08-18</p>
       </li>
       <li class="card">
         <h3>Optable Audience Agent</h3>
@@ -298,12 +328,14 @@
     <p class="source">Source: <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a>; <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
     <p>Two claims were removed from this directory at the August 4, 2026 check because their
     citations did not support them. A HorizonOS Blu entry stated that Horizon Media runs buying
-    agents in that platform, but neither cited article mentions Horizon Media; it will not return
-    without a source. A Yahoo DSP entry was rewritten onto the announcement that actually documents
-    it. MediaPost's July 2026 survey also quotes a third party describing Fox Broadcasting as
-    leading in agentic transactions, which is a characterization rather than a company
-    announcement, so no Fox entry was added.</p>
-    <p class="source">Source: <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a>; <a href="https://themediaonline.co.za/2026/07/what-happened-to-agentic-media-buying/" rel="noopener">The Media Online</a>; <a href="https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/" rel="noopener">MarTech Edition</a> · last verified 2026-08-04</p>
+    agents in that platform, but neither cited article mentioned Horizon Media. At the August 18,
+    2026 check a primary source was located — Horizon Media's own June 18, 2026 release — so the
+    entry is back above, rewritten to describe an agentic orchestration layer and to attribute it to
+    neither protocol, which is as far as that release goes. A Yahoo DSP entry was rewritten onto the
+    announcement that actually documents it. MediaPost's July 2026 survey also quotes a third party
+    describing Fox Broadcasting as leading in agentic transactions, which is a characterization
+    rather than a company announcement, so no Fox entry was added.</p>
+    <p class="source">Source: <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a>; <a href="https://themediaonline.co.za/2026/07/what-happened-to-agentic-media-buying/" rel="noopener">The Media Online</a>; <a href="https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/" rel="noopener">MarTech Edition</a> · last verified 2026-08-04; <a href="https://www.prnewswire.com/news-releases/horizon-media-launches-agentic-orchestration-layer-for-real-time-media-decisioning-302803722.html" rel="noopener">PR Newswire (Horizon Media)</a> · last verified 2026-08-18</p>
   </main>
   <footer class="site-footer">
     <div class="inner">

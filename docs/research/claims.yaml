@@ -26,24 +26,33 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-08-04
+  updated: 2026-08-18
 claims:
   - id: adcp-latest-release-v3-1-10
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
-    claim: "AdCP's latest tagged release is v3.1.10, published 4 August 2026, on a weekly-plus cadence on the v3.1.x line."
+    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.15, published 16 August 2026, continuing a weekly-plus cadence; five patch releases (v3.1.11 to v3.1.15) followed v3.1.10."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
-    last_verified: 2026-08-04
+    last_verified: 2026-08-18
+    volatility: high
+  - id: adcp-v3-2-0-beta
+    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line; its changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations, and adds no eighth negotiation surface."
+    status: announced
+    sources:
+      - https://github.com/adcontextprotocol/adcp/releases
+      - https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md
+    last_verified: 2026-08-18
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html]
-    claim: "A parallel AdCP v3.0.x maintenance line still receives releases alongside v3.1.x, e.g. v3.0.22 on 24 July 2026."
+    claim: "A parallel AdCP v3.0.x maintenance line still receives releases alongside v3.1.x; v3.0.22 was published 24 July 2026 and the line continued through v3.0.24 on 16 August 2026."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-    last_verified: 2026-08-04
+    last_verified: 2026-08-18
     volatility: high
   - id: adcp-v3-1-3-withdrawn
     pages: [index.html, adcp.html, tools.html, resources.html]
@@ -161,14 +170,14 @@ claims:
     volatility: low
   - id: adcp-membership-count
     pages: [adcp.html, comparison.html, tools.html]
-    claim: "AgenticAdvertising.org membership is reported at between 104+ and 117+ companies with no official count published; named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
+    claim: "AgenticAdvertising.org membership is reported at between 104+ and 117+ companies — the figure carried by the most recent secondary count is 113+ — with no official count published; named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
     status: reported
     sources:
       - https://adgentek.ai/blog/agentic-advertising-statistics/
       - https://agenticadvertising.org/about
       - https://agenticadvertising.org/members
       - https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/
-    last_verified: 2026-08-04
+    last_verified: 2026-08-18
     volatility: high
   - id: adcp-agent-registry
     pages: [adcp.html, tools.html, resources.html]
@@ -205,7 +214,7 @@ claims:
     last_verified: 2026-08-04
     volatility: low
   - id: pubmatic-butlertill-clubtails
-    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    pages: [adcp.html, comparison.html, tools.html, workflows.html, resources.html]
     claim: "PubMatic and Butler/Till ran an AdCP-enabled agentic connected-TV campaign for Clubtails, announced 15 December 2025, planned and optimized by agents with no demand-side platform workflow."
     status: shipped
     sources:
@@ -214,13 +223,40 @@ claims:
     last_verified: 2026-08-04
     volatility: medium
   - id: optable-pubmatic-agenticos
-    pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
+    pages: [adcp.html, comparison.html, tools.html, workflows.html, resources.html]
     claim: "Optable's Audience Agent was integrated into PubMatic AgenticOS (announced 12 March 2026), positioned as an early live example of AdCP on production programmatic infrastructure, activating via PubMatic Activate."
     status: shipped
     sources:
       - https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/
       - https://www.optable.co/newsroom/optable-and-pubmatic-partner
     last_verified: 2026-08-04
+    volatility: medium
+  - id: pubmatic-agenticos-guardrails
+    pages: [index.html, tools.html]
+    claim: "PubMatic added a five-step guardrail framework for buying agents to AgenticOS on 5 August 2026 — permission boundaries, business rules, pre-approved asset libraries, human approval via one-time passcodes, and audit trails with drift detection — piloted with the Quad agency Rise."
+    status: shipped
+    sources:
+      - https://www.mediapost.com/publications/article/417034/agentic-guardrails-create-custom-ad-framework.html
+      - https://ppc.land/pubmatic-guardrails-block-ai-agents-from-unapproved-ad-inventory/
+    last_verified: 2026-08-18
+    volatility: medium
+  - id: inmobi-buyer-hub-agent
+    pages: [index.html, tools.html]
+    claim: "InMobi Advertising launched a conversational AI agent for media buyers on its self-serve deal platform Buyer Hub on 13 August 2026 and opened Buyer Hub to agencies and managed-service DSPs with role-based access controls; the located coverage attributes it to neither protocol family."
+    status: shipped
+    sources:
+      - https://www.businesswire.com/news/home/20260813541744/en/InMobi-Advertising-Launches-A-Conversational-AI-Agent-for-Media-Buyers
+    last_verified: 2026-08-18
+    volatility: medium
+  - id: horizon-blu-orchestration-layer
+    pages: [tools.html]
+    claim: "Horizon Media launched an agentic orchestration layer inside its Blu platform on 18 June 2026 for real-time cross-channel media decisioning with human oversight, naming testing partners including Disney, Fox, NBCUniversal, TikTok, and Magnite; the release describes API and MCP-standard partner integration and names neither AdCP nor AAMP."
+    status: shipped
+    sources:
+      - https://www.prnewswire.com/news-releases/horizon-media-launches-agentic-orchestration-layer-for-real-time-media-decisioning-302803722.html
+      - https://www.mediapost.com/publications/article/415896/horizon-adds-media-buying-agents-to-its-blu-platfo.html
+      - https://www.adweek.com/agencies/horizon-media-builds-the-plumbing-for-agentic-ad-buying/
+    last_verified: 2026-08-18
     volatility: medium
   - id: danads-sigma-sales-agent
     pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
@@ -357,6 +393,8 @@ claims:
       - https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/
       - https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks
       - https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0
+      - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
+      - https://github.com/IABTechLab/seller-agent/releases
     last_verified: 2026-08-04
     volatility: medium
   - id: aamp-2-3-release
@@ -369,6 +407,43 @@ claims:
       - https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html
     last_verified: 2026-08-04
     volatility: medium
+  - id: aamp-independent-component-versioning
+    pages: [aamp.html, comparison.html]
+    claim: "AAMP's component repositories carry independent semantic-version tags, including buyer-agent and seller-agent v2.1.x and v2.2.x from 20-22 July 2026, so the versions between IAB Tech Lab's announced 2.0 and 2.3 milestones exist in code even though no press release names an AAMP 2.1 or 2.2."
+    status: shipped
+    sources:
+      - https://github.com/IABTechLab/AAMP
+      - https://github.com/IABTechLab/buyer-agent/releases
+      - https://github.com/IABTechLab/seller-agent/releases
+    last_verified: 2026-08-18
+    volatility: low
+  - id: aamp-component-releases-past-2-3
+    pages: [index.html, aamp.html, tools.html]
+    claim: "AAMP component repositories tagged releases after the 2.3 milestone — buyer-agent v2.4.1 (10 August 2026), seller-agent v2.4.0 and v2.4.1 (4 and 5 August 2026), iab-agentic-primitives v0.5.1 (10 August 2026) — but no IAB Tech Lab announcement names an AAMP 2.4, so the version framing is unconfirmed."
+    status: reported
+    sources:
+      - https://github.com/IABTechLab/buyer-agent/releases
+      - https://github.com/IABTechLab/seller-agent/releases
+      - https://github.com/IABTechLab/iab-agentic-primitives/releases
+    last_verified: 2026-08-18
+    volatility: high
+  - id: aamp-agentic-direct-commit-gap
+    pages: [aamp.html]
+    claim: "The Agentic Direct repository's most recent commit is dated 27 January 2026, while other AAMP component repositories released in August 2026."
+    status: shipped
+    sources:
+      - https://github.com/IABTechLab/agentic-direct/commits/main/
+    last_verified: 2026-08-18
+    volatility: medium
+  - id: aamp-2-3-date-discrepancy
+    pages: [aamp.html, resources.html]
+    claim: "AAMP 2.3's release date differs between channels: IAB Tech Lab's own press-release index dates it 27 July 2026, while PR Newswire, MarTechCube, and PPC Land date it 30 July 2026."
+    status: reported
+    sources:
+      - https://iabtechlab.com/press-releases/
+      - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
+    last_verified: 2026-08-18
+    volatility: low
   - id: artf-latency-claim
     pages: [aamp.html, tools.html, resources.html]
     claim: "IAB Tech Lab claims ARTF's containerized, same-data-center architecture can cut bid request-response latency by up to roughly 80% (600–800 ms to about 100 ms); the vendor claim is not independently benchmarked."
@@ -387,7 +462,7 @@ claims:
     last_verified: 2026-08-04
     volatility: low
   - id: pmg-alli-aamp
-    pages: [index.html, aamp.html, comparison.html, tools.html, resources.html]
+    pages: [aamp.html, comparison.html, tools.html, resources.html]
     claim: "PMG integrated AAMP's Buyer Agent architecture, Sub-Agent architecture, and Agent Registry into its Alli operating system, announced 7 April 2026, as an AAMP deployment in a production agency environment."
     status: shipped
     sources:
