@@ -28,7 +28,7 @@ meta:
   schema: 1
   updated: 2026-08-18
 claims:
-  - id: adcp-latest-release-v3-1-10
+  - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
     claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.15, published 16 August 2026, continuing a weekly-plus cadence; five patch releases (v3.1.11 to v3.1.15) followed v3.1.10."
     status: shipped
