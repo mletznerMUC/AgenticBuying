@@ -58,6 +58,7 @@ jobs:
           fetch-depth: 1
 
       - name: Claude review
+        id: agent
         if: env.HAS_ANTHROPIC_KEY == 'true'
         uses: anthropics/claude-code-action@v1
         with:
@@ -109,3 +110,29 @@ jobs:
             severity, each naming the file and line and suggesting a concrete
             fix. If everything passes, say so briefly rather than inventing
             nits.
+
+      - name: Record cost
+        # always(): a step that failed still spent tokens — or spent none
+        # because the API rejected it, which is the more useful signal. Still
+        # gated on the key: without it there is no checkout, so the local
+        # composite action would not exist to run.
+        if: always() && env.HAS_ANTHROPIC_KEY == 'true'
+        uses: ./.github/actions/record-cost
+        with:
+          execution-file: ${{ steps.agent.outputs.execution_file }}
+          conclusion: ${{ steps.agent.outputs.conclusion }}
+          workflow: Claude PR Review
+          stage: review
+          model-tier: sonnet
+
+  # One ledger commit per run. Skipped for fork PRs: GITHUB_TOKEN is read-only
+  # there, so the push could not succeed — and no agent ran anyway, because the
+  # API key secret is not exposed to forks.
+  ledger:
+    needs: review
+    if: ${{ !cancelled() && github.event.pull_request.head.repo.full_name == github.repository }}
+    uses: ./.github/workflows/cost-ledger.yml
+    permissions:
+      contents: write
+    with:
+      workflow_label: Claude PR Review

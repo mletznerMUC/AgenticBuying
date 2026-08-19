@@ -262,6 +262,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Verify shard ${{ matrix.shard }}
+        id: agent
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -317,6 +318,21 @@ jobs:
           claude_args: |
             --model sonnet --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
 
+      - name: Record cost
+        # always(): a shard the API rejected costs nothing and must still be
+        # recorded — a silent gap in the ledger reads as a cheap run. This is
+        # the case that actually happened: a rate-limited shard returns
+        # is_error with $0 spent, and that must be visible as a failure rather
+        # than as a bargain.
+        if: always()
+        uses: ./.github/actions/record-cost
+        with:
+          execution-file: ${{ steps.agent.outputs.execution_file }}
+          conclusion: ${{ steps.agent.outputs.conclusion }}
+          workflow: Research Refresh
+          stage: verify-${{ matrix.shard }}
+          model-tier: sonnet
+
       - name: Upload verdict
         uses: actions/upload-artifact@v4
         with:
@@ -344,6 +360,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Discover new developments
+        id: agent
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -375,6 +392,18 @@ jobs:
           # this is the single priciest agent per run.
           claude_args: |
             --model sonnet --allowedTools "WebSearch,WebFetch,Read,Write,Glob,Grep"
+
+      - name: Record cost
+        # always(): a step the API rejected costs nothing and must still be
+        # recorded — a silent gap in the ledger reads as a cheap run.
+        if: always()
+        uses: ./.github/actions/record-cost
+        with:
+          execution-file: ${{ steps.agent.outputs.execution_file }}
+          conclusion: ${{ steps.agent.outputs.conclusion }}
+          workflow: Research Refresh
+          stage: discover
+          model-tier: sonnet
 
       - name: Upload discoveries
         uses: actions/upload-artifact@v4
@@ -422,6 +451,7 @@ jobs:
           name: discoveries
 
       - name: Apply results and open PR
+        id: agent
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -493,3 +523,31 @@ jobs:
           # quality is worth it. Verify/discover are the Sonnet stages above.
           claude_args: |
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"
+
+      - name: Record cost
+        # always(): a step the API rejected costs nothing and must still be
+        # recorded — a silent gap in the ledger reads as a cheap run.
+        if: always()
+        uses: ./.github/actions/record-cost
+        with:
+          execution-file: ${{ steps.agent.outputs.execution_file }}
+          conclusion: ${{ steps.agent.outputs.conclusion }}
+          workflow: Research Refresh
+          stage: apply
+          model-tier: opus
+
+  # ---------------------------------------------------------------------------
+  # Record what the run cost. Separate job because the agent jobs above hold
+  # `contents: read` (only apply can write, and only to its own PR branch),
+  # while the ledger commits to main. `!cancelled()` so a partially failed
+  # pipeline still reports its spend — those are the runs worth knowing the
+  # price of.
+  # ---------------------------------------------------------------------------
+  ledger:
+    needs: [verify, discover, apply]
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/cost-ledger.yml
+    permissions:
+      contents: write
+    with:
+      workflow_label: Research Refresh

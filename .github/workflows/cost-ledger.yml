@@ -1,0 +1,146 @@
+# Collect every agent step's cost record from the calling run, append them to
+# the ledger, regenerate the report, and commit both to main.
+#
+# WHY THIS IS A REUSABLE WORKFLOW AND NOT A JOB IN EACH CALLER. Three workflows
+# run agents, and the refresh runs up to twelve agent steps in one go. Having
+# each of those steps push to main directly would be a race with itself; having
+# each caller carry its own copy of the commit logic would be three copies to
+# keep in step. One job per run, called at the end, is the smallest thing that
+# works.
+#
+# WHY IT COMMITS STRAIGHT TO main. The repo's rule is that agents never write to
+# main — they open PRs a human merges. This job is deliberately outside that
+# rule, and it is not an agent: it is a Python script over a JSON file, with no
+# model in the loop and nothing to hallucinate. A ledger gated behind human
+# review would be perpetually one merge behind the runs it is supposed to
+# describe, which defeats the point. It writes only under docs/cost/ and to
+# docs/COST-CONTROL.md; if it ever touched a page, that would be a bug.
+name: Cost Ledger
+
+on:
+  workflow_call:
+    inputs:
+      workflow_label:
+        description: Name to show in the report for the calling workflow.
+        required: true
+        type: string
+
+# Serialise ledger commits across ALL callers. Two workflows finishing together
+# would otherwise both push to main and one would lose. `cancel-in-progress` must
+# stay false — a cancelled ledger job silently drops that run's costs.
+concurrency:
+  group: cost-ledger
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Committing needs real history, and we re-fetch before each push
+          # attempt anyway.
+          fetch-depth: 0
+
+      - name: Download cost records from this run
+        uses: actions/download-artifact@v4
+        with:
+          path: _cost
+          pattern: cost-*
+          merge-multiple: true
+
+      - name: Append to the ledger and regenerate the report
+        id: append
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          records=(_cost/*.json)
+          if [ ${#records[@]} -eq 0 ]; then
+            echo "::notice::No cost records in this run — nothing to append."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Found ${#records[@]} cost record(s)."
+
+          # Stash the records outside the working tree: the push retry loop below
+          # resets the tree to origin/main between attempts, which would delete
+          # them.
+          mkdir -p "${RUNNER_TEMP}/cost"
+          cp "${records[@]}" "${RUNNER_TEMP}/cost/"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+          # Stash the generator too. The commit loop resets the tree to
+          # origin/main, which deletes any script main does not have yet — and
+          # on the PR that introduces this system, that is the generator itself.
+          mkdir -p "${RUNNER_TEMP}/scripts"
+          cp scripts/*.py "${RUNNER_TEMP}/scripts/"
+
+          # Summarise once, here, rather than inside the retry loop below: the
+          # figure is identical on every attempt. It is a single `-c` line on
+          # purpose — a multi-line heredoc inside a YAML block scalar has to be
+          # indented to stay inside the scalar, and Python then rejects the
+          # leading whitespace. Single-quoted so bash expands nothing.
+          summary=$(python3 -c 'import glob,json,os;rows=[json.load(open(p)) for p in sorted(glob.glob(os.environ["RUNNER_TEMP"]+"/cost/*.json"))];print("%d step(s), $%.4f" % (len(rows), sum(r.get("cost_usd") or 0 for r in rows)))')
+          echo "summary=${summary}" >> "$GITHUB_OUTPUT"
+          echo "::notice::${summary}"
+
+      - name: Commit
+        if: steps.append.outputs.changed == 'true'
+        env:
+          LABEL: ${{ inputs.workflow_label }}
+          SUMMARY: ${{ steps.append.outputs.summary }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Rebuild from a clean origin/main on every attempt rather than
+          # rebasing. The ledger is append-only and each attempt re-appends this
+          # run's own records, so a fresh build always merges cleanly — whereas
+          # rebasing an append onto a changed file tail conflicts every time.
+          for attempt in 1 2 3 4 5; do
+            git fetch --quiet origin main
+            git reset --quiet --hard origin/main
+
+            mkdir -p docs/cost
+            touch docs/cost/ledger.jsonl
+            cat "${RUNNER_TEMP}"/cost/*.json >> docs/cost/ledger.jsonl
+
+            # Prefer main's generator: the report being committed lives on main,
+            # so main decides its format — a branch experimenting with the
+            # layout must not rewrite it. Fall back to the staged copy only when
+            # main has no generator at all, which is true exactly once, on the
+            # PR that adds it.
+            generator="scripts/cost_report.py"
+            if [ ! -f "${generator}" ]; then
+              generator="${RUNNER_TEMP}/scripts/cost_report.py"
+              echo "::notice::main has no cost_report.py yet; bootstrapping with this branch's copy."
+            fi
+            # Explicit paths: the staged copy resolves its defaults relative to
+            # RUNNER_TEMP, not the repo, and would write the report into nowhere.
+            python3 "${generator}" \
+              --ledger docs/cost/ledger.jsonl \
+              --out docs/COST-CONTROL.md
+
+            git add docs/cost/ledger.jsonl docs/COST-CONTROL.md
+            if git diff --cached --quiet; then
+              echo "::notice::Ledger unchanged; nothing to commit."
+              exit 0
+            fi
+
+            git commit --quiet -m "chore(cost): ${LABEL} run ${GITHUB_RUN_NUMBER} — ${SUMMARY}" \
+              -m "Appended by .github/workflows/cost-ledger.yml from run ${GITHUB_RUN_ID}. Generated file — see scripts/cost_report.py."
+
+            if git push --quiet origin HEAD:main; then
+              echo "::notice::Ledger updated: ${SUMMARY}"
+              exit 0
+            fi
+            echo "::warning::Push attempt ${attempt} lost a race; retrying."
+            sleep $((attempt * 5))
+          done
+
+          echo "::error::Could not append to the cost ledger after 5 attempts. This run's costs are not recorded; the artifacts under 'cost-*' still hold them for 7 days."
+          exit 1

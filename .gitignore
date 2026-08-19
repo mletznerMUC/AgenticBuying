@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 *.log
 .claude/settings.local.json
+
+# Cost records staged by .github/actions/record-cost before upload.
+_cost/

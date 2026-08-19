@@ -94,6 +94,13 @@ Every PR runs:
    full agent run, and re-reviewing an unchanged checklist after each push was
    the repo's single largest token line. To re-review after pushing fixes,
    comment `@claude` on the PR.
+   **A PR that edits a workflow file gets no agentic review.** The action
+   validates that its own workflow matches the copy on the default branch and
+   skips itself when it does not — a platform guardrail against a PR granting
+   itself new agent permissions. The job still reports success; the log says
+   `Workflow validation failed … your workflow will begin working once you merge
+   your PR`. Review those PRs by hand, and expect the first run after merge to be
+   the real test of any workflow change.
    It reviews against both the `site-reviewer` checklist and
    [`DESIGN.md`](DESIGN.md), in priority order: sourcing (link + "last
    verified" date on every claim), badge discipline including a badge-inflation
@@ -216,6 +223,50 @@ release, it does not edit pages or open PRs.
 The refresh and freshness jobs skip with a setup notice when `ANTHROPIC_API_KEY`
 is absent, so a fork never fails on them. The release watch needs no key — it
 reads a public API — and runs regardless.
+
+## 6. Cost control
+
+Every agent run's cost is recorded automatically. The report lives in
+**[`COST-CONTROL.md`](COST-CONTROL.md)** and is regenerated after each run —
+it is a generated view, never hand-edited, and CI fails if it drifts from the
+ledger.
+
+How the capture works:
+
+1. Each `anthropics/claude-code-action` step carries `id: agent`, and is
+   followed by a `Record cost` step (`.github/actions/record-cost`) running
+   `if: always()`. That step reads the action's `execution_file` output — a JSON
+   event log whose final `"type": "result"` event carries `total_cost_usd`,
+   `usage`, `num_turns` and `duration_ms` — and uploads one `cost-<stage>` artifact.
+2. At the end of the run, a `ledger` job calls the reusable
+   [`cost-ledger.yml`](../.github/workflows/cost-ledger.yml), which collects
+   every `cost-*` artifact from that run, appends them to
+   `docs/cost/ledger.jsonl`, regenerates the report, and commits both to `main`.
+
+Two deliberate exceptions to the repo's usual rules, both worth knowing:
+
+- **The ledger job commits to `main` directly**, where everything else opens a
+  PR. It is not an agent — it is a Python script over JSON, with no model in the
+  loop — and a ledger gated behind human review would always lag the runs it
+  describes. It writes only under `docs/cost/` and to `docs/COST-CONTROL.md`.
+- **`if: always()` on the capture step** means failed runs are recorded too. A
+  run the API rejected spent nothing, and that is exactly the case where a silent
+  gap in the ledger would read as a cheap month. Such runs land with
+  `parse_status` set and are counted in the report's *Unmeasured* column.
+
+What it cannot tell you: **cost is per agent invocation, not per subagent.**
+When `apply` spawns `site-reviewer`, that subagent's tokens roll into `apply`'s
+total. The per-model breakdown is the only subagent signal — a stage configured
+for Opus that shows Sonnet spend is showing its subagents. And `total_cost_usd`
+is priced at public list rates, so it is an upper bound on the invoice, not the
+invoice; the Anthropic Console remains the billing source of truth.
+
+To regenerate locally after pulling:
+
+```bash
+python3 scripts/cost_report.py          # rewrite the report from the ledger
+python3 scripts/cost_report.py --check  # what CI runs
+```
 
 ## One-time repository setup (human, once)
 
