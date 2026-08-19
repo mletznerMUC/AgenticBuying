@@ -20,6 +20,18 @@ jobs:
       - name: Validate HTML
         run: npx --yes html-validate "*.html"
 
+  # COST-CONTROL.md is generated. This catches a hand-edit, which would
+  # otherwise be silently reverted by the next agent run with no trace of what
+  # the author meant to say.
+  check-cost-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Cost report matches the ledger
+        run: python3 scripts/cost_report.py --check
+
   check-links:
     runs-on: ubuntu-latest
     timeout-minutes: 10

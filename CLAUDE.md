@@ -29,7 +29,10 @@ resources.html         Specs, articles, talks, repos
 assets/css/            Shared stylesheet(s)
 docs/DESIGN.md         Design guide: visual system, badge rules, imagery, a11y
 docs/WORKFLOW.md       The agent-based development workflow
+docs/COST-CONTROL.md   Generated: per-run API spend by workflow and agent stage
+docs/cost/ledger.jsonl Append-only cost record; the report is derived from it
 docs/research/         Sourced research notes behind the site's content
+scripts/               Deterministic helpers (cost capture + reporting)
 .claude/agents/        Specialized subagent definitions
 .github/workflows/     Claude agent automation, CI
 .nojekyll              Disables Jekyll processing on GitHub Pages
@@ -87,6 +90,9 @@ full description. Summary:
    - `site-reviewer` — reviews changes for accuracy, consistency, a11y
 4. CI validates HTML and internal links on every PR; GitHub Pages publishes
    the `main` branch root directly (branch deployment, no build step).
+5. Every agent run records what it cost. `docs/COST-CONTROL.md` is **generated**
+   from `docs/cost/ledger.jsonl` after each run — never edit it by hand, CI
+   fails if it drifts. See `docs/WORKFLOW.md` §6.
 
 ## Conventions
 

@@ -37,6 +37,7 @@ jobs:
           fetch-depth: 1
 
       - name: Run Claude Code
+        id: agent
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -44,3 +45,26 @@ jobs:
           # are picked up automatically from the checkout.
           claude_args: |
             --allowedTools "Bash(npx --yes html-validate:*)"
+
+      - name: Record cost
+        # always(): a failed or rejected run still belongs in the ledger.
+        if: always()
+        uses: ./.github/actions/record-cost
+        with:
+          execution-file: ${{ steps.agent.outputs.execution_file }}
+          conclusion: ${{ steps.agent.outputs.conclusion }}
+          workflow: Claude Agent
+          stage: agent
+          # No --model here, so this inherits the action's default (Opus).
+          # Deliberate: this is human-triggered implementation work that writes
+          # code, and it runs rarely.
+          model-tier: opus
+
+  ledger:
+    needs: claude
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/cost-ledger.yml
+    permissions:
+      contents: write
+    with:
+      workflow_label: Claude Agent

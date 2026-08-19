@@ -1,0 +1,58 @@
+# Capture what one agent step cost and stash it as an artifact for the run's
+# ledger job to collect.
+#
+# Kept as a composite action because the capture is identical at five call sites
+# across three workflows, and the one thing that must not drift is the artifact
+# name pattern — the ledger job globs `cost-*` to find these.
+#
+# Always runs with `if: always()`, at every call site. A step that failed still
+# spent tokens (or, more usefully, spent none because the API rejected it), and
+# both facts belong in the ledger.
+name: Record agent cost
+description: Parse a Claude Code Action execution log into a cost-ledger record artifact.
+
+inputs:
+  execution-file:
+    description: The `execution_file` output of the claude-code-action step.
+    required: false
+    default: ""
+  workflow:
+    description: Human-readable workflow name, as it should appear in the report.
+    required: true
+  stage:
+    description: Agent stage identifier, e.g. `apply` or `verify-3`.
+    required: true
+  conclusion:
+    description: The `conclusion` output of the claude-code-action step.
+    required: false
+    default: ""
+  model-tier:
+    description: Tier the workflow asked for (`opus`, `sonnet`, …), for the report.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Parse execution log
+      shell: bash
+      run: |
+        python3 "${GITHUB_WORKSPACE}/scripts/record_cost.py" \
+          --execution-file "${{ inputs.execution-file }}" \
+          --out "_cost/${{ inputs.stage }}.json" \
+          --workflow "${{ inputs.workflow }}" \
+          --stage "${{ inputs.stage }}" \
+          --run-id "${GITHUB_RUN_ID}" \
+          --run-number "${GITHUB_RUN_NUMBER}" \
+          --event "${GITHUB_EVENT_NAME}" \
+          --conclusion "${{ inputs.conclusion }}" \
+          --model-tier "${{ inputs.model-tier }}"
+
+    - name: Upload cost record
+      uses: actions/upload-artifact@v4
+      with:
+        # The ledger job collects these by the `cost-*` pattern; keep the prefix.
+        name: cost-${{ inputs.stage }}
+        path: _cost/${{ inputs.stage }}.json
+        if-no-files-found: warn
+        retention-days: 7
