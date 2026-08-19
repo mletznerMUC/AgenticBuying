@@ -106,6 +106,16 @@ def main() -> int:
     ap.add_argument("--model-tier", default="", help="tier the workflow asked for (opus/sonnet/…)")
     args = ap.parse_args()
 
+    # An action that never ran sets neither output. That is different from an
+    # action that ran and failed (which sets `conclusion` but may leave no
+    # execution log), and it must not land in the ledger: a cost record for work
+    # that was never attempted reads as a failed agent. The case is routine —
+    # the action refuses to run when a PR modifies its own workflow file, so
+    # every workflow-editing PR hits it.
+    if not args.execution_file and not args.conclusion:
+        print(f"{args.workflow} / {args.stage}: action did not run; nothing to record.")
+        return 0
+
     events, parse_status = _load_events(pathlib.Path(args.execution_file) if args.execution_file else None)
     result = _result_event(events)
     if result is None and parse_status == "ok":

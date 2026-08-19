@@ -109,6 +109,10 @@ No build step. Useful local commands:
 # Serve the site locally
 python3 -m http.server 8000
 
-# Validate HTML (same as CI)
+# Validate HTML (same as CI). Needs Node 22+ — on older Node it fails with
+# "TypeError: fs.globSync is not a function", which is the tool, not your HTML.
 npx --yes html-validate "*.html"
+
+# Regenerate the cost report after pulling (docs/COST-CONTROL.md is generated)
+python3 scripts/cost_report.py
 ```

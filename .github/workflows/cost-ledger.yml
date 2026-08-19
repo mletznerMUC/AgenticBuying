@@ -72,6 +72,12 @@ jobs:
           cp "${records[@]}" "${RUNNER_TEMP}/cost/"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+          # Stash the generator too. The commit loop resets the tree to
+          # origin/main, which deletes any script main does not have yet — and
+          # on the PR that introduces this system, that is the generator itself.
+          mkdir -p "${RUNNER_TEMP}/scripts"
+          cp scripts/*.py "${RUNNER_TEMP}/scripts/"
+
           # Summarise once, here, rather than inside the retry loop below: the
           # figure is identical on every attempt. It is a single `-c` line on
           # purpose — a multi-line heredoc inside a YAML block scalar has to be
@@ -102,7 +108,22 @@ jobs:
             mkdir -p docs/cost
             touch docs/cost/ledger.jsonl
             cat "${RUNNER_TEMP}"/cost/*.json >> docs/cost/ledger.jsonl
-            python3 scripts/cost_report.py
+
+            # Prefer main's generator: the report being committed lives on main,
+            # so main decides its format — a branch experimenting with the
+            # layout must not rewrite it. Fall back to the staged copy only when
+            # main has no generator at all, which is true exactly once, on the
+            # PR that adds it.
+            generator="scripts/cost_report.py"
+            if [ ! -f "${generator}" ]; then
+              generator="${RUNNER_TEMP}/scripts/cost_report.py"
+              echo "::notice::main has no cost_report.py yet; bootstrapping with this branch's copy."
+            fi
+            # Explicit paths: the staged copy resolves its defaults relative to
+            # RUNNER_TEMP, not the repo, and would write the report into nowhere.
+            python3 "${generator}" \
+              --ledger docs/cost/ledger.jsonl \
+              --out docs/COST-CONTROL.md
 
             git add docs/cost/ledger.jsonl docs/COST-CONTROL.md
             if git diff --cached --quiet; then

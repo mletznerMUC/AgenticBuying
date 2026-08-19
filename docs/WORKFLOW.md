@@ -94,6 +94,13 @@ Every PR runs:
    full agent run, and re-reviewing an unchanged checklist after each push was
    the repo's single largest token line. To re-review after pushing fixes,
    comment `@claude` on the PR.
+   **A PR that edits a workflow file gets no agentic review.** The action
+   validates that its own workflow matches the copy on the default branch and
+   skips itself when it does not — a platform guardrail against a PR granting
+   itself new agent permissions. The job still reports success; the log says
+   `Workflow validation failed … your workflow will begin working once you merge
+   your PR`. Review those PRs by hand, and expect the first run after merge to be
+   the real test of any workflow change.
    It reviews against both the `site-reviewer` checklist and
    [`DESIGN.md`](DESIGN.md), in priority order: sourcing (link + "last
    verified" date on every claim), badge discipline including a badge-inflation
