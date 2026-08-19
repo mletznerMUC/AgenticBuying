@@ -129,6 +129,17 @@ def render(rows: list[dict]) -> str:
         "release watch, the refresh preflight — call no model and never appear here. "
         "That is the point of them."
     )
+    backfilled = [r for r in rows if r.get("source") == "log-backfill"]
+    if backfilled:
+        add(
+            f"4. **{len(backfilled)} of these {len(rows)} rows were reconstructed** from "
+            "GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from "
+            "before the capture existed. Their costs are real — the action prints its "
+            "result block to the log — but the logged form is reduced: **no token counts "
+            "and no per-model breakdown**, so those cells are blank and those runs are "
+            "absent from the *By model* table. Actions logs are kept 90 days, so this "
+            "cannot be re-run indefinitely."
+        )
     add("")
 
     # ---- Current month ----------------------------------------------------
@@ -213,7 +224,18 @@ def render(rows: list[dict]) -> str:
         [f"`{model}`", money(total), num(model_tokens[model][0]), num(model_tokens[model][1])]
         for model, total in sorted(by_model.items(), key=lambda kv: -kv[1])
     ]
-    lines.extend(table(["Model", "Cost", "Input tokens", "Output tokens"], model_rows, "---"))
+    if not model_rows and this_month:
+        # "No data yet" would be wrong — there are runs, they just came from the
+        # backfill, which cannot see per-model spend. Say which it is.
+        add(
+            "_Not available for these runs: every row this month was reconstructed from "
+            "Actions logs, which carry a single run-level cost and no per-model split. "
+            "This table fills in from the first live-captured run._"
+        )
+        add("")
+    else:
+        lines.extend(table(
+            ["Model", "Cost", "Input tokens", "Output tokens"], model_rows, "---"))
 
     # ---- History ----------------------------------------------------------
     add("## By month")
@@ -247,16 +269,20 @@ def render(rows: list[dict]) -> str:
             flag = f" ⚠️ {r['parse_status']}"
         elif r.get("is_error"):
             flag = " ⚠️ error"
+        tokens = (r.get("input_tokens") or 0) + (r.get("output_tokens") or 0)
         recent_rows.append([
-            str(r.get("ts") or "—").replace("T", " ").replace("Z", ""),
+            str(r.get("ts") or "—").replace("T", " ").replace("Z", "")[:16],
             r.get("workflow") or "—",
             f"`{r.get('stage') or '—'}`",
+            r.get("model_tier") or "—",
             money(r.get("cost_usd")) + flag,
             num(r.get("num_turns")),
-            num((r.get("input_tokens") or 0) + (r.get("output_tokens") or 0)),
+            # Backfilled rows have no token data at all; 0 would be a lie.
+            num(tokens) if tokens else "—",
         ])
     lines.extend(table(
-        ["When (UTC)", "Workflow", "Stage", "Cost", "Turns", "Tokens"], recent_rows, "---"))
+        ["When (UTC)", "Workflow", "Stage", "Tier", "Cost", "Turns", "Tokens"],
+        recent_rows, "---"))
 
     # ---- Anomalies --------------------------------------------------------
     unpriced = [r for r in rows if r.get("parse_status") not in (None, "ok")]
