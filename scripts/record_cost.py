@@ -134,6 +134,9 @@ def main() -> int:
         "conclusion": args.conclusion,
         "model_tier": args.model_tier,
         "parse_status": parse_status,
+        # Provenance. Rows reconstructed from Actions logs by
+        # scripts/backfill_cost.py say "log-backfill" and carry no token counts.
+        "source": "execution-file",
         # `total_cost_usd` is Claude Code's own figure, derived from token counts
         # at public list prices. It is not what the account is invoiced — any
         # negotiated rate makes the real number lower. Treat it as an upper bound

@@ -261,6 +261,27 @@ for Opus that shows Sonnet spend is showing its subagents. And `total_cost_usd`
 is priced at public list rates, so it is an upper bound on the invoice, not the
 invoice; the Anthropic Console remains the billing source of truth.
 
+### Backfill
+
+Runs from before the capture existed are still recoverable. The action prints
+its result block to the job log, and GitHub keeps Actions logs for **90 days**,
+so `scripts/backfill_cost.py` reconstructs those rows from the logs:
+
+```bash
+python3 scripts/backfill_cost.py --dry-run   # show what would be added
+python3 scripts/backfill_cost.py             # append to the ledger
+python3 scripts/cost_report.py               # regenerate the report
+```
+
+It is a local one-off, not part of any workflow, and it skips runs already in
+the ledger — so re-running it is safe. Backfilled rows are stamped
+`source: "log-backfill"`. **They carry no token counts and no per-model
+breakdown**: the logged result block is a reduced form with only cost, turns,
+duration and the run's model. The costs themselves are real.
+
+The 90-day retention is the catch — logs older than that are gone for good, so
+this is not a substitute for the live capture.
+
 To regenerate locally after pulling:
 
 ```bash
