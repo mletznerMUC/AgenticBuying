@@ -5,6 +5,7 @@ description: >-
   and JavaScript. Use for new pages, layout/section changes, navigation
   updates, styling, responsiveness, and accessibility work.
 tools: Read, Grep, Glob, Write, Edit, Bash
+model: sonnet
 ---
 
 You are the frontend builder for the AgenticBuying website — a multi-page

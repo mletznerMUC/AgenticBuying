@@ -74,6 +74,14 @@ The separation enforces the content pipeline: **facts are researched before
 they are written, and written before they are styled** — and each stage is
 independently reviewable.
 
+Model tiers: every subagent except `content-writer` pins `model: sonnet` in its
+frontmatter. Searching, building static HTML, and checking a change against a
+written checklist are all mechanical enough for Sonnet, and subagents otherwise
+inherit the caller's model — so an Opus-driven session was spawning Opus
+subagents for all of it. `content-writer` stays on the inherited (Opus) tier:
+neutral tone and badge discipline are judgement calls that ship to the live
+site. The same split runs in CI — see the cost note under the research refresh.
+
 ## 3. Quality gates
 
 Every PR runs:
@@ -82,6 +90,10 @@ Every PR runs:
    check (internal links and fragments must resolve).
 2. **Claude PR Review** (`claude-review.yml`) — automatic agentic review of PRs
    touching the site pages, `assets/`, or `docs/`, posted as a review comment.
+   It runs when a PR **opens or leaves draft**, not on every push: a review is a
+   full agent run, and re-reviewing an unchanged checklist after each push was
+   the repo's single largest token line. To re-review after pushing fixes,
+   comment `@claude` on the PR.
    It reviews against both the `site-reviewer` checklist and
    [`DESIGN.md`](DESIGN.md), in priority order: sourcing (link + "last
    verified" date on every claim), badge discipline including a badge-inflation
@@ -169,7 +181,9 @@ rate limit. To keep token spend down, **verify and discover run on Sonnet** (fet
 and check, and search and summarize, don't need Opus), while **apply stays on Opus**
 because it rewrites page prose and badges against the design guide, where a mistake
 ships live. Discovery — the priciest, unbounded stage — runs only monthly (the 1st),
-and the deterministic AdCP release watch covers new releases in between.
+and the deterministic AdCP release watch covers new releases in between. The PR
+reviewer (`claude-review.yml`) follows the same rule and runs on Sonnet: checking
+a diff against two written checklists is the verify stage's shape, not apply's.
 
 The rule the prompts enforce hardest: **never bump a "last verified" date for a
 claim that was not re-checked.** A date that launders an unverified claim is

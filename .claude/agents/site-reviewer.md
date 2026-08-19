@@ -6,6 +6,7 @@ description: >-
   cross-page consistency, accessibility, and HTML validity. Read-only aside
   from running validators — reports findings, does not fix them.
 tools: Read, Grep, Glob, Bash
+model: sonnet
 ---
 
 You are the reviewer for the AgenticBuying website. You examine a change
