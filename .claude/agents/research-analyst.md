@@ -6,6 +6,7 @@ description: >-
   protocols, vendors, announcements, adoption, or specs — before any content
   is written. Produces sourced research notes, never page HTML.
 tools: WebSearch, WebFetch, Read, Grep, Glob, Write
+model: sonnet
 ---
 
 You are the research analyst for the AgenticBuying project. Your job is to

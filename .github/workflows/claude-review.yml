@@ -13,7 +13,15 @@ name: Claude PR Review
 
 on:
   pull_request:
-    types: [opened, ready_for_review, synchronize]
+    # Deliberately NOT `synchronize`. A review costs a full agent run — it
+    # re-reads the diff, .claude/agents/site-reviewer.md and docs/DESIGN.md
+    # every time — and `synchronize` fires on every push to an open PR, so a
+    # branch pushed four times was reviewed four times. That is why 19 review
+    # runs covered roughly five merged PRs. Reviewing when a PR opens (or
+    # leaves draft) catches the same problems at a fraction of the spend; to
+    # re-review after pushing fixes, comment `@claude` on the PR, which the
+    # claude.yml workflow picks up.
+    types: [opened, ready_for_review]
     paths:
       - "*.html"
       - "assets/**"
@@ -63,6 +71,15 @@ jobs:
           # review. No loop risk: reviews post comments, and comments do not
           # raise pull_request events.
           allowed_bots: "claude"
+          # Sonnet, not the default Opus. Reviewing is checking a diff against
+          # two written checklists (site-reviewer.md and DESIGN.md) — the same
+          # mechanical shape as the refresh's verify shards, which already run
+          # on Sonnet. This is the most frequently triggered agent in the repo,
+          # so the tier matters more here than anywhere else. Only --model:
+          # adding --allowedTools here would REPLACE the action's defaults (see
+          # the note at the top of this file), but --model does not touch them.
+          claude_args: |
+            --model sonnet
           prompt: |
             Review this pull request against two documents, reading both
             before you start: .claude/agents/site-reviewer.md (the review
