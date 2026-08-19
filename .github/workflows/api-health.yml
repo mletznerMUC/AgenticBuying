@@ -1,0 +1,68 @@
+# On-demand check that the ANTHROPIC_API_KEY secret actually works.
+#
+# WHY THIS EXISTS SEPARATELY. The research refresh already opens with exactly
+# this probe — see the `preflight` job in research-refresh.yml — but that one is
+# welded into a pipeline whose full run costs $12-16 (docs/COST-CONTROL.md has
+# the figures). After rotating the key you want the answer, not the invoice.
+# This runs the same single Haiku call for a fraction of a cent, and nothing
+# else. It is the only cheap way to answer "did my new key take?" without
+# spending real money or waiting for the next scheduled run to fail.
+#
+# The ~20 lines of curl are deliberately duplicated rather than factored into a
+# reusable workflow shared with the refresh. Making preflight a `uses:` job
+# would move the blocked-API issue reporting out of the refresh and change how
+# `needs.preflight.result` gates verify/discover/apply — a real risk to the
+# pipeline, taken on for a convenience check. If this probe ever needs to change,
+# change both; they are two copies of one idea and the comment in each says so.
+name: API Health
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping the Anthropic API with a cheap Haiku call
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+            echo "::error::The ANTHROPIC_API_KEY secret is not set on this repository."
+            exit 1
+          fi
+
+          # max_tokens 8 keeps this at a rounding error on Haiku. The point is
+          # the HTTP status, not the reply.
+          code=$(curl -sS -o resp.json -w "%{http_code}" --max-time 30 \
+            https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d '{"model":"claude-haiku-4-5-20251001","max_tokens":8,"messages":[{"role":"user","content":"ping"}]}') || true
+
+          echo "Anthropic API returned HTTP ${code:-000}"
+          if [ "${code:-000}" = "200" ]; then
+            model=$(python3 -c "import json;print(json.load(open('resp.json')).get('model',''))" 2>/dev/null || true)
+            echo "::notice::API key OK — HTTP 200 from ${model:-the API}. Valid, and not rate or spend limited."
+            exit 0
+          fi
+
+          # Surface the error type and message, never the key: curl keeps it in a
+          # header, and GitHub masks the secret in logs regardless.
+          etype=$(python3 -c "import json;print(json.load(open('resp.json')).get('error',{}).get('type',''))" 2>/dev/null || true)
+          emsg=$(python3 -c "import json;print(json.load(open('resp.json')).get('error',{}).get('message',''))" 2>/dev/null || true)
+          echo "::error::API key check FAILED (HTTP ${code:-000}, type: ${etype:-unknown}). ${emsg}"
+
+          # The three that actually happen, and what each means for the agents.
+          case "${code:-000}" in
+            401) echo "::error::401 authentication_error — the key is wrong, revoked, or was pasted with whitespace." ;;
+            429) echo "::error::429 rate_limit_error — the key is valid but the account is throttled right now. Agents will fail with \$0 spent." ;;
+            400) echo "::error::400 — check the account's credit balance and spend limits in the Anthropic Console." ;;
+          esac
+          exit 1

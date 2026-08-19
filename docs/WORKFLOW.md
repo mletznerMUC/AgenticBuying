@@ -197,6 +197,17 @@ claim that was not re-checked.** A date that launders an unverified claim is
 worse than a stale one. A refresh that confirms nothing changed is a successful
 refresh, and should say so rather than manufacturing edits.
 
+### On demand: `api-health.yml`
+
+After rotating the `ANTHROPIC_API_KEY` secret, run **Actions → API Health → Run
+workflow**. It makes one `max_tokens: 8` Haiku call and reports the HTTP status —
+a fraction of a cent, versus the $12-16 a full refresh costs to learn the same
+thing. HTTP 200 means the key is valid and the account is not rate or spend
+limited; 401, 429 and 400 each get an explanation of what it means for the agents.
+
+It duplicates the refresh's `preflight` probe on purpose — see the comment at the
+top of the file. Change both if the probe ever changes.
+
 ### Weekly: `freshness-check.yml`
 
 The refresh can fail quietly — an expired API key, an error, a pull request
