@@ -2,7 +2,7 @@
 
 Per-run API spend for every agent this repository runs. **Generated file — do not edit.** `scripts/cost_report.py` rewrites it from [`cost/ledger.jsonl`](cost/ledger.jsonl) after every agent run; any hand-edit is lost on the next run.
 
-Last updated: **2026-08-19T08:37:10Z** · 0 runs recorded
+Last updated: **2026-08-19T09:07:07Z** · 1 run recorded
 
 ## What these numbers are
 
@@ -16,31 +16,42 @@ Three limits worth knowing before you act on a number:
 
 ## Current month — 2026-08
 
-No runs recorded yet. This fills in from the first agent run after the capture was merged — it is not backfilled, because the execution logs of earlier runs were never retained.
+**$0.7347** across 1 run.
 
 ### By workflow
 
-_No data yet._
+| Workflow | Runs | Unmeasured | Total | Mean/run |
+| --- | --- | --- | --- | --- |
+| Claude PR Review | 1 | — | $0.7347 | $0.7347 |
 
 ### By stage
 
 One row per agent. A refresh shard shows as `verify-0`, `verify-1`, … — they are separate invocations and are billed separately.
 
-_No data yet._
+| Workflow | Stage | Tier | Runs | Unmeasured | Total | Mean/run |
+| --- | --- | --- | --- | --- | --- | --- |
+| Claude PR Review | `review` | sonnet | 1 | — | $0.7347 | $0.7347 |
 
 ### By model
 
 From each run's per-model breakdown. Spend attributed to a model the stage was not configured with is subagent spend.
 
-_No data yet._
+| Model | Cost | Input tokens | Output tokens |
+| --- | --- | --- | --- |
+| `claude-sonnet-5` | $0.7334 | 56 | 9,547 |
+| `claude-haiku-4-5-20251001` | $0.0013 | 1,228 | 14 |
 
 ## By month
 
-_No data yet._
+| Month | Runs | Unmeasured | Total | Largest workflow |
+| --- | --- | --- | --- | --- |
+| 2026-08 | 1 | — | $0.7347 | Claude PR Review |
 
 ## Recent runs (last 25)
 
-_No data yet._
+| When (UTC) | Workflow | Stage | Cost | Turns | Tokens |
+| --- | --- | --- | --- | --- | --- |
+| 2026-08-19 09:06:54 | Claude PR Review | `review` | $0.7347 | 32 | 9,603 |
 
 ---
 
