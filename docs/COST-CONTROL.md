@@ -2,7 +2,7 @@
 
 Per-run API spend for every agent this repository runs. **Generated file — do not edit.** `scripts/cost_report.py` rewrites it from [`cost/ledger.jsonl`](cost/ledger.jsonl) after every agent run; any hand-edit is lost on the next run.
 
-Last updated: **2026-08-19T09:02:44Z** · 49 runs recorded
+Last updated: **2026-08-19T09:10:57Z** · 50 runs recorded
 
 ## What these numbers are
 
@@ -13,18 +13,18 @@ Three limits worth knowing before you act on a number:
 1. **List price, not invoice.** Any negotiated rate makes the real bill lower. Use these to compare stages against each other, and the Anthropic Console for what was actually charged.
 2. **Per stage, not per subagent.** Cost is attributable to one agent invocation. When `apply` spawns `site-reviewer`, that subagent's tokens roll into `apply`'s total. The per-model breakdown below is the only subagent signal available — a stage on Opus showing Sonnet spend is its subagents.
 3. **Agents only.** The deterministic jobs — CI, the freshness check, the AdCP release watch, the refresh preflight — call no model and never appear here. That is the point of them.
-4. **49 of these 49 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
+4. **49 of these 50 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
 
 ## Current month — 2026-08
 
-**$68.2970** across 49 runs.
+**$69.0317** across 50 runs.
 
 ### By workflow
 
 | Workflow | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- |
 | Research Refresh | 37 | — | $46.9857 | $1.2699 |
-| Claude PR Review | 12 | — | $21.3112 | $1.7759 |
+| Claude PR Review | 13 | — | $22.0460 | $1.6958 |
 
 ### By stage
 
@@ -32,7 +32,7 @@ One row per agent. A refresh shard shows as `verify-0`, `verify-1`, … — they
 
 | Workflow | Stage | Tier | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- | --- | --- |
-| Claude PR Review | `review` | opus | 12 | — | $21.3112 | $1.7759 |
+| Claude PR Review | `review` | opus/sonnet | 13 | — | $22.0460 | $1.6958 |
 | Research Refresh | `refresh` | opus | 1 | — | $12.8799 | $12.8799 |
 | Research Refresh | `apply` | opus | 4 | — | $12.7559 | $3.1890 |
 | Research Refresh | `discover` | opus/sonnet | 3 | — | $7.4765 | $2.4922 |
@@ -50,18 +50,22 @@ One row per agent. A refresh shard shows as `verify-0`, `verify-1`, … — they
 
 From each run's per-model breakdown. Spend attributed to a model the stage was not configured with is subagent spend.
 
-_Not available for these runs: every row this month was reconstructed from Actions logs, which carry a single run-level cost and no per-model split. This table fills in from the first live-captured run._
+| Model | Cost | Input tokens | Output tokens |
+| --- | --- | --- | --- |
+| `claude-sonnet-5` | $0.7334 | 56 | 9,547 |
+| `claude-haiku-4-5-20251001` | $0.0013 | 1,228 | 14 |
 
 ## By month
 
 | Month | Runs | Unmeasured | Total | Largest workflow |
 | --- | --- | --- | --- | --- |
-| 2026-08 | 49 | — | $68.2970 | Research Refresh |
+| 2026-08 | 50 | — | $69.0317 | Research Refresh |
 
 ## Recent runs (last 25)
 
 | When (UTC) | Workflow | Stage | Tier | Cost | Turns | Tokens |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-08-19 09:06 | Claude PR Review | `review` | sonnet | $0.7347 | 32 | 9,603 |
 | 2026-08-18 09:15 | Claude PR Review | `review` | opus | $3.1117 | 59 | — |
 | 2026-08-18 08:12 | Claude PR Review | `review` | opus | $3.0789 | 53 | — |
 | 2026-08-18 07:58 | Research Refresh | `apply` | opus | $7.8084 | 84 | — |
@@ -86,7 +90,6 @@ _Not available for these runs: every row this month was reconstructed from Actio
 | 2026-08-12 09:32 | Research Refresh | `verify-4` | opus | $0.0000 ⚠️ error | 1 | — |
 | 2026-08-12 09:32 | Research Refresh | `verify-6` | opus | $0.0000 ⚠️ error | 1 | — |
 | 2026-08-12 09:32 | Research Refresh | `verify-0` | opus | $0.0000 ⚠️ error | 1 | — |
-| 2026-08-12 09:32 | Research Refresh | `verify-1` | opus | $0.0000 ⚠️ error | 1 | — |
 
 ---
 
