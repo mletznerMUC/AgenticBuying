@@ -6,12 +6,20 @@ note here.
 
 ## Current notes
 
+- [`adcp-aamp-2026-08-20.md`](adcp-aamp-2026-08-20.md) — *AdCP and AAMP refresh*,
+  verified 2026-08-20. **The latest note; read it first.** All five due claims reached
+  their sources. Corrects the membership claim — AgenticAdvertising.org does publish a
+  count of its own, 127+, on its homepage, which two prior cycles missed by checking only
+  the About and Membership pages — and moves the release lines to v3.1.16, v3.0.25, and
+  the beta.3 pre-release. Records two new comparison analyses, from IAB Tech Lab and a
+  disclosed-partisan analyst, that disagree about how much the two protocols overlap, and
+  the site fix their reading exposed on `comparison.html`.
 - [`adcp-aamp-2026-08-18.md`](adcp-aamp-2026-08-18.md) — *AdCP and AAMP refresh*,
-  verified 2026-08-18. **The latest note; read it first.** The three due claims all
-  reached their sources: AdCP's release line had moved on (v3.1.15, plus a
-  v3.2.0-beta.0 pre-release), the v3.0.x maintenance line and the unpublished
-  membership count both still hold. Adds five developments and closes four open
-  questions, including why AAMP's announced version history skips 2.1 and 2.2.
+  verified 2026-08-18. The three due claims all reached their sources: AdCP's release
+  line had moved on (v3.1.15, plus a v3.2.0-beta.0 pre-release), and the v3.0.x
+  maintenance line still held. Adds five developments and closes four open questions,
+  including why AAMP's announced version history skips 2.1 and 2.2. Its finding that
+  AgenticAdvertising.org publishes no membership count was superseded on 2026-08-20.
 - [`adcp-aamp-2026-08-04.md`](adcp-aamp-2026-08-04.md) — *AdCP and AAMP refresh*, verified 2026-08-04. **The note behind most of the current content of
   every page.** Re-verification against primary sources corrected eight claims and
   closed five open questions; read it before changing any page whose claims the
@@ -55,29 +63,41 @@ record of what was believed when.
 
 ## Open questions carried forward
 
-The 2026-08-18 refresh closed four questions: AAMP's undocumented 2.1 and 2.2,
-the HorizonOS Blu entry, `agentic-direct`'s repository activity, and the
-FreeWheel/AdCP attribution. One opened. The ones that most affect the site's
+The 2026-08-20 refresh closed none and opened three; the priority topic took
+precedence over the carried backlog. The ones that most affect the site's
 accuracy:
 
-- **AAMP 2.0's date is not primary-datelined.** April is now supported by four
+- **Is AgenticAdvertising.org's own "127+" figure precise?** The organization
+  states it on both its homepage and adcontextprotocol.org's, but does not date
+  it, and no page lists members at that count — so it cannot be reconciled name
+  by name. This replaces the older question of whether any first-party count
+  exists: one does.
+- **AAMP 2.3's date is disputed between IAB Tech Lab's own channels** — its
+  press-release index says 2026-07-27, PR Newswire, MarTechCube, and PPC Land
+  say 2026-07-30. The site publishes 30 July and records the discrepancy.
+- **Whether Agentic Audiences' "v1.0" names a spec generation or a maturity
+  level.** A spec file inside a directory named `specs/v1.0` is headed "Draft
+  v0.1," which contradicts AAMP 2.3's "ready for transactions." Newly open.
+- **Whether an "AAMP 2.4" exists as a protocol version.** Component repos are at
+  v2.4.2 as of 18 August 2026, but no IAB Tech Lab announcement names a 2.4
+  release, so the version framing on the site is badged `reported`.
+- **Which Databricks integration AAMP 2.3 credits.** Neither IABTechLab agent
+  repository mentions Databricks; a Databricks-authored repository built on the
+  official SDKs exists outside the organization, unlinked to the announcement.
+  Newly open.
+- **The IAB Tech Lab scope-clarification post has no publication date** anywhere
+  on the page. Its press-release index and RSS/sitemap have not been checked for
+  a machine-readable one. Newly open.
+- **AAMP 2.0's date is not primary-datelined.** April is supported by four
   secondary sources plus a GitHub errata note on the `seller-agent` v2.0 tag,
   dev.to says June, and the IAB Tech Lab post itself carries no visible date —
   so the claim stays `reported`.
-- **AAMP 2.3's date is disputed between IAB Tech Lab's own channels** — its
-  press-release index says 2026-07-27, PR Newswire, MarTechCube, and PPC Land
-  say 2026-07-30. Newly open. The site publishes 30 July and records the
-  discrepancy.
-- **Whether an "AAMP 2.4" exists as a protocol version.** Component repos carry
-  v2.4.x tags from early August 2026, but no IAB Tech Lab announcement names a
-  2.4 release, so the version framing on the site is badged `reported`.
 - **The AAO's 501(c)(6) status is contested**, not merely pending: the spec repo
   says "pending", the organization's own About page says it is one. An EIN does
   not resolve tax-exempt determination; no IRS filing has been checked.
-- **The exact AgenticAdvertising.org member count is unpublished**, not just
-  unfound — 104+, 113+, and 117+ circulate only in secondary sources.
-- **What AdCP 3.2 ships as stable, and when.** The v3.2.0-beta.0 changelog lists
-  deprecations that will matter to implementers; a pre-release is not a spec
-  release, so the whole line is badged `announced` until one exists.
+- **What AdCP 3.2 ships as stable, and when.** The line ran from beta.0 to
+  beta.3 in three days without a stable release, and its changelog lists
+  deprecations that will matter to implementers; the whole line is badged
+  `announced` until a spec release exists.
 - **Fox Broadcasting's agentic transactions** — the only claim on record is a
   third-party characterization in a MediaPost comment, so nothing is published.

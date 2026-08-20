@@ -26,33 +26,33 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-08-18
+  updated: 2026-08-20
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
-    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.15, published 16 August 2026, continuing a weekly-plus cadence; five patch releases (v3.1.11 to v3.1.15) followed v3.1.10."
+    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.16, published 19 August 2026, continuing a weekly-plus cadence; it followed v3.1.15 of 16 August 2026, itself the last of five patch releases after v3.1.10."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     volatility: high
   - id: adcp-v3-2-0-beta
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html]
-    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line; its changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations, and adds no eighth negotiation surface."
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, followed by beta.1 to beta.3 on 18-19 August 2026; the changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations, and adds no eighth negotiation surface. No stable 3.2 release exists."
     status: announced
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
       - https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html]
-    claim: "A parallel AdCP v3.0.x maintenance line still receives releases alongside v3.1.x; v3.0.22 was published 24 July 2026 and the line continued through v3.0.24 on 16 August 2026."
+    claim: "A parallel AdCP v3.0.x maintenance line still receives releases alongside v3.1.x; v3.0.22 was published 24 July 2026 and the line continued through v3.0.24 on 16 August and v3.0.25 on 19 August 2026."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     volatility: high
   - id: adcp-v3-1-3-withdrawn
     pages: [index.html, adcp.html, tools.html, resources.html]
@@ -170,23 +170,26 @@ claims:
     volatility: low
   - id: adcp-membership-count
     pages: [adcp.html, comparison.html, tools.html]
-    claim: "AgenticAdvertising.org membership is reported at between 104+ and 117+ companies — the figure carried by the most recent secondary count is 113+ — with no official count published; named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
-    status: reported
+    claim: "AgenticAdvertising.org and adcontextprotocol.org both state a first-party membership figure of 127+ companies on their homepages, above the 104+ to 117+ range secondary sources report; the figure is undated by the organization and its About, Membership, and member-directory pages state no aggregate count. Named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
+    status: shipped
     sources:
-      - https://adgentek.ai/blog/agentic-advertising-statistics/
+      - https://adcontextprotocol.org
+      - https://agenticadvertising.org
       - https://agenticadvertising.org/about
       - https://agenticadvertising.org/members
+      - https://adgentek.ai/blog/agentic-advertising-statistics/
       - https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     volatility: high
   - id: adcp-agent-registry
     pages: [adcp.html, tools.html, resources.html]
-    claim: "AgenticAdvertising.org runs a public agent registry listing sales, creative, and signals agents that implement AdCP, filterable by type, status, and compliance."
+    claim: "AgenticAdvertising.org runs a public agent registry listing sales, creative, and signals agents that implement AdCP, filterable by type, status, and compliance; its API returned 30 registered agents on 20 August 2026 — 25 sales, 3 signals, 1 creative, and 1 buying agent."
     status: shipped
     sources:
       - https://agenticadvertising.org/registry/
-    last_verified: 2026-08-04
-    volatility: low
+      - https://adcontextprotocol.org/api/registry/agents
+    last_verified: 2026-08-20
+    volatility: high
   - id: first-agent-to-agent-buy
     pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
     claim: "The first agent-to-agent media buy was a real transaction: a Scope3 buyer agent and a Swivel seller agent transacted LG Ads inventory with two humans approving, dated 15 or 16 October 2025 by differing sources."
@@ -419,13 +422,13 @@ claims:
     volatility: low
   - id: aamp-component-releases-past-2-3
     pages: [index.html, aamp.html, tools.html]
-    claim: "AAMP component repositories tagged releases after the 2.3 milestone — buyer-agent v2.4.1 (10 August 2026), seller-agent v2.4.0 and v2.4.1 (4 and 5 August 2026), iab-agentic-primitives v0.5.1 (10 August 2026) — but no IAB Tech Lab announcement names an AAMP 2.4, so the version framing is unconfirmed."
+    claim: "AAMP component repositories tagged releases after the 2.3 milestone — seller-agent v2.4.0 and v2.4.1 (4 and 5 August 2026), buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 (10 August 2026), and buyer-agent and seller-agent v2.4.2 (18 August 2026) — but no IAB Tech Lab announcement names an AAMP 2.4, so the version framing is unconfirmed."
     status: reported
     sources:
       - https://github.com/IABTechLab/buyer-agent/releases
       - https://github.com/IABTechLab/seller-agent/releases
       - https://github.com/IABTechLab/iab-agentic-primitives/releases
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     volatility: high
   - id: aamp-agentic-direct-commit-gap
     pages: [aamp.html]
@@ -435,6 +438,36 @@ claims:
       - https://github.com/IABTechLab/agentic-direct/commits/main/
     last_verified: 2026-08-18
     volatility: medium
+  - id: agentic-audiences-v1-0-disputed
+    pages: [aamp.html]
+    claim: "AAMP 2.3's release announcement describes Agentic Audiences v1.0 as ready for transactions, but the agentic-audiences repository carries no tagged release and its specs/v1.0 embedding-exchange document is headed \"Draft v0.1\" with \"Status: Draft\", while the README still calls the repository LiveRamp's initial proposal."
+    status: reported
+    sources:
+      - https://github.com/IABTechLab/agentic-audiences
+      - https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md
+      - https://github.com/IABTechLab/agentic-audiences/releases
+      - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
+    last_verified: 2026-08-20
+    volatility: medium
+  - id: aamp-2-3-platform-support-code-trace
+    pages: [aamp.html]
+    claim: "Of AAMP 2.3's announced platform support, the Amazon Bedrock AgentCore path is documented in the seller-agent repository, while neither the seller-agent nor the buyer-agent repository mentions Databricks; a Databricks-authored repository stating it is built on the official IAB AAMP SDKs exists outside the IABTechLab organization, but no announcement identifies it as the credited integration."
+    status: reported
+    sources:
+      - https://github.com/IABTechLab/seller-agent/blob/main/docs/architecture/agentcore.md
+      - https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell
+      - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
+    last_verified: 2026-08-20
+    volatility: medium
+  - id: adcp-aamp-overlap-characterizations
+    pages: [index.html, comparison.html, resources.html]
+    claim: "Two 2026 comparison analyses argue that AdCP/AAMP comparisons routinely understate the two protocols' functional overlap, and disagree on its extent: IAB Tech Lab describes AAMP as covering planning, discovery, negotiation, ordering, governance, audiences, and campaign execution alongside AdCP, while No Fluff Advisory confines the real overlap to the deal-booking plane."
+    status: reported
+    sources:
+      - https://iabtechlab.com/clarifying-the-aamp-scope-why-so-many-aamp-vs-adcp-comparisons-miss-the-mark/
+      - https://nofluffadvisory.com/writing/adcp-vs-aamp/
+    last_verified: 2026-08-20
+    volatility: low
   - id: aamp-2-3-date-discrepancy
     pages: [aamp.html, resources.html]
     claim: "AAMP 2.3's release date differs between channels: IAB Tech Lab's own press-release index dates it 27 July 2026, while PR Newswire, MarTechCube, and PPC Land date it 30 July 2026."
