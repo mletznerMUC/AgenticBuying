@@ -2,7 +2,7 @@
 
 Per-run API spend for every agent this repository runs. **Generated file — do not edit.** `scripts/cost_report.py` rewrites it from [`cost/ledger.jsonl`](cost/ledger.jsonl) after every agent run; any hand-edit is lost on the next run.
 
-Last updated: **2026-08-20T08:56:36Z** · 55 runs recorded
+Last updated: **2026-08-20T09:25:01Z** · 56 runs recorded
 
 ## What these numbers are
 
@@ -13,18 +13,18 @@ Three limits worth knowing before you act on a number:
 1. **List price, not invoice.** Any negotiated rate makes the real bill lower. Use these to compare stages against each other, and the Anthropic Console for what was actually charged.
 2. **Per stage, not per subagent.** Cost is attributable to one agent invocation. When `apply` spawns `site-reviewer`, that subagent's tokens roll into `apply`'s total. The per-model breakdown below is the only subagent signal available — a stage on Opus showing Sonnet spend is its subagents.
 3. **Agents only.** The deterministic jobs — CI, the freshness check, the AdCP release watch, the refresh preflight — call no model and never appear here. That is the point of them.
-4. **49 of these 55 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
+4. **49 of these 56 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
 
 ## Current month — 2026-08
 
-**$81.5354** across 55 runs.
+**$82.4820** across 56 runs.
 
 ### By workflow
 
 | Workflow | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- |
 | Research Refresh | 40 | — | $57.9529 | $1.4488 |
-| Claude PR Review | 15 | — | $23.5825 | $1.5722 |
+| Claude PR Review | 16 | — | $24.5291 | $1.5331 |
 
 ### By stage
 
@@ -32,7 +32,7 @@ One row per agent. A refresh shard shows as `verify-0`, `verify-1`, … — they
 
 | Workflow | Stage | Tier | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- | --- | --- |
-| Claude PR Review | `review` | opus/sonnet | 15 | — | $23.5825 | $1.5722 |
+| Claude PR Review | `review` | opus/sonnet | 16 | — | $24.5291 | $1.5331 |
 | Research Refresh | `apply` | opus | 5 | — | $21.6959 | $4.3392 |
 | Research Refresh | `refresh` | opus | 1 | — | $12.8799 | $12.8799 |
 | Research Refresh | `discover` | opus/sonnet | 4 | — | $8.8819 | $2.2205 |
@@ -53,19 +53,20 @@ From each run's per-model breakdown. Spend attributed to a model the stage was n
 | Model | Cost | Input tokens | Output tokens |
 | --- | --- | --- | --- |
 | `claude-opus-5[1m]` | $8.9382 | 204 | 60,006 |
-| `claude-sonnet-5` | $4.0401 | 184 | 73,630 |
-| `claude-haiku-4-5-20251001` | $0.2602 | 212,078 | 7,617 |
+| `claude-sonnet-5` | $4.9854 | 238 | 92,872 |
+| `claude-haiku-4-5-20251001` | $0.2615 | 213,306 | 7,631 |
 
 ## By month
 
 | Month | Runs | Unmeasured | Total | Largest workflow |
 | --- | --- | --- | --- | --- |
-| 2026-08 | 55 | — | $81.5354 | Research Refresh |
+| 2026-08 | 56 | — | $82.4820 | Research Refresh |
 
 ## Recent runs (last 25)
 
 | When (UTC) | Workflow | Stage | Tier | Cost | Turns | Tokens |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-08-20 09:24 | Claude PR Review | `review` | sonnet | $0.9466 | 36 | 19,296 |
 | 2026-08-20 08:56 | Claude PR Review | `review` | sonnet | $1.1512 | 40 | 16,493 |
 | 2026-08-20 08:50 | Research Refresh | `apply` | opus | $8.9400 | 109 | 60,210 |
 | 2026-08-20 08:33 | Research Refresh | `discover` | sonnet | $1.4054 | 31 | 31,032 |
@@ -90,7 +91,6 @@ From each run's per-model breakdown. Spend attributed to a model the stage was n
 | 2026-08-12 09:34 | Research Refresh | `verify-0` | opus | $0.5883 | 16 | — |
 | 2026-08-12 09:34 | Research Refresh | `verify-4` | opus | $1.0488 | 24 | — |
 | 2026-08-12 09:34 | Research Refresh | `verify-8` | opus | $0.5156 | 18 | — |
-| 2026-08-12 09:34 | Research Refresh | `verify-6` | opus | $0.9981 | 24 | — |
 
 ---
 
