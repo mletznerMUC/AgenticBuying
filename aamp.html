@@ -33,7 +33,7 @@
     platform-support notes; every other claim on this page carries the date it was last verified in
     its own source line</p>
     <p class="source">Name per <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-08-04</p>
-    <p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
       <li><span class="badge announced">announced</span> committed, not yet shipped</li>
@@ -99,7 +99,7 @@
     <figure>
       <div class="figure-wrap">
         <svg viewBox="0 0 560 496" role="img" aria-labelledby="fig-aamp-title">
-          <title id="fig-aamp-title">The AAMP umbrella groups six independently versioned components — Agentic Direct, Buyer Agent, Seller Agent, Registry Agent, ARTF, and Agentic Audiences — over a shared contract library, all built on existing IAB Tech Lab standards.</title>
+          <title id="fig-aamp-title">The AAMP umbrella groups six independently versioned components — Agentic Direct, Buyer Agent, Seller Agent, Registry Agent, ARTF, and Agentic Audiences — over the iab-agentic-primitives shared contract library and the agentic-mobile repository, eight repositories in all, built on existing IAB Tech Lab standards.</title>
 
           <rect class="dgm-band" x="8" y="8" width="544" height="54" rx="6" />
           <text class="dgm-title" x="280" y="32" text-anchor="middle">AAMP — IAB Tech Lab umbrella</text>
@@ -144,8 +144,9 @@
           <text class="dgm-text" x="280" y="473" text-anchor="middle">OpenDirect 2.1 · OpenRTB · AdCOM · VAST</text>
         </svg>
       </div>
-      <figcaption class="source">Figure 1 — The six component repositories the AAMP repository lists, and what
-      each one does. Each is versioned independently and licensing is mixed: ARTF is published under AGPL v3
+      <figcaption class="source">Figure 1 — All eight repositories that hold AAMP's public code: the six
+      independently versioned components the AAMP repository lists, above the shared contract library
+      (iab-agentic-primitives) and agentic-mobile, which the prose above also names. Licensing is mixed: ARTF is published under AGPL v3
       while most other components are Apache 2.0. The standards page names further framework components that
       are not separate repositories — see the prose above. Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>;
       <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>;
@@ -273,18 +274,18 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-04 (one source says June)</th>
-            <td role="cell" data-label="Development">AAMP 2.0: transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1, with audit trails and human-approval guardrails. April is the better-sourced date.</td>
-            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+            <th role="rowheader" scope="row">2026-04 · date disputed</th>
+            <td role="cell" data-label="Development">Framework milestone AAMP 2.0: transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1, with audit trails and human-approval guardrails. The release itself is documented; only its date is disputed — April is better-sourced, one secondary analysis says June, and no primary dateline exists.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-07-30 (index says July 27)</th>
-            <td role="cell" data-label="Development">AAMP 2.3: pricing guardrails, privacy-diligence vendor gate, Agentic Audiences v1.0, Bedrock AgentCore and Databricks support, Meta buying, Google Ad Manager reporting.</td>
+            <th role="rowheader" scope="row">2026-07-30 announced · index lists July 27</th>
+            <td role="cell" data-label="Development">Framework milestone AAMP 2.3: pricing guardrails, privacy-diligence vendor gate, Agentic Audiences v1.0, Bedrock AgentCore and Databricks support, Meta buying, Google Ad Manager reporting.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">2026-08-04/18</th>
-            <td role="cell" data-label="Development">Component repositories tag releases above 2.3 — Seller and Buyer Agent through v2.4.2, iab-agentic-primitives v0.5.1. No IAB Tech Lab announcement names an "AAMP 2.4."</td>
+            <td role="cell" data-label="Development">Component releases, not a framework milestone: Seller and Buyer Agent tag through v2.4.2 and iab-agentic-primitives v0.5.1, above the 2.3 milestone. No IAB Tech Lab announcement names an "AAMP 2.4," and a component version is not a framework version.</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>

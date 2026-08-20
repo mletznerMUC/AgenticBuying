@@ -102,9 +102,13 @@ evidence behind a claim is** — never how important the claim is.
 
 ### The rules
 
-1. **Badges mark exceptions, not everything.** Unbadged prose means *shipped and verified*.
-   A badge that appears on every claim carries no information — that is exactly how the
-   system decayed once already.
+1. **Badges mark exceptions, not everything.** Unbadged prose means *verified against its
+   cited source* — the claim holds as stated. It does **not** mean "shipped": much of the site's
+   unbadged prose describes governance, licensing, architecture, or history, which are not claims
+   about shipped functionality at all. Badges qualify the subset whose evidence is weak or
+   disputed (`reported`, `speculative`) or whose subject is committed but not yet shipped
+   (`announced`). A badge that appears on every claim carries no information — that is exactly
+   how the system decayed once already.
 2. **A badge qualifies a claim, not a paragraph.** If a paragraph is one claim, lead with
    the badge. If a caveat sits inside an otherwise-verified paragraph, place the badge
    immediately after the sentence it qualifies. Ambiguous scope is how a reader ends up
@@ -120,7 +124,7 @@ evidence behind a claim is** — never how important the claim is.
 
 ```html
 <!-- Legend: identical on every page that uses badges -->
-<p class="source">Claims are badged by evidence strength; unbadged statements are verified as shipped.</p>
+<p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
 <ul class="badge-legend">
   <li><span class="badge shipped">shipped</span> released or in production</li>
   <li><span class="badge announced">announced</span> committed, not yet shipped</li>
