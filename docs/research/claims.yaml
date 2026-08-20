@@ -390,8 +390,8 @@ claims:
     volatility: low
   - id: aamp-2-0-sdks
     pages: [aamp.html, comparison.html, tools.html, resources.html]
-    claim: "AAMP 2.0 delivered transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1 with AdCOM, audit trails, and human-approval guardrails, plus an Agentic Audiences OpenRTB extension, Prebid module, and scorer; the release date is disputed between April (better-sourced) and June 2026."
-    status: reported
+    claim: "AAMP 2.0 delivered transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1 with AdCOM, audit trails, and human-approval guardrails, plus an Agentic Audiences OpenRTB extension, Prebid module, and scorer. The release itself is documented by IAB Tech Lab's own post; only its date is contested, which is tracked separately as aamp-2-0-date-disputed."
+    status: shipped
     sources:
       - https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/
       - https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks
@@ -400,6 +400,18 @@ claims:
       - https://github.com/IABTechLab/seller-agent/releases
     last_verified: 2026-08-04
     volatility: medium
+  - id: aamp-2-0-date-disputed
+    pages: [aamp.html, resources.html]
+    claim: "AAMP 2.0's release date is disputed and has no primary dateline: April 2026 is supported by LexisNexis, an IAB New Zealand post of April 29, the standards page's April 23 revision date, PPC Land, and a seller-agent v2.0 release note pointing at an April commit, while one secondary analysis says June. IAB Tech Lab's own release post carries no visible date."
+    status: reported
+    sources:
+      - https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/
+      - https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0
+      - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
+      - https://github.com/IABTechLab/seller-agent/releases
+      - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
+    last_verified: 2026-08-18
+    volatility: low
   - id: aamp-2-3-release
     pages: [index.html, aamp.html, comparison.html, tools.html, resources.html]
     claim: "AAMP 2.3, released 30 July 2026, added pricing guardrails with server-side trust verification, an IAB Diligence Platform/SafeGuard Privacy vendor gate, Agentic Audiences v1.0, and support for Bedrock AgentCore, Databricks, Meta buying, and Google Ad Manager reporting."
