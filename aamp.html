@@ -187,13 +187,24 @@
     its README still describes the repository as LiveRamp's initial proposal, and the
     embedding-exchange specification inside the directory named specs/v1.0 is headed
     "Draft v0.1" and marked "Status: Draft" — which is hard to square with "Agentic Audiences v1.0
-    ready for transactions." Of the announced platform support, the Amazon Bedrock AgentCore path is
-    documented in the Seller Agent repository, with an entrypoint, runtime patches, and a deployment
-    flow; Databricks is not mentioned in either the Seller Agent or the Buyer Agent repository. A
-    Databricks-authored repository that states it is built on the official IAB AAMP SDKs does exist,
-    but it sits outside the IABTechLab organization and no announcement identifies it as the
-    integration the release credits.</p>
-    <p class="source">Source: <a href="https://github.com/IABTechLab/agentic-audiences" rel="noopener">IABTechLab agentic-audiences</a> and its <a href="https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md" rel="noopener">embedding-exchange specification</a>; <a href="https://github.com/IABTechLab/seller-agent/blob/main/docs/architecture/agentcore.md" rel="noopener">seller-agent Bedrock AgentCore documentation</a>; <a href="https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell" rel="noopener">databricks-iab-aamp-buy-sell</a> · last verified 2026-08-20</p>
+    ready for transactions."</p>
+    <p>The release's two announced deployment platforms are documented in different places, and the
+    difference is structural rather than a gap in the record. The Amazon Bedrock AgentCore path is
+    documented inside the Seller Agent repository, with an entrypoint, runtime patches, and a
+    deployment flow — AAMP's own code knows about it. Databricks appears nowhere in the AAMP
+    codebase: a code search across the whole IABTechLab organization finds Databricks named only in
+    unrelated UID2 documentation, and Lakebase not at all. The Databricks path lives on Databricks'
+    side instead, published the same day as AAMP 2.3: a reference implementation and self-deploy
+    accelerator that runs buyer, seller, and registry agents with Lakebase — Databricks' serverless
+    Postgres — as the agents' transactional store and CrewAI as the agent framework, built on IAB
+    Tech Lab's open-source Seller Agent SDK. That is what AAMP 2.3's pluggable-storage framing
+    allows, so the absence from the AAMP repositories is expected rather than surprising.
+    <span class="badge reported">reported</span> Neither IAB Tech Lab nor Databricks states that this
+    accelerator is the integration the release credits, and neither describes a partnership: the
+    identification rests on the shared SDK and the coincident date, and IAB Tech Lab's own
+    announcement names no repository for either platform. The accelerator is also published under
+    the Databricks License rather than the Apache-2.0 of the SDK it builds on.</p>
+    <p class="source">Source: <a href="https://github.com/IABTechLab/agentic-audiences" rel="noopener">IABTechLab agentic-audiences</a> and its <a href="https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md" rel="noopener">embedding-exchange specification</a>; <a href="https://github.com/IABTechLab/seller-agent/blob/main/docs/architecture/agentcore.md" rel="noopener">seller-agent Bedrock AgentCore documentation</a>; <a href="https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell" rel="noopener">databricks-iab-aamp-buy-sell</a>; <a href="https://www.databricks.com/blog/agentic-media-buying-cannot-scale-without-right-foundation-see-how-buyers-and-sellers-get" rel="noopener">Databricks — agentic media buying on Databricks</a>, 30 July 2026 · last verified 2026-08-20</p>
     <p><span class="badge announced">announced</span> For ARTF, IAB Tech Lab has claimed that
     a containerized, same-data-center architecture can cut bid request-response latency by up
     to roughly 80% (from 600–800&nbsp;ms to about 100&nbsp;ms). This is a vendor performance

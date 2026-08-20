@@ -6,6 +6,13 @@ note here.
 
 ## Current notes
 
+- [`databricks-aamp-2026-08-20.md`](databricks-aamp-2026-08-20.md) — *Which Databricks
+  integration AAMP 2.3 credits*, verified 2026-08-20. A focused follow-up on one open
+  question from the note below, not a refresh run. Answers it: the Databricks path is a
+  vendor-side accelerator on Lakebase, published the same day as AAMP 2.3 and naming its own
+  repository, while Bedrock AgentCore is documented inside AAMP's code — a structural split,
+  not a missing record. Corrects `aamp.html`, which said no announcement identified the
+  repository.
 - [`adcp-aamp-2026-08-20.md`](adcp-aamp-2026-08-20.md) — *AdCP and AAMP refresh*,
   verified 2026-08-20. **The latest note; read it first.** All five due claims reached
   their sources. Corrects the membership claim — AgenticAdvertising.org does publish a
@@ -81,10 +88,12 @@ accuracy:
 - **Whether an "AAMP 2.4" exists as a protocol version.** Component repos are at
   v2.4.2 as of 18 August 2026, but no IAB Tech Lab announcement names a 2.4
   release, so the version framing on the site is badged `reported`.
-- **Which Databricks integration AAMP 2.3 credits.** Neither IABTechLab agent
-  repository mentions Databricks; a Databricks-authored repository built on the
-  official SDKs exists outside the organization, unlinked to the announcement.
-  Newly open.
+- **Whether IAB Tech Lab regards the Databricks accelerator as the integration
+  AAMP 2.3 credits.** The narrow residue of a question answered on 2026-08-20:
+  Databricks published the accelerator, and named its repository, the same day as
+  AAMP 2.3, so the repository is not unlinked after all — but nothing on IAB Tech
+  Lab's side references Databricks, in the announcement or in the code. See
+  [`databricks-aamp-2026-08-20.md`](databricks-aamp-2026-08-20.md).
 - **The IAB Tech Lab scope-clarification post has no publication date** anywhere
   on the page. Its press-release index and RSS/sitemap have not been checked for
   a machine-readable one. Newly open.
