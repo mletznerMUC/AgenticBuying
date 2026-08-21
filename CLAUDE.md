@@ -113,6 +113,12 @@ python3 -m http.server 8000
 # "TypeError: fs.globSync is not a function", which is the tool, not your HTML.
 npx --yes html-validate "*.html"
 
-# Regenerate the cost report after pulling (docs/COST-CONTROL.md is generated)
+# Check the cost report for drift (same as CI). Use this after pulling — it
+# ignores the generated timestamp, so it only fails on a real hand-edit.
+python3 scripts/cost_report.py --check
+
+# Regenerate docs/COST-CONTROL.md. Only needed when the ledger actually changed:
+# the generator re-stamps "Last updated" with the current time on every run, so
+# a bare regenerate always dirties the file even when nothing else differs.
 python3 scripts/cost_report.py
 ```
