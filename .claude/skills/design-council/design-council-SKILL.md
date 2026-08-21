@@ -7,7 +7,7 @@ description: "Review websites, landing pages, UI designs, UX flows, wireframes, 
 
 One design review gives you one taste. This council gives you six — each modeled on the *publicly documented* design philosophy of a real, influential designer or UX researcher. Five advisors review independently, then peer-review each other anonymously, then a chairman synthesizes a verdict.
 
-Adapted from Andrej Karpathy's LLM Council: instead of dispatching to different LLMs, we dispatch to sub-agents embodying different documented ways of thinking about design.
+Adapted from Andrej Karpathy's LLM Council, which dispatched the same question to different LLMs. This council varies **both** axes: each sub-agent embodies a different documented way of thinking about design, *and* runs on a different model. Two independent sources of disagreement beat one.
 
 ## Integrity rule (read first, applies always)
 
@@ -51,6 +51,64 @@ Modeled on Jakob Nielsen (10 Usability Heuristics, discount usability, evidence-
 
 ---
 
+## Model Assignment
+
+Five prompts on one model share that model's taste — its default palette, its
+idea of "clean", its sense of what a first-time visitor notices. On design work
+that is a real problem: every current model has a persistent house style, so a
+single-model council will quietly agree with itself about aesthetics. Running
+each lens on a different model makes the disagreements real. Set the `model`
+parameter on each sub-agent spawn; omit it and the sub-agent inherits the
+session's model.
+
+| Role | `model` | Why this model for this lens |
+| --- | --- | --- |
+| Contrarian — Rams lens | `opus` | Deciding what can be removed with nothing lost is a judgment call about function, not a style opinion. |
+| First Principles — Norman lens | `fable` | The lens most likely to conclude the brief misdiagnosed the user's goal. Give the reframe the most capable model available. |
+| Expansionist — Scher lens | `sonnet` | A different tuning point has a different house style — exactly what you want from the lens whose job is "make it unmistakable". |
+| Outsider — Krug lens | `haiku` (`sonnet` for image/screenshot targets — see below) | The point of the lens is *not* having the context to fill gaps. The smallest model is the closest thing to a cold visitor in a hurry; where it has to guess **is** the finding. |
+| Executor — Frost lens | `sonnet` | "What ships Monday, which 14 buttons collapse into 2" needs a fast concrete answer, not the frontier. |
+| Chairman — Nielsen lens | `opus`, or `fable` when the call is iterate-vs-new-direction | Weighing brand arguments against usability evidence across 10 inputs is the hardest single judgment in the session. |
+
+**Vision caveat — this matters more here than in code review.** When the review
+target is a live URL, screenshot, or mockup rather than markup, put the Krug
+lens on `sonnet`, not `haiku`: the high-resolution vision tier is `opus` /
+`sonnet` / `fable`, and `haiku` sees a downscaled image. A cold-visitor finding
+based on a blurry render is a false finding. Keep `haiku` for the Krug lens only
+when the packet is HTML/CSS or a written flow.
+
+**Peer-review round:** spread the five reviewers across the pool (e.g. `fable`,
+`opus`, `sonnet`, `sonnet`, `haiku` — swapping the last for `sonnet` on visual
+targets). Models show self-preference — they rate their own output higher.
+Anonymizing the responses handles the identity bias; mixing reviewer models
+handles the model bias. Doing only one of the two leaves "which response is
+strongest" as a single model's taste, which on design work is the whole
+question.
+
+**Bench swaps** inherit the model of the lens they replace, with one exception:
+the Holmes lens in an ACCESSIBILITY AUDIT runs on `opus` or better — checking
+contrast, focus order, and semantic structure against WCAG 2.2 AA is precision
+work, not taste.
+
+**DIRECTION SHOOTOUT:** model diversity is load-bearing in this mode. Ranking
+2–3 competing directions on a single model returns that model's aesthetic
+preference dressed as a council verdict.
+
+**FAST PATH:** Krug on `haiku` (or `sonnet` for visual targets), Frost on
+`sonnet`, synthesis inline. Cross-model disagreement is most of what the
+peer-review round would have bought you, so the cheap mode keeps the diversity
+and drops the round.
+
+**Cost.** Per token, roughly: `haiku` 1x, `sonnet` 3x, `opus` 5x, `fable` 10x.
+The table above is deliberately mixed rather than all-frontier — one `fable`
+lens, two `opus` roles, the rest cheap. For a routine single-page review, drop
+`fable` to `opus` and the chairman to `sonnet`; state the downgrade in the
+verdict. If a model isn't available in the current session, omit the parameter
+for that spawn and say so rather than silently collapsing the council onto one
+model.
+
+---
+
 ## Session Modes
 
 Choose based on stakes; state the chosen mode before starting.
@@ -73,7 +131,7 @@ Gather context before spawning anyone (≤ ~90 seconds of tool use):
 Assemble a neutral **review packet**: the design (or precise references/URLs/paths), audience and goal, constraints, and the decision at stake. Do not include your own judgment.
 
 ### Step 2 — Convene the council (5 sub-agents in parallel)
-Spawn all 5 advisors **simultaneously** via the Task tool. Never sequentially — earlier reviews must not bleed into later ones. Each sub-agent gets the full review packet, its lens description (copy the relevant section from "The Council" above verbatim), and this instruction:
+Spawn all 5 advisors **simultaneously** via the Agent tool. Never sequentially — earlier reviews must not bleed into later ones. Set each spawn's `model` from the Model Assignment table (mind the vision caveat if the packet is visual). Each sub-agent gets the full review packet, its lens description (copy the relevant section from "The Council" above verbatim), and this instruction:
 
 ```
 You are the [X] lens on a Design Council — an emulation of [person]'s
@@ -99,14 +157,14 @@ specific findings. No preamble.
 Advisors with access should actually fetch the URL / view the screenshots / read the markup, not just the packet summary. The Krug lens must narrate a cold first visit before judging anything.
 
 ### Step 3 — Anonymized peer review (5 sub-agents in parallel)
-Collect the 5 reviews. Relabel them Response A–E in **randomized** order (no positional or identity bias). Spawn 5 fresh reviewer sub-agents; each sees the review packet plus all five anonymized responses and answers, in under 200 words:
+Collect the 5 reviews. Relabel them Response A–E in **randomized** order (no positional or identity bias). Spawn 5 fresh reviewer sub-agents, spread across models per the Model Assignment table; each sees the review packet plus all five anonymized responses and answers, in under 200 words:
 
 1. Which response is strongest, and why?
 2. Which response has the biggest blind spot, and what is it?
 3. What did ALL five miss that matters for this design and its goal?
 
 ### Step 4 — Chairman synthesis (Nielsen lens)
-One final sub-agent (or yourself, if sub-agent budget is tight) receives: the review packet, the 5 de-anonymized reviews, and the 5 peer reviews. It produces the verdict in exactly this structure:
+One final sub-agent on the chairman's model (or yourself, if sub-agent budget is tight) receives: the review packet, the 5 de-anonymized reviews, and the 5 peer reviews. It produces the verdict in exactly this structure:
 
 ```
 ## Council Verdict: {short topic}
@@ -139,6 +197,7 @@ Present the verdict directly in chat as markdown. Do **not** generate HTML repor
 ## Ground Rules
 
 - **Parallel always.** All advisor spawns in one batch; all peer-review spawns in one batch.
+- **Model diversity always.** Assign models per the Model Assignment table, and note the assignment when presenting the verdict — a reader weighing an aesthetic finding deserves to know which model produced it. A council where every lens ran on the same model is a weaker council; say so if that happened.
 - **Anonymize peer review always.** Randomize the letter mapping every session.
 - **Specificity over vibes.** "The hierarchy is weak" is a weak finding; "the three same-weight CTAs in the hero compete, and the primary action is visually third" is a finding. Push advisors toward exact elements.
 - **Judge against the stated goal.** A portfolio site and a checkout flow fail differently; every verdict must reference the audience and conversion goal from the packet.
