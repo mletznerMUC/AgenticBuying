@@ -2,7 +2,7 @@
 
 Per-run API spend for every agent this repository runs. **Generated file — do not edit.** `scripts/cost_report.py` rewrites it from [`cost/ledger.jsonl`](cost/ledger.jsonl) after every agent run; any hand-edit is lost on the next run.
 
-Last updated: **2026-08-20T09:43:59Z** · 57 runs recorded
+Last updated: **2026-08-21T11:12:23Z** · 57 runs recorded
 
 ## What these numbers are
 
