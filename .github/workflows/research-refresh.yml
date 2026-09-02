@@ -455,7 +455,14 @@ jobs:
     needs: [guard, preflight, inventory, verify, discover]
     if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.inventory.result == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # Sized for a `scope: all` sweep, not a `due` run. This is the one stage
+    # where blowing the budget loses the whole run: verify's work is durable in
+    # its artifacts, but apply holds the note, the manifest edits and the PR in
+    # a single uncommitted working tree until the very end, so a timeout here
+    # discards every shard's verification. Run 10 (11 shards, 63 claims) took
+    # 23m37s against the old 25 — an 83-second margin, and the claim count only
+    # grows. Costs nothing when unused: the job ends when the agent returns.
+    timeout-minutes: 40
     permissions:
       contents: write
       pull-requests: write
