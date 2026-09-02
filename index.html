@@ -30,10 +30,10 @@
     on behalf of advertisers — in production, with real money. This site tracks that shift — with a focus on the two emerging
     protocol families, <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> — and
     keeps every claim sourced and dated.</p>
-    <p class="page-meta">Updated <time datetime="2026-08-20">20 August 2026</time> · the
-    20 August refresh re-checked AdCP's release lines and the AAMP component tags and added the
-    developments below; every other claim carries the date it was last verified in its own
-    source line</p>
+    <p class="page-meta">Updated <time datetime="2026-09-02">2 September 2026</time> · the
+    2 September refresh re-checked every claim in the site's manifest against its sources and added
+    the developments below; each entry carries the date it was last verified in its own source
+    line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -44,6 +44,47 @@
 
     <h2>What changed</h2>
     <ol class="changelog">
+      <li>
+        <p class="changelog-date"><time datetime="2026-09-01">1 September 2026</time></p>
+        <p><span class="badge announced">announced</span> AdCP's 3.2 pre-release line reached
+        v3.2.0-beta.10, having run from beta.4 to beta.10 between August 20 and September 1 with
+        still no stable 3.2 release. Those seven pre-releases add specification surface beyond the
+        taxonomy, Trusted Match, and attestation work already recorded below: connected-TV
+        experience profiles against the IAB CTV Ad Portfolio, digital-out-of-home compliance and
+        static posting evidence, audio VAST delivery with Nielsen audio demographic notation,
+        buyer-authored creative revision identity, and principal-layer authentication and brand
+        identity through a brand.json agent URL.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · last verified 2026-09-02</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-24">24 August 2026</time></p>
+        <p><span class="badge reported">reported</span> Prebid's new chairman, OpenX chief
+        technology officer Joel Meyer, described AdCP to AdExchanger as "one of many" agentic
+        standards emerging, adding that while it is "always best if there is one protocol… that is
+        definitely not reality." Prebid maintains AdCP's sell-side reference implementation but is
+        organizationally separate from its spec governance, and Meyer speaks for neither standards
+        body, so this is recorded as an attributed view on protocol fragmentation rather than an
+        organizational position.</p>
+        <p class="source">Source: <a href="https://www.adexchanger.com/publishers/new-chairman-joel-meyer-dishes-on-prebids-reset-for-the-agentic-ad-tech-era/" rel="noopener">AdExchanger</a> · last verified 2026-09-02</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-21">21 August 2026</time></p>
+        <p><span class="badge reported">reported</span> IAB Tech Lab chief operating officer
+        Shailley Singh quantified the overlap between AAMP and AdCP as 13 shared functions spanning
+        the full buy lifecycle, and stated that AAMP "is not an 'impression-layer protocol'." It is
+        a more granular restatement of the seven shared stages in IAB Tech Lab's own
+        scope-clarification post, made by a party to the comparison rather than an independent
+        count.</p>
+        <p class="source">Source: <a href="https://ppc.land/rival-agentic-ad-protocols-overlap-on-13-functions-iab-tech-lab-says/" rel="noopener">PPC Land</a> · last verified 2026-09-02</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-08-21">21 August 2026</time></p>
+        <p>Both AdCP release lines moved again on the same day: v3.1.19 became the latest tagged
+        3.1.x release, following v3.1.18 of August 20, and the parallel v3.0.x maintenance line
+        reached v3.0.26. These tags were read from the release feed's titles and dates, not from
+        their individual changelogs.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-02</p>
+      </li>
       <li>
         <p class="changelog-date"><time datetime="2026-08-19">19 August 2026</time></p>
         <p>Both AdCP release lines moved again: v3.1.16 replaced v3.1.15 as the latest tagged
@@ -113,54 +154,16 @@
         alongside the existing AgenticOS partners Optable and AdRoll.</p>
         <p class="source">Source: <a href="https://www.mediapost.com/publications/article/417034/agentic-guardrails-create-custom-ad-framework.html" rel="noopener">MediaPost</a>; <a href="https://ppc.land/pubmatic-guardrails-block-ai-agents-from-unapproved-ad-inventory/" rel="noopener">PPC Land</a> · last verified 2026-08-18</p>
       </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-04">4 August 2026</time></p>
-        <p>AdCP tagged release v3.1.10, continuing a weekly-plus cadence on the v3.1.x line
-        through July and August. A parallel v3.0.x maintenance line is still receiving releases
-        alongside it (v3.0.22 on 24 July). Release v3.1.3 was withdrawn during that run for adding
-        a schema field in a patch release, which the project states violates its 3.1.x release
-        contract; the documentation pins 3.1.2 as the stable 3.1 target.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-01">1 August 2026</time></p>
-        <p>AdCP v2 was fully deprecated. The specification documentation states that v2 became
-        unsupported when 3.0 reached general availability and was fully deprecated on this date;
-        3.1 is the current stable minor version and is additive over 3.0, so a 3.0-conformant
-        client keeps working.</p>
-        <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP documentation — what's new in 3.0</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">what's new in 3.1</a> · last verified 2026-08-04</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-07-31">31 July 2026</time></p>
-        <p><span class="badge reported">reported</span> Two comparison analyses — one dated, one
-        not — argue that published AdCP/AAMP comparisons understate how much functional ground the
-        two protocols share, and disagree with each other about how much that is. No Fluff
-        Advisory, whose author discloses that he co-leads an AdCP working group, confines the real
-        overlap to deal negotiation and booking. IAB Tech Lab's own scope-clarification post puts
-        it considerably wider — planning, discovery, negotiation, ordering, governance, audiences,
-        and campaign execution — and names treating the Agentic Real Time Framework as the whole of
-        AAMP as the most common error in third-party comparisons. Both are attributed positions
-        rather than adjudicated findings, and neither is adopted here as this site's own
-        description of the overlap. The IAB Tech Lab post carries no visible publication date, so
-        it is grouped with the dated essay rather than dated itself.</p>
-        <p class="source">Source: <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory</a>, 31 July 2026; <a href="https://iabtechlab.com/clarifying-the-aamp-scope-why-so-many-aamp-vs-adcp-comparisons-miss-the-mark/" rel="noopener">IAB Tech Lab</a>, undated · last verified 2026-08-20</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-07-30">30 July 2026</time></p>
-        <p>IAB Tech Lab released AAMP 2.3, aimed at enterprise deployment: pricing guardrails with
-        server-side trust verification on every price-moving path, a vendor-approval gate in the
-        Buyer Agent tied to the IAB Diligence Platform and SafeGuard Privacy, Agentic Audiences
-        v1.0 ready for transactions, and broader platform support — Amazon Bedrock AgentCore,
-        Databricks, buying on Meta, and Google Ad Manager reporting.</p>
-        <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
-      </li>
     </ol>
     <p class="source">Older developments — AdCP's launch, the first agent-to-agent buy, the
     PubMatic and Butler/Till connected-TV campaign, the NBCUniversal cross-platform buys, Optable's
     Audience Agent inside PubMatic AgenticOS, the DanAds and Sigma Software Sales Agent for
-    Publishers, AAMP 2.0, PMG's Alli integration, and Kochava's open beta — are kept in the
-    timeline tables on the <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages;
-    Adform's open-standards commitment is on the <a href="tools.html">Tools</a> page.</p>
+    Publishers, AAMP 2.0, AAMP 2.3, the v3.1.10 release run, the August 1 deprecation of AdCP v2,
+    PMG's Alli integration, and Kochava's open beta — are kept in the timeline tables on the
+    <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages; the two scope-overlap
+    analyses are on the <a href="comparison.html">Comparison</a> page, and Adform's open-standards
+    commitment and Fox's agentic platform, newly primary-sourced this cycle, are on the
+    <a href="tools.html">Tools</a> page.</p>
 
     <h2>Start here</h2>
     <ul class="card-grid">
