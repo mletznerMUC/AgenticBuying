@@ -455,13 +455,13 @@ jobs:
     needs: [guard, preflight, inventory, verify, discover]
     if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.inventory.result == 'success' }}
     runs-on: ubuntu-latest
-    # Sized for a `scope: all` sweep, not a `due` run. This is the one stage
-    # where blowing the budget loses the whole run: verify's work is durable in
-    # its artifacts, but apply holds the note, the manifest edits and the PR in
-    # a single uncommitted working tree until the very end, so a timeout here
-    # discards every shard's verification. Run 10 (11 shards, 63 claims) took
-    # 23m37s against the old 25 — an 83-second margin, and the claim count only
-    # grows. Costs nothing when unused: the job ends when the agent returns.
+    # Sized for a `scope: all` sweep, not a `due` run: run 10 (11 shards, 63
+    # claims) took 23m37s. The agent step below carries its own 35-minute
+    # timeout, five minutes under this one, so that running out of time fails
+    # THAT STEP rather than cancelling the job — which is what lets the salvage
+    # step after it run and push whatever the agent had committed. A job-level
+    # timeout cancels the job, and cancellation is not a reliable place to do
+    # work. Costs nothing when unused: the job ends when the agent returns.
     timeout-minutes: 40
     permissions:
       contents: write
@@ -513,6 +513,10 @@ jobs:
 
       - name: Apply results and open PR
         id: agent
+        # Five minutes under the job's timeout, deliberately: see the job
+        # comment above. This step failing is recoverable; the job being
+        # cancelled is not.
+        timeout-minutes: 35
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -536,6 +540,26 @@ jobs:
             - `_discoveries/discoveries.md` — new developments and open-question
               updates (may be absent).
             - `docs/research/claims.yaml` — the claim manifest, keyed by the same ids.
+
+            ## Commit as you go — this is not optional
+
+            Your working tree is the only copy of your work until you push, and
+            this stage has run to within ninety seconds of its timeout with
+            everything still uncommitted. Had it run out, every verify shard's
+            verification would have been discarded. So:
+
+            1. BEFORE making any edit, create the branch and push it:
+               `git checkout -b claude/research-refresh-<run-date>` then
+               `git push -u origin HEAD`.
+            2. After EACH numbered step below, commit that step's files and push
+               immediately — three commits, in the order the steps are listed.
+               The manifest goes first because it is the cheapest to produce from
+               the verdicts and the site's freshness dates depend on it.
+            3. Open the pull request at the end, once html-validate passes.
+
+            Never save the three steps into one commit at the end. If you run out
+            of time, whatever you pushed survives and is picked up for review;
+            whatever is uncommitted is lost.
 
             ## What to do
 
@@ -573,18 +597,73 @@ jobs:
 
             ## Finishing
 
-            Run `npx --yes html-validate "*.html"` and fix anything it reports.
-            Create a branch named claude/research-refresh-<run-date>, commit, and
-            open a pull request. The PR body must include a short summary table:
-            claims checked, claims changed, sources unreachable, new developments
-            added, open questions closed / still open. Do NOT merge — a human
-            reviews it.
+            Run `npx --yes html-validate "*.html"`, fix anything it reports, and
+            commit and push the fix. Then open a pull request from the branch you
+            created and pushed at the start — do not create a second branch. The
+            PR body must include a short summary table: claims checked, claims
+            changed, sources unreachable, new developments added, open questions
+            closed / still open. Do NOT merge — a human reviews it.
           # Deliberately Opus (the default — no --model here): apply rewrites page
           # prose and badges against docs/DESIGN.md, where nuance matters and a
           # mistake ships to the live site. It is only ONE agent per run, so the
           # quality is worth it. Verify/discover are the Sonnet stages above.
           claude_args: |
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"
+
+      - name: Preserve partial work if apply did not finish
+        # The other half of "commit as you go": the prompt makes the agent push
+        # after each phase, and this makes those pushes visible without a human
+        # knowing to go looking for an orphan branch. Runs whenever the agent
+        # step did not succeed — timeout, API rejection, or its own error.
+        #
+        # The agent's app token is revoked inside its own composite step, so this
+        # re-authenticates with the job's GITHUB_TOKEN. A PR opened with that
+        # token does not trigger CI, which is fine here: the PR is a draft and
+        # explicitly unvalidated, and the next push to it runs CI normally.
+        if: always() && steps.agent.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          branch=$(git for-each-ref --format='%(refname:short)' 'refs/heads/claude/research-refresh-*' | head -1)
+          if [ -z "$branch" ]; then
+            echo "::warning::apply did not finish and left no research-refresh branch; nothing to preserve."
+            exit 0
+          fi
+          dirty=$(git status --porcelain | wc -l | tr -d ' ')
+          # "unknown" rather than an abort if the base ref will not resolve: an
+          # uncountable branch should still be pushed, since pushing is the
+          # salvage and the count is only for the message.
+          commits=$(git rev-list --count "origin/${GITHUB_REF_NAME}..${branch}" 2>/dev/null || echo unknown)
+          if [ "$commits" = "0" ]; then
+            echo "::warning::apply did not finish; branch ${branch} carries no commits, and ${dirty} uncommitted file(s) are not preserved."
+            exit 0
+          fi
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          # This push IS the salvage. If it fails the commits exist only on a
+          # runner that is about to be destroyed, so retry once and then say so
+          # as an error rather than letting set -e end the step quietly.
+          if ! git push -u origin "${branch}"; then
+            sleep 5
+            if ! git push -u origin "${branch}"; then
+              echo "::error::apply did not finish and the salvage push failed twice; ${commits} commit(s) exist only on this runner and are lost."
+              exit 1
+            fi
+          fi
+          existing=$(gh pr list --repo "${GITHUB_REPOSITORY}" --head "${branch}" --state open --json number --jq '.[].number' || true)
+          if [ -z "$existing" ]; then
+            run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            gh pr create --repo "${GITHUB_REPOSITORY}" --draft \
+              --head "${branch}" --base "${GITHUB_REF_NAME}" \
+              --title "Research refresh ${branch#claude/research-refresh-} — PARTIAL, apply did not finish" \
+              --body "The apply stage of [this run](${run_url}) did not finish. These are the ${commits} commit(s) it had pushed before it stopped.
+
+          Draft because it is incomplete by construction: apply commits the manifest, then the page edits, then the dated note, in that order, so the later phases are likely missing. \`html-validate\` had not run. ${dirty} file(s) were uncommitted when the stage stopped and are NOT included.
+
+          Check which phases landed before merging, or use the branch as a starting point rather than merging it as-is." \
+              || echo "::warning::pushed ${branch} but could not open a draft PR for it."
+          fi
+          echo "::warning::apply did not finish; preserved ${commits} commit(s) on ${branch}."
 
       - name: Record cost
         # always(): a step the API rejected costs nothing and must still be

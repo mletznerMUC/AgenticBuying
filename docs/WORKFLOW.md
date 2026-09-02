@@ -193,12 +193,24 @@ halves exist — the discovery agent returned success without writing its file, 
 artifact, discarding five successful verify shards. Durable artifacts only make
 progress durable if a missing one is loud.
 
-The residual gap is `apply` itself. Every other stage's output is durable the
-moment it uploads, but apply holds the note, the manifest edits and the PR in one
-uncommitted working tree until the end, so a timeout there still discards the
-whole run's verification. Hence its deliberately generous `timeout-minutes`: run
-10, a full `scope: all` sweep of 63 claims, needed 23m37s. Checkpointing apply —
-committing and pushing as it goes — is the real fix if a run ever does time out.
+`apply` was the residual gap, and now checkpoints. Every other stage's output is
+durable the moment it uploads its artifact, but apply used to hold the dated note,
+the manifest edits and the pull request in one uncommitted working tree until the
+very end — so a timeout discarded the whole run's verification, which is the
+"a run that timed out produced nothing" failure the pipeline was built to remove,
+surviving in its last un-sharded stage. Run 10, a full `scope: all` sweep of 63
+claims, came within ninety seconds of exactly that.
+
+Three things close it. Apply **creates and pushes its branch before editing
+anything**, and pushes again after each phase — the manifest first, then the page
+edits, then the note, in that order, so the cheapest output to reproduce and the
+one the site's freshness dates depend on lands first. Its **agent step is
+time-boxed 35 minutes against the job's 40**, so running out of time fails that
+step rather than cancelling the job, because a cancelled job is not a reliable
+place to do work. And a **salvage step** then pushes whatever was committed and
+opens a draft pull request titled PARTIAL, naming which phases to expect and how
+many files were uncommitted and therefore lost. A timeout now costs a run its
+completeness, not its work.
 
 Concurrency and cost: verify runs at most **two shards at once** and discover runs
 **after** them, so the pipeline never has more than two Claude Code agents on the
