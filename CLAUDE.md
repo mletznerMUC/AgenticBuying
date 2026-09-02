@@ -22,6 +22,7 @@ The outcome is a **multi-page static HTML website** that provides:
 index.html             Landing page: what agentic buying is, latest headlines
 adcp.html              AdCP deep dive
 aamp.html              AAMP deep dive
+releases.html          Release tracker: last three releases of each protocol, what changed
 comparison.html        Side-by-side AdCP vs. AAMP comparison
 tools.html             Tools & platform directory
 workflows.html         Sample agentic buying workflows

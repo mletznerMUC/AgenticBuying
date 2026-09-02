@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Release tracker for AdCP and AAMP: the last three releases of each, what changed, and why it matters.">
+  <title>Releases · AgenticBuying</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-title" href="index.html">AgenticBuying</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="adcp.html">AdCP</a></li>
+          <li><a href="aamp.html">AAMP</a></li>
+          <li><a href="releases.html" aria-current="page">Releases</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="workflows.html">Workflows</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>Release tracker — AdCP and AAMP</h1>
+    <p class="lead">The last three releases of each protocol: what changed, why it matters, and
+    how strong the evidence is. Version numbers are not comparable between the two projects.</p>
+    <p class="page-meta">Updated <time datetime="2026-09-02">2 September 2026</time> · all claims on this page verified on that date</p>
+    <p class="source">Primary sources: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">AAMP standards page</a></p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+    </ul>
+
+    <h2>How to read these tables</h2>
+    <p>AdCP (Ad Context Protocol) and AAMP (Agentic Advertising Management Protocols) do not
+    version comparably, so their releases are tracked in separate tables and the numbers should
+    never be read across them.</p>
+    <p><strong>AdCP tags the specification itself.</strong> Releases land on GitHub at a
+    weekly-plus cadence, and three lines are active at once: 3.1 as the current stable line,
+    3.0 still receiving maintenance releases, and 3.2 in pre-release.</p>
+    <p><strong>AAMP announces framework milestones and versions its component repositories
+    separately.</strong> Component tags run ahead of the announced milestones — buyer-agent and
+    seller-agent passed through v2.1.x and v2.2.x between the 2.0 and 2.3 announcements, and
+    stand at v2.4.2 while the last announced milestone is 2.3. A component version is therefore
+    not a protocol version.</p>
+    <p>A higher number says nothing about maturity or scope. Each table below states what one
+    release means for that project, and lists stable releases before pre-releases. For the
+    surrounding history — launches, deployments, and governance — see the timelines on
+    <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a>.</p>
+
+    <h2>AdCP</h2>
+    <p>One release is a tagged version of the specification, published on GitHub.</p>
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row"><th role="columnheader" scope="col">Line and latest tag</th><th role="columnheader" scope="col">What changed</th><th role="columnheader" scope="col">Why it matters</th><th role="columnheader" scope="col">Status</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">3.1 — current stable<br>v3.1.19 · <time datetime="2026-08-21">21 Aug 2026</time></th>
+            <td role="cell" data-label="What changed">Three releases in three days — v3.1.16, v3.1.18, v3.1.19. The 3.1 documentation shows creative generation and the CPA performance-buy flow as shipped.</td>
+            <td role="cell" data-label="Why it matters">The line to build on today — and why this site withdrew its former roadmap section: those &#8220;future&#8221; items ship here.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">3.0 — maintenance<br>v3.0.26 · <time datetime="2026-08-21">21 Aug 2026</time></th>
+            <td role="cell" data-label="What changed">Maintenance continues alongside 3.1: v3.0.22 on 24 July, v3.0.25 on 19 August, then v3.0.26 tagged the same day as v3.1.19.</td>
+            <td role="cell" data-label="Why it matters">A 3.0 deployment is still supported, not stranded. No GA date for the 3.0 line was ever published.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">3.2 — pre-release<br>v3.2.0-beta.10 · <time datetime="2026-09-01">1 Sep 2026</time></th>
+            <td role="cell" data-label="What changed">Eleven pre-releases since 17 August, no stable release. Adds CTV experience profiles, DOOH and static-OOH posting evidence, audio VAST with Nielsen demographic notation, and principal-layer authentication via a <code>brand.json</code> Agent URL.</td>
+            <td role="cell" data-label="Why it matters">Extends AdCP past display into out-of-home and audio, but still widening in scope — not yet a base to build on.</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">What&#8217;s new in 3.1</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">What&#8217;s new in v3</a> · last verified 2026-09-02</p>
+
+    <h2>AAMP</h2>
+    <p>One release is either an announced framework milestone or a tagged component release.
+    Both kinds are listed, labeled, because the difference is what readers most often get wrong.</p>
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row"><th role="columnheader" scope="col">Release</th><th role="columnheader" scope="col">What changed</th><th role="columnheader" scope="col">Why it matters</th><th role="columnheader" scope="col">Status</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">AAMP 2.3<br>Framework milestone · <time datetime="2026-07-30">30 Jul 2026</time></th>
+            <td role="cell" data-label="What changed">Pricing guardrails with server-side trust verification, an IAB Diligence Platform and SafeGuard Privacy vendor gate, Agentic Audiences v1.0, and support for Bedrock AgentCore, Databricks, Meta buying, and Google Ad Manager reporting.</td>
+            <td role="cell" data-label="Why it matters">The current milestone to cite. <span class="badge reported">reported</span> Of its two deployment platforms, only the Bedrock path is traceable in AAMP&#8217;s own code.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">AAMP 2.0<br>Framework milestone · 2026, date disputed</th>
+            <td role="cell" data-label="What changed">Transaction-ready Buyer and Seller Agent SDKs on OpenDirect 2.1 with AdCOM, audit trails and human-approval guardrails, plus an Agentic Audiences OpenRTB extension, a Prebid module, and a scorer.</td>
+            <td role="cell" data-label="Why it matters">The baseline every AAMP deployment claim refers back to. <span class="badge reported">reported</span> Sources split between April and June 2026.</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Components v2.4.2<br>Component release · <time datetime="2026-08-18">18 Aug 2026</time></th>
+            <td role="cell" data-label="What changed">seller-agent v2.4.0 and v2.4.1 on 4 and 5 August, buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 on 10 August, then buyer-agent and seller-agent v2.4.2 on 18 August.</td>
+            <td role="cell" data-label="Why it matters">SDK maintenance, not a new framework generation: no announcement names an &#8220;AAMP 2.4&#8221;.</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (AAMP 2.3)</a> · <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a> · <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent releases</a> · <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a> · <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a> · last verified 2026-09-02</p>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <p>AgenticBuying — an independent tracker of agentic buying protocols.
+      Content is verified against primary sources; every claim carries a source and date.
+      <a href="https://github.com/mletznerMUC/AgenticBuying" rel="noopener">Source on GitHub</a>.</p>
+      <p><strong>AI transparency notice.</strong> The content of this site is researched and
+      drafted with AI assistance, with a human editor in the loop: every change is reviewed and
+      approved by a person before publication, and Markus Letzner holds editorial responsibility
+      for the published content. This disclosure follows the transparency provisions of the
+      EU AI Act (Regulation (EU) 2024/1689).</p>
+      <p>&copy; 2026 Markus Letzner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
