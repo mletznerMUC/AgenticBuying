@@ -193,6 +193,13 @@ halves exist — the discovery agent returned success without writing its file, 
 artifact, discarding five successful verify shards. Durable artifacts only make
 progress durable if a missing one is loud.
 
+The residual gap is `apply` itself. Every other stage's output is durable the
+moment it uploads, but apply holds the note, the manifest edits and the PR in one
+uncommitted working tree until the end, so a timeout there still discards the
+whole run's verification. Hence its deliberately generous `timeout-minutes`: run
+10, a full `scope: all` sweep of 63 claims, needed 23m37s. Checkpointing apply —
+committing and pushing as it goes — is the real fix if a run ever does time out.
+
 Concurrency and cost: verify runs at most **two shards at once** and discover runs
 **after** them, so the pipeline never has more than two Claude Code agents on the
 API together — the first `scope: all` run set this higher and tripped the account's

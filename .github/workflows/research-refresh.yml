@@ -360,7 +360,7 @@ jobs:
         # with no trace of the gap. Failing here puts the no-op on the shard
         # that caused it. It costs the run nothing else: fail-fast is off, and
         # apply takes whatever verdicts did land.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: verdict-${{ matrix.shard }}
           path: verdicts/shard-${{ matrix.shard }}.json
@@ -440,7 +440,7 @@ jobs:
         # and five successful verify shards, with it. Fail at the stage that
         # actually produced nothing: apply skips the download when discover is
         # red and still ships the verification results.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: discoveries
           path: discoveries/discoveries.md
@@ -455,7 +455,14 @@ jobs:
     needs: [guard, preflight, inventory, verify, discover]
     if: ${{ !cancelled() && needs.guard.outputs.enabled == 'true' && needs.preflight.result == 'success' && needs.inventory.result == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # Sized for a `scope: all` sweep, not a `due` run. This is the one stage
+    # where blowing the budget loses the whole run: verify's work is durable in
+    # its artifacts, but apply holds the note, the manifest edits and the PR in
+    # a single uncommitted working tree until the very end, so a timeout here
+    # discards every shard's verification. Run 10 (11 shards, 63 claims) took
+    # 23m37s against the old 25 — an 83-second margin, and the claim count only
+    # grows. Costs nothing when unused: the job ends when the agent returns.
+    timeout-minutes: 40
     permissions:
       contents: write
       pull-requests: write
@@ -471,7 +478,7 @@ jobs:
         # still want the verdicts the successful shards uploaded. Only skip when
         # verify was skipped outright (nothing was due).
         if: needs.verify.result != 'skipped'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: _verdicts
           pattern: verdict-*
@@ -484,7 +491,7 @@ jobs:
         # below already treats the file as optional.
         if: needs.discover.result == 'success'
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: _discoveries
           name: discoveries
