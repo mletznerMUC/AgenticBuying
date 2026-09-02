@@ -18,6 +18,15 @@
 # verdicts + discoveries into page edits, a dated note, and a PR. A human still
 # reviews and merges — this never writes to main.
 #
+# STAGE CONTRACTS. Each agent stage's output artifact is its contract with the
+# next stage, so a stage that produces nothing fails at *itself*
+# (`if-no-files-found: error`) instead of passing the gap downstream. `apply`
+# then degrades rather than dying: it takes whatever verdicts landed, skips
+# discoveries when `discover` is red, and still opens a PR. That is the
+# 2026-09-01 lesson — the discovery agent returned success after 9 turns without
+# writing its file, `warn` kept the job green, and `apply` hard-failed on the
+# missing artifact, discarding five successful verify shards with it.
+#
 # The manifest also lets each run check only what is *due* (everything
 # high-volatility every cycle; slower-moving claims on a rotation), so per-run
 # work is bounded by construction rather than scaling with the whole site.
@@ -40,6 +49,15 @@ on:
         description: "Optional discovery topic to prioritize (e.g. 'live AdCP sales endpoints')"
         required: false
         type: string
+      debug:
+        # The action hides agent output "for security", which is why a stage that
+        # silently produced nothing cannot be diagnosed after the fact. Opt-in
+        # rather than always-on: this is a public repository, and the full
+        # transcript carries whatever the agents fetched from the web.
+        description: "Show the agents' full output in the logs (for diagnosing a stage that produced nothing)"
+        required: false
+        default: false
+        type: boolean
 
 # Never run two refreshes at once; a second one would duplicate the PR.
 concurrency:
@@ -266,6 +284,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          show_full_output: ${{ inputs.debug == true }}
           prompt: |
             You are re-verifying a shard of this site's published claims against
             their cited sources. Read docs/research/claims.yaml and, if useful for
@@ -334,11 +353,18 @@ jobs:
           model-tier: sonnet
 
       - name: Upload verdict
+        # error, not warn: downstream, a shard that returned success without
+        # writing its verdict file is indistinguishable from one that had
+        # nothing to say — the run just quietly verifies fewer claims than it
+        # believes it did, and the missing ids keep their old `last_verified`
+        # with no trace of the gap. Failing here puts the no-op on the shard
+        # that caused it. It costs the run nothing else: fail-fast is off, and
+        # apply takes whatever verdicts did land.
         uses: actions/upload-artifact@v4
         with:
           name: verdict-${{ matrix.shard }}
           path: verdicts/shard-${{ matrix.shard }}.json
-          if-no-files-found: warn
+          if-no-files-found: error
 
   # ---------------------------------------------------------------------------
   # Discovery: search for what changed since the last cycle and try to close the
@@ -364,6 +390,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          show_full_output: ${{ inputs.debug == true }}
           prompt: |
             You are the discovery pass of the research refresh. Read CLAUDE.md,
             docs/DESIGN.md, docs/research/README.md and the current research note
@@ -406,11 +433,18 @@ jobs:
           model-tier: sonnet
 
       - name: Upload discoveries
+        # error, not warn. On 2026-09-01 this agent returned success after 9
+        # turns (a normal pass takes ~30) without writing the file; `warn` left
+        # the job green, so apply's `needs.discover.result == 'success'` gate
+        # opened and apply died on the missing artifact — taking the whole run,
+        # and five successful verify shards, with it. Fail at the stage that
+        # actually produced nothing: apply skips the download when discover is
+        # red and still ships the verification results.
         uses: actions/upload-artifact@v4
         with:
           name: discoveries
           path: discoveries/discoveries.md
-          if-no-files-found: warn
+          if-no-files-found: error
 
   # ---------------------------------------------------------------------------
   # Turn the verdicts + discoveries into page edits, a dated note, and a PR.
@@ -444,17 +478,38 @@ jobs:
           merge-multiple: true
 
       - name: Download discoveries
+        # Gated on discover succeeding, and non-fatal even then. apply exists to
+        # land whatever research the run produced, so a missing or unreachable
+        # discoveries artifact must degrade this job, never end it — the prompt
+        # below already treats the file as optional.
         if: needs.discover.result == 'success'
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           path: _discoveries
           name: discoveries
+
+      - name: Report the inputs apply actually received
+        # One legible line saying what reached this job. Without it, a run that
+        # lost a stage's output looks exactly like a quiet cycle with little to
+        # report — which is how the 2026-09-01 loss stayed invisible until the
+        # expected PR simply never appeared.
+        run: |
+          verdicts=$(ls _verdicts/*.json 2>/dev/null | wc -l || true)
+          if [ -f _discoveries/discoveries.md ]; then
+            discoveries="present"
+          else
+            discoveries="absent"
+          fi
+          echo "::notice::apply inputs — verdict files: ${verdicts}, discoveries: ${discoveries}" \
+            "(verify: ${{ needs.verify.result }}, discover: ${{ needs.discover.result }})"
 
       - name: Apply results and open PR
         id: agent
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          show_full_output: ${{ inputs.debug == true }}
           prompt: |
             You are the apply stage of the research refresh. Two upstream stages
             have already done the research; your job is to turn their output into

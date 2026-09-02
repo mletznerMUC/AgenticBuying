@@ -131,9 +131,10 @@ one verified yesterday. Three scheduled workflows close that gap.
 ### Twice monthly: `research-refresh.yml`
 
 Runs at 06:00 UTC on the **1st and 15th**, and on demand via **Actions → Research
-Refresh → Run workflow** (which takes a `scope` — `due` or `all` — and an optional
-`focus` topic). It is a **pipeline of jobs**, not one agent, so a slow run can no
-longer lose all its work:
+Refresh → Run workflow** (which takes a `scope` — `due` or `all` — an optional
+`focus` topic, and a `debug` toggle that unhides the agents' full output when a
+stage needs diagnosing). It is a **pipeline of jobs**, not one agent, so a slow
+run can no longer lose all its work:
 
 ```mermaid
 flowchart LR
@@ -180,6 +181,17 @@ Why the split: re-verification is a *bounded* list of known URLs; discovery is a
 the bounded half — the half the "last verified" dates depend on — and a timeout
 lost everything. Sharding plus per-shard artifacts make progress durable, and the
 manifest keeps each run's work bounded instead of scaling with the whole site.
+
+Stage contracts: each agent stage's output artifact is its contract with the next
+one, so **a stage that produces nothing fails at itself** rather than passing the
+gap downstream — every upload is `if-no-files-found: error`. `apply` is the other
+half of that rule: it degrades instead of dying, taking whatever verdicts landed,
+skipping discoveries when `discover` is red, and still opening a PR, and it logs
+one notice naming exactly which inputs reached it. The 2026-09-01 run is why both
+halves exist — the discovery agent returned success without writing its file, a
+`warn` upload kept the job green, and `apply` then hard-failed on the missing
+artifact, discarding five successful verify shards. Durable artifacts only make
+progress durable if a missing one is loud.
 
 Concurrency and cost: verify runs at most **two shards at once** and discover runs
 **after** them, so the pipeline never has more than two Claude Code agents on the
