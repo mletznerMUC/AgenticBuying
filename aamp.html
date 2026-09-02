@@ -28,11 +28,11 @@
     <h1>AAMP — Agentic Advertising Management Protocols</h1>
     <p class="lead">A deep dive into IAB Tech Lab's AAMP framework: scope, governance,
     specification state, and ecosystem support.</p>
-    <p class="page-meta">Updated <time datetime="2026-08-20">20 August 2026</time> · the 20 August
-    refresh re-checked the component release tags and added the Agentic Audiences and
-    platform-support notes; every other claim on this page carries the date it was last verified in
-    its own source line</p>
-    <p class="source">Name per <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-08-04</p>
+    <p class="page-meta">Updated <time datetime="2026-09-02">2 September 2026</time> · every claim
+    on this page was re-checked against its sources on that date, except the ARTF latency figure,
+    whose sole source could not be reached; each claim carries its own verification date in its
+    source line</p>
+    <p class="source">Name per <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-09-02</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -48,7 +48,7 @@
     Tech Lab's existing standards — OpenRTB, OpenDirect 2.1, AdCOM, and VAST — with agentic
     layers, and uses Anthropic's Model Context Protocol (MCP) and Google's Agent2Agent (A2A)
     as agent interfaces.</p>
-    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn" rel="noopener">dev.to analysis</a> · last verified 2026-09-02</p>
     <p>The IAB Tech Lab formally named the
     initiative AAMP on February 26, 2026 (announced by CEO Anthony Katsur at Beet Retreat),
     explicitly to end market confusion; before that, the work had shipped under separate names
@@ -56,19 +56,19 @@
     IAB Tech Lab's standards page and press releases use the plural "Agentic Advertising
     Management Protocols," while one official IAB video title uses the singular "Agentic Ad
     Management Protocol."</p>
-    <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://www.iab.com/video/get-aampd-iab-tech-labs-agentic-ad-management-protocol/" rel="noopener">IAB video</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://www.iab.com/video/get-aampd-iab-tech-labs-agentic-ad-management-protocol/" rel="noopener">IAB video</a> · last verified 2026-09-02</p>
     <h3>Governance</h3>
     <p>AAMP is developed by IAB Tech Lab's Agentic
     Task Force together with member companies and working groups. The standards page presents the
     framework as three pillars: Agentic Foundations, Agentic Protocols, and Trust and
     Transparency.</p>
-    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a> · last verified 2026-09-02</p>
     <p>The Trust and Transparency pillar's Agent
     Registry is live rather than an ambition: IAB Tech Lab states that it "is open to members, and
     non-members, and is free for anyone to sign up and register," and describes it as providing
     neutral agent transparency and accountability across the ecosystem. The registry's public code
     repository, by contrast, is published as an example implementation and carries no license.</p>
-    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a> · last verified 2026-09-02</p>
 
     <h2>Capabilities</h2>
     <p>AAMP's public code lives across multiple
@@ -80,21 +80,25 @@
     July 30. Licensing is genuinely mixed: most components are Apache 2.0, ARTF is AGPL v3,
     Agentic Audiences carries a non-standard license declaration, and the registry example
     repository carries none.</p>
-    <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a> · the repository list and licensing last verified 2026-09-02; the commit-activity dates last verified 2026-08-04</p>
     <p>Those repositories kept releasing after AAMP 2.3: the Seller Agent tagged v2.4.0 and v2.4.1 on
     August 4 and 5, 2026, the Buyer Agent and iab-agentic-primitives tagged v2.4.1 and v0.5.1 on
     August 10, and both agents tagged v2.4.2 on August 18.
     <span class="badge reported">reported</span> No IAB Tech Lab press release or blog post
     names an "AAMP 2.4," so the tags document component work rather than an announced protocol
-    version. Agentic Direct is the exception to the activity: its most recent commit is dated
+    version. None of those tags moved between August 18 and September 2, 2026. Agentic Direct is the
+    exception to the activity: its most recent commit is dated
     January 27, 2026, so the gap between it and the other components has widened rather than closed.
     No source explains why.</p>
-    <p class="source">Source: <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">IABTechLab seller-agent releases</a>; <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent releases</a>; <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a>; <a href="https://github.com/IABTechLab/agentic-direct/commits/main/" rel="noopener">agentic-direct commit history</a> · last verified 2026-08-20; the Agentic Direct commit gap last verified 2026-08-18</p>
+    <p class="source">Source: <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">IABTechLab seller-agent releases</a>; <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent releases</a>; <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a>; <a href="https://github.com/IABTechLab/agentic-direct/commits/main/" rel="noopener">agentic-direct commit history</a> · last verified 2026-09-02</p>
     <p>The standards page also names framework
     components that are not separate repositories: an Agentic Ad Object derived from AdCOM and an
-    Agentic Deals API. It describes Agentic Audiences as the former LiveRamp User Context Protocol,
-    which is the work this site's timeline records as being rebranded in January 2026.</p>
-    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a> · last verified 2026-08-04</p>
+    Agentic Deals API. It describes Agentic Audiences as "formerly the LiveRamp UCP donation."
+    <span class="badge reported">reported</span> The January 2026 press release that this site's
+    timeline associates with a User Context Protocol rebrand does not mention UCP or Agentic
+    Audiences at all, so the rebrand is attested only by the standards page's retrospective phrasing
+    and no source dates it.</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab AAMP standards page</a>; <a href="https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/" rel="noopener">IAB Tech Lab — Agentic Roadmap</a> · last verified 2026-09-02</p>
 
     <figure>
       <div class="figure-wrap">
@@ -150,7 +154,7 @@
       while most other components are Apache 2.0. The standards page names further framework components that
       are not separate repositories — see the prose above. Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>;
       <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>;
-      <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-08-04</figcaption>
+      <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab</a> · last verified 2026-09-02</figcaption>
     </figure>
     <p>AAMP 2.0 delivered transaction-ready Buyer
     Agent and Seller Agent SDKs (software development kits) that can negotiate, share rate
@@ -162,12 +166,13 @@
     downloadable working software, and the standards page's own April 23 revision date — while one
     secondary analysis says 2.0 landed in June. April is the better-sourced date, but IAB Tech Lab's
     own release post carries no visible dateline, so no primary date could be read.
-    <span class="badge reported">reported</span> A re-check on August 18, 2026 added two data points,
-    both consistent with April and neither a dateline on the release itself: PPC Land's July 30
+    <span class="badge reported">reported</span> Two further data points are consistent with April
+    and neither is a dateline on the release itself: PPC Land's July 30
     report states that 2.0 launched in April, and the Seller Agent repository's v2.0 release note
-    warns that the tag resolves to an April 2026 commit predating the announced features. The date
-    remains disputed.</p>
-    <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks" rel="noopener">LexisNexis</a>; <a href="https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0" rel="noopener">IAB New Zealand</a> · last verified 2026-08-04; the two further April data points from <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a> and <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">the seller-agent release notes</a> · last verified 2026-08-18</p>
+    carries an erratum dated July 22, 2026 warning that the tag resolves to an April 2026 commit
+    predating the announced features. A re-check on September 2, 2026 found no new evidence either
+    way, so the date remains disputed.</p>
+    <p class="source">Source: <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab</a>; <a href="https://www.lexisnexis.com/en-gb/legal/news/iab-tech-lab-releases-aamp-2-0-with-buyer-seller-agent-sdks" rel="noopener">LexisNexis</a>; <a href="https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0" rel="noopener">IAB New Zealand</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">the seller-agent release notes</a> · last verified 2026-09-02</p>
     <p>AAMP 2.3, released July 30, 2026, targets
     enterprise-ready deployment: pricing guardrails so agents cannot invent prices, with
     server-side trust verification described as covering "every price-moving path"; a
@@ -177,12 +182,15 @@
     support — Amazon Bedrock AgentCore, Databricks, buying on Meta, and Google Ad Manager
     reporting. The release credits open-source contributions from HyperMindz (a Deals Sync API
     MCP server) and Mixpeek (a content taxonomy parser for IAB Content Taxonomy v3), alongside
-    SafeGuard Privacy and Adform. <span class="badge reported">reported</span> The release date is
-    not consistent across IAB Tech Lab's own channels: its press-release index dates 2.3 to July 27,
-    2026, while PR Newswire, MarTechCube, and PPC Land all date it July 30. This site uses July 30,
-    the date carried by three independent channels, and records the discrepancy rather than
-    resolving it.</p>
-    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html" rel="noopener">MediaPost</a> · last verified 2026-08-04; the dateline discrepancy against <a href="https://iabtechlab.com/press-releases/" rel="noopener">IAB Tech Lab's press-release index</a> · last verified 2026-08-18</p>
+    SafeGuard Privacy and Adform. The July 30 date is now consistent across every channel checked:
+    IAB Tech Lab's press-release index, its RSS feed — which gives a machine-readable publication
+    time of July 30, 2026 for the companion post — PR Newswire, and PPC Land.
+    <span class="badge reported">reported</span> This site previously recorded a discrepancy, IAB
+    Tech Lab's own index dating 2.3 to July 27. That reading is no longer observable on the index
+    and no source states July 27, so the discrepancy is treated as resolved rather than live; the
+    earlier record is kept here because it is this site's own prior observation and nothing explains
+    the change.</p>
+    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html" rel="noopener">MediaPost</a>; <a href="https://iabtechlab.com/press-releases/" rel="noopener">IAB Tech Lab's press-release index</a>; <a href="https://iabtechlab.com/feed/" rel="noopener">IAB Tech Lab RSS feed</a> · last verified 2026-09-02</p>
     <p><span class="badge reported">reported</span> Two elements of that release read differently in
     the code than in the announcement. The agentic-audiences repository carries no tagged release,
     its README still describes the repository as LiveRamp's initial proposal, and the
@@ -205,12 +213,14 @@
     identification rests on the shared SDK and the coincident date, and IAB Tech Lab's own
     announcement names no repository for either platform. The accelerator is also published under
     the Databricks License rather than the Apache-2.0 of the SDK it builds on.</p>
-    <p class="source">Source: <a href="https://github.com/IABTechLab/agentic-audiences" rel="noopener">IABTechLab agentic-audiences</a> and its <a href="https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md" rel="noopener">embedding-exchange specification</a>; <a href="https://github.com/IABTechLab/seller-agent/blob/main/docs/architecture/agentcore.md" rel="noopener">seller-agent Bedrock AgentCore documentation</a>; <a href="https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell" rel="noopener">databricks-iab-aamp-buy-sell</a>; <a href="https://www.databricks.com/blog/agentic-media-buying-cannot-scale-without-right-foundation-see-how-buyers-and-sellers-get" rel="noopener">Databricks — agentic media buying on Databricks</a>, 30 July 2026 · last verified 2026-08-20</p>
-    <p><span class="badge announced">announced</span> For ARTF, IAB Tech Lab has claimed that
+    <p class="source">Source: <a href="https://github.com/IABTechLab/agentic-audiences" rel="noopener">IABTechLab agentic-audiences</a> and its <a href="https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md" rel="noopener">embedding-exchange specification</a>; <a href="https://github.com/IABTechLab/seller-agent/blob/main/docs/architecture/agentcore.md" rel="noopener">seller-agent Bedrock AgentCore documentation</a>; <a href="https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell" rel="noopener">databricks-iab-aamp-buy-sell</a>; <a href="https://www.databricks.com/blog/agentic-media-buying-cannot-scale-without-right-foundation-see-how-buyers-and-sellers-get" rel="noopener">Databricks — agentic media buying on Databricks</a>, 30 July 2026 · last verified 2026-09-02</p>
+    <p><span class="badge reported">reported</span> For ARTF, IAB Tech Lab has claimed that
     a containerized, same-data-center architecture can cut bid request-response latency by up
     to roughly 80% (from 600–800&nbsp;ms to about 100&nbsp;ms). This is a vendor performance
-    claim and has not been independently benchmarked.</p>
-    <p class="source">Source: <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04</p>
+    claim and has not been independently benchmarked. It is also the one claim on this page that
+    could not be re-checked on September 2, 2026: the sole source carrying the figure returned
+    HTTP 403 to repeated fetches, so the statement stands on its August 4, 2026 reading.</p>
+    <p class="source">Source: <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04; unreachable on 2026-09-02</p>
     <p>Version-numbering note: the announced milestones jump from 2.0 to 2.3, and the reason is how
     AAMP is versioned rather than a missing release. The AAMP repository states that each component
     repository uses independent semantic versioning, and the Buyer and Seller Agent repositories do
@@ -219,7 +229,7 @@
     2.2 as a protocol release — so the announced version history has a gap that the repository
     history does not, and a milestone number cannot be read as the version of any single
     component.</p>
-    <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">IABTechLab buyer-agent releases</a>; <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a> · last verified 2026-08-18</p>
+    <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">IABTechLab buyer-agent releases</a>; <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a> · last verified 2026-09-02</p>
 
     <h2>Adoption &amp; ecosystem</h2>
     <p>PMG integrated AAMP's Buyer Agent
@@ -228,17 +238,17 @@
     media buying, integrate data providers, and coordinate with demand-side platforms, which makes
     this the AAMP deployment on this page that runs in a production agency environment rather than
     a test workspace.</p>
-    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire</a> · last verified 2026-09-02</p>
     <p>Kochava integrated the AAMP Buyer Agent SDK
     into its StationOne platform as an open-source "IAB Workspace," announced March 24, 2026,
     with an open/public beta in Q1–Q2 2026. It lets buyers test standards-compliant agentic
     workflows on OpenDirect 2.1 without committing real spend.</p>
-    <p class="source">Source: <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a> · last verified 2026-09-02</p>
     <p>On the platform side, AAMP 2.3 added support
     for Amazon Bedrock AgentCore and Databricks, buying on Meta, and Google Ad Manager reporting.
     In the broader market, trade press in July 2026 characterized agentic media buying adoption
     overall as "inevitable, but incremental," with industry emphasis on governance over speed.</p>
-    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-08-04</p>
+    <p class="source">Source: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-09-02</p>
 
     <h2>Timeline of developments</h2>
     <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
@@ -254,9 +264,9 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-01</th>
-            <td role="cell" data-label="Development">Comprehensive "Agentic Roadmap" unveiled; User Context Protocol rebranded "Agentic Audiences."</td>
-            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+            <th role="rowheader" scope="row">2026-01-06</th>
+            <td role="cell" data-label="Development">Comprehensive "Agentic Roadmap" unveiled. The rebrand of the User Context Protocol to "Agentic Audiences" is not in that announcement; only the standards page attests it, retrospectively and undated.</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">2026-02-26</th>
@@ -279,19 +289,19 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-07-30 announced · index lists July 27</th>
+            <th role="rowheader" scope="row">2026-07-30</th>
             <td role="cell" data-label="Development">Framework milestone AAMP 2.3: pricing guardrails, privacy-diligence vendor gate, Agentic Audiences v1.0, Bedrock AgentCore and Databricks support, Meta buying, Google Ad Manager reporting.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">2026-08-04/18</th>
-            <td role="cell" data-label="Development">Component releases, not a framework milestone: Seller and Buyer Agent tag through v2.4.2 and iab-agentic-primitives v0.5.1, above the 2.3 milestone. No IAB Tech Lab announcement names an "AAMP 2.4," and a component version is not a framework version.</td>
+            <td role="cell" data-label="Development">Component releases, not a framework milestone: Seller and Buyer Agent tag through v2.4.2 and iab-agentic-primitives v0.5.1, above the 2.3 milestone, with no further tags by September 2. No IAB Tech Lab announcement names an "AAMP 2.4," and a component version is not a framework version.</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire (ARTF v1.0)</a>; <a href="https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/" rel="noopener">IAB Tech Lab roadmap</a>; <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (2.0)</a>; <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (2.3)</a> · last verified 2026-08-04; the August 2026 component-release row verified 2026-08-20 against the <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">component release feeds</a>, and the 2.3 dateline discrepancy 2026-08-18 against <a href="https://iabtechlab.com/press-releases/" rel="noopener">IAB Tech Lab's press-release index</a></p>
+    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire (ARTF v1.0)</a>; <a href="https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/" rel="noopener">IAB Tech Lab roadmap</a>; <a href="https://ppc.land/iab-tech-lab-names-its-agentic-ad-initiative-aamp-to-end-market-confusion/" rel="noopener">PPC Land</a>; <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (2.0)</a>; <a href="https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html" rel="noopener">GlobeNewswire</a>; <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (2.3)</a>; the <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">component release feeds</a>; <a href="https://iabtechlab.com/press-releases/" rel="noopener">IAB Tech Lab's press-release index</a> · all rows last verified 2026-09-02</p>
   </main>
   <footer class="site-footer">
     <div class="inner">
