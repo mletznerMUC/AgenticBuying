@@ -46,7 +46,7 @@ jobs:
           fetch-depth: 0
 
       - name: Download cost records from this run
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: _cost
           pattern: cost-*

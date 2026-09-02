@@ -360,7 +360,7 @@ jobs:
         # with no trace of the gap. Failing here puts the no-op on the shard
         # that caused it. It costs the run nothing else: fail-fast is off, and
         # apply takes whatever verdicts did land.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: verdict-${{ matrix.shard }}
           path: verdicts/shard-${{ matrix.shard }}.json
@@ -440,7 +440,7 @@ jobs:
         # and five successful verify shards, with it. Fail at the stage that
         # actually produced nothing: apply skips the download when discover is
         # red and still ships the verification results.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: discoveries
           path: discoveries/discoveries.md
@@ -471,7 +471,7 @@ jobs:
         # still want the verdicts the successful shards uploaded. Only skip when
         # verify was skipped outright (nothing was due).
         if: needs.verify.result != 'skipped'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: _verdicts
           pattern: verdict-*
@@ -484,7 +484,7 @@ jobs:
         # below already treats the file as optional.
         if: needs.discover.result == 'success'
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: _discoveries
           name: discoveries
