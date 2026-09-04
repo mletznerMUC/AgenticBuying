@@ -17,8 +17,12 @@ note here.
   an enumeration value and an inert metadata pointer in its components. It dates the
   genuine agent-to-agent proofs of concept — Broadsign/Draft Digital/Global Netherlands
   on AdCP (27 May 2026) foremost — and records, as findings rather than omissions, that
-  no such case was located in APAC, LATAM, MEA or DACH, including none for Ströer. Also
-  moves the AdCP 3.2 line past the state the 2026-09-02 note recorded.
+  no such case was located in APAC, LATAM, MEA or DACH, including none for Ströer. It also
+  found the AdCP 3.2 line past the state the 2026-09-02 note recorded — `v3.2.0-rc.0`, plus
+  a `v3.1.20` stable tag — but only `ooh.html` was updated to say so, deliberately, to keep
+  out-of-home specifics on that page; the protocol pages still carry their 2026-09-02 state
+  and the next refresh will correct them from the high-volatility `adcp-v3-2-0-beta` and
+  `adcp-latest-release` rows.
 - [`adcp-aamp-2026-09-02.md`](adcp-aamp-2026-09-02.md) — *AdCP and AAMP refresh*,
   verified 2026-09-02. **The latest full refresh cycle; read it for the protocol pages.** A full-manifest cycle: all
   63 claims re-checked, 62 reaching their sources. Eight changed — four spec drift

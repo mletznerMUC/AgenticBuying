@@ -38,13 +38,13 @@ claims:
     last_verified: 2026-09-02
     volatility: high
   - id: adcp-v3-2-0-beta
-    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html, ooh.html]
-    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-beta.10 of 1 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. Beta.11 of 2 September and rc.0 of 3 September 2026 take the line to release candidate and concentrate on out-of-home conformance: product-scoped identity-absence and reach-methodology declarations, a required reach unit on frequency-only delivery for identity-absent products, and DOOH conformance for frequency-cap rejection and identity-safe delivery reporting. The line adds no eighth negotiation surface."
+    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-beta.10 of 1 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. The line adds no eighth negotiation surface."
     status: announced
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
-    last_verified: 2026-09-04
+      - https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md
+    last_verified: 2026-09-02
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html, releases.html]
