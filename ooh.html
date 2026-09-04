@@ -126,8 +126,8 @@
 
     <h3>AdCP</h3>
     <p>DOOH was one of the twenty media channels AdCP recognized at its 3.0 general availability —
-    the first stable release to name the medium at all — alongside broadcast television and audio.
-    <span class="badge reported">reported</span> The channel documentation goes further than a
+    the first stable release to name the medium at all — alongside broadcast television and audio.</p>
+    <p><span class="badge reported">reported</span> The channel documentation goes further than a
     label: AdCP's DOOH creative channel defines proof-of-play impression-tracker macros, including
     a screen identifier, a play timestamp, venue latitude and longitude, and a venue type, fired
     when a creative displays on a physical screen. Its flat-rate product schema types DOOH deals
@@ -149,9 +149,9 @@
     <p class="source">Sources: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · last verified 2026-09-04</p>
     <p>One entry in that line is worth quoting for what it concedes. The static-out-of-home
     contract states that static units have no play events, that delivery is a period-level modeled
-    audience estimate, and that settlement rests on proof of posting per OAAA conventions. A
-    protocol built for counted impressions is, in that sentence, writing down the fact that a
-    poster cannot be counted.</p>
+    audience estimate, and that settlement rests on proof of posting per the conventions of the
+    OAAA (Out of Home Advertising Association of America). A protocol built for counted impressions
+    is, in that sentence, writing down the fact that a poster cannot be counted.</p>
     <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.0-beta.7</code> entry · last verified 2026-09-04</p>
 
     <h3>AAMP</h3>
@@ -166,13 +166,13 @@
     <p>The component repositories bear that out. IAB Tech Lab's Agentic Deals API carries a
     <code>dooh</code> value in its inventory-type enumeration, alongside site, app, audio, endemic,
     and other — a classification with no venue, screen, or loop schema underneath it. The
-    <code>agentic-direct</code> reference implementation, an A2A and MCP wrapper around OpenDirect
-    2.1, references a DOOH extension in its OpenAPI metadata but exposes no DOOH-specific tools,
-    tasks, or fields beyond that pointer, and its geo targeting reaches no further than the
-    coordinates already in AdCOM. <span class="badge reported">reported</span> The gap looks like
-    neglect rather than intent: the wrapper's most recent commit predates AAMP 2.3 by roughly six
-    months, while the OpenDirect base underneath it has carried out-of-home support since October
-    2024.</p>
+    <code>agentic-direct</code> reference implementation, a wrapper around OpenDirect 2.1 carried
+    over A2A (Agent2Agent) and MCP (Model Context Protocol), references a DOOH extension in its
+    OpenAPI metadata but exposes no DOOH-specific tools, tasks, or fields beyond that pointer, and
+    its geo targeting reaches no further than the coordinates already in AdCOM.
+    <span class="badge reported">reported</span> The wrapper's most recent commit predates AAMP 2.3
+    by roughly six months, while the OpenDirect base underneath it has carried out-of-home support
+    since October 2024.</p>
     <p class="source">Sources: <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IABTechLab/deal-api</a>; <a href="https://raw.githubusercontent.com/IABTechLab/agentic-direct/main/opendirect.json" rel="noopener">IABTechLab/agentic-direct</a>; <a href="https://github.com/IABTechLab/agentic-direct/commits/main/" rel="noopener">agentic-direct commit history</a> · last verified 2026-09-04</p>
     <p>The <a href="comparison.html">comparison page</a> covers the two protocols' general
     divergence; out-of-home is one of the sharper instances of it, and the direction is the reverse
@@ -201,7 +201,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">OpenRTB 2.6</th>
             <td role="cell" data-label="What it provides">A DOOH object replacing Site and App, and a Qty object carrying a fractional impression multiplier per play</td>
-            <td role="cell" data-label="Governance and date">IAB Tech Lab, April 2022; task force with OAAA and Outsmart announced 23 Aug 2021, resources published 7 Dec 2022</td>
+            <td role="cell" data-label="Governance and date">IAB Tech Lab, April 2022; OAAA and Outsmart task force from 23 Aug 2021, resources 7 Dec 2022</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
@@ -218,7 +218,7 @@
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">OpenOOH venue taxonomy</th>
-            <td role="cell" data-label="What it provides">The shared venue vocabulary — v1.2.1 adds an eleven-category, three-tier hierarchy with retail-media and entertainment granularity</td>
+            <td role="cell" data-label="What it provides">The shared venue vocabulary; v1.2.1 adds an eleven-category, three-tier hierarchy</td>
             <td role="cell" data-label="Governance and date">OAAA Taxonomy Committee; v1.2.1 released February 2026</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
@@ -236,7 +236,7 @@
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Route</th>
-            <td role="cell" data-label="What it provides">The United Kingdom's joint industry currency: impressions, reach, cover and frequency across buses, Underground, rail and shopping centres</td>
+            <td role="cell" data-label="What it provides">The United Kingdom's joint industry currency: impressions, reach, cover and frequency</td>
             <td role="cell" data-label="Governance and date">Outdoor Media Centre and Ipsos; long-standing, unrelated to agentic buying</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
@@ -278,13 +278,13 @@
           <tr role="row">
             <th role="rowheader" scope="row">Identity-based primitives</th>
             <td role="cell" data-label="What breaks">Audiences, frequency caps and reach all assume a resolvable person or device</td>
-            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line adds identity-absence and reach-methodology declarations, and requires a reach unit on frequency-only delivery</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line adds identity-absence declarations and requires a reach unit on frequency-only delivery</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Static OOH has no play event</th>
             <td role="cell" data-label="What breaks">A poster is up or it is not; there is nothing to count and no bid to make</td>
-            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line gives static inventory its own metrics block settling on proof of posting, per OAAA conventions, rather than forcing it through the digital schema</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line gives static inventory its own metrics block settling on proof of posting, not the digital schema</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
@@ -320,13 +320,13 @@
           <tr role="row">
             <th role="rowheader" scope="row">Measurement fragmentation</th>
             <td role="cell" data-label="What breaks">Geopath, Route and national bodies use different methods and are not interoperable currencies</td>
-            <td role="cell" data-label="Where the answer stands">The Geopath, OAAA and Ipsos pilot targets a next-generation United States currency; no cross-border harmonization initiative was located</td>
+            <td role="cell" data-label="Where the answer stands">The Geopath, OAAA and Ipsos pilot targets a United States currency; no cross-border initiative located</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Public-space compliance</th>
             <td role="cell" data-label="What breaks">Local content rules and venue restrictions attach to physical space, not to an ad slot</td>
-            <td role="cell" data-label="Where the answer stands">In the one documented end-to-end agentic campaign, compliance stayed in the human oversight layer rather than being delegated to the agents</td>
+            <td role="cell" data-label="Where the answer stands">In the one documented agentic campaign, compliance stayed with human oversight, not the agents</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>
@@ -368,42 +368,42 @@
             <th role="rowheader" scope="row">Broadsign, Draft Digital and Global Netherlands</th>
             <td role="cell" data-label="When">Announced 27 May 2026</td>
             <td role="cell" data-label="Region">Netherlands</td>
-            <td role="cell" data-label="What was demonstrated">A sell-side and a buy-side agent negotiated and executed a charity-lottery campaign over AdCP, delivering 830,000-plus impressions, with human oversight retained throughout</td>
+            <td role="cell" data-label="What was demonstrated">Two agents, one per side, negotiated and executed a campaign over AdCP for 830,000-plus impressions, under human oversight</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">VIOOH Seller Agent</th>
             <td role="cell" data-label="When">H1 2026, announced 26 Jun 2026</td>
             <td role="cell" data-label="Region">United Kingdom</td>
-            <td role="cell" data-label="What was demonstrated">Automated curation of more than 100 premium deal-package requests, returned in seconds to minutes — sell-side packaging, not a negotiated buy, and delivered as a managed service</td>
+            <td role="cell" data-label="What was demonstrated">Automated curation of 100-plus premium deal-package requests — sell-side packaging as a managed service, not a negotiated buy</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Displayce Agentic DOOH</th>
             <td role="cell" data-label="When">Launched 25 Jun 2026</td>
             <td role="cell" data-label="Region">France, 80 countries served</td>
-            <td role="cell" data-label="What was demonstrated">Three agents reachable over MCP for brief intake and curation, activation, and post-campaign analysis; no transaction through them is documented</td>
+            <td role="cell" data-label="What was demonstrated">Three agents reachable over MCP for brief intake, activation and analysis; no transaction through them is documented</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">AdQuick MCP</th>
             <td role="cell" data-label="When">2026, exact date unconfirmed</td>
             <td role="cell" data-label="Region">United States</td>
-            <td role="cell" data-label="What was demonstrated">An MCP server over the platform's inventory and planning data, and a vendor statement that one campaign was planned, purchased and measured through its own agent</td>
+            <td role="cell" data-label="What was demonstrated">An MCP server over its inventory and planning data, plus a vendor statement that one campaign ran end to end through its own agent</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">APAC</th>
             <td role="cell" data-label="When">—</td>
             <td role="cell" data-label="Region">Japan, India, Australia, South-East Asia</td>
-            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. Impression-based programmatic DOOH and general agentic marketing platforms exist, but none is described as agentic out-of-home buying</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. Impression-based programmatic DOOH and general agentic marketing platforms exist; none is out-of-home-specific</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">LATAM</th>
             <td role="cell" data-label="When">—</td>
             <td role="cell" data-label="Region">Brazil, Mexico, wider region</td>
-            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. JCDecaux reports full programmatic connectivity across 4,600-plus screens in nine markets, and VIOOH expanded partnerships in Brazil and Mexico — programmatic supply, not agentic buying</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. JCDecaux's connectivity across 4,600-plus screens and VIOOH's Brazil and Mexico partnerships are programmatic supply</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -471,7 +471,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">VIOOH (JCDecaux)</th>
             <td role="cell" data-label="Role in the channel">Supply-side platform</td>
-            <td role="cell" data-label="What is publicly documented">A Seller Agent that curated 100-plus deal packages in H1 2026; a self-serve rollout and registration with both AdCP and AAMP were described as planned for Q3 2026, and neither was confirmed complete</td>
+            <td role="cell" data-label="What is publicly documented">A self-serve Seller Agent rollout and registration with both AdCP and AAMP, planned for Q3 2026 and neither confirmed complete. Its shipped H1 2026 automation is in the table above</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
@@ -495,7 +495,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">Perion and Hivestack</th>
             <td role="cell" data-label="Role in the channel">Full-stack DOOH</td>
-            <td role="cell" data-label="What is publicly documented">An AI-agent technology credited with 316% year-on-year spend growth in Q1 2026; no located source names a protocol or establishes that it is out-of-home-specific</td>
+            <td role="cell" data-label="What is publicly documented">An AI-agent technology credited with 316% year-on-year spend growth in Q1 2026; no source names a protocol or establishes DOOH specificity</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -507,7 +507,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">Media owners and platforms with nothing located</th>
             <td role="cell" data-label="Role in the channel">Media owners, exchanges, specialists</td>
-            <td role="cell" data-label="What is publicly documented">No agentic, MCP or AdCP/AAMP announcement was located for Ströer, Clear Channel Outdoor, Lamar, OUTFRONT, Intersection, Vistar Media, Place Exchange, Adomni or Taggify</td>
+            <td role="cell" data-label="What is publicly documented">Nothing located for Ströer, Clear Channel Outdoor, Lamar, OUTFRONT, Intersection, Vistar Media, Place Exchange, Adomni or Taggify</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>
