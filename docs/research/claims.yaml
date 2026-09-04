@@ -26,7 +26,7 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-09-02
+  updated: 2026-09-04
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -38,13 +38,13 @@ claims:
     last_verified: 2026-09-02
     volatility: high
   - id: adcp-v3-2-0-beta
-    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
-    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-beta.10 of 1 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. The line adds no eighth negotiation surface."
+    pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html, ooh.html]
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-beta.10 of 1 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. Beta.11 of 2 September and rc.0 of 3 September 2026 take the line to release candidate and concentrate on out-of-home conformance: product-scoped identity-absence and reach-methodology declarations, a required reach unit on frequency-only delivery for identity-absent products, and DOOH conformance for frequency-cap rejection and identity-safe delivery reporting. The line adds no eighth negotiation surface."
     status: announced
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-      - https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md
-    last_verified: 2026-09-02
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
+    last_verified: 2026-09-04
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html, releases.html]
@@ -615,3 +615,168 @@ claims:
       - https://www.crossmint.com/learn/agentic-payments-protocols-compared
     last_verified: 2026-09-02
     volatility: low
+  # --- OOH channel deep dive (ooh.html), seeded from docs/research/ooh-2026-09-04.md ---
+  # Volatility is deliberately split: the agentic layer moves weekly, the standards
+  # and measurement layer moves in quarters, and the dated POCs do not move at all.
+  - id: ooh-adcp-dooh-in-stable-release
+    pages: [ooh.html]
+    claim: "DOOH is one of the twenty media channels AdCP recognized at 3.0 general availability, the first stable release to name the medium; AdCP's DOOH creative channel documents proof-of-play impression-tracker macros for screen identifier, play timestamp, venue latitude and longitude, and venue type, and its flat-rate product schema types DOOH deals with share-of-voice, loop-duration, minimum-plays-per-hour, venue-package, duration and daypart fields plus isochrone, radius and GeoJSON geo targeting. Both descriptions rest on search-indexed extracts and secondary technical synthesis; neither page was opened directly."
+    status: reported
+    sources:
+      - https://docs.adcontextprotocol.org/docs/creative/channels/dooh
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+      - https://nofluffadvisory.com/standards/dooh-place-based-media/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-adcp-3-2-structured-schema
+    pages: [ooh.html]
+    claim: "AdCP's structured out-of-home schema work exists only in the unreleased 3.2 pre-release line, which reached v3.2.0-rc.0 on 3 September 2026: DOOH placement attributes for slot duration, loop duration, screen resolution and motion; an out-of-home metrics block for static inventory covering panels, posting periods, share of voice, illuminated hours and a modeled impression estimate; a DOOH sales specialism; share of voice defined as a duration-weighted time share; and versioned OpenOOH venue identifiers. The static-OOH contract states that static units have no play events, that delivery is a period-level modeled audience estimate, and that settlement rests on proof of posting per OAAA conventions."
+    status: announced
+    sources:
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
+      - https://github.com/adcontextprotocol/adcp/releases
+    last_verified: 2026-09-04
+    volatility: high
+  - id: ooh-aamp-future-scope-not-current
+    pages: [ooh.html]
+    claim: "IAB Tech Lab's AAMP standards page describes the initiative as applying globally to digital advertising, with out-of-home named alongside linear television and radio as a planned future extension rather than current scope; an independent analysis finds DOOH present in AAMP's OpenDirect-based agent SDKs only as media-type enumeration values and demonstration catalog entries, with no dedicated transaction path, in contrast to the dedicated path linear television receives."
+    status: reported
+    sources:
+      - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
+      - https://nofluffadvisory.com/writing/adcp-vs-aamp/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-aamp-component-surface
+    pages: [ooh.html]
+    claim: "AAMP's component repositories carry only a nominal out-of-home surface: IAB Tech Lab's Agentic Deals API has a dooh value in its inventory-type enumeration with no venue, screen or loop schema underneath it, and the agentic-direct reference implementation references a DOOH extension in its OpenAPI metadata but exposes no DOOH-specific tools, tasks or fields and no geo targeting beyond AdCOM's coordinates. The wrapper's most recent commit predates AAMP 2.3 by roughly six months, while its OpenDirect base has supported out-of-home since October 2024."
+    status: reported
+    sources:
+      - https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md
+      - https://raw.githubusercontent.com/IABTechLab/agentic-direct/main/opendirect.json
+      - https://github.com/IABTechLab/agentic-direct/commits/main/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-legacy-programmatic-rails
+    pages: [ooh.html]
+    claim: "Out-of-home's agentic layer sits on mature pre-agentic standards: OpenRTB 2.6 (April 2022) added a DOOH object and a Qty object carrying a fractional, publisher-disclosed impression multiplier per play, following an IAB Tech Lab, OAAA and Outsmart task force announced 23 August 2021 whose resources were published 7 December 2022; AdCOM 1.0 independently defines a matching DOOH object with venue-type and measurement-source fields; and OpenDirect 2.1 added programmatic guaranteed direct trading for classic and digital out-of-home, announced 1 October 2024, predating AAMP."
+    status: shipped
+    sources:
+      - https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md
+      - https://oaaa.org/news/oaaa-partners-with-iab-tech-lab-to-align-dooh-with-openrtb-trade-associations-announce-collaboration-via-task-force/
+      - https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md
+      - https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/
+    last_verified: 2026-09-04
+    volatility: low
+  - id: ooh-openooh-taxonomy-version
+    pages: [ooh.html]
+    claim: "The OpenOOH Venue Taxonomy, the shared DOOH venue vocabulary now governed by OAAA's Taxonomy Committee, was updated to v1.2.1 with an eleven-parent-category, three-tier hierarchy adding retail-media and entertainment granularity. Its sources disagree on the release date -- OAAA's press release carries a 10 February 2026 dateline and trade coverage an 11 February one -- and the openooh/venue-taxonomy repository README still listed v1.1 as current when checked."
+    status: reported
+    sources:
+      - https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html
+      - https://invidis.com/sixteen-nine/2026/02/11/oaaa-releases-updated-openooh-taxonomy-to-streamline-dooh-buying/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-measurement-currencies
+    pages: [ooh.html]
+    claim: "Out-of-home audience measurement runs on non-interoperable national currencies: the IAB, with the MRC, publishes a DOOH Measurement Guide defining impressions from opportunity to see through likelihood to see, with valid impressions calculated as spots times a data-driven, publisher-disclosed multiplier (its publication date was not independently confirmed), while Route remains the United Kingdom's joint industry currency reporting impressions, reach, cover and frequency. No cross-border harmonization initiative was located."
+    status: shipped
+    sources:
+      - https://www.iab.com/guidelines/dooh-measurement-guide/
+      - https://www.route.org.uk/audience.php
+    last_verified: 2026-09-04
+    volatility: low
+  - id: ooh-geopath-ams-pilot
+    pages: [ooh.html]
+    claim: "Geopath and OAAA selected Ipsos to pilot a next-generation United States out-of-home audience-measurement platform, the Advance Measurement System, announced 31 March 2026, with the pilot launching in the second half of 2026, transition from the current Geopath system beginning in 2027, and full adoption targeted for 2028."
+    status: announced
+    sources:
+      - https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-dooh-playout-latency-unaddressed
+    pages: [ooh.html]
+    claim: "DOOH real-time bidding resolves in roughly 100 to 300 milliseconds per request even though some inventory is prefetched minutes or hours before it plays, and no primary AdCP or AAMP statement addressing DOOH playout latency was located; agent-mediated negotiation sits at planning time, outside the bid path, rather than solving the constraint."
+    status: reported
+    sources:
+      - https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/
+    last_verified: 2026-09-04
+    volatility: low
+  - id: ooh-poc-broadsign-draftdigital-global-nl
+    pages: [ooh.html]
+    claim: "Broadsign's sell-side agent and Draft Digital's buy-side agent, communicating over AdCP, planned, booked and executed an out-of-home campaign for the Dutch charity lottery Lot of Happiness on Global Netherlands inventory, announced 27 May 2026, delivering more than 830,000 impressions across supermarkets, malls, gas stations and city screens, with human oversight and guardrails -- including for compliance with local regulations -- retained throughout. The campaign and its use of AdCP are corroborated across seven or more independent trade outlets, none of which this research opened directly; the participants' first-ever framing is a vendor claim and is not independently verifiable."
+    status: reported
+    sources:
+      - https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/
+      - https://www.digitalsignagetoday.com/news/broadsign-ai-agent-executes-agentic-ai-ooh-campaign/
+      - https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/
+    last_verified: 2026-09-04
+    volatility: low
+  - id: ooh-poc-viooh-seller-agent
+    pages: [ooh.html]
+    claim: "VIOOH's Seller Agent automated the curation of more than 100 premium DOOH deal-package requests during the first half of 2026, announced at Cannes Lions on 26 June 2026, returning deal packages in seconds to minutes as sell-side packaging rather than a negotiated buy, and delivered as a managed service with VIOOH staff involved."
+    status: shipped
+    sources:
+      - https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026
+      - https://ppc.land/vioohs-seller-agent-automated-100-dooh-deals-in-h1-2026/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-viooh-selfserve-and-registration
+    pages: [ooh.html]
+    claim: "VIOOH's self-serve Seller Agent rollout and its stated registration with both AdCP and AAMP were described as planned for the third quarter of 2026 in its 26 June 2026 announcement; no source located as of 4 September 2026 confirms either as complete."
+    status: announced
+    sources:
+      - https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026
+    last_verified: 2026-09-04
+    volatility: high
+  - id: ooh-poc-displayce-mcp-agents
+    pages: [ooh.html]
+    claim: "Displayce, JCDecaux's connected DSP operating in 80 countries, launched an Agentic DOOH suite of three agents reachable over MCP -- brief intake and inventory curation, campaign activation, and post-campaign analysis -- announced 25 June 2026 at Cannes Lions and usable from general assistants; no located source confirms a media buy transacted through them."
+    status: shipped
+    sources:
+      - https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/
+      - https://ppc.land/displayce-launches-agentic-dooh-agents-via-mcp-at-cannes-lions-2026/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-poc-adquick-mcp
+    pages: [ooh.html]
+    claim: "AdQuick offers AdQuick MCP, an MCP server connecting its out-of-home inventory and planning data to AI agents, and states on its own site that a Cannes Lions 2026 campaign was conceived, planned, purchased and measured entirely through its platform and AI agent; no independent third party or counterpart agent is named, and the page was not opened directly."
+    status: reported
+    sources:
+      - https://www.adquick.com/ooh-mcp
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-vendor-agent-claims-unattributed
+    pages: [ooh.html]
+    claim: "Two widely cited agent claims are not established as out-of-home-specific: Perion reported that its Outmax AI-agent technology grew ad spend 316% year on year in Q1 2026 alongside 29% DOOH-segment growth, but no located source names a protocol or establishes DOOH specificity; and Magnite Orchestration, a buyer-agent and seller-agent coordination layer in test with dentsu and DIRECTV Advertising, is not tied to DOOH inventory by any located source."
+    status: reported
+    sources:
+      - https://ppc.land/perion-bets-on-ai-agents-as-ctv-and-dooh-surge-in-q1-2026/
+      - https://www.magnite.com/press/introducing-magnite-orchestration-powering-the-future-of-agentic-advertising/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-poc-regional-absence
+    pages: [ooh.html]
+    claim: "No genuine agent-to-agent out-of-home buying proof of concept was located in APAC, LATAM, the Middle East and Africa, or the DACH region as of 4 September 2026, and no agentic out-of-home announcement was located for Ströer despite a targeted search; activity found in those regions -- JCDecaux's full programmatic connectivity across 4,600-plus screens in nine Latin American markets, VIOOH's Brazil and Mexico partnerships, and Gulf mall and airport contracts -- is programmatic supply or direct-sales expansion, not agent-mediated buying. Every located genuine agentic out-of-home case is European or North American."
+    status: reported
+    sources:
+      - https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/
+      - https://invidis.com/news/2026/01/dooh-al-arabia-wins-uae-mall-network-and-saudi-airport-contracts/
+      - https://meedia.de/news/beitrag/24776-neues-stroeer-werbeformat-integriert-interaktive-ki-beratung-fuer-kunden.html
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-media-owner-absence
+    pages: [ooh.html]
+    claim: "No public agentic, MCP, or AdCP/AAMP announcement was located for Ströer, Clear Channel Outdoor, Lamar, OUTFRONT, Intersection, Vistar Media, Place Exchange, Adomni or Taggify as of 4 September 2026; Broadsign's only located agentic activity is its role as the sell-side agent in the Netherlands campaign, and JCDecaux's is through its VIOOH and Displayce subsidiaries."
+    status: reported
+    sources:
+      - https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/
+    last_verified: 2026-09-04
+    volatility: medium
+  - id: ooh-cross-channel-absence
+    pages: [ooh.html]
+    claim: "No source was located describing a working unified reach-and-frequency methodology that includes out-of-home alongside connected television and mobile, agent-mediated or otherwise -- 2026 cross-channel reach commentary concentrates on linear television, connected television and digital -- and none describing an agent reallocating budget between out-of-home and another channel mid-flight. Every located agentic out-of-home case is single-channel."
+    status: reported
+    sources:
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
+    last_verified: 2026-09-04
+    volatility: medium

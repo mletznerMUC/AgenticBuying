@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Out-of-home (OOH) and digital out-of-home (DOOH) in agentic buying: what AdCP and AAMP cover, worldwide proofs of concept, and the problems a one-to-many medium poses.">
+  <meta name="description" content="Out-of-home (OOH) and digital out-of-home (DOOH) in agentic buying: what AdCP and AAMP cover, the standards underneath, worldwide proofs of concept, and the problems a one-to-many medium poses.">
   <title>OOH · AgenticBuying</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -29,10 +29,10 @@
   <main>
     <h1>Out-of-home as an agentic channel</h1>
     <p class="lead">A channel deep dive on OOH (out-of-home) and DOOH (digital out-of-home): which
-    parts of the agentic buying protocols reach the medium today, what has actually been piloted,
-    and where a one-to-many medium fits the protocols' one-to-one primitives badly.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · each claim
-    on this page carries its own verification date in its source line</p>
+    parts of the agentic buying protocols reach the medium, what has actually been piloted and
+    where, and why a medium that addresses places rather than people fits the protocols'
+    primitives badly.</p>
+    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · all claims on this page verified on that date</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -41,35 +41,530 @@
       <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
     </ul>
 
-    <h2>What the protocols cover today</h2>
-    <p><span class="badge announced">announced</span> AdCP's (Ad Context Protocol) first
-    out-of-home-specific specification surface sits in the 3.2 pre-release line, not in a stable
-    release. Between August 20 and September 1, 2026, pre-releases v3.2.0-beta.4 through
-    v3.2.0-beta.10 widened the line into channel-specific delivery, and two of those items name the
-    medium directly: digital-out-of-home compliance, and posting evidence for static out-of-home.
-    The same stretch of the line adds connected-TV experience profiles and audio VAST delivery, so
-    out-of-home arrives as one of several channel extensions rather than as a standalone module. No
-    stable 3.2 release existed as of September 2, 2026, so none of it is a shipped surface a buyer
-    can build against.</p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-02</p>
-    <p>That the medium reaches the specification through a pre-release line rather than through the
-    seven negotiation surfaces of AdCP 3.1 is the fact this page is organized around: the channel's
-    protocol coverage is newer than the channel's programmatic infrastructure, and the two do not
-    yet meet. The <a href="releases.html">release tracker</a> carries the version detail, and the
-    <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages carry each protocol's
-    general scope.</p>
+    <h2>Two layers, moving at different speeds</h2>
+    <p>Out-of-home has two distinct layers of machine-readable support, and conflating them is the
+    most common error in coverage of the channel. The <strong>programmatic rails</strong> are
+    mature: OpenRTB 2.6 added a DOOH object and an impression-multiplier object in April 2022,
+    AdCOM defines a matching DOOH object, OpenDirect 2.1 added guaranteed direct trading for
+    out-of-home in October 2024, and the OpenOOH venue taxonomy has given the industry a shared
+    venue vocabulary for years. None of that is agentic; all of it predates the agentic protocols,
+    and a demand-side platform has been able to bid on a physical screen and estimate an audience
+    per play for some time.</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6 specification</a>; <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md" rel="noopener">AdCOM 1.0</a>; <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect</a> · last verified 2026-09-04</p>
+    <p>The <strong>agentic layer</strong> on top is thin and new. AdCP's (Ad Context Protocol)
+    structured out-of-home schema work sits in an unreleased pre-release line; AAMP (Agentic
+    Advertising Management Protocols) names out-of-home as future scope rather than current
+    coverage. The consequence for a buyer is specific: the channel's programmatic plumbing is
+    older than its agentic vocabulary, and the two do not yet meet in a stable release.</p>
 
-    <h2>Sections in preparation</h2>
-    <div class="todo-content"><p>The research pipeline is verifying the rest of this page against
-    primary sources: the venue and measurement standards an agentic OOH buy depends on, the
-    platforms and media owners active in the channel, dated proofs of concept and live examples by
-    region, the medium-specific problems — audience-per-play estimation, proof of play, screen
-    versus venue versus network addressability, loop and share-of-voice scheduling, creative
-    heterogeneity — with the solutions being proposed for each, and how an agent holds out-of-home
-    in the same plan as connected TV and mobile. Sourced sections replace this note as each is
-    verified; progress is tracked in the
-    <a href="https://github.com/mletznerMUC/AgenticBuying/issues" rel="noopener">issue
-    tracker</a>.</p></div>
+    <figure>
+      <div class="figure-wrap">
+        <svg viewBox="0 0 560 564" role="img" aria-labelledby="fig-ooh-title">
+          <title id="fig-ooh-title">Out-of-home's agentic layer — AdCP's unreleased 3.2 schema work and AAMP's single DOOH enumeration value — sits above a mature layer of pre-agentic standards (OpenRTB 2.6, AdCOM 1.0, OpenDirect 2.1, the OpenOOH venue taxonomy), which in turn addresses a nested physical medium: a network of screens, a venue type, an individual screen, and a slot inside a playout loop. Delivery evidence is a count of plays multiplied by an estimated audience per play, and static out-of-home has no play events at all, settling instead on proof of posting.</title>
+
+          <rect class="dgm-band" x="8" y="8" width="544" height="112" rx="6" />
+          <text class="dgm-title" x="280" y="31" text-anchor="middle">Agentic layer</text>
+          <text class="dgm-text" x="280" y="49" text-anchor="middle">new; the out-of-home parts largely unreleased</text>
+
+          <rect class="dgm-node" x="20" y="58" width="252" height="52" rx="6" />
+          <text class="dgm-title" x="146" y="80" text-anchor="middle">AdCP</text>
+          <text class="dgm-text" x="146" y="100" text-anchor="middle">DOOH schema in 3.2 pre-release</text>
+
+          <rect class="dgm-node" x="288" y="58" width="252" height="52" rx="6" />
+          <text class="dgm-title" x="414" y="80" text-anchor="middle">AAMP</text>
+          <text class="dgm-text" x="414" y="100" text-anchor="middle">one enum value, no OOH path</text>
+
+          <rect class="dgm-band" x="8" y="132" width="544" height="160" rx="6" />
+          <text class="dgm-title" x="280" y="155" text-anchor="middle">Programmatic rails</text>
+          <text class="dgm-text" x="280" y="173" text-anchor="middle">mature and pre-agentic</text>
+
+          <rect class="dgm-node" x="20" y="182" width="252" height="48" rx="6" />
+          <text class="dgm-title" x="146" y="203" text-anchor="middle">OpenRTB 2.6</text>
+          <text class="dgm-text" x="146" y="221" text-anchor="middle">DOOH and Qty objects</text>
+
+          <rect class="dgm-node" x="288" y="182" width="252" height="48" rx="6" />
+          <text class="dgm-title" x="414" y="203" text-anchor="middle">AdCOM 1.0</text>
+          <text class="dgm-text" x="414" y="221" text-anchor="middle">DOOH object</text>
+
+          <rect class="dgm-node" x="20" y="238" width="252" height="48" rx="6" />
+          <text class="dgm-title" x="146" y="259" text-anchor="middle">OpenDirect 2.1</text>
+          <text class="dgm-text" x="146" y="277" text-anchor="middle">guaranteed direct for OOH</text>
+
+          <rect class="dgm-node" x="288" y="238" width="252" height="48" rx="6" />
+          <text class="dgm-title" x="414" y="259" text-anchor="middle">OpenOOH v1.2.1</text>
+          <text class="dgm-text" x="414" y="277" text-anchor="middle">venue taxonomy</text>
+
+          <rect class="dgm-band" x="8" y="304" width="544" height="186" rx="6" />
+          <text class="dgm-title" x="280" y="327" text-anchor="middle">What the buy addresses — a place, nested</text>
+
+          <rect class="dgm-node" x="16" y="336" width="520" height="34" rx="6" />
+          <text class="dgm-text" x="30" y="358">Network — an operator's screen estate</text>
+
+          <rect class="dgm-node" x="48" y="374" width="488" height="34" rx="6" />
+          <text class="dgm-text" x="62" y="396">Venue — an OpenOOH venue type</text>
+
+          <rect class="dgm-node" x="80" y="412" width="456" height="34" rx="6" />
+          <text class="dgm-text" x="94" y="434">Screen — resolution, orientation, motion</text>
+
+          <rect class="dgm-node" x="112" y="450" width="424" height="34" rx="6" />
+          <text class="dgm-text" x="126" y="472">Slot — a share of the playout loop</text>
+
+          <rect class="dgm-band" x="8" y="502" width="544" height="54" rx="6" />
+          <text class="dgm-text" x="280" y="524" text-anchor="middle">delivery evidence: plays × estimated audience per play</text>
+          <text class="dgm-text" x="280" y="544" text-anchor="middle">static out-of-home has no plays — settlement is proof of posting</text>
+        </svg>
+      </div>
+      <figcaption class="source">Figure 1 — The two layers and what they address. The nesting in the
+      third band is the addressability problem in miniature: a buyer may mean a network, a venue
+      type, one screen, or a share of one screen's loop, and an agent has to be told which. Sources:
+      <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a>;
+      <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>;
+      <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on the OpenOOH taxonomy</a> · last verified 2026-09-04</figcaption>
+    </figure>
+
+    <h2>What the protocols cover today</h2>
+
+    <h3>AdCP</h3>
+    <p>DOOH was one of the twenty media channels AdCP recognized at its 3.0 general availability —
+    the first stable release to name the medium at all — alongside broadcast television and audio.
+    <span class="badge reported">reported</span> The channel documentation goes further than a
+    label: AdCP's DOOH creative channel defines proof-of-play impression-tracker macros, including
+    a screen identifier, a play timestamp, venue latitude and longitude, and a venue type, fired
+    when a creative displays on a physical screen. Its flat-rate product schema types DOOH deals
+    directly, with fields for share of voice, loop duration, minimum plays per hour, venue package,
+    duration, and daypart, and geo targeting expressed as travel-time isochrones, a radius, or
+    GeoJSON. Both of those descriptions rest on secondary technical synthesis and on search-indexed
+    extracts of the documentation rather than on pages opened directly, so they are marked as
+    resting on sources this site could not read at first hand.</p>
+    <p class="source">Sources: <a href="https://docs.adcontextprotocol.org/docs/creative/channels/dooh" rel="noopener">AdCP DOOH creative channel documentation</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP — what's new in v3</a>; <a href="https://nofluffadvisory.com/standards/dooh-place-based-media/" rel="noopener">No Fluff Advisory, DOOH and place-based media standards</a> · last verified 2026-09-04</p>
+    <p><span class="badge announced">announced</span> The richer, structured out-of-home work is
+    confined to the unreleased 3.2 pre-release line, which reached <code>v3.2.0-rc.0</code> on
+    September 3, 2026 with no stable 3.2 release. That line adds DOOH placement attributes for slot
+    duration, loop duration, screen resolution, and motion; an out-of-home metrics block for static
+    and classic inventory covering panels, posting periods, share of voice, illuminated hours, and a
+    modeled impression estimate; a DOOH sales specialism; share of voice defined as a
+    duration-weighted time share; and versioned OpenOOH venue identifiers. The same line carries
+    connected-television experience profiles and audio delivery, so out-of-home arrives as one of
+    several channel extensions rather than as a standalone module.</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · last verified 2026-09-04</p>
+    <p>One entry in that line is worth quoting for what it concedes. The static-out-of-home
+    contract states that static units have no play events, that delivery is a period-level modeled
+    audience estimate, and that settlement rests on proof of posting per OAAA conventions. A
+    protocol built for counted impressions is, in that sentence, writing down the fact that a
+    poster cannot be counted.</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.0-beta.7</code> entry · last verified 2026-09-04</p>
+
+    <h3>AAMP</h3>
+    <p><span class="badge reported">reported</span> IAB Tech Lab's AAMP standards page describes the
+    initiative as applying globally to digital advertising, with out-of-home — alongside linear
+    television and radio — named as a planned future extension rather than as current scope. An
+    independent comparison analysis reaches the same conclusion from the code: DOOH appears in
+    AAMP's OpenDirect-based agent software development kits only as media-type enumeration values
+    and demonstration catalog entries, with no dedicated transaction path, in explicit contrast to
+    the dedicated path linear television receives.</p>
+    <p class="source">Sources: <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab — AAMP</a>; <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory, "AdCP vs AAMP"</a> · last verified 2026-09-04</p>
+    <p>The component repositories bear that out. IAB Tech Lab's Agentic Deals API carries a
+    <code>dooh</code> value in its inventory-type enumeration, alongside site, app, audio, endemic,
+    and other — a classification with no venue, screen, or loop schema underneath it. The
+    <code>agentic-direct</code> reference implementation, an A2A and MCP wrapper around OpenDirect
+    2.1, references a DOOH extension in its OpenAPI metadata but exposes no DOOH-specific tools,
+    tasks, or fields beyond that pointer, and its geo targeting reaches no further than the
+    coordinates already in AdCOM. <span class="badge reported">reported</span> The gap looks like
+    neglect rather than intent: the wrapper's most recent commit predates AAMP 2.3 by roughly six
+    months, while the OpenDirect base underneath it has carried out-of-home support since October
+    2024.</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IABTechLab/deal-api</a>; <a href="https://raw.githubusercontent.com/IABTechLab/agentic-direct/main/opendirect.json" rel="noopener">IABTechLab/agentic-direct</a>; <a href="https://github.com/IABTechLab/agentic-direct/commits/main/" rel="noopener">agentic-direct commit history</a> · last verified 2026-09-04</p>
+    <p>The <a href="comparison.html">comparison page</a> covers the two protocols' general
+    divergence; out-of-home is one of the sharper instances of it, and the direction is the reverse
+    of the usual framing. AAMP is the protocol family built by extending existing IAB Tech Lab
+    standards — including the very standards that already support out-of-home — and it is the one
+    with no out-of-home path.</p>
+
+    <h2>The standards the channel already runs on</h2>
+    <p>An agentic out-of-home buy inherits a stack of pre-agentic standards. They are what an agent
+    is ultimately negotiating over, and their governance sits with the out-of-home trade bodies —
+    OAAA in the United States, Outsmart in the United Kingdom, the Outdoor Media Association in
+    Australia — as much as with IAB Tech Lab.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Standard</th>
+            <th role="columnheader" scope="col">What it provides</th>
+            <th role="columnheader" scope="col">Governance and date</th>
+            <th role="columnheader" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">OpenRTB 2.6</th>
+            <td role="cell" data-label="What it provides">A DOOH object replacing Site and App, and a Qty object carrying a fractional impression multiplier per play</td>
+            <td role="cell" data-label="Governance and date">IAB Tech Lab, April 2022; task force with OAAA and Outsmart announced 23 Aug 2021, resources published 7 Dec 2022</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">AdCOM 1.0</th>
+            <td role="cell" data-label="What it provides">A DOOH object mirroring OpenRTB's, with venue type and measurement-source fields for impression multipliers</td>
+            <td role="cell" data-label="Governance and date">IAB Tech Lab, final</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">OpenDirect 2.1</th>
+            <td role="cell" data-label="What it provides">Programmatic guaranteed direct trading for both classic and digital out-of-home</td>
+            <td role="cell" data-label="Governance and date">IAB Tech Lab with OAAA, the Outdoor Media Association and Outsmart, announced 1 Oct 2024</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">OpenOOH venue taxonomy</th>
+            <td role="cell" data-label="What it provides">The shared venue vocabulary — v1.2.1 adds an eleven-category, three-tier hierarchy with retail-media and entertainment granularity</td>
+            <td role="cell" data-label="Governance and date">OAAA Taxonomy Committee; v1.2.1 released February 2026</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">DOOH Measurement Guide</th>
+            <td role="cell" data-label="What it provides">Impression definitions from opportunity to see through likelihood to see; valid impressions as spots times a disclosed multiplier</td>
+            <td role="cell" data-label="Governance and date">IAB with the MRC; publication date not independently confirmed</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Advance Measurement System</th>
+            <td role="cell" data-label="What it provides">A next-generation United States audience currency intended to succeed the current Geopath system</td>
+            <td role="cell" data-label="Governance and date">Geopath and OAAA, with Ipsos selected 31 Mar 2026; pilot in H2 2026, transition from 2027, adoption targeted 2028</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Route</th>
+            <td role="cell" data-label="What it provides">The United Kingdom's joint industry currency: impressions, reach, cover and frequency across buses, Underground, rail and shopping centres</td>
+            <td role="cell" data-label="Governance and date">Outdoor Media Centre and Ipsos; long-standing, unrelated to agentic buying</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://oaaa.org/news/oaaa-partners-with-iab-tech-lab-to-align-dooh-with-openrtb-trade-associations-announce-collaboration-via-task-force/" rel="noopener">OAAA on the OpenRTB task force</a> · <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md" rel="noopener">AdCOM 1.0</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://www.iab.com/guidelines/dooh-measurement-guide/" rel="noopener">IAB DOOH Measurement Guide</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://www.route.org.uk/audience.php" rel="noopener">Route</a> · last verified 2026-09-04</p>
+    <p><span class="badge reported">reported</span> The taxonomy row is badged because its own
+    sources disagree. OAAA's press release carries a February 10, 2026 dateline and trade coverage
+    a February 11 one, while the <code>openooh/venue-taxonomy</code> repository's README still
+    listed v1.1 as current when checked. Anyone pinning a version in an agent's targeting schema
+    should read the repository rather than the announcement.</p>
+    <p class="source">Sources: <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA press release</a>; <a href="https://invidis.com/sixteen-nine/2026/02/11/oaaa-releases-updated-openooh-taxonomy-to-streamline-dooh-buying/" rel="noopener">invidis</a> · last verified 2026-09-04</p>
+
+    <h2>Medium-specific problems and the solutions proposed</h2>
+    <p>Every problem below follows from one fact: out-of-home addresses a place, and the agentic
+    protocols were designed to address a person. Where a solution exists it is usually in the
+    programmatic rails, not in the agentic layer; where the agentic layer has an answer, it is
+    usually in AdCP's unreleased 3.2 line.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Problem</th>
+            <th role="columnheader" scope="col">What breaks</th>
+            <th role="columnheader" scope="col">Where the answer stands</th>
+            <th role="columnheader" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">No identifier, no click</th>
+            <td role="cell" data-label="What breaks">An impression is a multiplier applied to a play, not a per-user event</td>
+            <td role="cell" data-label="Where the answer stands">OpenRTB's Qty object carries a fractional, publisher-disclosed multiplier per play</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Identity-based primitives</th>
+            <td role="cell" data-label="What breaks">Audiences, frequency caps and reach all assume a resolvable person or device</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line adds identity-absence and reach-methodology declarations, and requires a reach unit on frequency-only delivery</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Static OOH has no play event</th>
+            <td role="cell" data-label="What breaks">A poster is up or it is not; there is nothing to count and no bid to make</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line gives static inventory its own metrics block settling on proof of posting, per OAAA conventions, rather than forcing it through the digital schema</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Proof of play</th>
+            <td role="cell" data-label="What breaks">Delivery proof rests on player logs and sensors rather than on an ad server's own count</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's DOOH creative channel documents proof-of-play macros: screen identifier, play timestamp, venue coordinates, venue type</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Screen, venue or network</th>
+            <td role="cell" data-label="What breaks">A buyer's intent can sit at any of three granularities, and the agent has to know which</td>
+            <td role="cell" data-label="Where the answer stands">The OpenOOH taxonomy supplies the venue vocabulary; AdCP's 3.2 placements reference versioned OpenOOH identifiers</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Loop share and slot scheduling</th>
+            <td role="cell" data-label="What breaks">A buyer's share is a fraction of loop time, not a guaranteed exclusive slot</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 line defines share of voice as a duration-weighted time share and adds slot contiguity parameters and slot-to-loop validation</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Creative heterogeneity</th>
+            <td role="cell" data-label="What breaks">Resolution, orientation and motion capability vary from screen to screen inside one network</td>
+            <td role="cell" data-label="Where the answer stands">AdCP's 3.2 placement attributes carry screen resolution and motion per placement</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Playout latency</th>
+            <td role="cell" data-label="What breaks">Bids resolve in roughly 100 to 300 milliseconds, yet some inventory is prefetched minutes or hours before it plays</td>
+            <td role="cell" data-label="Where the answer stands">No agentic-layer answer located; agent negotiation sits at planning time, outside the bid path</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Measurement fragmentation</th>
+            <td role="cell" data-label="What breaks">Geopath, Route and national bodies use different methods and are not interoperable currencies</td>
+            <td role="cell" data-label="Where the answer stands">The Geopath, OAAA and Ipsos pilot targets a next-generation United States currency; no cross-border harmonization initiative was located</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Public-space compliance</th>
+            <td role="cell" data-label="What breaks">Local content rules and venue restrictions attach to physical space, not to an ad slot</td>
+            <td role="cell" data-label="Where the answer stands">In the one documented end-to-end agentic campaign, compliance stayed in the human oversight layer rather than being delegated to the agents</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/creative/channels/dooh" rel="noopener">AdCP DOOH creative channel</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/" rel="noopener">Trillboards on the DOOH bid stream</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis on the Broadsign campaign</a> · last verified 2026-09-04</p>
+    <p>Two rows deserve emphasis because they are where the medium and the protocols meet most
+    awkwardly. <span class="badge announced">announced</span> The identity row is the one AdCP
+    addresses most directly: its 3.2 line adds product-scoped identity-absence declarations and
+    DOOH sales conformance for rejecting a frequency cap outright, which is a protocol conceding
+    that a request it is designed to accept cannot be honored in this medium. The latency row is
+    the one nobody addresses: real-time bidding on playout is a legacy engineering constraint that
+    agent negotiation works around by sitting at planning time, and no primary statement from
+    either protocol was located that engages with it.</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.0-rc.0</code> entry; <a href="https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/" rel="noopener">Trillboards</a> · last verified 2026-09-04</p>
+
+    <h2>Proofs of concept and examples worldwide</h2>
+    <p>Genuine agent-to-agent out-of-home buying exists and is dated, but it is thinner than the
+    volume of announcements suggests, and the distinction that matters is whether two independent
+    agents negotiated a transaction or whether one vendor's AI made its own platform easier to use.
+    Both appear below, labeled. So do the regions where nothing was found: the search covered APAC,
+    LATAM, the Middle East and Africa, and the German-speaking markets, and the absence is reported
+    rather than omitted.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Who and what</th>
+            <th role="columnheader" scope="col">When</th>
+            <th role="columnheader" scope="col">Region</th>
+            <th role="columnheader" scope="col">What was demonstrated</th>
+            <th role="columnheader" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Broadsign, Draft Digital and Global Netherlands</th>
+            <td role="cell" data-label="When">Announced 27 May 2026</td>
+            <td role="cell" data-label="Region">Netherlands</td>
+            <td role="cell" data-label="What was demonstrated">A sell-side and a buy-side agent negotiated and executed a charity-lottery campaign over AdCP, delivering 830,000-plus impressions, with human oversight retained throughout</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">VIOOH Seller Agent</th>
+            <td role="cell" data-label="When">H1 2026, announced 26 Jun 2026</td>
+            <td role="cell" data-label="Region">United Kingdom</td>
+            <td role="cell" data-label="What was demonstrated">Automated curation of more than 100 premium deal-package requests, returned in seconds to minutes — sell-side packaging, not a negotiated buy, and delivered as a managed service</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Displayce Agentic DOOH</th>
+            <td role="cell" data-label="When">Launched 25 Jun 2026</td>
+            <td role="cell" data-label="Region">France, 80 countries served</td>
+            <td role="cell" data-label="What was demonstrated">Three agents reachable over MCP for brief intake and curation, activation, and post-campaign analysis; no transaction through them is documented</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">AdQuick MCP</th>
+            <td role="cell" data-label="When">2026, exact date unconfirmed</td>
+            <td role="cell" data-label="Region">United States</td>
+            <td role="cell" data-label="What was demonstrated">An MCP server over the platform's inventory and planning data, and a vendor statement that one campaign was planned, purchased and measured through its own agent</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">APAC</th>
+            <td role="cell" data-label="When">—</td>
+            <td role="cell" data-label="Region">Japan, India, Australia, South-East Asia</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. Impression-based programmatic DOOH and general agentic marketing platforms exist, but none is described as agentic out-of-home buying</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">LATAM</th>
+            <td role="cell" data-label="When">—</td>
+            <td role="cell" data-label="Region">Brazil, Mexico, wider region</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. JCDecaux reports full programmatic connectivity across 4,600-plus screens in nine markets, and VIOOH expanded partnerships in Brazil and Mexico — programmatic supply, not agentic buying</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Middle East and Africa</th>
+            <td role="cell" data-label="When">—</td>
+            <td role="cell" data-label="Region">Gulf states, Africa</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located. Mall-network and airport contracts reported in January 2026 are conventional media-rights deals</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">DACH</th>
+            <td role="cell" data-label="When">—</td>
+            <td role="cell" data-label="Region">Germany, Austria, Switzerland</td>
+            <td role="cell" data-label="What was demonstrated">No agent-to-agent buy located, and no agentic out-of-home announcement found for Ströer despite a targeted search</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/" rel="noopener">OAAA</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis</a> · <a href="https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026" rel="noopener">LBBOnline on VIOOH</a> · <a href="https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/" rel="noopener">ExchangeWire on Displayce</a> · <a href="https://www.adquick.com/ooh-mcp" rel="noopener">AdQuick</a> · <a href="https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/" rel="noopener">PPC Land on JCDecaux in Latin America</a> · <a href="https://invidis.com/news/2026/01/dooh-al-arabia-wins-uae-mall-network-and-saudi-airport-contracts/" rel="noopener">invidis on Gulf contracts</a> · last verified 2026-09-04</p>
+
+    <h3>The one end-to-end case, and what it does not prove</h3>
+    <p><span class="badge reported">reported</span> The best-documented agent-to-agent out-of-home
+    buy is a campaign for the Dutch charity lottery Lot of Happiness, announced from Montreal on
+    May 27, 2026: Broadsign's sell-side agent and Draft Digital's buy-side agent communicated over
+    AdCP across Global Netherlands inventory, covering audience and venue targeting, media
+    selection, campaign setup, creative workflow, approvals and execution, and delivered more than
+    830,000 impressions across supermarkets, malls, gas stations and city screens. Every account
+    also records that human oversight and guardrails were retained throughout — including for
+    compliance with local regulations and restrictions. It is badged as resting on secondary
+    sources because that is exactly what it rests on: the campaign is corroborated across seven or
+    more independent trade outlets, but none of the primary releases could be opened directly from
+    this project's research environment, and the "first-ever fully agentic" framing is the
+    participants' own and is not independently verifiable.</p>
+    <p class="source">Sources: <a href="https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/" rel="noopener">OAAA</a>; <a href="https://www.digitalsignagetoday.com/news/broadsign-ai-agent-executes-agentic-ai-ooh-campaign/" rel="noopener">Digital Signage Today</a>; <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis</a> · last verified 2026-09-04</p>
+    <p><span class="badge reported">reported</span> The geographic pattern is worth stating plainly:
+    every genuine agentic out-of-home case located is European or North American. The regions where
+    nothing was found are not quiet — JCDecaux's Latin American programmatic connectivity and the
+    Gulf's mall and airport contracts are substantial developments — but they are programmatic
+    supply and direct sales, not agent-mediated buying. Given this project's own vantage point in
+    the German market, the DACH gap was searched deliberately and separately; the only 2026 Ströer
+    AI advertising initiative located is a conversational in-ad creative format from its Seeding
+    Alliance subsidiary, which is neither agentic buying nor out-of-home.</p>
+    <p class="source">Sources: <a href="https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/" rel="noopener">PPC Land</a>; <a href="https://meedia.de/news/beitrag/24776-neues-stroeer-werbeformat-integriert-interaktive-ki-beratung-fuer-kunden.html" rel="noopener">meedia.de on the Ströer format</a> · last verified 2026-09-04</p>
+
+    <h2>Players active in the channel</h2>
+    <p>The <a href="tools.html">tools directory</a> covers agentic buying platforms across all
+    channels; the entries below are the out-of-home-specific ones and what is publicly documented
+    about each. Two patterns recur: the JCDecaux group accounts for three of the clearest cases
+    through its VIOOH and Displayce subsidiaries, and several widely cited AI-agent claims turn out
+    not to name a protocol or not to be out-of-home-specific at all.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Player</th>
+            <th role="columnheader" scope="col">Role in the channel</th>
+            <th role="columnheader" scope="col">What is publicly documented</th>
+            <th role="columnheader" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">VIOOH (JCDecaux)</th>
+            <td role="cell" data-label="Role in the channel">Supply-side platform</td>
+            <td role="cell" data-label="What is publicly documented">A Seller Agent that curated 100-plus deal packages in H1 2026; a self-serve rollout and registration with both AdCP and AAMP were described as planned for Q3 2026, and neither was confirmed complete</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Displayce (JCDecaux)</th>
+            <td role="cell" data-label="Role in the channel">Demand-side platform</td>
+            <td role="cell" data-label="What is publicly documented">Three MCP-accessible agents launched 25 June 2026, usable from general assistants; no completed transaction through them is documented</td>
+            <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Broadsign</th>
+            <td role="cell" data-label="Role in the channel">Supply-side platform and content management</td>
+            <td role="cell" data-label="What is publicly documented">The sell-side agent in the Netherlands campaign, communicating over AdCP; no separate agentic product announcement was located</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">AdQuick</th>
+            <td role="cell" data-label="Role in the channel">Planning and intelligence platform</td>
+            <td role="cell" data-label="What is publicly documented">An MCP server exposing out-of-home inventory and planning data to agents, described on the vendor's own site</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Perion and Hivestack</th>
+            <td role="cell" data-label="Role in the channel">Full-stack DOOH</td>
+            <td role="cell" data-label="What is publicly documented">An AI-agent technology credited with 316% year-on-year spend growth in Q1 2026; no located source names a protocol or establishes that it is out-of-home-specific</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Magnite</th>
+            <td role="cell" data-label="Role in the channel">Supply-side platform</td>
+            <td role="cell" data-label="What is publicly documented">A buyer-agent and seller-agent coordination layer in test with dentsu and DIRECTV Advertising; no located source ties it to out-of-home inventory</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Media owners and platforms with nothing located</th>
+            <td role="cell" data-label="Role in the channel">Media owners, exchanges, specialists</td>
+            <td role="cell" data-label="What is publicly documented">No agentic, MCP or AdCP/AAMP announcement was located for Ströer, Clear Channel Outdoor, Lamar, OUTFRONT, Intersection, Vistar Media, Place Exchange, Adomni or Taggify</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026" rel="noopener">LBBOnline on VIOOH</a> · <a href="https://ppc.land/vioohs-seller-agent-automated-100-dooh-deals-in-h1-2026/" rel="noopener">PPC Land on VIOOH</a> · <a href="https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/" rel="noopener">ExchangeWire on Displayce</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis on Broadsign</a> · <a href="https://www.adquick.com/ooh-mcp" rel="noopener">AdQuick</a> · <a href="https://ppc.land/perion-bets-on-ai-agents-as-ctv-and-dooh-surge-in-q1-2026/" rel="noopener">PPC Land on Perion</a> · <a href="https://www.magnite.com/press/introducing-magnite-orchestration-powering-the-future-of-agentic-advertising/" rel="noopener">Magnite</a> · last verified 2026-09-04</p>
+
+    <h2>Cross-channel: holding out-of-home in the same plan</h2>
+    <p>A channel deep dive that stops at the channel boundary misses the point of agentic buying,
+    whose premise is one brief resolving across every screen. Two things can be said about
+    out-of-home in that picture, and both are about absence rather than achievement.</p>
+    <p>AdCP's design intent points toward a shared schema rather than a set of channel silos: the
+    same stretch of the 3.2 pre-release line that added out-of-home placement attributes and static
+    posting evidence also added connected-television experience profiles against the IAB CTV Ad
+    Portfolio and audio delivery with demographic notation. <span class="badge speculative">speculative</span>
+    Reading that as a deliberate cross-channel product abstraction is an interpretation, not a
+    stated goal — no primary statement to that effect was located — and in any case nothing in the
+    line has shipped, so no buyer can build a cross-channel plan against it yet.</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · last verified 2026-09-04</p>
+    <p><span class="badge reported">reported</span> The gaps are more concrete than the intent. No
+    source was located describing a working unified reach-and-frequency methodology that includes
+    out-of-home alongside connected television and mobile, agent-mediated or otherwise; 2026
+    commentary on cross-channel reach concentrates on linear television, connected television and
+    digital. And no source was located describing an agent reallocating budget between out-of-home
+    and another channel mid-flight. Every agentic out-of-home case above is single-channel: a plan
+    or a buy inside out-of-home, not a plan that trades it off against anything else. The
+    <a href="workflows.html">workflows page</a> documents the cross-platform agentic buys that do
+    exist, across linear and digital video — out-of-home is not among them.</p>
+    <p class="source">Source: survey of 2026 cross-channel reach and frequency coverage and of every case listed above; no qualifying source located · last verified 2026-09-04</p>
+    <p>The structural reason sits in Figure 1. A cross-channel frequency cap needs a common unit
+    across channels, and out-of-home's unit is a modeled audience per play attached to a place. Until
+    an agent can convert between "reached this person three times" and "was present at this
+    junction during these dayparts," out-of-home enters a cross-channel plan as a budget line rather
+    than as a comparable reach contribution.</p>
+
+    <h2>What is still unresolved</h2>
+    <p>These are the open questions this page's research could not close; they are the starting
+    point for the next refresh cycle rather than claims.</p>
+    <ul>
+      <li>Whether VIOOH's Q3 2026 self-serve rollout and its stated AdCP and AAMP registrations
+      have actually happened. Both were described as planned in June 2026, the quarter is nearly
+      over, and no completion announcement was found.</li>
+      <li>Whether any DACH-region agentic out-of-home pilot exists that a broader German-language
+      search would surface. The absence recorded above rests on a targeted search, not an
+      exhaustive one.</li>
+      <li>Whether AdCP's DOOH creative-channel documentation and flat-rate DOOH schema read as
+      described. Both sit behind an egress block for direct fetch from this project's research
+      environment, so the claims above are triangulated from search-indexed extracts and are
+      deliberately badged more conservatively than the underlying facts probably warrant.</li>
+      <li>Whether AAMP's Agentic Ad Object, described as derived from AdCOM, preserves AdCOM's
+      native DOOH object. Its schema was not located as an independently fetchable file.</li>
+      <li>Whether Perion's and Magnite's agent products touch out-of-home inventory specifically,
+      or are cross-channel products reported alongside out-of-home growth figures.</li>
+      <li>The publication date of the IAB and MRC DOOH Measurement Guide, which no located source
+      dates reliably.</li>
+    </ul>
+    <p class="source">Source: <a href="https://github.com/mletznerMUC/AgenticBuying/tree/main/docs/research" rel="noopener">this site's research notes</a> · last verified 2026-09-04</p>
   </main>
   <footer class="site-footer">
     <div class="inner">

@@ -6,8 +6,21 @@ note here.
 
 ## Current notes
 
+- [`ooh-2026-09-04.md`](ooh-2026-09-04.md) — *OOH and DOOH in agentic buying*,
+  verified 2026-09-04. **The latest note.** A new-topic note, not a refresh run: the
+  evidence base behind `ooh.html`. Its organizing finding is that the channel has two
+  layers of machine-readable support moving at different speeds — mature pre-agentic
+  rails (OpenRTB 2.6's DOOH and Qty objects, AdCOM's DOOH object, OpenDirect 2.1's DOOH
+  extension, the OpenOOH venue taxonomy) under a thin agentic layer where AdCP's
+  structured out-of-home schema sits entirely in the unreleased 3.2 line (now
+  `v3.2.0-rc.0`, 3 September 2026) and AAMP names out-of-home as future scope with only
+  an enumeration value and an inert metadata pointer in its components. It dates the
+  genuine agent-to-agent proofs of concept — Broadsign/Draft Digital/Global Netherlands
+  on AdCP (27 May 2026) foremost — and records, as findings rather than omissions, that
+  no such case was located in APAC, LATAM, MEA or DACH, including none for Ströer. Also
+  moves the AdCP 3.2 line past the state the 2026-09-02 note recorded.
 - [`adcp-aamp-2026-09-02.md`](adcp-aamp-2026-09-02.md) — *AdCP and AAMP refresh*,
-  verified 2026-09-02. **The latest note; read it first.** A full-manifest cycle: all
+  verified 2026-09-02. **The latest full refresh cycle; read it for the protocol pages.** A full-manifest cycle: all
   63 claims re-checked, 62 reaching their sources. Eight changed — four spec drift
   (v3.1.19, v3.0.26, the 3.2 line to beta.10, 32 registry agents, 132+ members) and
   four corrections to the site: the AdCP roadmap list is no longer traceable to any
@@ -81,8 +94,31 @@ record of what was believed when.
 
 ## Open questions carried forward
 
-The 2026-09-02 refresh closed four and opened three. The ones that most affect the
+The 2026-09-02 refresh closed four and opened three; the 2026-09-04 OOH note opened six
+more, listed first below and also published on `ooh.html`. The ones that most affect the
 site's accuracy:
+
+- **Whether VIOOH's Q3 2026 self-serve Seller Agent rollout and its stated AdCP and AAMP
+  registrations have happened.** Both were described as planned in the 26 June 2026
+  announcement; the quarter is nearly over and no completion announcement was found.
+  Newly open.
+- **Whether any DACH-region agentic OOH pilot exists.** A targeted search found nothing
+  tying Ströer, or any other DACH media owner, to agentic out-of-home buying. Given this
+  project's vantage point, worth a dedicated German-language follow-up rather than
+  treating the absence as final. Newly open.
+- **Whether AdCP's DOOH creative-channel documentation and flat-rate DOOH schema read as
+  described.** `docs.adcontextprotocol.org` and the schema file were both unreachable for
+  direct fetch on 2026-09-04, so those claims are triangulated from search-indexed
+  extracts and badged `reported` — deliberately more conservative than the underlying
+  facts probably warrant. Newly open.
+- **Whether AAMP's Agentic Ad Object, described as derived from AdCOM, preserves AdCOM's
+  native DOOH object.** Its schema was not located as an independently fetchable file.
+  Newly open.
+- **Whether Perion's Outmax and Magnite's Orchestration touch DOOH inventory
+  specifically**, or are cross-channel products reported alongside DOOH growth figures.
+  Neither company's own material was opened directly. Newly open.
+- **The publication date of the IAB and MRC DOOH Measurement Guide.** Found and
+  described, but no reliable dateline was recovered. Newly open.
 
 - **Why the Samba TV launch release disappeared, and whether AdCP's
   $10,000-per-year founding commitment is documented anywhere reachable.** The URL
