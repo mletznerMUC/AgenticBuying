@@ -30,8 +30,8 @@
     <h1>AdCP — Ad Context Protocol</h1>
     <p class="lead">A deep dive into the Ad Context Protocol: what it standardizes, who
     governs it, and which capabilities are real today.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · the latest
-    AdCP release claim was re-checked on that date; every other claim was re-checked on
+    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · both AdCP
+    release-line claims were re-checked on that date; every other claim was re-checked on
     <time datetime="2026-09-02">2 September 2026</time>, and each claim carries its own
     verification date in its source line</p>
     <p class="source">Primary source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a></p>
@@ -115,7 +115,7 @@
     documentation pins.</p>
     <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · the v3.1.20 release last verified 2026-09-04, the rest 2026-09-02</p>
     <p><span class="badge announced">announced</span> A 3.2 line has begun as a pre-release: AdCP
-    published v3.2.0-beta.0 on August 17, 2026 and has run through v3.2.0-beta.10 on September 1,
+    published v3.2.0-beta.0 on August 17, 2026 and has run through v3.2.0-rc.0 on September 3,
     with no stable 3.2 release. The changelog for beta.0 to beta.3 lists a promoted
     media-channel taxonomy, Trusted Match changes to publisher authentication and context targeting,
     cross-role governance enforcement, new portable and issuer-bound attestation schemas, and
@@ -125,10 +125,17 @@
     experience profiles against the IAB CTV Ad Portfolio, digital-out-of-home compliance and
     static-out-of-home posting evidence, audio VAST delivery with Nielsen audio demographic
     notation, buyer-authored creative revision identity, and principal-layer authentication and
-    brand identity through a brand.json agent URL. The line adds no eighth negotiation surface —
+    brand identity through a brand.json agent URL. Beta.11 of September 2 is a patch pair — training
+    and compliance guidance aligned to the beta.10 bundle, and get_principal added alongside
+    sync_principal in the MCP media-buy role profile — while rc.0 of September 3 lists minor
+    changes as well as patches: inventory-local and IANA timezone semantics for daypart targeting
+    with product-scoped timezone-mode declarations, experimental product-scoped identity-absence
+    and reach-methodology declarations requiring a reach unit on frequency-only delivery, and
+    digital-out-of-home share of voice defined as a duration-weighted time share with
+    seller-packaged slot contiguity parameters. The line adds no eighth negotiation surface —
     the changes extend the seven above. The list was read from the rendered changelog rather than
     diffed against the schema files.</p>
-    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-02</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-04</p>
     <p><span class="badge speculative">speculative</span> This page previously reported that
     secondary sources listed curation, creative generation, and performance attribution as AdCP
     roadmap items still to come. That list is no longer traceable: re-checked on September 2, 2026,
@@ -242,8 +249,8 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-08-17 to 09-01</th>
-            <td role="cell" data-label="Development">v3.2.0-beta.0 opens a 3.2 pre-release line — taxonomy promotion, Trusted Match and governance changes, attestation schemas, deprecations — running through beta.10, which adds CTV, DOOH, audio, and brand-identity surface. No stable 3.2 release yet.</td>
+            <th role="rowheader" scope="row">2026-08-17 to 09-03</th>
+            <td role="cell" data-label="Development">v3.2.0-beta.0 opens a 3.2 pre-release line — taxonomy promotion, Trusted Match and governance changes, attestation schemas, deprecations — running through rc.0, which adds CTV, DOOH, audio, brand-identity and daypart-timezone surface. No stable 3.2 release yet.</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">

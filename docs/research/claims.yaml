@@ -40,12 +40,12 @@ claims:
     volatility: high
   - id: adcp-v3-2-0-beta
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
-    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-beta.10 of 1 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. The line adds no eighth negotiation surface."
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-rc.0 of 3 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. Beta.11 of 2 September is a patch pair (training and compliance guidance aligned to the beta.10 bundle; get_principal added alongside sync_principal in the MCP media-buy role profile), and rc.0 of 3 September lists minor changes as well as patches: inventory-local and IANA timezone semantics for daypart targeting with product-scoped timezone-mode declarations, experimental product-scoped identity-absence and reach-methodology declarations requiring a reach unit on frequency-only delivery plus sales-DOOH conformance for frequency-cap rejection, and DOOH share of voice defined as a duration-weighted time share with seller-packaged slot contiguity parameters. The line adds no eighth negotiation surface. CHANGELOG.md carries no dates; the datelines come from the releases page."
     status: announced
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-      - https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md
-    last_verified: 2026-09-02
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
+    last_verified: 2026-09-04
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html, releases.html]
