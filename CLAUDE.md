@@ -15,6 +15,7 @@ The outcome is a **multi-page static HTML website** that provides:
 2. Comparison of AdCP vs. AAMP (capabilities, adoption, governance)
 3. Curated tools and resources
 4. Sample workflows showing how agentic buying works end to end
+5. Channel deep dives — starting with out-of-home (OOH/DOOH)
 
 ## Repository layout
 
@@ -24,6 +25,7 @@ adcp.html              AdCP deep dive
 aamp.html              AAMP deep dive
 releases.html          Release tracker: last three releases of each protocol, what changed
 comparison.html        Side-by-side AdCP vs. AAMP comparison
+ooh.html               OOH channel deep dive: protocol coverage, worldwide POCs, medium-specific problems
 tools.html             Tools & platform directory
 workflows.html         Sample agentic buying workflows
 resources.html         Specs, articles, talks, repos

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Out-of-home (OOH) and digital out-of-home (DOOH) in agentic buying: what AdCP and AAMP cover, worldwide proofs of concept, and the problems a one-to-many medium poses.">
+  <title>OOH · AgenticBuying</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-title" href="index.html">AgenticBuying</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="adcp.html">AdCP</a></li>
+          <li><a href="aamp.html">AAMP</a></li>
+          <li><a href="releases.html">Releases</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="ooh.html" aria-current="page">OOH</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="workflows.html">Workflows</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>Out-of-home as an agentic channel</h1>
+    <p class="lead">A channel deep dive on OOH (out-of-home) and DOOH (digital out-of-home): which
+    parts of the agentic buying protocols reach the medium today, what has actually been piloted,
+    and where a one-to-many medium fits the protocols' one-to-one primitives badly.</p>
+    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · each claim
+    on this page carries its own verification date in its source line</p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+    </ul>
+
+    <h2>What the protocols cover today</h2>
+    <p><span class="badge announced">announced</span> AdCP's (Ad Context Protocol) first
+    out-of-home-specific specification surface sits in the 3.2 pre-release line, not in a stable
+    release. Between August 20 and September 1, 2026, pre-releases v3.2.0-beta.4 through
+    v3.2.0-beta.10 widened the line into channel-specific delivery, and two of those items name the
+    medium directly: digital-out-of-home compliance, and posting evidence for static out-of-home.
+    The same stretch of the line adds connected-TV experience profiles and audio VAST delivery, so
+    out-of-home arrives as one of several channel extensions rather than as a standalone module. No
+    stable 3.2 release existed as of September 2, 2026, so none of it is a shipped surface a buyer
+    can build against.</p>
+    <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-02</p>
+    <p>That the medium reaches the specification through a pre-release line rather than through the
+    seven negotiation surfaces of AdCP 3.1 is the fact this page is organized around: the channel's
+    protocol coverage is newer than the channel's programmatic infrastructure, and the two do not
+    yet meet. The <a href="releases.html">release tracker</a> carries the version detail, and the
+    <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages carry each protocol's
+    general scope.</p>
+
+    <h2>Sections in preparation</h2>
+    <div class="todo-content"><p>The research pipeline is verifying the rest of this page against
+    primary sources: the venue and measurement standards an agentic OOH buy depends on, the
+    platforms and media owners active in the channel, dated proofs of concept and live examples by
+    region, the medium-specific problems — audience-per-play estimation, proof of play, screen
+    versus venue versus network addressability, loop and share-of-voice scheduling, creative
+    heterogeneity — with the solutions being proposed for each, and how an agent holds out-of-home
+    in the same plan as connected TV and mobile. Sourced sections replace this note as each is
+    verified; progress is tracked in the
+    <a href="https://github.com/mletznerMUC/AgenticBuying/issues" rel="noopener">issue
+    tracker</a>.</p></div>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <p>AgenticBuying — an independent tracker of agentic buying protocols.
+      Content is verified against primary sources; every claim carries a source and date.
+      <a href="https://github.com/mletznerMUC/AgenticBuying" rel="noopener">Source on GitHub</a>.</p>
+      <p><strong>AI transparency notice.</strong> The content of this site is researched and
+      drafted with AI assistance, with a human editor in the loop: every change is reviewed and
+      approved by a person before publication, and Markus Letzner holds editorial responsibility
+      for the published content. This disclosure follows the transparency provisions of the
+      EU AI Act (Regulation (EU) 2024/1689).</p>
+      <p>&copy; 2026 Markus Letzner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
