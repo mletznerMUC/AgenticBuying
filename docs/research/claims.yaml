@@ -30,12 +30,13 @@ meta:
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
-    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.19, published 21 August 2026, continuing a weekly-plus cadence; it followed v3.1.18 of 20 August 2026 and v3.1.16 of 19 August 2026."
+    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.20, published 2 September 2026 and marked Latest on the releases page, continuing a weekly-plus cadence; it followed v3.1.19 of 21 August 2026 and v3.1.18 of 20 August 2026. v3.1.20 is a patch release carrying two changes: the media-buy request schema is used when validating universal creative-format pagination, and the OpenRTB/AdCOM cattax mappings documented for IAB Content Taxonomy 3.0 and 2.2 are corrected. The version and its contents were read from CHANGELOG.md, which carries no dates; the 2 September dateline comes from the releases page."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
-    last_verified: 2026-09-02
+    last_verified: 2026-09-04
     volatility: high
   - id: adcp-v3-2-0-beta
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
