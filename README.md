@@ -10,6 +10,8 @@ root, published via GitHub Pages branch deployment) providing:
 - Guidance on the latest developments in agentic buying
 - A neutral, sourced **AdCP vs. AAMP** comparison
 - A directory of **tools & resources**
+- A channel deep dive on **out-of-home**, the medium whose one-to-many economics fit
+  agentic primitives least comfortably
 - **Sample workflows** for agent-driven media buying
 
 ## Agent-based development
