@@ -151,7 +151,14 @@ jobs:
         # review-transcript and NOT cost-*: the ledger job downloads cost-*
         # with merge-multiple, so a cost-shaped name here would be fed to the
         # cost recorder as if it were a ledger record.
-        if: always() && env.HAS_ANTHROPIC_KEY == 'true'
+        #
+        # The execution_file guard is load-bearing. When the action skips
+        # itself — which it does on every PR that edits this file — it sets no
+        # outputs, and upload-artifact fails hard on an empty `path` with
+        # "Input required and not supplied: path". `if-no-files-found: warn`
+        # does not cover it: the input is missing, not merely unmatched. That
+        # turned this job red on the very PR that introduced these steps.
+        if: always() && env.HAS_ANTHROPIC_KEY == 'true' && steps.agent.outputs.execution_file != ''
         uses: actions/upload-artifact@v7
         with:
           name: review-transcript
