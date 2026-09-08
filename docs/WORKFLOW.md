@@ -110,6 +110,19 @@ Every PR runs:
    hardcoded colors), and accessibility and link integrity.
    The job needs the `ANTHROPIC_API_KEY` secret; without it, it emits a setup
    notice and passes rather than failing the PR, so forks stay green.
+   **The review's own output is preserved in the run**, because three times now
+   it has reported success and published nothing — most recently on PR #52, at
+   42 turns, $0.85 and 14 permission denials, with the findings unrecoverable
+   afterwards. The action hides the agent's output by default, so
+   [`scripts/review_summary.py`](../scripts/review_summary.py) parses the event
+   log and writes what the reviewer concluded into the **job summary**, warns on
+   the checks tab when the text is missing or the agent hit denials, and the log
+   itself is kept as the `review-transcript` artifact for seven days. The prompt
+   also asks the reviewer to repeat its full review in its closing message, so
+   the text survives a failed post. None of this gates the merge: a silent
+   review is now legible, and whether it should also be red is a separate
+   decision. When a review comes back green with no comment, read the job
+   summary before assuming the PR was clean.
 3. **Human review** — a human merges. Agents never merge to `main`.
 
 ## 4. Deployment

@@ -9,6 +9,21 @@
 # 10 minutes over 51 turns, cost $3.60, hit 15 denials — and still posted
 # nothing. The reviewer does not need its own html-validate: the ci workflow
 # already validates every PR.
+#
+# WHY THIS WORKFLOW SURFACES ITS OWN OUTPUT. The failure above has a third
+# instance, and it happened with no --allowedTools at all: on PR #52 the review
+# ran 42 turns for $0.85 with 14 permission denials, reported `success`, and
+# published nothing — no review, no comment, no inline comments. The action
+# hides the agent's output by default and only the cost record was uploaded, so
+# the findings were gone. A green check that publishes nothing looks exactly
+# like a clean review, which is the one thing a review check must never do.
+#
+# So the run itself now carries the evidence: scripts/review_summary.py writes
+# what the agent concluded into the job summary and annotates the run when the
+# log says it was blocked, and the full event log is kept as an artifact. The
+# prompt also asks the reviewer to put the complete review in its closing
+# message, so the text survives even when posting it to the PR fails. None of
+# this gates the merge — it makes a silent review legible instead of invisible.
 name: Claude PR Review
 
 on:
@@ -110,6 +125,46 @@ jobs:
             severity, each naming the file and line and suggesting a concrete
             fix. If everything passes, say so briefly rather than inventing
             nits.
+
+            Then end your closing message with that same review text in full,
+            whether or not posting it succeeded. Posting has failed silently on
+            this workflow before, and your closing message is what the run
+            preserves when it does — so it has to stand on its own rather than
+            say "posted above". If you could not post at all, say so in the
+            first line of it.
+
+      - name: Surface the review in the run
+        # always(): a review that errored out mid-way is exactly when its
+        # partial findings and its denial count matter most. The script never
+        # fails the job — see its module docstring for why diagnostics do not
+        # gate the merge. It runs from the PR head like record-cost does, which
+        # is safe on the same terms: the API key is not exposed to forks, so on
+        # a fork PR no agent ran and there is nothing to surface.
+        if: always() && env.HAS_ANTHROPIC_KEY == 'true'
+        run: |
+          python3 "${GITHUB_WORKSPACE}/scripts/review_summary.py" \
+            --execution-file "${{ steps.agent.outputs.execution_file }}" \
+            --conclusion "${{ steps.agent.outputs.conclusion }}"
+
+      - name: Upload the review transcript
+        # The full event log, for when the job summary is not enough. Named
+        # review-transcript and NOT cost-*: the ledger job downloads cost-*
+        # with merge-multiple, so a cost-shaped name here would be fed to the
+        # cost recorder as if it were a ledger record.
+        #
+        # The execution_file guard is load-bearing. When the action skips
+        # itself — which it does on every PR that edits this file — it sets no
+        # outputs, and upload-artifact fails hard on an empty `path` with
+        # "Input required and not supplied: path". `if-no-files-found: warn`
+        # does not cover it: the input is missing, not merely unmatched. That
+        # turned this job red on the very PR that introduced these steps.
+        if: always() && env.HAS_ANTHROPIC_KEY == 'true' && steps.agent.outputs.execution_file != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: review-transcript
+          path: ${{ steps.agent.outputs.execution_file }}
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Record cost
         # always(): a step that failed still spent tokens — or spent none
