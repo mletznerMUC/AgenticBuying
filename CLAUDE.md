@@ -36,7 +36,7 @@ docs/WORKFLOW.md       The agent-based development workflow
 docs/COST-CONTROL.md   Generated: per-run API spend by workflow and agent stage
 docs/cost/ledger.jsonl Append-only cost record; the report is derived from it
 docs/research/         Sourced research notes behind the site's content
-scripts/               Deterministic helpers (cost capture + reporting)
+scripts/               Deterministic helpers (cost capture + reporting, review output)
 .claude/agents/        Specialized subagent definitions
 .github/workflows/     Claude agent automation, CI
 .nojekyll              Disables Jekyll processing on GitHub Pages
