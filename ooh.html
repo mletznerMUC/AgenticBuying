@@ -18,7 +18,11 @@
           <li><a href="aamp.html">AAMP</a></li>
           <li><a href="releases.html">Releases</a></li>
           <li><a href="comparison.html">Comparison</a></li>
-          <li><a href="ooh.html" aria-current="page">OOH</a></li>
+          <li><a href="ooh.html" aria-current="page">OOH</a>
+            <ul class="site-subnav">
+              <li><a href="sdaw.html">SDAW</a></li>
+            </ul>
+          </li>
           <li><a href="tools.html">Tools</a></li>
           <li><a href="workflows.html">Workflows</a></li>
           <li><a href="resources.html">Resources</a></li>
@@ -32,7 +36,7 @@
     parts of the agentic buying protocols reach the medium, what has actually been piloted and
     where, and why a medium that addresses places rather than people fits the protocols'
     primitives badly.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · all claims on this page verified on that date</p>
+    <p class="page-meta">Updated <time datetime="2026-09-08">8 September 2026</time> · all claims on this page verified on that date</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -543,6 +547,23 @@
     junction during these dayparts," out-of-home enters a cross-channel plan as a budget line rather
     than as a comparable reach contribution.</p>
 
+    <h2>Market deep dive: the German classic-poster standard</h2>
+    <p>Everything above treats out-of-home as one channel. National classic-poster markets do not
+    trade that way: they trade on their own master-data formats, which predate the programmatic
+    rails as much as the rails predate the agentic layer. Germany's is SDAW (Standardisierter
+    Datensatz zur Außenwerbung), a fixed-width file format issued to the members of the
+    out-of-home trade association, and holding it against AAMP and AdCP field by field turns the
+    channel's abstract addressability problem into a concrete list of missing fields.</p>
+    <p>The finding is that the gap runs in both directions. SDAW has no transport, no credentials,
+    no digital playout concept and no impression currency, which is what an agentic protocol
+    assumes; the agentic protocols have no bookable panel object, no geo-coordinates on inventory,
+    no illumination or physical dimensions, and no posting-cycle calendar, which is what SDAW is
+    made of. Neither side is a superset of the other, so a national classic-poster estate cannot be
+    made agentically bookable by mapping alone.
+    <a href="sdaw.html">The SDAW deep dive</a> carries the record layout, the field-level mapping,
+    the process chain and the upstream items that decide it.</p>
+    <p class="source">Sources: <a href="sdaw.html">SDAW against the agentic protocols</a> (this site) · <a href="https://github.com/mckoch/open-sdaw" rel="noopener">open-sdaw</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · last verified 2026-09-08</p>
+
     <h2>What is still unresolved</h2>
     <p>These are the open questions this page's research could not close; they are the starting
     point for the next refresh cycle rather than claims.</p>
@@ -552,7 +573,8 @@
       over, and no completion announcement was found.</li>
       <li>Whether any DACH-region agentic out-of-home pilot exists that a broader German-language
       search would surface. The absence recorded above rests on a targeted search, not an
-      exhaustive one.</li>
+      exhaustive one, and the <a href="sdaw.html">SDAW deep dive</a> carries the same question from
+      the German market's side.</li>
       <li>Whether AdCP's DOOH creative-channel documentation and flat-rate DOOH schema read as
       described. Both sit behind an egress block for direct fetch from this project's research
       environment, so the claims above are triangulated from search-indexed extracts and are

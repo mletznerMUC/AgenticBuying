@@ -26,6 +26,7 @@ aamp.html              AAMP deep dive
 releases.html          Release tracker: last three releases of each protocol, what changed
 comparison.html        Side-by-side AdCP vs. AAMP comparison
 ooh.html               OOH channel deep dive: protocol coverage, worldwide POCs, medium-specific problems
+sdaw.html              OOH sub-page: SDAW, the German poster exchange format, mapped onto AdCP and AAMP
 tools.html             Tools & platform directory
 workflows.html         Sample agentic buying workflows
 resources.html         Specs, articles, talks, repos

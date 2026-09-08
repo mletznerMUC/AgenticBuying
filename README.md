@@ -11,7 +11,8 @@ root, published via GitHub Pages branch deployment) providing:
 - A neutral, sourced **AdCP vs. AAMP** comparison
 - A directory of **tools & resources**
 - A channel deep dive on **out-of-home**, the medium whose one-to-many economics fit
-  agentic primitives least comfortably
+  agentic primitives least comfortably, with a market sub-page on **SDAW**, the German
+  poster industry's exchange format, mapped field by field onto both protocols
 - **Sample workflows** for agent-driven media buying
 
 ## Agent-based development

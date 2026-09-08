@@ -89,6 +89,21 @@ body {
   padding: 0.25rem 0;
 }
 
+/* Channel sub-pages sit in a nested list so the nav states the hierarchy
+   (OOH > SDAW) rather than implying nine peers. inline-flex keeps the child on
+   its parent's row, and the marker is drawn with an empty alternative text so
+   assistive technology announces the link, not the glyph. No JavaScript and no
+   hover-only disclosure: every level is always visible and always reachable. */
+.site-nav .site-subnav {
+  display: inline-flex;
+  margin-left: 0.6rem;
+}
+
+.site-nav .site-subnav > li::before {
+  content: "\203A\00a0" / "";
+  color: var(--text-muted);
+}
+
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--accent);

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SDAW, the German poster industry's fixed-width exchange format, measured against AdCP and AAMP: what each side can and cannot express, field by field, and which upstream items decide whether classic out-of-home becomes agentically bookable.">
+  <title>SDAW · AgenticBuying</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-title" href="index.html">AgenticBuying</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="adcp.html">AdCP</a></li>
+          <li><a href="aamp.html">AAMP</a></li>
+          <li><a href="releases.html">Releases</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="ooh.html">OOH</a>
+            <ul class="site-subnav">
+              <li><a href="sdaw.html" aria-current="page">SDAW</a></li>
+            </ul>
+          </li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="workflows.html">Workflows</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>SDAW against the agentic protocols</h1>
+    <p class="lead">A market deep dive inside the <a href="ooh.html">out-of-home channel</a>: SDAW
+    (Standardisierter Datensatz zur Außenwerbung), the German poster industry's exchange format,
+    measured field by field against AAMP (Agentic Advertising Management Protocols) and AdCP (Ad
+    Context Protocol). The finding that organizes everything else is that the gap runs in both
+    directions — neither side is a superset of the other.</p>
+    <p class="page-meta">Updated <time datetime="2026-09-08">8 September 2026</time> · all claims on this page verified on that date</p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+    </ul>
+
+    <h2>How this page was assembled, and what that costs it</h2>
+    <p>SDAW's specification is a members-only document of the trade association that issues it, so
+    no primary artifact for it is publicly readable. Every field-level statement on this page
+    derives from one open-source toolchain published between 2011 and 2013 whose XML definitions
+    quote the specification, cross-read across three repositories by the same author — not from the
+    specification itself. <span class="badge reported">reported</span> Roughly 220 of the at least
+    495 bytes of the master-data record, and about 24 of the roughly 30 file types, are not
+    publicly documented at all, including one unbroken 140-byte block.</p>
+    <p class="source">Sources: <a href="https://github.com/mckoch/open-sdaw" rel="noopener">open-sdaw</a> · <a href="https://github.com/mckoch/sdxist" rel="noopener">sdxist</a> · <a href="https://github.com/mckoch/sdaw-import" rel="noopener">sdaw-import</a> · last verified 2026-09-08</p>
+    <p><span class="badge speculative">speculative</span> Whether SDAW is still actively exchanged
+    in 2026 is unsettled. No public source discusses the format after roughly 2013, and the
+    association that owns it — the Fachverband Außenwerbung, renamed B|A|M Bundesverband
+    Aussenmedien in 2025 — does not mention SDAW on its current site. Its continued use in German
+    poster trading is asserted by out-of-home glossaries rather than by the association, and the
+    German-language sources that describe it do not date their descriptions.</p>
+    <p class="source">Sources: <a href="https://aussenmedien.de/" rel="noopener">B|A|M Bundesverband Aussenmedien</a> · <a href="https://www.outmaxx.de/lexikon/standardisierter-datensatz-zur-aussenwerbung-sdaw/" rel="noopener">outmaxx out-of-home glossary</a> · <a href="https://schwarz-aw.de/aussenwerbung-lexikon/" rel="noopener">schwarz-aw out-of-home glossary</a> · last verified 2026-09-08</p>
+    <p>The comparison below is therefore asymmetric in evidence, not only in coverage: the AdCP and
+    AAMP columns rest on open repositories that anyone can re-read, and the SDAW column rests on a
+    reconstruction. Read the SDAW side as a working hypothesis until the specification itself is in
+    hand.</p>
+
+    <h2>Three standards, three eras</h2>
+    <p>SDAW was built for a file exchange between a lessee and an agency; AAMP and AdCP were built
+    for two software agents negotiating. That difference shows up in every row below, and it is the
+    reason a mapping is not a migration.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Dimension</th>
+            <th role="columnheader" scope="col">SDAW v004</th>
+            <th role="columnheader" scope="col">AAMP 2.3</th>
+            <th role="columnheader" scope="col">AdCP 3.1 and the 3.2 pre-release</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Owner</th>
+            <td role="cell" data-label="SDAW v004">Fachverband Außenwerbung, renamed B|A|M Bundesverband Aussenmedien in 2025</td>
+            <td role="cell" data-label="AAMP 2.3">IAB Tech Lab</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">AgenticAdvertising.org</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Current version</th>
+            <td role="cell" data-label="SDAW v004">Version 004, files dated 2011</td>
+            <td role="cell" data-label="AAMP 2.3">2.3, released 30 July 2026</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">v3.1.20 stable, 2 September 2026; v3.2.0-rc.1 pre-release, 5 September 2026</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Unit of exchange</th>
+            <td role="cell" data-label="SDAW v004">A zipped fixed-width text file with a header record, across roughly 30 file types</td>
+            <td role="cell" data-label="AAMP 2.3">A call on a seller agent, or OpenDirect-shaped order management</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">A task with a lifecycle, carried over the Model Context Protocol or an agent-to-agent transport</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Encoding</th>
+            <td role="cell" data-label="SDAW v004">Fixed 1-based character positions, space-padded, no escaping; character set never stated</td>
+            <td role="cell" data-label="AAMP 2.3">JSON Schema, with an extension prefix for unknown fields</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Versioned JSON Schemas with an extension object on core types</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Freshness model</th>
+            <td role="cell" data-label="SDAW v004">Full snapshot: a panel absent from the availability file is booked. No deltas, no time of day</td>
+            <td role="cell" data-label="AAMP 2.3">Query and response, so snapshot semantics are not needed</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Query and response plus webhooks, with revision-identified reporting</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Authentication</th>
+            <td role="cell" data-label="SDAW v004">None. The sender and lessee fields are identifiers, not credentials</td>
+            <td role="cell" data-label="AAMP 2.3">Bearer API key with a role, plus an agent registry</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Signed requests for mutating and financial operations from 3.1</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Specification access</th>
+            <td role="cell" data-label="SDAW v004">Members-only; publicly reconstructable only from one 2011–2013 toolchain</td>
+            <td role="cell" data-label="AAMP 2.3">Open repositories, Apache-2.0</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Open repositories, Apache-2.0</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Out-of-home coverage</th>
+            <td role="cell" data-label="SDAW v004">Native and exclusive — classic poster only</td>
+            <td role="cell" data-label="AAMP 2.3">Named as future scope; no dedicated path</td>
+            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Digital out-of-home (DOOH) modeled; static out-of-home only in the pre-release line</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/mckoch/open-sdaw" rel="noopener">open-sdaw</a> · <a href="https://aussenmedien.de/" rel="noopener">B|A|M</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab on AAMP</a> · <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repositories</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP repository</a> · last verified 2026-09-08</p>
+
+    <figure>
+      <div class="figure-wrap">
+        <svg viewBox="0 0 560 528" role="img" aria-labelledby="fig-sdaw-title">
+          <title id="fig-sdaw-title">A four-band stack showing that the gap between SDAW and the agentic protocols runs in both directions. At the top, the agentic protocols: AAMP 2.3 with no out-of-home object model, and AdCP 3.1 with the 3.2 pre-release, where digital out-of-home is modeled and static out-of-home is experimental. Below them, what the protocols lack in order to represent German classic out-of-home: a bookable panel object, geo-coordinates on inventory, illumination and physical dimensions, and a posting-cycle calendar. Below that, what SDAW lacks in order to be agentically transactable: a request and response surface, credentials and request signing, digital playout concepts such as screens, loops and slots, and an impression currency. At the bottom, SDAW itself: zipped fixed-width files across roughly thirty types, with a members-only specification.</title>
+
+          <rect class="dgm-band" x="8" y="8" width="544" height="112" rx="6" />
+          <text class="dgm-title" x="280" y="31" text-anchor="middle">Agentic protocols</text>
+          <text class="dgm-text" x="280" y="49" text-anchor="middle">designed for two agents negotiating</text>
+
+          <rect class="dgm-node" x="20" y="58" width="252" height="52" rx="6" />
+          <text class="dgm-title" x="146" y="80" text-anchor="middle">AAMP 2.3</text>
+          <text class="dgm-text" x="146" y="100" text-anchor="middle">no OOH object model</text>
+
+          <rect class="dgm-node" x="288" y="58" width="252" height="52" rx="6" />
+          <text class="dgm-title" x="414" y="80" text-anchor="middle">AdCP 3.1 / 3.2 pre-release</text>
+          <text class="dgm-text" x="414" y="100" text-anchor="middle">DOOH modeled, static experimental</text>
+
+          <rect class="dgm-band" x="8" y="132" width="544" height="144" rx="6" />
+          <text class="dgm-title" x="280" y="155" text-anchor="middle">Gap, protocols toward SDAW</text>
+
+          <rect class="dgm-node" x="20" y="166" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="146" y="193" text-anchor="middle">No bookable panel object</text>
+
+          <rect class="dgm-node" x="288" y="166" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="414" y="193" text-anchor="middle">No geo on inventory</text>
+
+          <rect class="dgm-node" x="20" y="218" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="146" y="245" text-anchor="middle">No illumination or size</text>
+
+          <rect class="dgm-node" x="288" y="218" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="414" y="245" text-anchor="middle">No posting-cycle calendar</text>
+
+          <rect class="dgm-band" x="8" y="288" width="544" height="144" rx="6" />
+          <text class="dgm-title" x="280" y="311" text-anchor="middle">Gap, SDAW toward the protocols</text>
+
+          <rect class="dgm-node" x="20" y="322" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="146" y="349" text-anchor="middle">No request/response surface</text>
+
+          <rect class="dgm-node" x="288" y="322" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="414" y="349" text-anchor="middle">No credentials or signing</text>
+
+          <rect class="dgm-node" x="20" y="374" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="146" y="401" text-anchor="middle">No screens, loops or slots</text>
+
+          <rect class="dgm-node" x="288" y="374" width="252" height="44" rx="6" />
+          <text class="dgm-text" x="414" y="401" text-anchor="middle">No impression currency</text>
+
+          <rect class="dgm-band" x="8" y="444" width="544" height="76" rx="6" />
+          <text class="dgm-title" x="280" y="470" text-anchor="middle">SDAW v004</text>
+          <text class="dgm-text" x="280" y="491" text-anchor="middle">zipped fixed-width files, ~30 types, specification members-only</text>
+          <text class="dgm-text" x="280" y="510" text-anchor="middle">native to classic poster, and to nothing else</text>
+        </svg>
+      </div>
+      <figcaption class="source">Figure 1 — Two gaps, not one. The middle bands are what each side
+      would have to add to reach the other, which is why the exercise is a two-way mapping rather
+      than a migration path. Sources: <a href="https://github.com/mckoch/sdxist" rel="noopener">sdxist</a> ·
+      <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> ·
+      <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-09-08</figcaption>
+    </figure>
+
+    <h2>What the master-data record carries</h2>
+    <p>A gap is only assessable against real field semantics, so the table below lists the publicly
+    attested part of the <code>STA</code> record — the panel master data every mapping has to
+    survive. Positions are 1-based character offsets into a fixed-width line.
+    <span class="badge reported">reported</span> The whole table rests on the reconstruction
+    described above, not on the specification.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Field</th>
+            <th role="columnheader" scope="col">Position and length</th>
+            <th role="columnheader" scope="col">What it carries</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Standortnr</code></th>
+            <td role="cell" data-label="Position and length">021, 13</td>
+            <td role="cell" data-label="What it carries">Site number, prefixed by a three-character lessee code — identity is unique only within that lessee</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Preisgruppe</code></th>
+            <td role="cell" data-label="Position and length">034, 2</td>
+            <td role="cell" data-label="What it carries">Price group, resolved through an appendix that is not public</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Stellenart</code></th>
+            <td role="cell" data-label="Position and length">036, 4</td>
+            <td role="cell" data-label="What it carries">Site and object class as two two-character codes; the code list is not public</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Beleuchtung</code></th>
+            <td role="cell" data-label="Position and length">040, 1</td>
+            <td role="cell" data-label="What it carries">Illumination class: unlit, lit, backlit, or lit within the frame</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>AbmessungenH</code> / <code>AbmessungenB</code></th>
+            <td role="cell" data-label="Position and length">041 and 047, 6 each</td>
+            <td role="cell" data-label="What it carries">Physical height and width, or circumference, in centimeters</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Belegdauerart</code></th>
+            <td role="cell" data-label="Position and length">053, 3</td>
+            <td role="cell" data-label="What it carries">Booking-period type: weeks, decades with a pasting block, months, quarters, half-years, years</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>AktiverStatus</code></th>
+            <td role="cell" data-label="Position and length">056, 1</td>
+            <td role="cell" data-label="What it carries">Whether the panel is active or blocked</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>StatOrtskz</code></th>
+            <td role="cell" data-label="Position and length">060, 8</td>
+            <td role="cell" data-label="What it carries">Eight-digit municipality key; that it is the official municipality key is inferred from usage</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Planquadrat</code></th>
+            <td role="cell" data-label="Position and length">098, 6</td>
+            <td role="cell" data-label="What it carries">A map-book grid label, not a coordinate projection</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Fotoname</code></th>
+            <td role="cell" data-label="Position and length">124, 8</td>
+            <td role="cell" data-label="What it carries">Site photograph name, without an extension; the image itself ships out of band</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Stellennummer</code></th>
+            <td role="cell" data-label="Position and length">254, 2</td>
+            <td role="cell" data-label="What it carries">Panel number at the site, capped at 99 panels per site</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Preis</code></th>
+            <td role="cell" data-label="Position and length">411, 7</td>
+            <td role="cell" data-label="What it carries">Cent per day per panel, with no currency field anywhere in the record</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Leistungsklasse1</code> / <code>Leistungswert1</code></th>
+            <td role="cell" data-label="Position and length">426 and 428, 2 and 5</td>
+            <td role="cell" data-label="What it carries">One performance metric class and one value per panel — the audience figure, whichever methodology produced it</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>Bauart</code></th>
+            <td role="cell" data-label="Position and length">464, 2</td>
+            <td role="cell" data-label="What it carries">Construction type: column, face, city-information panel, or mechanical changer</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row"><code>longitude</code> / <code>latitude</code></th>
+            <td role="cell" data-label="Position and length">466 and 481, 15 each</td>
+            <td role="cell" data-label="What it carries">Decimal degrees; the reference system is inferred from usage rather than stated</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/mckoch/sdxist" rel="noopener">sdxist record layouts</a> · <a href="https://github.com/mckoch/sdaw-import" rel="noopener">sdaw-import calendar and code tables</a> · last verified 2026-09-08</p>
+
+    <p>Two properties of this record cause most of the mapping difficulty, and both are structural
+    rather than cosmetic. First, site identity is <strong>scoped to the lessee</strong>: the site
+    number is unique only inside a three-character lessee prefix, so there is no market-wide panel
+    identifier to hand an agent. Second, time is an <strong>index rather than a date</strong>: the
+    booking-period type plus a period number resolves to calendar dates only through the annually
+    re-issued decade plan and the municipality's pasting block, whose start dates and head-and-tail
+    exceptions change from year to year. In the reference implementation those dates are carried as
+    data, not derived from a rule.</p>
+    <p class="source">Source: <a href="https://github.com/mckoch/sdaw-import" rel="noopener">sdaw-import</a> · last verified 2026-09-08</p>
+
+    <h2>Where SDAW's concepts land in each protocol</h2>
+    <p>The table maps each SDAW concept to the nearest construct on each side, and rates the
+    result. <strong>Covered</strong> means a semantically equivalent target exists.
+    <strong>Lossy</strong> means a target exists but loses part of the meaning.
+    <strong>Experimental</strong> means the target exists only in a pre-release or report-only
+    surface. <strong>No target</strong> means there is nothing to map onto. Ratings describe the
+    strongest available target rather than the average case, and the detail behind the harder rows
+    follows the table.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">SDAW concept</th>
+            <th role="columnheader" scope="col">Nearest AAMP construct</th>
+            <th role="columnheader" scope="col">Nearest AdCP construct</th>
+            <th role="columnheader" scope="col">Coverage</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Bookable panel identity</th>
+            <td role="cell" data-label="Nearest AAMP construct">An inherited frames targeting unit and an invalid-frame error, with no frame or panel object behind them</td>
+            <td role="cell" data-label="Nearest AdCP construct">Panel identifiers inside the delivery-report block only</td>
+            <td role="cell" data-label="Coverage">No target — reportable, not discoverable or bookable</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Panel coordinates</th>
+            <td role="cell" data-label="Nearest AAMP construct">The AdCOM geo object, a device-location model, unpopulated in the reference agents</td>
+            <td role="cell" data-label="Nearest AdCP construct">Coordinates as buyer-side targeting input and as evidence metadata; structured property geo is an open issue</td>
+            <td role="cell" data-label="Coverage">No target</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Site and object class</th>
+            <td role="cell" data-label="Nearest AAMP construct">No venue taxonomy field</td>
+            <td role="cell" data-label="Nearest AdCP construct">OpenOOH venue type as a registered identifier, but that taxonomy covers digital screens</td>
+            <td role="cell" data-label="Coverage">No target for classic panels; covered for DOOH</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Illumination class</th>
+            <td role="cell" data-label="Nearest AAMP construct">None</td>
+            <td role="cell" data-label="Nearest AdCP construct">Illuminated hours in the pre-release out-of-home metrics block, report-only</td>
+            <td role="cell" data-label="Coverage">Lossy — hours of light are not a fixture class</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Physical size in centimeters</th>
+            <td role="cell" data-label="Nearest AAMP construct">Creative pixel dimensions only</td>
+            <td role="cell" data-label="Nearest AdCP construct">Print creative requirements with physical units and resolution</td>
+            <td role="cell" data-label="Coverage">Lossy — a creative specification, not a panel specification</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Posting cycle and pasting block</th>
+            <td role="cell" data-label="Nearest AAMP construct">Start and end dates with lead time and flight bounds</td>
+            <td role="cell" data-label="Nearest AdCP construct">Installments and material deadlines; posting leeway is proposed, not shipped</td>
+            <td role="cell" data-label="Coverage">Lossy — the container exists, the cycle grid does not</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Availability snapshot</th>
+            <td role="cell" data-label="Nearest AAMP construct">An availability search returning availability, status and price</td>
+            <td role="cell" data-label="Nearest AdCP construct">Product listing, proposals with holds, and a forecast</td>
+            <td role="cell" data-label="Coverage">Covered — both agentic sides are richer than a snapshot</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Price per day per panel</th>
+            <td role="cell" data-label="Nearest AAMP construct">A pricing-model enumeration without cost per frame</td>
+            <td role="cell" data-label="Nearest AdCP construct">Flat-rate and time-based pricing with a price breakdown</td>
+            <td role="cell" data-label="Coverage">Covered in AdCP, lossy in AAMP</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Panel audience value</th>
+            <td role="cell" data-label="Nearest AAMP construct">Campaign KPI metrics; the out-of-home impression multiplier sits in OpenRTB, not in the order surface</td>
+            <td role="cell" data-label="Nearest AdCP construct">Estimated impressions with a required estimation basis, plus vendor metrics; no German currency is named</td>
+            <td role="cell" data-label="Coverage">Experimental — carriable as a vendor metric, not as a recognized currency</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Site photograph</th>
+            <td role="cell" data-label="Nearest AAMP construct">None</td>
+            <td role="cell" data-label="Nearest AdCP construct">Geotagged, timestamped placement evidence and posting events</td>
+            <td role="cell" data-label="Coverage">Experimental, and semantically better: proof of posting rather than a site portrait</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">The four-party header</th>
+            <td role="cell" data-label="Nearest AAMP construct">Accounts, organizations and orders, with the supply chain declared separately</td>
+            <td role="cell" data-label="Nearest AdCP construct">Account, brand, purchase-order and agency reference fields on a proposal</td>
+            <td role="cell" data-label="Coverage">Covered — lessee, agency, specialist intermediary and client map cleanly</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · <a href="https://github.com/IABTechLab/agentic-direct" rel="noopener">Agentic Direct</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://github.com/openooh/venue-taxonomy" rel="noopener">OpenOOH venue taxonomy</a> · last verified 2026-09-08</p>
+
+    <h3>The four rows that decide the rest</h3>
+    <p><strong>Panel identity.</strong> AdCP's pre-release out-of-home metrics block can name a
+    panel in a delivery report, using an operator face identifier, but no property type or
+    identifier type exists for a static panel in the released schemas. The consequence is precise:
+    a panel can be reported on and cannot be discovered or sold. AAMP inherits a frames targeting
+    unit and an invalid-frame error code from its OpenDirect base without a frame object
+    underneath, so the same gap is there for a different reason.</p>
+    <p><strong>Inventory geo.</strong> Both protocols treat coordinates as something a buyer sends
+    or a report attaches, not as an attribute of the thing being sold. In AdCP the addition of
+    structured geo to properties and placements is a tracked issue rather than a field, which is
+    why a German panel's coordinates currently have to travel in an extension object.</p>
+    <p><strong>The posting-cycle grid.</strong> Decades, pasting blocks and in-and-out-of-charge
+    dates have no representation on either side. AdCP's static out-of-home draft states outright
+    that the protocol will not maintain a posting calendar, which pushes the decade plan into the
+    seller's own systems and means every external interface has to publish concrete start and end
+    dates.</p>
+    <p><strong>The audience currency.</strong> AdCP's out-of-home metrics require the basis of an
+    impression estimate to be declared, and name a handful of national measurement bodies as
+    examples; the German figure, Plakatseher pro Stelle, which replaced the older G-Wert from
+    1 January 2013, appears in neither protocol. A German seller can carry it as a
+    seller-modeled estimate, which is honest and is not the same thing as a recognized currency.</p>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://de.wikipedia.org/wiki/Plakatseher_pro_Stelle" rel="noopener">Plakatseher pro Stelle</a> · <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-09-08</p>
+
+    <h2>The process chain, step by step</h2>
+    <p>SDAW's file types form a real sequence, from master data through to invoicing, so it is worth
+    laying out in order against the two protocols. <span class="badge reported">reported</span>
+    Only about six of the roughly 30 file types are publicly attested; the codes for reservation,
+    confirmation, posting order, proof of posting and invoicing are not public, which is a gap in
+    public knowledge rather than necessarily a gap in the format.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Step</th>
+            <th role="columnheader" scope="col">SDAW file type</th>
+            <th role="columnheader" scope="col">AAMP equivalent</th>
+            <th role="columnheader" scope="col">AdCP equivalent</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Panel master data</th>
+            <td role="cell" data-label="SDAW file type"><code>STA</code></td>
+            <td role="cell" data-label="AAMP equivalent">Product listing, with no panel entity</td>
+            <td role="cell" data-label="AdCP equivalent">Product listing, with no panel entity</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Availability</th>
+            <td role="cell" data-label="SDAW file type"><code>FRE</code></td>
+            <td role="cell" data-label="AAMP equivalent">Availability search</td>
+            <td role="cell" data-label="AdCP equivalent">Product listing and forecast</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Offer</th>
+            <td role="cell" data-label="SDAW file type"><code>ANG</code></td>
+            <td role="cell" data-label="AAMP equivalent">Quotes and proposals</td>
+            <td role="cell" data-label="AdCP equivalent">Proposal request</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Hold</th>
+            <td role="cell" data-label="SDAW file type">Not publicly documented</td>
+            <td role="cell" data-label="AAMP equivalent">A reserved order state</td>
+            <td role="cell" data-label="AdCP equivalent">Proposal refinement with holds</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Booking</th>
+            <td role="cell" data-label="SDAW file type"><code>AUF</code></td>
+            <td role="cell" data-label="AAMP equivalent">Order creation</td>
+            <td role="cell" data-label="AdCP equivalent">Proposal acceptance</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Confirmation</th>
+            <td role="cell" data-label="SDAW file type">Not publicly documented</td>
+            <td role="cell" data-label="AAMP equivalent">An order state transition</td>
+            <td role="cell" data-label="AdCP equivalent">A commitment response</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Posting order</th>
+            <td role="cell" data-label="SDAW file type">Not publicly documented</td>
+            <td role="cell" data-label="AAMP equivalent">None</td>
+            <td role="cell" data-label="AdCP equivalent">Material submission with deadlines</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Proof of posting</th>
+            <td role="cell" data-label="SDAW file type">Not publicly documented</td>
+            <td role="cell" data-label="AAMP equivalent">None; OpenDirect's statistics object is unused</td>
+            <td role="cell" data-label="AdCP equivalent">Posting events with geotagged evidence, in the pre-release line</td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Invoicing</th>
+            <td role="cell" data-label="SDAW file type">Not publicly documented</td>
+            <td role="cell" data-label="AAMP equivalent">Out of scope</td>
+            <td role="cell" data-label="AdCP equivalent">An official reporting revision, but no settlement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/mckoch/open-sdaw" rel="noopener">open-sdaw</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/IABTechLab/agentic-direct" rel="noopener">Agentic Direct</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · last verified 2026-09-08</p>
+    <p>The distribution is the commercially interesting part. SDAW's weakest published steps —
+    posting order, proof of posting, invoicing — are where AdCP's pre-release work for physical
+    media is strongest, and its strongest published steps — panel master data and cycle-accurate
+    availability — are where both agentic protocols have nothing.</p>
+
+    <h2>The gap in both directions</h2>
+    <h3>What SDAW would need to be agentically transactable</h3>
+    <ul>
+      <li><strong>A request and response surface.</strong> The unit of exchange is a zipped file,
+      and nothing public describes a transport, let alone a task lifecycle.</li>
+      <li><strong>Credentials, signatures and idempotency.</strong> Integrity rests on total
+      records; agent-mediated buying assumes signed, replayable, idempotent operations.</li>
+      <li><strong>Digital playout concepts.</strong> There is no screen, loop, slot or share of
+      time in the format; the mechanical-changer construction type describes a rotating frame, not
+      a playlist.</li>
+      <li><strong>An impression currency.</strong> One static performance value per panel, and
+      billing in days rather than in contacts.</li>
+      <li><strong>A larger identifier space.</strong> Ninety-nine panels per site, lessee-scoped
+      site numbers, and no market-wide identity.</li>
+      <li><strong>Robustness against positional drift.</strong> A single wrong byte shifts every
+      following field, and the character set is nowhere stated.</li>
+      <li><strong>A public specification.</strong> The unknown file types and record bytes cannot
+      be obtained without association access.</li>
+    </ul>
+    <p class="source">Sources: <a href="https://github.com/mckoch/open-sdaw" rel="noopener">open-sdaw</a> · <a href="https://github.com/mckoch/sdxist" rel="noopener">sdxist</a> · last verified 2026-09-08</p>
+
+    <h3>What the protocols would need to represent German classic out-of-home</h3>
+    <ul>
+      <li><strong>A bookable panel object.</strong> AdCP can report a panel it cannot discover or
+      sell; AAMP has an inherited frames unit with nothing behind it.</li>
+      <li><strong>A static out-of-home property type in AdCP</strong>, without which static
+      inventory has no seller-authorization path of the kind other channels use.</li>
+      <li><strong>Geo on inventory.</strong> Coordinates are targeting input and evidence metadata
+      on both sides.</li>
+      <li><strong>A posting-cycle grid.</strong> Decades, pasting blocks and in-and-out-of-charge
+      dates have no representation.</li>
+      <li><strong>Illumination and physical dimensions on inventory</strong>, rather than
+      illuminated hours in a report and print specifications on a creative.</li>
+      <li><strong>A place for national currencies without a joint industry standard.</strong> The
+      German measurement figure is named in neither protocol.</li>
+      <li><strong>Cost per frame in AAMP</strong>, which its own OpenDirect base has and its
+      pricing enumeration does not.</li>
+    </ul>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · last verified 2026-09-08</p>
+
+    <h2>Where the nearest out-of-home data model actually sits</h2>
+    <p>The closest thing to an IAB out-of-home data model is not AAMP but OpenDirect 2.1, built in
+    2024 with the out-of-home trade bodies: it has frames, named audience datasources, share of
+    time, cost per frame and a proof-of-posting statistics object. AAMP inherits that vocabulary
+    shell through its OpenDirect-based order surface without binding out-of-home semantics to it.
+    AdCP's static out-of-home draft reaches the same conclusion from the other side, stating that
+    it borrows OpenDirect's vocabulary — lead times, flight bounds, frame references and
+    proof of posting as a first-class statistic — and not its order-management API.</p>
+    <p class="source">Sources: <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · last verified 2026-09-08</p>
+    <p>For the digital half of a German estate the lineage is different again: IDOOH, formerly the
+    Digital Media Institute, publishes German DOOH venue-taxonomy and media-data standards that are
+    deliberately distinct from OpenOOH's with a stated mapping intent. A German-to-international
+    venue crosswalk therefore exists for digital screens and has no equivalent for classic
+    panels.</p>
+    <p class="source">Source: <a href="https://idooh.media/standards/" rel="noopener">IDOOH standards</a> · last verified 2026-09-08</p>
+
+    <h2>Upstream items that decide this</h2>
+    <p>Almost everything a German classic-poster seller would need is currently a tracked item
+    rather than a shipped field, on both sides.</p>
+
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Item</th>
+            <th role="columnheader" scope="col">Where</th>
+            <th role="columnheader" scope="col">Why it matters here</th>
+            <th role="columnheader" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th role="rowheader" scope="row">Structured geo on properties and placements</th>
+            <td role="cell" data-label="Where">An open AdCP issue against a later minor version</td>
+            <td role="cell" data-label="Why it matters here">The only route to a panel's coordinates travelling in the protocol rather than in an extension</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Static out-of-home property and panel identifiers</th>
+            <td role="cell" data-label="Where">AdCP's static out-of-home design draft</td>
+            <td role="cell" data-label="Why it matters here">Where a German site identifier and a national measurement authority prefix would belong</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Whether static out-of-home graduates from experimental</th>
+            <td role="cell" data-label="Where">The 3.2 pre-release line and its cross-channel work</td>
+            <td role="cell" data-label="Why it matters here">Experimental fields may change shape, so an early binding carries rework risk</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">A conformance path for static sellers</th>
+            <td role="cell" data-label="Where">AdCP's compliance material, which has a DOOH sales specialism and no static counterpart</td>
+            <td role="cell" data-label="Why it matters here">Without one, a static seller cannot be certified even after implementing</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">AAMP out-of-home coverage</th>
+            <td role="cell" data-label="Where">IAB Tech Lab's framing of the initiative</td>
+            <td role="cell" data-label="Why it matters here">Named as future scope with no repository, schema or date; the targeting extension point is available now</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">Convergence between the two protocols</th>
+            <td role="cell" data-label="Where">IAB Tech Lab's own comparison, which concedes thirteen overlapping business functions</td>
+            <td role="cell" data-label="Why it matters here">No interoperability commitment follows from the overlap, so dual support is the planning assumption</td>
+            <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab on AAMP's scope</a> · <a href="https://ppc.land/aamp-and-adcp-overlap-on-13-functions-iab-tech-lab-coo-says/" rel="noopener">PPC Land on the thirteen shared functions</a> · last verified 2026-09-08</p>
+
+    <h2>What the gap implies for a German seller</h2>
+    <p>The analysis this page condenses drew a set of practical consequences. They are listed as
+    consequences of the field-level findings above, not as advice about which protocol to prefer —
+    the ordering follows what unblocks the most downstream work.</p>
+    <ol>
+      <li><strong>The specification is the first dependency.</strong> Nothing below is safe while
+      about 24 file types and roughly 220 record bytes are reconstructions, so obtaining the
+      specification and its appendices from the association comes first.</li>
+      <li><strong>The canonical model cannot be SDAW.</strong> Panel identity, geo, fixture class,
+      physical size, cycle calendar and audience value with its methodology belong in one internal
+      model, with SDAW's master-data and availability files as one adapter into it.</li>
+      <li><strong>The time model has to be resolved once.</strong> Decade plan plus pasting block
+      to real date ranges, with concrete start and end dates in every external interface, because
+      no protocol will maintain the calendar.</li>
+      <li><strong>An AdCP binding is buildable now, against a moving target.</strong> Custom print
+      creative formats, installments for cycles, out-of-home metrics with panel identifiers and
+      geotagged evidence, and a seller-modeled estimation basis for the German audience figure —
+      with panel detail in an extension object where no field exists.</li>
+      <li><strong>The requirements are only representable if they are filed.</strong> A panel
+      identifier type, a measurement authority for the German currency, an operator-estimated
+      methodology tier, illumination as a fixture class and posting-cycle fields are all open
+      questions upstream rather than settled omissions.</li>
+      <li><strong>For AAMP, the available surface is the targeting extension point</strong> —
+      binding an out-of-home vocabulary into it the way the United Kingdom's frame register and
+      audience currency were bound into OpenDirect, rather than waiting for an AAMP out-of-home
+      profile.</li>
+      <li><strong>Digital and classic belong in one product model.</strong> German DOOH venue types
+      map to OpenOOH for the digital side, while classic panels carry their own site class until a
+      static taxonomy exists.</li>
+    </ol>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://idooh.media/standards/" rel="noopener">IDOOH standards</a> · last verified 2026-09-08</p>
+
+    <h2>What is still unresolved</h2>
+    <p>These are the questions this page's research could not close. They are carried in the
+    project's research notes and are the starting point for the next refresh cycle rather than
+    claims.</p>
+    <ul>
+      <li>Whether SDAW is still actively exchanged in German poster trading in 2026, and whether
+      B|A|M still maintains it. No public source discusses the format after roughly 2013.</li>
+      <li>The contents of the members-only specification: about 24 file types, roughly 220 bytes of
+      the master-data record including one 140-byte block, the site-class and price-group
+      appendices, the character set, the filename mask and the transport.</li>
+      <li>Whether the file-type codes for reservation, confirmation, posting order, proof of posting
+      and invoicing exist under names this reconstruction never saw.</li>
+      <li>Whether any SDAW-to-IDOOH or SDAW-to-OpenOOH mapping exists. None was located.</li>
+      <li>Whether AdCP's static out-of-home draft advances into a released schema, and on what
+      version, since the identifiers a German binding would need are drafted rather than
+      shipped.</li>
+      <li>Whether AAMP's out-of-home intent produces an artifact, or whether its OpenDirect-derived
+      vocabulary remains the only out-of-home surface it has.</li>
+      <li>Whether any German or wider DACH media owner has an agentic out-of-home implementation,
+      which the channel deep dive also carries as an open question.</li>
+    </ul>
+    <p class="source">Source: <a href="https://github.com/mletznerMUC/AgenticBuying/tree/main/docs/research" rel="noopener">this site's research notes</a> · last verified 2026-09-08</p>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <p>AgenticBuying — an independent tracker of agentic buying protocols.
+      Content is verified against primary sources; every claim carries a source and date.
+      <a href="https://github.com/mletznerMUC/AgenticBuying" rel="noopener">Source on GitHub</a>.</p>
+      <p><strong>AI transparency notice.</strong> The content of this site is researched and
+      drafted with AI assistance, with a human editor in the loop: every change is reviewed and
+      approved by a person before publication, and Markus Letzner holds editorial responsibility
+      for the published content. This disclosure follows the transparency provisions of the
+      EU AI Act (Regulation (EU) 2024/1689).</p>
+      <p>&copy; 2026 Markus Letzner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -6,8 +6,26 @@ note here.
 
 ## Current notes
 
+- [`sdaw-2026-09-08.md`](sdaw-2026-09-08.md) — *SDAW against the agentic protocols*,
+  verified 2026-09-08. **The latest note.** A new-topic note behind `sdaw.html`, the
+  market sub-page under the OOH channel deep dive, and the one note in this directory
+  that did not originate in a research run: its substance is a desk-research gap analysis
+  contributed to the project on 2026-09-08, and the note records which parts were
+  independently re-checked here and which were not. Its organizing finding is that the gap
+  between the German poster industry's exchange format and the agentic protocols runs in
+  both directions — SDAW has no transport, credentials, digital-playout concept or
+  impression currency, and the protocols have no bookable panel object, inventory geo,
+  illumination, physical dimensions or posting-cycle calendar — so neither side is a
+  superset of the other. It re-verified three things directly: the `open-sdaw` repository's
+  description of the format, AdCP's `specs/static-ooh.md` design draft (an `ooh` property
+  type, `panel_id`, `{authority}:{id}` measurement references, posting evidence and
+  illuminated hours, all drafted rather than released, and its stated borrowing of
+  OpenDirect's vocabulary but not its API), and the AdCP release lines at `v3.1.20` stable
+  and `v3.2.0-rc.1` of 5 September 2026 — one release candidate past what the 2026-09-04
+  note recorded. Everything on the SDAW side rests on a 2011–2013 open-source toolchain
+  rather than on the members-only specification, and is badged accordingly.
 - [`ooh-2026-09-04.md`](ooh-2026-09-04.md) — *OOH and DOOH in agentic buying*,
-  verified 2026-09-04. **The latest note.** A new-topic note, not a refresh run: the
+  verified 2026-09-04. **The note behind the OOH channel page.** A new-topic note, not a refresh run: the
   evidence base behind `ooh.html`. Its organizing finding is that the channel has two
   layers of machine-readable support moving at different speeds — mature pre-agentic
   rails (OpenRTB 2.6's DOOH and Qty objects, AdCOM's DOOH object, OpenDirect 2.1's DOOH
@@ -100,8 +118,35 @@ record of what was believed when.
 ## Open questions carried forward
 
 The 2026-09-02 refresh closed four and opened three; the 2026-09-04 OOH note opened six
-more, listed first below and also published on `ooh.html`. The ones that most affect the
-site's accuracy:
+more; the 2026-09-08 SDAW note opened seven, listed first below and also published on
+`sdaw.html`. The ones that most affect the site's accuracy:
+
+- **Whether SDAW is still actively exchanged in German poster trading in 2026, and whether
+  B|A|M still maintains it.** No public source discusses the format after roughly 2013 and
+  the association's own site is silent, so its continued use rests on undated glossaries.
+  This question decides how much the rest of `sdaw.html` matters, and one association
+  statement would settle it. Newly open.
+- **The contents of SDAW's members-only specification** — about 24 of roughly 30 file types,
+  roughly 220 bytes of the `STA` record including one 140-byte block, the site-class and
+  price-group appendices, the character set, the filename mask and the transport. Only
+  association access closes it; until then the whole SDAW side of the mapping is a
+  reconstruction from a 2011–2013 toolchain. Newly open.
+- **Whether SDAW's file-type codes for reservation, confirmation, posting order, proof of
+  posting and invoicing exist under names the public reconstruction never saw** — a gap in
+  public knowledge, not necessarily in the format. Newly open.
+- **Whether AdCP's `specs/static-ooh.md` draft advances into a released schema, and on which
+  version.** The identifiers a German binding needs — an `ooh` property type, `panel_id`,
+  authority-prefixed measurement references — are drafted, and the contributed analysis
+  verified them absent from the released enumerations; that absence was not independently
+  re-checked. Newly open.
+- **Whether AAMP's out-of-home intent produces an artifact**, or whether its
+  OpenDirect-derived vocabulary remains its only out-of-home surface. Newly open.
+- **Whether a national audience currency without a joint industry standard can be carried as
+  a recognized measurement authority in AdCP** rather than as a seller-modeled estimate.
+  Plakatseher pro Stelle is named in neither protocol. Newly open.
+- **Whether any SDAW-to-IDOOH or SDAW-to-OpenOOH mapping exists.** None was located in
+  either direction, while a German-to-international crosswalk does exist for digital
+  screens. Newly open.
 
 - **Whether VIOOH's Q3 2026 self-serve Seller Agent rollout and its stated AdCP and AAMP
   registrations have happened.** Both were described as planned in the 26 June 2026
