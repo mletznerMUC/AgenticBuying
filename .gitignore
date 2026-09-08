@@ -5,3 +5,8 @@ node_modules/
 
 # Cost records staged by .github/actions/record-cost before upload.
 _cost/
+
+# Bytecode from running the scripts/ helpers locally. Committing it once was
+# enough: `git add -A` after a py_compile check swept it into a PR.
+__pycache__/
+*.pyc
