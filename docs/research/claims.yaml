@@ -26,7 +26,7 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-09-04
+  updated: 2026-09-08
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -780,4 +780,133 @@ claims:
     sources:
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
     last_verified: 2026-09-04
+    volatility: medium
+  # --- SDAW market deep dive (sdaw.html), seeded from docs/research/sdaw-2026-09-08.md ---
+  # Volatility is split deliberately: the AdCP out-of-home surface moves weekly, the
+  # protocol-side gaps and AAMP's position move in quarters, and the SDAW reconstruction
+  # does not move at all until the members-only specification is obtained. The exception
+  # is whether the format is still in use, which a single association statement would
+  # settle. Every SDAW-side row is a reconstruction from a 2011-2013 open-source
+  # toolchain, not from the specification, which is why none of them is `shipped`.
+  - id: sdaw-format-and-governance
+    pages: [sdaw.html]
+    claim: "SDAW (Standardisierter Datensatz zur Aussenwerbung) is a fixed-width file format for German classic poster trading, described in a document the out-of-home trade association issues to its members, with each real-world object or event represented by its own file type across roughly 30 types; the unit of exchange is a zipped text file with a header record. The owning association, the Fachverband Aussenwerbung, was renamed B|A|M Bundesverband Aussenmedien in 2025 and its current site does not mention SDAW. Version 004, with files dated 2011, is the version the public toolchain implements."
+    status: reported
+    sources:
+      - https://github.com/mckoch/open-sdaw
+      - https://github.com/mckoch/sdxist
+      - https://aussenmedien.de/
+    last_verified: 2026-09-08
+    volatility: low
+  - id: sdaw-spec-not-public
+    pages: [sdaw.html]
+    claim: "SDAW's specification is a members-only association document, so no primary artifact is publicly readable: every field-level statement on the site derives from one open-source toolchain published between 2011 and 2013 whose XML definitions quote the specification, cross-read across three repositories by one author. Roughly 220 of at least 495 bytes of the STA master-data record are undisclosed, including one unbroken 140-byte block, and about 24 of the roughly 30 file types are not publicly documented, among them the codes for reservation, confirmation, posting order, proof of posting and invoicing."
+    status: reported
+    sources:
+      - https://github.com/mckoch/open-sdaw
+      - https://github.com/mckoch/sdxist
+      - https://github.com/mckoch/sdaw-import
+    last_verified: 2026-09-08
+    volatility: low
+  - id: sdaw-still-in-use-unverified
+    pages: [sdaw.html]
+    claim: "Whether SDAW is still actively exchanged in German poster trading in 2026, and whether B|A|M still maintains it, is unverified: no public source discusses the format after roughly 2013, the association does not mention it on its current site, and its continued use is asserted by undated out-of-home glossaries rather than by the association."
+    status: speculative
+    sources:
+      - https://aussenmedien.de/
+      - https://www.outmaxx.de/lexikon/standardisierter-datensatz-zur-aussenwerbung-sdaw/
+      - https://schwarz-aw.de/aussenwerbung-lexikon/
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-sta-record-fields
+    pages: [sdaw.html]
+    claim: "The publicly attested part of SDAW's STA panel master-data record is a fixed 1-based, space-padded character layout carrying: site number with a three-character lessee prefix (position 021, length 13), price group (034, 2), site and object class (036, 4), illumination class as unlit, lit, backlit or lit-in-frame (040, 1), physical height and width or circumference in centimeters (041 and 047, 6 each), booking-period type (053, 3), active or blocked status (056, 1), an eight-digit municipality key (060, 8), a map-book grid label (098, 6), a site photograph name that ships out of band (124, 8), panel number at the site capped at 99 (254, 2), price in cent per day per panel with no currency field (411, 7), one performance metric class and value (426 and 428), construction type (464, 2), and longitude and latitude in decimal degrees (466 and 481, 15 each). There is no escaping, no stated character set, and no authentication -- the sender and lessee fields are identifiers, not credentials, and integrity rests on total records."
+    status: reported
+    sources:
+      - https://github.com/mckoch/sdxist
+      - https://github.com/mckoch/sdaw-import
+    last_verified: 2026-09-08
+    volatility: low
+  - id: sdaw-identity-and-time-model
+    pages: [sdaw.html]
+    claim: "Two properties of the SDAW record drive the mapping difficulty. Site identity is scoped to the lessee -- unique only within a three-character prefix, with at most 99 panels per site -- so there is no market-wide panel identity to hand an agent. And time is an index rather than a date: booking-period type plus a period number resolves to calendar dates only through the annually re-issued decade plan and the municipality's pasting block, whose start dates and head-and-tail exceptions change year to year and are carried as data in the reference implementation rather than derived. Availability is a full snapshot in which a panel absent from the availability file is fully booked, with no deltas and no time component on the header date."
+    status: reported
+    sources:
+      - https://github.com/mckoch/sdxist
+      - https://github.com/mckoch/sdaw-import
+    last_verified: 2026-09-08
+    volatility: low
+  - id: sdaw-panel-identity-no-target
+    pages: [sdaw.html]
+    claim: "Bookable panel identity has no target in either agentic protocol. AdCP can name a panel only inside its pre-release out-of-home delivery-report block, using an operator face identifier, with no static out-of-home property type or panel identifier type in the released schemas -- so a panel can be reported on but neither discovered nor sold. AAMP carries a frames targeting unit and an invalid-frame error code inherited from its OpenDirect base with no frame or panel object behind them."
+    status: reported
+    sources:
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+      - https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md
+      - https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-inventory-geo-no-target
+    pages: [sdaw.html]
+    claim: "Neither protocol treats coordinates as an attribute of the inventory being sold: in both they are buyer-side targeting input or metadata attached to delivery evidence, and in AdCP structured geo on properties and placements is an open issue against a later minor version rather than a field. A German panel's coordinates therefore have to travel in an extension object. Illumination and physical dimensions are likewise absent from inventory: AdCP carries illuminated hours in a report-only pre-release block and physical units in print creative requirements, and AAMP carries neither."
+    status: reported
+    sources:
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+      - https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-cycle-grid-no-target
+    pages: [sdaw.html]
+    claim: "The German posting-cycle grid -- decades, pasting blocks and in-and-out-of-charge dates -- has no representation in either protocol. Both carry date ranges, lead times and material deadlines, AdCP adds installments, and its static out-of-home draft states that the protocol will not maintain a posting calendar, which leaves the decade plan in the seller's own systems and requires concrete start and end dates in every external interface."
+    status: reported
+    sources:
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+      - https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-audience-currency-unnamed
+    pages: [sdaw.html]
+    claim: "The German out-of-home audience figure, Plakatseher pro Stelle, which replaced the older G-Wert from 1 January 2013, is named in neither agentic protocol. AdCP's pre-release out-of-home metrics require the basis of an impression estimate to be declared and name only a handful of national measurement bodies as examples, so a German figure can be carried as a seller-modeled estimate but not as a recognized currency; AAMP's order surface carries campaign KPI metrics only, with the out-of-home impression multiplier sitting in OpenRTB rather than in the order path, and its pricing enumeration has no cost per frame even though its own OpenDirect base does."
+    status: reported
+    sources:
+      - https://de.wikipedia.org/wiki/Plakatseher_pro_Stelle
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+      - https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md
+      - https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-adcp-static-ooh-draft
+    pages: [sdaw.html]
+    claim: "AdCP's repository carries specs/static-ooh.md, headed as a draft for discussion with a named out-of-home marketplace and the Media Buy working group, which proposes an ooh property type, a panel_id operator unit identifier, authority-prefixed measurement references in the form {authority}:{id} with Geopath, Route and COMMB as examples, a posting-evidence array holding a unit reference, photo URL, timestamp, coordinates and evidence type, and illuminated hours inside an out-of-home metrics delivery block. The draft states that it borrows OpenDirect's vocabulary -- lead times, flight bounds, frame references and proof-of-posting as a first-class statistic -- and not its REST/CRUD order-management API. It is a design draft, not a released schema."
+    status: announced
+    sources:
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+    last_verified: 2026-09-08
+    volatility: high
+  - id: sdaw-adcp-release-state-rc1
+    pages: [sdaw.html]
+    claim: "AdCP's release lines stood at v3.1.20 stable, published 2 September 2026 and marked Latest, and v3.2.0-rc.1 pre-release, published 5 September 2026 -- one release candidate beyond the rc.0 state recorded on 4 September. No stable 3.2 release exists, so every static out-of-home surface remains pre-release."
+    status: shipped
+    sources:
+      - https://github.com/adcontextprotocol/adcp/releases
+    last_verified: 2026-09-08
+    volatility: high
+  - id: sdaw-opendirect-nearest-model
+    pages: [sdaw.html]
+    claim: "The nearest IAB out-of-home data model is OpenDirect 2.1 rather than AAMP: built in 2024 with the out-of-home trade bodies, it carries frames, named audience datasources, share of time, cost per frame and a proof-of-posting statistics object. AAMP inherits that vocabulary shell through its OpenDirect-based order surface without binding out-of-home semantics to it, and AdCP's static out-of-home draft reaches the same conclusion from the other side by borrowing the vocabulary and rejecting the transport."
+    status: reported
+    sources:
+      - https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md
+      - https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/
+      - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
+    last_verified: 2026-09-08
+    volatility: medium
+  - id: sdaw-idooh-lineage
+    pages: [sdaw.html]
+    claim: "German digital out-of-home standards have their own lineage: IDOOH, formerly the Digital Media Institute, publishes German venue-taxonomy and media-data standards that are deliberately distinct from the OpenOOH taxonomy with a stated mapping intent. A German-to-international venue crosswalk therefore exists for digital screens and has no equivalent for classic poster panels, and no SDAW-to-IDOOH or SDAW-to-OpenOOH mapping was located."
+    status: reported
+    sources:
+      - https://idooh.media/standards/
+      - https://github.com/openooh/venue-taxonomy
+    last_verified: 2026-09-08
     volatility: medium

@@ -255,7 +255,16 @@ Existing, and to be reused rather than reinvented:
 | Stacked table | `div.table-wrap.table-stack` + roles + `data-label` | Tables that must stay readable below 40rem (§9) |
 | Empty state | `div.todo-content` | Sections awaiting the content pipeline |
 | Figure | `figure > div.figure-wrap > svg`, then `figcaption.source` | Diagrams (§7) |
+| Nav sub-level | `li > ul.site-subnav > li > a` inside `.site-nav` | Channel sub-pages, e.g. OOH › SDAW |
 | Diagram parts | `.dgm-band`, `.dgm-node`, `.dgm-title`, `.dgm-text`, `.dgm-line`, `.dgm-line-dashed`, `.dgm-lifeline`, `.dgm-arrow` | The shared drawing grammar (§7) |
+
+**Nav hierarchy.** A page that belongs to another page's topic is a nested `<ul class="site-subnav">`
+inside its parent's `<li>`, not a tenth peer in the top-level list — the nav is where a reader
+learns the site's shape, so it has to state which pages are channel sub-pages. The sub-level is
+always visible and never a hover or JavaScript disclosure, its marker is drawn with an empty
+alternative text (`content: "\203A\00a0" / ""`) so assistive technology announces the link rather
+than the glyph, and it inherits the nav's own type and color — a sub-page is a level, not a
+downgrade. Like the rest of the nav it is duplicated markup: change it on every page in one commit.
 
 Rules: no new component without a second use case. No inline `style` attributes. New styles
 go in `assets/css/style.css` — the single stylesheet — never in a `<style>` block on a page.
