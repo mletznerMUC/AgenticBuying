@@ -1,0 +1,52 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the record length and for the fields named; positions not yet extracted",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the norm, recorded 2026-09-09. This is NOT the output of a machine extraction pass over the source documents: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is norm-attested; what is absent is listed under `pending` and must be completed by a run that can open the source.",
+  "pending": [
+    "Full field list of every record: position, length, type, name, meaning, value range, mandatory/optional, introduction date.",
+    "K, S and E record lengths."
+  ],
+  "records": {
+    "D": {
+      "name": "Datensatz",
+      "length": 523,
+      "length_confirmed_by": "norm and production file agree",
+      "fields_present": [
+        {
+          "name": "Telex",
+          "note": "Retained. All 95 occurrences empty in the production file."
+        },
+        {
+          "name": "Expressbahnhof",
+          "note": "Express railway station for consignment delivery. Retained."
+        },
+        {
+          "name": "Frachtbahnhof",
+          "note": "Freight railway station for consignment delivery. Retained."
+        }
+      ],
+      "fields_absent": [
+        {
+          "name": "E-Mail",
+          "note": "No e-mail field exists in the record, although the changelog entry of 2024-11-26 requires a mail address to be held for the dispatch address. Recorded as a documented tension; see the norm's changelog."
+        }
+      ]
+    }
+  },
+  "semantics": {
+    "source": "Appendix C 07",
+    "rule": "The dispatch address is an information field only, because the summary records report changes to it after the posters have already been dispatched."
+  },
+  "reference_values": {
+    "note": "Verified previously against the production file. validate.py must reproduce these.",
+    "verified_on": "2026-09-09",
+    "file": "VSA36817.TXT",
+    "d_record_count": 95,
+    "d_record_length_all": 523,
+    "telex_populated": 0
+  }
+}

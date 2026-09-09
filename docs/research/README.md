@@ -6,8 +6,26 @@ note here.
 
 ## Current notes
 
+- [`sdaw-2026-09-09.md`](sdaw-2026-09-09.md) — *SDAW read from the norm*, verified
+  2026-09-09. **The latest note, and it supersedes the SDAW side of the one below.**
+  The SDAW norm is now held — version 004, revision date 11 June 2025, B|A|M
+  Bundesverband Aussenmedien, with appendices A–E, the 2027 posting calendar and four
+  production files from one lessee — so the reconstruction the previous note rested on
+  is retired. Several of its findings were wrong. The organizing finding reverses: SDAW's
+  process coverage is the *more* complete of the two sides, reaching billing, a step
+  neither agentic protocol models, and the gap is transport and digital data model rather
+  than process scope. The largest single correction is panel identity — SDAW has the QID,
+  a market-wide lessee-independent identifier from the central FAW database, so the
+  missing piece is the protocols' field to carry it, not SDAW's identifier. New findings:
+  inventory-side product exclusions at a granularity neither protocol models, a 2019
+  network-trading layer that is the closest match to an AdCP product or AAMP package, and
+  an exactly stateable negative — across 4,278 lines the norm never says DOOH, API, JSON,
+  impression, playout or proof of play. It introduces the `primary-nonpublic` badge state
+  and the binding source rules in `sources/local-context.md`. The AdCP and AAMP findings
+  were **not** re-verified this cycle and keep their 2026-09-08 dates.
 - [`sdaw-2026-09-08.md`](sdaw-2026-09-08.md) — *SDAW against the agentic protocols*,
-  verified 2026-09-08. **The latest note.** A new-topic note behind `sdaw.html`, the
+  verified 2026-09-08. **Superseded on the SDAW side by the note above; its AdCP and AAMP
+  findings still stand.** A new-topic note behind `sdaw.html`, the
   market sub-page under the OOH channel deep dive, and the one note in this directory
   that did not originate in a research run: its substance is a desk-research gap analysis
   contributed to the project on 2026-09-08, and the note records which parts were

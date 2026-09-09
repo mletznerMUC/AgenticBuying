@@ -16,6 +16,8 @@
   --reported-bg: #eceff4;
   --speculative: #6b21a8;
   --speculative-bg: #f1e6fb;
+  --primary-nonpublic: #0b5d6b;
+  --primary-nonpublic-bg: #dff1f4;
   --max-width: 68rem;
 }
 
@@ -36,6 +38,8 @@
     --reported-bg: #232a36;
     --speculative: #c99cf0;
     --speculative-bg: #2a1838;
+    --primary-nonpublic: #67cfe0;
+    --primary-nonpublic-bg: #0e2b31;
   }
 }
 
@@ -172,11 +176,14 @@ h2 {
 }
 
 /* Status badges — evidence strength behind a claim.
-   Four states, weakest evidence last:
+   Five states. The first four run weakest evidence last:
      shipped      verified as released / in production
      announced    publicly committed but not yet shipped (incl. unbenchmarked vendor claims)
      reported     secondary sources only, or the figure/date is disputed
      speculative  analyst interpretation, not settled fact
+   The fifth is orthogonal — it grades retrievability, not strength:
+     primary-nonpublic  a primary document was read, but a reader cannot
+                        retrieve it to re-check the claim independently
    Unbadged prose means "shipped" — badges mark exceptions, not every claim.
    Each state carries three signifiers so meaning never rests on color alone:
    the text label, a leading glyph, and a border style. */
@@ -234,6 +241,21 @@ h2 {
 
 .badge.speculative::before {
   content: "\25C7" / "";
+}
+
+/* Evidence from a primary document that is not publicly retrievable — a trade
+   association's own specification, say. The claim is as strong as a shipped
+   one; what the reader loses is the ability to verify it without the same
+   access, so the state marks that and nothing else. Solid border: the evidence
+   is firm. Filled square: a shape family of its own, so it is never mistaken
+   for the hollow diamond of `speculative` at badge size. */
+.badge.primary-nonpublic {
+  color: var(--primary-nonpublic);
+  background: var(--primary-nonpublic-bg);
+}
+
+.badge.primary-nonpublic::before {
+  content: "\25A0" / "";
 }
 
 /* Badge legend — sits on every page where badges appear. */

@@ -1,0 +1,37 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the entries recorded; the series is incomplete",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the source, recorded 2026-09-09. This is NOT the output of a machine extraction pass: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is source-attested; what is absent is listed under `pending`.",
+  "pending": [
+    "Every appendix E entry between 2003-05-07 and 2024-11-26, with date and content."
+  ],
+  "appendix": "E",
+  "series_range": {
+    "first": "2003-05-07",
+    "last": "2025-06-11"
+  },
+  "recorded_here": 4,
+  "entries": [
+    {
+      "date": "2025-06-11",
+      "content": "New main site classes KD (Kleinflaeche digital) and FD (Flag digital). Main site class SP (Superposter) removed."
+    },
+    {
+      "date": "2025-04-03",
+      "content": "New construction types (Bauarten) S1 and S2."
+    },
+    {
+      "date": "2024-11-26",
+      "content": "Digital sub site classes SD and ED under main site class GF, on a decade rhythm, with a committed 10-second spot per minute. Product exclusions for election advertising. A mail address is to be held for the dispatch address."
+    },
+    {
+      "date": "2003-05-07",
+      "content": "WGS84 coordinates introduced, in the format 99.999999999999. The earlier MIA coordinate fields are retained alongside them.",
+      "note": "First entry of the appendix E series."
+    }
+  ]
+}

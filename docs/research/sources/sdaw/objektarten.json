@@ -1,0 +1,108 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "source_file": "SDAW Norm/Objektarten Juni 2025.pdf",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the counts, the structural rules, the digital classes and the anomalies; the individual class entries are not yet extracted",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the source, recorded 2026-09-09. This is NOT the output of a machine extraction pass: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is source-attested; what is absent is listed under `pending`.",
+  "extraction_note": "The source PDF has NO text layer. Extraction requires rasterizing (pdftoppm at 300-600 dpi) and OCR (tesseract -l deu), then a manual read-back of every code, because an OCR error in a two-character code is undetectable downstream.",
+  "pending": [
+    "The 20 main site classes (Hauptstellenarten), each with code and designation.",
+    "The 152 sub site classes (Unterstellenarten), each with code, designation and parent.",
+    "The collective classes *1 and *2 per main class.",
+    "The codes reserved for retail."
+  ],
+  "counts": {
+    "hauptstellenarten": 20,
+    "unterstellenarten": 152
+  },
+  "structural_rules": [
+    {
+      "rule": "Sammelstellenarten",
+      "detail": "The sub-class codes *1 and *2 act as collective classes within a main class."
+    },
+    {
+      "rule": "ZZ",
+      "detail": "ZZ is the catch-all sub site class."
+    },
+    {
+      "rule": "Retail reservations",
+      "detail": "A block of codes is reserved for retail site classes."
+    },
+    {
+      "rule": "Field width",
+      "detail": "The STA field `Stellenart` is 4 characters: two for the main class, two for the sub class."
+    }
+  ],
+  "digital_classes": {
+    "note": "The norm treats digital out-of-home as a set of object classes, not as a delivery model.",
+    "hauptstellenarten": [
+      {
+        "code": "VD",
+        "digital": true
+      },
+      {
+        "code": "GD",
+        "digital": true
+      },
+      {
+        "code": "SD",
+        "digital": true
+      },
+      {
+        "code": "RD",
+        "digital": true
+      },
+      {
+        "code": "KD",
+        "digital": true,
+        "designation": "Kleinflaeche digital",
+        "introduced": "2025-06-11"
+      },
+      {
+        "code": "FD",
+        "digital": true,
+        "designation": "Flag digital",
+        "introduced": "2025-06-11"
+      }
+    ],
+    "unterstellenarten": [
+      {
+        "parent": "GF",
+        "code": "SD",
+        "digital": true,
+        "introduced": "2024-11-26"
+      },
+      {
+        "parent": "GF",
+        "code": "ED",
+        "digital": true,
+        "introduced": "2024-11-26"
+      }
+    ],
+    "withdrawn": [
+      {
+        "code": "SP",
+        "designation": "Superposter",
+        "removed": "2025-06-11"
+      }
+    ]
+  },
+  "anomalies": [
+    {
+      "code": "SES",
+      "anomaly": "Three characters long, which does not fit the 4-character `Stellenart` field of the STA record."
+    },
+    {
+      "code": "SD",
+      "anomaly": "Assigned twice — once as a main site class, and once as a sub site class under GF."
+    },
+    {
+      "code": "VD CF",
+      "anomaly": "Still listed although the new main site class FD was introduced on 2025-06-11."
+    }
+  ],
+  "entries": []
+}

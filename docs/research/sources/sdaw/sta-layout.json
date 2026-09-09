@@ -1,0 +1,287 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "source_file": "SDAW Norm/SDAW004_Juni2025.pdf",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the record skeleton, the two loops and the field positions marked position_source=norm; the remaining positions are carried from the 2011-2013 open-source toolchain and are corroborating, not authoritative",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the norm, recorded 2026-09-09. This is NOT the output of a machine extraction pass over the PDF: that pass requires the source folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is norm-attested; what is absent is listed under `pending` and must be completed by a run that can open the PDF.",
+  "pending": [
+    "The complete field list of the D record: position (1-based), length, type (Char/Num), name, meaning, value range, mandatory/optional and introduction or amendment date for every field across the minimum 499 characters.",
+    "The complete field lists of the K, S and E records.",
+    "The product-code entries inside the Produktsperren loop and the network entries inside the Netzliste loop, field by field."
+  ],
+  "field_notes": {
+    "position_source": "`norm` = position read from SDAW v004. `toolchain-2011-2013` = position carried from mckoch/sdxist, retained as corroboration only. Per ../local-context.md the toolchain is never a field authority; any such row is provisional until the norm confirms it."
+  },
+  "records": {
+    "K": {
+      "name": "Kopfsatz",
+      "length": 36,
+      "variable": false,
+      "fields": []
+    },
+    "D": {
+      "name": "Datensatz",
+      "length_min": 499,
+      "variable": true,
+      "variability": "Two repeating loops extend the record beyond its 499-character minimum.",
+      "fields": [
+        {
+          "position": 21,
+          "length": 13,
+          "type": "Char",
+          "name": "Standortnr",
+          "meaning": "Site number, carrying a three-character lessee prefix.",
+          "mandatory": true,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 34,
+          "length": 2,
+          "type": "Char",
+          "name": "Preisgruppe",
+          "meaning": "Price group.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 36,
+          "length": 4,
+          "type": "Char",
+          "name": "Stellenart",
+          "meaning": "Site class: main site class plus sub site class. Resolved through appendix A.",
+          "value_range": "See objektarten.json.",
+          "mandatory": true,
+          "position_source": "toolchain-2011-2013",
+          "note": "Field width of 4 is norm-attested via the SES anomaly recorded in objektarten.json."
+        },
+        {
+          "position": 40,
+          "length": 1,
+          "type": "Char",
+          "name": "Beleuchtung",
+          "meaning": "Illumination class.",
+          "value_range": [
+            "U",
+            "B",
+            "H",
+            "R"
+          ],
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013",
+          "value_range_source": "norm"
+        },
+        {
+          "position": 41,
+          "length": 6,
+          "type": "Num",
+          "name": "AbmessungenH",
+          "meaning": "Height in centimeters, or circumference.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 47,
+          "length": 6,
+          "type": "Num",
+          "name": "AbmessungenB",
+          "meaning": "Width in centimeters.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 53,
+          "length": 3,
+          "type": "Char",
+          "name": "Belegdauerart",
+          "meaning": "Booking-period type.",
+          "value_range": "Appendix C 06.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013",
+          "value_range_source": "norm"
+        },
+        {
+          "position": 56,
+          "length": 1,
+          "type": "Char",
+          "name": "AktiverStatus",
+          "meaning": "Whether the panel is active or blocked.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 60,
+          "length": 8,
+          "type": "Char",
+          "name": "StatOrtskz",
+          "meaning": "Municipality key.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 98,
+          "length": 6,
+          "type": "Char",
+          "name": "Planquadrat",
+          "meaning": "Map-book grid label.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 124,
+          "length": 8,
+          "type": "Char",
+          "name": "Fotoname",
+          "meaning": "Site photograph filename without extension; the image ships out of band.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 222,
+          "length": 15,
+          "type": "Num",
+          "name": "MIA-Laenge (legacy)",
+          "meaning": "Legacy longitude in the pre-WGS84 MIA reference. Retained alongside the WGS84 pair at 466/481 rather than replaced by it.",
+          "mandatory": false,
+          "position_source": "norm"
+        },
+        {
+          "position": 237,
+          "length": 15,
+          "type": "Num",
+          "name": "MIA-Breite (legacy)",
+          "meaning": "Legacy latitude in the pre-WGS84 MIA reference.",
+          "mandatory": false,
+          "position_source": "norm"
+        },
+        {
+          "position": 254,
+          "length": 2,
+          "type": "Char",
+          "name": "Stellennr",
+          "meaning": "Panel number at the site; two characters cap a site at 99 panels.",
+          "mandatory": true,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 256,
+          "length": 2,
+          "type": "Char",
+          "name": "Stellennr. bis",
+          "meaning": "Upper bound of a panel-number range, so one record can describe a span of panels at a site.",
+          "mandatory": null,
+          "position_source": "norm",
+          "note": "With the FAW-Beschreibungsbogen at 258 this accounts for the block that the 2011-2013 reconstruction reported as an undocumented gap from 256 to 395."
+        },
+        {
+          "position": 258,
+          "length": 138,
+          "type": "Char",
+          "name": "FAW-Beschreibungsbogen",
+          "meaning": "The FAW site description sheet, encoded one criterion per character position. `X` marks the criterion as applying.",
+          "value_range": "`X` = applies. `Z` in positions 53-55 of the 138-character block denotes 'Zentrum'.",
+          "mandatory": false,
+          "position_source": "norm",
+          "note": "138 criteria in one positional block. Resolves the reported 140-byte 'unknown block'."
+        },
+        {
+          "position": 411,
+          "length": 7,
+          "type": "Num",
+          "name": "Preis",
+          "meaning": "Cent per day per panel. No currency field exists in the record.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 426,
+          "length": 2,
+          "type": "Char",
+          "name": "Leistungsklasse1",
+          "meaning": "Performance metric class.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 428,
+          "length": 5,
+          "type": "Num",
+          "name": "Leistungswert1",
+          "meaning": "Performance value.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013"
+        },
+        {
+          "position": 464,
+          "length": 2,
+          "type": "Char",
+          "name": "Bauart",
+          "meaning": "Construction type.",
+          "value_range": "Norm code list; S1 and S2 added 2025-04-03.",
+          "mandatory": null,
+          "position_source": "toolchain-2011-2013",
+          "value_range_source": "norm"
+        },
+        {
+          "position": 466,
+          "length": 15,
+          "type": "Num",
+          "name": "Laengengrad (WGS84)",
+          "meaning": "Longitude, WGS84, decimal degrees.",
+          "value_range": "Format 99.999999999999 — two integer digits, twelve decimals. No sign position, so no negative longitudes and nothing at or above 100 degrees.",
+          "mandatory": false,
+          "position_source": "norm",
+          "introduced": "2003-05-07"
+        },
+        {
+          "position": 481,
+          "length": 15,
+          "type": "Num",
+          "name": "Breitengrad (WGS84)",
+          "meaning": "Latitude, WGS84, decimal degrees.",
+          "value_range": "Format 99.999999999999.",
+          "mandatory": false,
+          "position_source": "norm",
+          "introduced": "2003-05-07"
+        }
+      ],
+      "loops": [
+        {
+          "name": "Produktsperren",
+          "purpose": "Product categories excluded from the panel, as codes from appendix B.",
+          "index": "A to Z",
+          "max_length_chars": 60,
+          "max_entries": 20,
+          "entry_source": "produktliste.json",
+          "pending": "Entry field layout — offset, per-entry length and padding."
+        },
+        {
+          "name": "Netzliste",
+          "purpose": "The networks the panel belongs to.",
+          "index": "B to Y",
+          "pending": "Entry field layout, and the relationship between the index range and the NetzKzf fields."
+        }
+      ]
+    },
+    "S": {
+      "name": "Summensatz",
+      "length_min": 111,
+      "variable": true,
+      "fields": []
+    },
+    "E": {
+      "name": "Endsatz",
+      "length": 20,
+      "variable": false,
+      "fields": []
+    }
+  },
+  "encoding": {
+    "charset": "Windows-1252",
+    "permitted_subset": "X'20'-X'7E' plus the German letters A-umlaut, O-umlaut, U-umlaut, sharp s, a-umlaut, o-umlaut, u-umlaut.",
+    "padding": "Space-padded fixed width, 1-based positions, no escaping.",
+    "source": "norm"
+  }
+}

@@ -60,12 +60,12 @@ rule** — add a token or reuse one, so dark mode stays automatic.
 | `--text`, `--text-muted` | Body text, secondary text (sources, captions, footer) |
 | `--accent`, `--accent-contrast` | Links and current-page nav only |
 | `--border` | All hairlines |
-| `--shipped`, `--announced`, `--reported`, `--speculative` (+ `-bg`) | Evidence status only |
+| `--shipped`, `--announced`, `--reported`, `--speculative`, `--primary-nonpublic` (+ `-bg`) | Evidence status only |
 
 Two rules that keep the palette honest:
 
-1. **Status colors are reserved.** Green, amber, slate, and violet mean *evidence
-   strength*, nothing else. Never use them for decoration, links, or emphasis.
+1. **Status colors are reserved.** Green, amber, slate, violet, and teal mean *evidence
+   status*, nothing else. Never use them for decoration, links, or emphasis.
 2. **Neutrality is structural.** AdCP and AAMP get identical visual treatment — same
    heading weights, same table widths, same diagram grammar, no protocol-specific accent
    colors, no logos. Visual asymmetry would read as editorial preference.
@@ -91,7 +91,7 @@ before merge. Light is the primary design target; dark must be equally legible.
 This is the site's signature and its most important component. It marks **how strong the
 evidence behind a claim is** — never how important the claim is.
 
-### The four states
+### The states
 
 | State | Meaning | Glyph | Border |
 |---|---|---|---|
@@ -99,6 +99,23 @@ evidence behind a claim is** — never how important the claim is.
 | `announced` | Publicly committed but not shipped; includes vendor claims that are not independently benchmarked | ◐ | solid |
 | `reported` | Secondary sources only, no primary confirmation located, or a disputed figure/date | ○ | dashed |
 | `speculative` | Analyst interpretation or contested reading, not settled fact | ◇ | dashed |
+| `primary-nonpublic` | Verified against a primary document that a reader cannot retrieve | ■ | solid |
+
+**`primary-nonpublic` grades retrievability, not strength.** The first four states form
+one scale, weakest evidence last. The fifth sits across that scale rather than at the end
+of it: the claim was checked against the authoritative document itself, so its evidence is
+as strong as a `shipped` claim's — what the reader loses is the ability to re-check it
+without the same access. Use it where the source is a specification, contract or
+association document held outside the public web, and say in the source line how the
+document was obtained. Never use it as a softer `reported`: if the underlying document was
+*not* read, the claim is `reported` or it does not ship. Its border is therefore solid and
+its glyph a filled square — a shape family of its own, so it is not read as a variant of
+`speculative`'s hollow diamond at 0.75rem.
+
+The state exists because `sdaw.html` rests on the SDAW norm, a B|A|M association document
+that is not publicly downloadable. Before that page, the site had no honest way to say
+"this is verified, and you cannot check it yourself" — the claim either overstated its
+public footing as unbadged prose or understated its evidence as `reported`.
 
 ### The rules
 
@@ -130,6 +147,7 @@ evidence behind a claim is** — never how important the claim is.
   <li><span class="badge announced">announced</span> committed, not yet shipped</li>
   <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
   <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+  <li><span class="badge primary-nonpublic">primary-nonpublic</span> primary document, not publicly retrievable</li>
 </ul>
 
 <!-- Whole-paragraph claim: badge leads -->
@@ -246,7 +264,7 @@ Existing, and to be reused rather than reinvented:
 | Component | Markup | Use |
 |---|---|---|
 | Card grid | `ul.card-grid > li.card` | Link collections, tool entries |
-| Status badge | `span.badge.{shipped\|announced\|reported\|speculative}` | Evidence strength (§5) |
+| Status badge | `span.badge.{shipped\|announced\|reported\|speculative\|primary-nonpublic}` | Evidence status (§5) |
 | Badge legend | `ul.badge-legend` | Once per page that uses badges |
 | Source line | `p.source` | Citations, captions, meta text |
 | Page freshness | `p.page-meta` | "Updated \<date\>" under the `h1` (§6) |
@@ -313,7 +331,9 @@ stretched-link pseudo-element — do not ship a card whose body is dead.
   Never switch a rule off globally to make one pattern pass.
 - Accessibility floor (WCAG 2.1 AA):
   - Text contrast ≥ 4.5:1 in **both** schemes. The badge palette is verified: lowest ratio
-    5.84:1. Re-check with a contrast calculator whenever a color token changes.
+    5.84:1, and the `primary-nonpublic` pair added on 2026-09-09 measures 6.46:1 light and
+    8.22:1 dark against its own background. Re-check with a contrast calculator whenever a
+    color token changes.
   - Semantic landmarks (`header`, `nav`, `main`, `footer`), one `h1`, no skipped levels.
   - Visible focus states on every interactive element — never remove the outline.
   - `alt` text on images; `role="img"` + `<title>` on inline SVG.
@@ -339,8 +359,28 @@ The authors here are agents, so the guide is only as durable as its checks.
 - Both color schemes and 360px width verified for any visual change.
 
 **Worth automating next** (roadmap): a badge-density check (flag a page where one badge
-state exceeds ~70% of its badges), a nav/legend parity diff across pages, and a contrast
-assertion over the color tokens.
+state exceeds ~70% of its badges, excluding table status columns), a nav/legend parity diff
+across pages, and a contrast assertion over the color tokens.
+
+**Proposed, not implemented — an extract-parity check.** CI validates markup and links but
+nothing ties a page's numbers back to `docs/research/**`. Since `sdaw.html` now publishes
+figures whose only authority is a non-public document, that gap is worth a cheap check
+rather than a thorough one:
+
+- Assert the JSON extracts under `docs/research/sources/sdaw/` parse, and that each carries
+  `source`, `source_version`, `source_date`, `extracted_on`, `confidence` and
+  `completeness`.
+- Assert that a small, explicit set of load-bearing figures on `sdaw.html` — the record-type
+  count, the STA minimum record length, the FAW block's position and width, the product-code
+  and site-class counts, the decade count — still match the extracts, keyed by an id in a
+  manifest rather than by scraping prose.
+- Assert that no file from the registered source folder has been committed, by filename
+  pattern.
+
+Deliberately *not* proposed: a general prose-to-source checker. It would either miss
+paraphrase or drown the build in false positives, and the `site-reviewer` agent already
+covers the judgement half. Decide before building whether the manifest is worth maintaining
+— an assertion nobody updates is worse than none.
 
 ## 11. Roadmap
 
@@ -367,5 +407,6 @@ Deliberately deferred, in priority order. Each is a separate change, not a rewri
 
 ---
 
-*This guide reflects a design council review of the site conducted 2026-08-04. Amend it
-with the change that motivates the amendment — never let a page and this document disagree.*
+*This guide reflects a design council review of the site conducted 2026-08-04, amended
+2026-09-09 to add the `primary-nonpublic` evidence state (§3, §5, §8, §9). Amend it with
+the change that motivates the amendment — never let a page and this document disagree.*
