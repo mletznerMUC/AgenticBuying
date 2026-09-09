@@ -17,11 +17,26 @@ severity. You do not edit files.
 
 **Accuracy & sourcing**
 - Every new/changed factual claim has a source link and a "last verified" date.
-- Badge states (`shipped` / `announced` / `reported` / `speculative`) match what
-  the source actually supports, per `docs/DESIGN.md` §5.
+  A claim on a registered non-public primary document carries the document's
+  name, version and date plus how it was obtained, instead of a link.
+- Badge states (`shipped` / `announced` / `reported` / `speculative` /
+  `primary-nonpublic`) match what the source actually supports, per
+  `docs/DESIGN.md` §5. `primary-nonpublic` requires that the primary document was
+  actually read — if it was not, the claim is `reported`.
 - **Badge inflation check**: if one state accounts for the large majority of a
   page's badges, or nearly every claim is badged, that is a defect — badges mark
-  exceptions, and unbadged prose means verified/shipped.
+  exceptions, and unbadged prose means verified/shipped. Two allowances: a table
+  status column badges every row by design (§5 rule 3), and a page whose evidence
+  genuinely comes from one non-public primary document may carry
+  `primary-nonpublic` at the head of each section rather than on each sentence.
+- **Out-of-home and SDAW pages**: check the claims against
+  `docs/research/sources/local-context.md` and the extracts under
+  `docs/research/sources/sdaw/`. Flag any number the extracts do not carry, any
+  field position or code list sourced to `mckoch/open-sdaw`, `mckoch/sdxist` or
+  `mckoch/sdaw-import` (historical evidence only, never a field authority), and
+  anything that appears to derive from a file classified
+  `internal-do-not-publish` — company-internal project history, roadmaps,
+  timelines, scopes or inventory figures have no place on a page.
 - Badge scope is unambiguous: a badge sits with the claim it qualifies, not
   floating at the head of a paragraph that mixes verified and caveated claims.
 - Where sources conflict, the conflict is stated rather than silently resolved.

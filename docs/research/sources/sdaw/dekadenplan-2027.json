@@ -1,0 +1,50 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "source_file": "SDAW Norm/aushangtermine_plakat_2027_zusammengefuehrt.xlsx",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the rules and the caveats, which are stated by the source; the dated entries are not yet extracted",
+  "completeness": "rules complete, entries pending",
+  "provenance": "Populated from the maintainer's structured reading of the source, recorded 2026-09-09. This is NOT the output of a machine extraction pass: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is source-attested; what is absent is listed under `pending`.",
+  "pending": [
+    "The 34 decades, each with Klebeblock A, B and C (start, end, days), Ruecktrittsfrist, Plakateingang and Motivanweisung.",
+    "The 52 calendar weeks in the same shape."
+  ],
+  "year": 2027,
+  "sheet": "BASIS",
+  "counts": {
+    "dekaden": 34,
+    "kalenderwochen": 52
+  },
+  "rules": {
+    "klebeblock_b": "Klebeblock B starts 3 days after Klebeblock A.",
+    "klebeblock_c": "Klebeblock C starts 7 days after Klebeblock A.",
+    "double_decades": {
+      "decades": [
+        "01",
+        "34"
+      ],
+      "length_days": 14,
+      "note": "Decades 01 and 34 are double decades; every other decade is the standard length."
+    },
+    "ruecktrittsfrist": "Start minus 60 days.",
+    "plakateingang": "WORKDAY(start minus 1, minus 5) — five working days before the day preceding the start.",
+    "motivanweisung": {
+      "dekadisch": "Start minus 28 days.",
+      "woechentlich": "Start minus 21 days."
+    },
+    "wochenaushang": "Weekly posting always begins on a Tuesday."
+  },
+  "caveats": {
+    "source": "B|A|M Bundesverband Aussenmedien, stated on the calendar itself",
+    "items": [
+      "No warranty is given for the dates.",
+      "Actual dates may differ by plus or minus one day.",
+      "Individual municipalities may operate special arrangements."
+    ],
+    "consequence": "An agent may use these dates as a default. It may not present them as a commitment; a concrete date has to be confirmed by the lessee."
+  },
+  "dekaden": [],
+  "kalenderwochen": []
+}

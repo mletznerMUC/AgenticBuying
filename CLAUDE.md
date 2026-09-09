@@ -36,6 +36,7 @@ docs/WORKFLOW.md       The agent-based development workflow
 docs/COST-CONTROL.md   Generated: per-run API spend by workflow and agent stage
 docs/cost/ledger.jsonl Append-only cost record; the report is derived from it
 docs/research/         Sourced research notes behind the site's content
+docs/research/sources/ Registry of non-web primary sources, plus derived extracts
 scripts/               Deterministic helpers (cost capture + reporting, review output)
 .claude/agents/        Specialized subagent definitions
 .github/workflows/     Claude agent automation, CI
@@ -72,9 +73,55 @@ site stays fully readable with JS disabled.
 - Every factual claim about AdCP or AAMP must carry a source link and a
   "last verified" date, because this space moves fast.
 - Distinguish claims by evidence strength using the four badge states —
-  **shipped**, **announced**, **reported**, **speculative**. Badges mark
-  exceptions: unbadged prose means verified/shipped. See `docs/DESIGN.md` §5.
+  **shipped**, **announced**, **reported**, **speculative** — plus
+  **primary-nonpublic** for a claim verified against a primary document a reader
+  cannot retrieve. Badges mark exceptions: unbadged prose means verified/shipped.
+  See `docs/DESIGN.md` §5.
 - Comparison content must be neutral in tone — describe, don't advocate.
+
+## Non-web primary sources — binding pre-flight
+
+Some of this project's strongest evidence is not on the web. It is registered in
+**`docs/research/sources/local-context.md`**, with derived extracts under
+`docs/research/sources/sdaw/`.
+
+**Before any research or update run that touches out-of-home, DOOH or SDAW, read
+`docs/research/sources/local-context.md` and the extracts it points to.** This is
+not optional and it comes before web search: the norm settles questions that no
+public source can.
+
+The rules, in full:
+
+1. **Check whether the registered folder is reachable.** The registry carries the
+   path and a one-line test. It lives on the maintainer's workstation, so a cloud
+   session (Claude Code on the web, the GitHub Action) will not see it.
+   - Reachable → verify against the original documents, and refresh the extracts
+     with anything that has changed.
+   - Not reachable → work from the extracts, treat them as the authority, and say
+     so on the page. Do not publish a norm-level claim the extracts do not carry;
+     where an extract is marked incomplete, the claim waits for a run that has the
+     folder.
+2. **The norm beats every secondary source.** Where the SDAW norm and a public
+   source disagree, the norm is right, and the disagreement is worth stating.
+3. **`mckoch/open-sdaw`, `mckoch/sdxist` and `mckoch/sdaw-import` are historical
+   evidence only.** They remain citable for what was publicly knowable in
+   2011–2013 and as corroboration of an individual offset. They are **never** a
+   field authority — not for a field position, length, code list or record
+   layout. That is the norm's job.
+4. **Files classified `internal-do-not-publish` never leave the folder.** Not
+   quoted, not paraphrased, not summarized, not used as an unattributed
+   background assumption, and never copied into the repository. The test: could a
+   reader outside the company have written this sentence?
+5. **No document from the folder is copied into the repository.** Derived facts
+   only, in the extracts.
+6. **New files in the folder are registered before use.** Every run that can reach
+   it re-lists it and adds anything new to the registry with a role and a
+   classification. A file whose classification is unclear is treated as
+   `internal-do-not-publish` until the maintainer says otherwise.
+
+Claims resting on a non-public primary document carry the **`primary-nonpublic`**
+badge and a source line saying how the document was obtained
+(`docs/DESIGN.md` §5).
 
 ## Development workflow (agent-based)
 

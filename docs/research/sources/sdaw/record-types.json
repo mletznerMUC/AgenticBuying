@@ -1,0 +1,228 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "source_file": "SDAW Norm/SDAW004_Juni2025.pdf",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the codes and the process steps listed; the norm's own total of 29 is attested",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the norm, recorded 2026-09-09. This is NOT the output of a machine extraction pass over the PDF: that pass requires the source folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is norm-attested; what is absent is listed under `pending` and must be completed by a run that can open the PDF.",
+  "declared_total": 29,
+  "recorded_here": 21,
+  "pending": [
+    "The 8 record types not yet recorded, to reach the norm's declared 29.",
+    "Per record type: the full German designation (Bezeichnung), the direction (paechter_to_mittler / mittler_to_paechter), the order-related flag (auftragsbezogen A/N), the page number in the norm, the introduction date and the active/withdrawn status.",
+    "Whether RGN, GUT, SMR and SMV are record types in their own right or document categories inside BLG — see `billing_document_types` below."
+  ],
+  "field_notes": {
+    "direction": "One of `paechter_to_mittler`, `mittler_to_paechter`. Null where not yet extracted.",
+    "auftragsbezogen": "The norm's A/N flag: whether the record type belongs to a specific order. Null where not yet extracted."
+  },
+  "record_types": [
+    {
+      "code": "STA",
+      "process_step": "panel master data",
+      "direction": "paechter_to_mittler",
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active",
+      "note": "Validated against a production file; see sta-layout.json."
+    },
+    {
+      "code": "FRE",
+      "process_step": "availability (Freizahlen)",
+      "direction": "paechter_to_mittler",
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "LWT",
+      "process_step": "performance values (Leistungswerte)",
+      "direction": "paechter_to_mittler",
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "VSA",
+      "process_step": "dispatch addresses (Versandanschriften)",
+      "direction": "paechter_to_mittler",
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "ANG",
+      "process_step": "offer",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "OPN",
+      "process_step": "hold / option",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active",
+      "note": "Carries the option expiry date in BSN. Also listed among the network-trading record types."
+    },
+    {
+      "code": "AUF",
+      "process_step": "booking",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "BST",
+      "process_step": "confirmation",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "BSN",
+      "process_step": "confirmation, network",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": "2019-06-25",
+      "status": "active",
+      "note": "Also carries the option expiry date for OPN."
+    },
+    {
+      "code": "MOS",
+      "process_step": "posting order",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "MOA",
+      "process_step": "posting order",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "SVE",
+      "process_step": "proof of posting",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active",
+      "note": "Named in the price-precedence rule of appendix D 04."
+    },
+    {
+      "code": "SVT",
+      "process_step": "proof of posting",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active",
+      "note": "Named in the price-precedence rule of appendix D 04."
+    },
+    {
+      "code": "AUS",
+      "process_step": "proof of posting",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "BLD",
+      "process_step": "proof of posting",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "REK",
+      "process_step": "proof of posting / complaint",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active"
+    },
+    {
+      "code": "BLG",
+      "process_step": "billing",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": null,
+      "status": "active",
+      "note": "Carries the billing document types RGN, GUT, SMR and SMV."
+    },
+    {
+      "code": "SNZ",
+      "process_step": "network master data",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": "2019-06-25",
+      "status": "active"
+    },
+    {
+      "code": "AUN",
+      "process_step": "booking, network",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": "2019-06-25",
+      "status": "active"
+    },
+    {
+      "code": "STN",
+      "process_step": "cancellation, network",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": "2019-06-25",
+      "status": "active"
+    },
+    {
+      "code": "SBN",
+      "process_step": "confirmation, network",
+      "direction": null,
+      "auftragsbezogen": null,
+      "page": null,
+      "introduced": "2019-06-25",
+      "status": "active"
+    }
+  ],
+  "billing_document_types": {
+    "carried_by": "BLG",
+    "codes": [
+      "RGN",
+      "GUT",
+      "SMR",
+      "SMV"
+    ],
+    "unresolved": "Whether these are record types counted toward the 29, or document categories within BLG."
+  }
+}

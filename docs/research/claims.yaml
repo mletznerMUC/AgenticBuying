@@ -26,7 +26,7 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-09-08
+  updated: 2026-09-09
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -781,60 +781,123 @@ claims:
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
     last_verified: 2026-09-04
     volatility: medium
-  # --- SDAW market deep dive (sdaw.html), seeded from docs/research/sdaw-2026-09-08.md ---
-  # Volatility is split deliberately: the AdCP out-of-home surface moves weekly, the
-  # protocol-side gaps and AAMP's position move in quarters, and the SDAW reconstruction
-  # does not move at all until the members-only specification is obtained. The exception
-  # is whether the format is still in use, which a single association statement would
-  # settle. Every SDAW-side row is a reconstruction from a 2011-2013 open-source
-  # toolchain, not from the specification, which is why none of them is `shipped`.
+  # --- SDAW market deep dive (sdaw.html), rebuilt from the norm on 2026-09-09 ---
+  # Superseded on 2026-09-09. Every SDAW-side row used to be a reconstruction from a
+  # 2011-2013 open-source toolchain, and several of those rows were wrong. The norm
+  # itself is now held: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband
+  # Aussenmedien, with field positions validated against one lessee's production
+  # files. Those rows carry status `primary-nonpublic` -- as strong as `shipped`, but
+  # a reader cannot retrieve the document to re-check them (docs/DESIGN.md 5).
+  # Sources for them are the norm plus the derived extracts under
+  # docs/research/sources/sdaw/, which are the field authority for this project.
+  # The mckoch repositories remain citable as historical evidence and are never a
+  # field authority. Volatility on norm rows is `low`: the norm is amended rarely and
+  # in place. The protocol-side rows below keep their own 2026-09-08 verification
+  # dates -- this cycle re-read the norm, not the AdCP and AAMP surfaces.
   - id: sdaw-format-and-governance
-    pages: [sdaw.html]
-    claim: "SDAW (Standardisierter Datensatz zur Aussenwerbung) is a fixed-width file format for German classic poster trading, described in a document the out-of-home trade association issues to its members, with each real-world object or event represented by its own file type across roughly 30 types; the unit of exchange is a zipped text file with a header record. The owning association, the Fachverband Aussenwerbung, was renamed B|A|M Bundesverband Aussenmedien in 2025 and its current site does not mention SDAW. Version 004, with files dated 2011, is the version the public toolchain implements."
-    status: reported
+    pages: [sdaw.html, ooh.html]
+    claim: "SDAW (Standardisierter Datensatz zur Aussenwerbung) is a fixed-width file format for German classic poster trading, issued by B|A|M Bundesverband Aussenmedien, the renamed Fachverband Aussenwerbung. Version 004 has been current since 2002/2003 and is amended in place rather than superseded; its most recent revision is dated 11 June 2025, and the appendix E change series runs from 7 May 2003 to that date. The norm defines 29 record types covering the commercial chain from panel master data through availability, offer, option, booking, confirmation, posting order and proof of posting to billing -- one step further than either agentic protocol reaches, since neither models settlement. Records travel as fixed-width text inside ZIP archives. This supersedes the earlier claim of roughly 30 file types with files dated 2011."
+    status: primary-nonpublic
     sources:
-      - https://github.com/mckoch/open-sdaw
-      - https://github.com/mckoch/sdxist
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/record-types.json
       - https://aussenmedien.de/
-    last_verified: 2026-09-08
+    last_verified: 2026-09-09
     volatility: low
-  - id: sdaw-spec-not-public
+  - id: sdaw-spec-nonpublic-but-held
     pages: [sdaw.html]
-    claim: "SDAW's specification is a members-only association document, so no primary artifact is publicly readable: every field-level statement on the site derives from one open-source toolchain published between 2011 and 2013 whose XML definitions quote the specification, cross-read across three repositories by one author. Roughly 220 of at least 495 bytes of the STA master-data record are undisclosed, including one unbroken 140-byte block, and about 24 of the roughly 30 file types are not publicly documented, among them the codes for reservation, confirmation, posting order, proof of posting and invoicing."
-    status: reported
+    claim: "The SDAW norm is an association document that is not publicly downloadable, but it is held and was read for this site, together with appendices A to E, and its field positions were validated against four production SDAW files from one lessee (number 368, fiscal year 2017). Claims resting on it are therefore verified but not independently re-checkable by a reader, which is what the primary-nonpublic badge marks. This supersedes the earlier claim that no primary artifact was readable, that roughly 220 of at least 495 bytes of the STA record were undisclosed including one 140-byte block, and that about 24 of roughly 30 file types were undocumented. The residual gap is a transcription backlog in this project's extracts, recorded per file in their pending arrays, not an absence in the norm."
+    status: primary-nonpublic
     sources:
-      - https://github.com/mckoch/open-sdaw
-      - https://github.com/mckoch/sdxist
-      - https://github.com/mckoch/sdaw-import
-    last_verified: 2026-09-08
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/tree/main/docs/research/sources/sdaw
+    last_verified: 2026-09-09
     volatility: low
-  - id: sdaw-still-in-use-unverified
+  - id: sdaw-still-maintained
     pages: [sdaw.html]
-    claim: "Whether SDAW is still actively exchanged in German poster trading in 2026, and whether B|A|M still maintains it, is unverified: no public source discusses the format after roughly 2013, the association does not mention it on its current site, and its continued use is asserted by undated out-of-home glossaries rather than by the association."
-    status: speculative
+    claim: "SDAW is actively maintained. The norm's own change series records amendments on 26 November 2024 (digital GF sub site classes SD and ED on a decade rhythm with a committed 10-second spot per minute, product exclusions for election advertising, and a requirement to hold a mail address for the dispatch address), 3 April 2025 (construction types S1 and S2) and 11 June 2025 (main site classes KD Kleinflaeche digital and FD Flag digital added, SP Superposter removed). This settles the earlier open question of whether the association still maintains the format. What remains unverified is exchange volume -- how widely and by which lessees SDAW is used today -- which the norm does not speak to."
+    status: primary-nonpublic
     sources:
-      - https://aussenmedien.de/
-      - https://www.outmaxx.de/lexikon/standardisierter-datensatz-zur-aussenwerbung-sdaw/
-      - https://schwarz-aw.de/aussenwerbung-lexikon/
-    last_verified: 2026-09-08
-    volatility: medium
-  - id: sdaw-sta-record-fields
-    pages: [sdaw.html]
-    claim: "The publicly attested part of SDAW's STA panel master-data record is a fixed 1-based, space-padded character layout carrying: site number with a three-character lessee prefix (position 021, length 13), price group (034, 2), site and object class (036, 4), illumination class as unlit, lit, backlit or lit-in-frame (040, 1), physical height and width or circumference in centimeters (041 and 047, 6 each), booking-period type (053, 3), active or blocked status (056, 1), an eight-digit municipality key (060, 8), a map-book grid label (098, 6), a site photograph name that ships out of band (124, 8), panel number at the site capped at 99 (254, 2), price in cent per day per panel with no currency field (411, 7), one performance metric class and value (426 and 428), construction type (464, 2), and longitude and latitude in decimal degrees (466 and 481, 15 each). There is no escaping, no stated character set, and no authentication -- the sender and lessee fields are identifiers, not credentials, and integrity rests on total records."
-    status: reported
-    sources:
-      - https://github.com/mckoch/sdxist
-      - https://github.com/mckoch/sdaw-import
-    last_verified: 2026-09-08
+      - "SDAW v004, revision date 2025-06-11, appendix E, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/changelog.json
+    last_verified: 2026-09-09
     volatility: low
-  - id: sdaw-identity-and-time-model
+  - id: sdaw-sta-record-layout
     pages: [sdaw.html]
-    claim: "Two properties of the SDAW record drive the mapping difficulty. Site identity is scoped to the lessee -- unique only within a three-character prefix, with at most 99 panels per site -- so there is no market-wide panel identity to hand an agent. And time is an index rather than a date: booking-period type plus a period number resolves to calendar dates only through the annually re-issued decade plan and the municipality's pasting block, whose start dates and head-and-tail exceptions change year to year and are carried as data in the reference implementation rather than derived. Availability is a full snapshot in which a panel absent from the availability file is fully booked, with no deltas and no time component on the header date."
-    status: reported
+    claim: "The SDAW STA panel master-data record is a fixed 1-based, space-padded character layout. The data record is a minimum of 499 characters and variable above that through two repeating loops -- product exclusions indexed A to Z and capped at 60 characters, and a network list indexed B to Y -- inside a file with a 36-character header record, a summary record of at least 111 characters and a 20-character trailer. Positions read from the norm: legacy MIA coordinates at 222 and 237 (15 each), Stellennr bis at 256 (2), the FAW description sheet at 258 (138 characters, one criterion per position, X where the criterion applies, Z in positions 53 to 55 meaning Zentrum), and WGS84 longitude and latitude at 466 and 481 (15 each). The block at 256 onward is what an earlier reading reported as an undocumented 140-byte gap. Other positions on the page -- Standortnr 021, Stellenart 036 (4 characters), Beleuchtung 040 with values U/B/H/R, Belegdauerart 053, Stellennr 254, Preis 411, Bauart 464 -- are still carried from the 2011-2013 toolchain and marked provisional until the norm confirms them."
+    status: primary-nonpublic
     sources:
-      - https://github.com/mckoch/sdxist
-      - https://github.com/mckoch/sdaw-import
-    last_verified: 2026-09-08
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author); field positions validated against one lessee's production SDAW files"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/sta-layout.json
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-qid-market-wide-identity
+    pages: [sdaw.html]
+    claim: "SDAW carries the QID, an eight-digit panel identifier issued from the central FAW database that is market-wide and independent of the lessee: it survives a change of operator and is bound to the panel's geographic coordinate, direction of effect, height and carrier form. It becomes invalid if the panel is moved more than 10 meters or its direction changes by more than 45 degrees; it carries no encoded information of its own; every face of a mechanical changer shares one QID; and issued QIDs are retained permanently rather than recycled. This reverses the earlier claim that SDAW site identity is scoped to the lessee and that no market-wide panel identifier exists -- the identifier exists in SDAW, and it is the agentic protocols that have no field to carry it."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-posting-dates-are-rules
+    pages: [sdaw.html]
+    claim: "German poster posting dates are generated from stated rules rather than resolved only through an annually re-issued table. For 2027 the B|A|M calendar defines 34 decades and 52 calendar weeks; pasting block B starts 3 days after block A and block C 7 days after it; decades 01 and 34 are double decades of 14 days; the cancellation deadline is the start minus 60 days; poster arrival is five working days before the day preceding the start; the motif instruction is due at start minus 28 days for decades and minus 21 days for weeks; and weekly posting always begins on a Tuesday. B|A|M attaches three caveats to the published calendar: no warranty is given, actual dates may differ by plus or minus one day, and individual municipalities may operate special arrangements. An agent may therefore use derived dates as a default but not present them as a commitment. This supersedes the earlier claim that dates are carried as data rather than derived."
+    status: primary-nonpublic
+    sources:
+      - "B|A|M Bundesverband Aussenmedien, 2027 poster posting-date calendar, sheet BASIS (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/dekadenplan-2027.json
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-product-exclusions-on-inventory
+    pages: [sdaw.html]
+    claim: "SDAW models product exclusions on the inventory itself: each panel can carry up to 20 exclusions drawn from an appendix of 236 product codes in 25 main groups, held in the STA record's product-exclusion loop. The list was extended on 26 November 2024 with political categories in the range 260 to 269 and religious categories in the range 270 to 273, alongside product exclusions for election advertising. Neither AAMP nor AdCP models inventory-side category exclusion at this granularity; both treat brand safety and category avoidance as buyer-side constructs, which express a different fact and are not enforceable by the seller."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, appendix B, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/produktliste.json
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-network-trading
+    pages: [sdaw.html]
+    claim: "SDAW gained a network-trading layer on 25 June 2019: SNZ for network master data, AUN, OPN and STN for booking, option and cancellation, and BSN and SBN for confirmation. A panel's network membership travels in the network list loop of its master-data record, and the sentinel value NetzKzf-1 = 999999 marks a panel as bookable only within a network and never individually. This is the closest structural match in the whole mapping to an AdCP product or an AAMP package, and it postdates the 2011-2013 toolchain the site's first SDAW pass was built from, which is why earlier versions of the page did not mention it."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-dooh-is-an-object-class
+    pages: [sdaw.html]
+    claim: "SDAW represents digital out-of-home as object classes rather than as a delivery model. The digital main site classes are VD, GD, SD, RD and, added 11 June 2025, KD (Kleinflaeche digital) and FD (Flag digital); SD and ED also exist as digital sub site classes under GF, added 26 November 2024. The only statement about digital delivery anywhere in the document is a clause in that 26 November 2024 change entry: a decade rhythm with a committed 10-second spot per minute. Across the norm's 4,278 lines there is no occurrence of DOOH, programmatic, API, Schnittstelle, XML, JSON, REST, SSP, DSP, RTB, impression, playout, CMS or web service, and no field for spot length, share of voice, loop length, plays per period, creative format, resolution or proof of play."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, appendices A and E, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/objektarten.json
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-encoding-transport-precedence
+    pages: [sdaw.html]
+    claim: "Four items the site previously listed as unknown or inferred are specified by the norm. The character set is Windows-1252 restricted to X'20' through X'7E' plus A-umlaut, O-umlaut, U-umlaut, sharp s, a-umlaut, o-umlaut and u-umlaut. Transport is ZIP archives on the filename masks XXXPPPJJ.ZIP and XPPPJJNN.ZIP, with registration at the FAW required. Price precedence per appendix D 04 runs STA, then FRE, then ANG, then SVE/SVT/BST, so a price is the last value in an ordered chain rather than a single value on an inventory item. Performance values per appendix D 06 are P for Plakatseher pro Stelle per ma Plakat, V for a smoothed VAC value per IndA, and X only after a frequency complaint, with values set by the lessee itself not admissible; the value is a week or decade figure and a daily figure is derived by dividing by 7 or 10.5. Coordinates have been WGS84 since 7 May 2003 in the format 99.999999999999, with the legacy MIA pair retained alongside."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, appendices C and D, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author)"
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-coordinate-format-limits
+    pages: [sdaw.html]
+    claim: "The SDAW coordinate format has two integer digits and twelve decimals and no sign position. Twelve decimals is sub-millimeter resolution with no survey basis behind it and far beyond the QID's own 10-meter movement tolerance. More consequentially, the absence of a sign position and of a third integer digit means no negative longitudes and nothing at or above 100 degrees, so the field is implicitly restricted to central Europe and the sign convention is never stated."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author); field positions validated against one lessee's production SDAW files"
+    last_verified: 2026-09-09
+    volatility: low
+  - id: sdaw-documented-tensions
+    pages: [sdaw.html]
+    claim: "Six internal tensions in the norm are recorded neutrally. The VSA dispatch-address record has no e-mail field although the 26 November 2024 change entry requires a mail address to be held, and still carries Telex, express station and freight station -- all 95 Telex fields in the production file checked are empty. Appendix A lists a site class SES of three characters although the Stellenart field is four. It assigns SD both as a main site class and as a sub site class under GF. It still lists VD CF although the main site class FD was introduced on 11 June 2025. The norm states the LWT data record as 64 characters while all 50,300 data records in the production file checked are exactly 63 -- carried as a documented inconsistency and resolved in neither direction. And appendix C 07 makes the dispatch address an information field only, because the summary records report changes to it after the posters have been dispatched."
+    status: primary-nonpublic
+    sources:
+      - "SDAW v004, revision date 2025-06-11, appendices A, C and E, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author); counts from one lessee's production SDAW files"
+      - https://github.com/mletznerMUC/AgenticBuying/blob/main/docs/research/sources/sdaw/lwt-layout.json
+    last_verified: 2026-09-09
     volatility: low
   - id: sdaw-panel-identity-no-target
     pages: [sdaw.html]

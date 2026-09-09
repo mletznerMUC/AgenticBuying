@@ -15,8 +15,11 @@ GitHub Pages directly from the `main` branch) with **no build step**.
 ## Before you touch anything
 
 Read `docs/DESIGN.md`. It is the binding design guide: the visual direction, the
-banned "AI slop" patterns, the status-badge system, the inline-SVG imagery
-grammar, the component inventory, and the accessibility floor. If a task asks
+banned "AI slop" patterns, the status-badge system (five states — `shipped`,
+`announced`, `reported`, `speculative`, `primary-nonpublic`), the inline-SVG
+imagery grammar, the component inventory, and the accessibility floor. The badge
+legend is duplicated markup that must stay byte-identical on every page: changing
+it means changing all ten in one commit. If a task asks
 for something the guide forbids, say so and propose the guide-compliant
 alternative rather than shipping it.
 

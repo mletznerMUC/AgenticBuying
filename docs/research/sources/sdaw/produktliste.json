@@ -1,0 +1,38 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "source_file": "SDAW Norm/S&P Produktliste.pdf",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the counts and the category ranges named; the individual codes are not yet extracted",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the source, recorded 2026-09-09. This is NOT the output of a machine extraction pass: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is source-attested; what is absent is listed under `pending`.",
+  "pending": [
+    "The 25 main groups, each with code and designation.",
+    "All 236 product codes with designation and parent main group, hierarchically."
+  ],
+  "counts": {
+    "hauptgruppen": 25,
+    "codes": 236
+  },
+  "usage": {
+    "field": "The Produktsperren loop of the STA D record.",
+    "max_per_panel": 20,
+    "max_loop_length_chars": 60,
+    "meaning": "Product categories the panel may not carry — an exclusion held on the inventory, not on the buy."
+  },
+  "known_ranges": [
+    {
+      "range": "260-269",
+      "topic": "political categories",
+      "introduced": "2024-11-26",
+      "note": "Added together with the election-advertising product exclusions."
+    },
+    {
+      "range": "270-273",
+      "topic": "religious categories",
+      "introduced": "2024-11-26"
+    }
+  ],
+  "groups": []
+}

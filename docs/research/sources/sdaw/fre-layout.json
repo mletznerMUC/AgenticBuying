@@ -1,0 +1,25 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "extracted_on": "2026-09-09",
+  "confidence": "not yet extracted",
+  "completeness": "stub",
+  "provenance": "Populated from the maintainer's structured reading of the norm, recorded 2026-09-09. This is NOT the output of a machine extraction pass over the source documents: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is norm-attested; what is absent is listed under `pending` and must be completed by a run that can open the source.",
+  "pending": [
+    "Full record structure: K, D, S and E record lengths and whether the D record is variable.",
+    "Full field list of every record: position, length, type, name, meaning, value range, mandatory/optional, introduction date.",
+    "Whether availability retains full-snapshot semantics in v004 — a panel absent from the file being fully booked — which the site currently asserts from the 2011-2013 toolchain and which the norm has not been read for."
+  ],
+  "known": {
+    "purpose": "Availability (Freizahlen).",
+    "price_precedence": "FRE is second in the price-precedence chain of appendix D 04: STA, then FRE, then ANG, then SVE/SVT/BST.",
+    "production_file": "FRE36817.TXT, 27 MB, lessee 368, fiscal year 2017."
+  },
+  "records": {
+    "K": {},
+    "D": {},
+    "S": {},
+    "E": {}
+  }
+}

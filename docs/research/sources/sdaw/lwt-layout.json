@@ -1,0 +1,116 @@
+{
+  "source": "SDAW — Standardisierter Datensatz zur Aussenwerbung, B|A|M Bundesverband Aussenmedien",
+  "source_version": "004",
+  "source_date": "2025-06-11",
+  "extracted_on": "2026-09-09",
+  "confidence": "high for the record-length discrepancy, the value ranges and the decomposed sample record; field positions are not yet extracted",
+  "completeness": "partial",
+  "provenance": "Populated from the maintainer's structured reading of the norm, recorded 2026-09-09. This is NOT the output of a machine extraction pass over the source documents: that pass requires the folder registered in ../local-context.md, which was not reachable from the run that created this file. Everything present here is norm-attested; what is absent is listed under `pending` and must be completed by a run that can open the source.",
+  "pending": [
+    "Full field list of the D record: position, length, type, name, meaning, value range, mandatory/optional, introduction date.",
+    "Field lists of the K, S and E records."
+  ],
+  "records": {
+    "D": {
+      "name": "Datensatz",
+      "length_declared_by_norm": 64,
+      "length_observed_in_production": 63,
+      "discrepancy": {
+        "kind": "norm_vs_production",
+        "detail": "The norm states 64 characters. All 50,300 D records in the production file LWT36817.TXT are exactly 63 characters after CR/LF removal — no exceptions.",
+        "resolution": "Unresolved. Recorded as a documented inconsistency of the norm rather than corrected in either direction.",
+        "observed_on": "2026-09-09",
+        "observed_in": "LWT36817.TXT (lessee 368, fiscal year 2017)"
+      },
+      "fields_identified_from_sample": [
+        {
+          "name": "Standortnr",
+          "sample_value_shape": "13 digits"
+        },
+        {
+          "name": "Stellennr",
+          "sample_value_shape": "2 characters"
+        },
+        {
+          "name": "QID",
+          "sample_value_shape": "8 digits"
+        },
+        {
+          "name": "Hauptstellenart",
+          "sample_value_shape": "2 characters"
+        },
+        {
+          "name": "Bezugsquelle",
+          "sample_value_shape": "1 character"
+        },
+        {
+          "name": "Leistungswert",
+          "sample_value_shape": "10 digits"
+        },
+        {
+          "name": "Bezugsterminart",
+          "sample_value_shape": "1 character"
+        },
+        {
+          "name": "Gueltigkeit von",
+          "sample_value_shape": "3 characters"
+        },
+        {
+          "name": "Gueltigkeit bis",
+          "sample_value_shape": "3 characters"
+        }
+      ],
+      "pending_note": "Positions and lengths above are not yet extracted; only the field sequence is known, from the decomposed reference record."
+    }
+  },
+  "value_ranges": {
+    "Bezugsquelle": {
+      "source": "Appendix C 10 and appendix D 06",
+      "values": {
+        "P": "Plakatseher pro Stelle as per ma Plakat.",
+        "V": "Smoothed VAC value as per IndA.",
+        "X": "Permitted only following a frequency complaint (Frequenzreklamation)."
+      },
+      "rule": "Values determined by the lessee itself are not admissible."
+    },
+    "Bezugsterminart": {
+      "source": "Appendix D 06",
+      "values": {
+        "D": "Decade",
+        "W": "Week"
+      }
+    }
+  },
+  "derivation_rules": {
+    "source": "Appendix D 06",
+    "value_basis": "The performance value is a week value or a decade value, per Bezugsterminart.",
+    "daily_value": "Divide by 7 for a week value, by 10.5 for a decade value."
+  },
+  "reference_values": {
+    "note": "Verified previously against the production file. validate.py must reproduce these; a divergence is reported as a discrepancy, never written over these numbers.",
+    "verified_on": "2026-09-09",
+    "file": "LWT36817.TXT",
+    "d_record_count": 50300,
+    "d_record_length_all": 63,
+    "bezugsquelle_counts": {
+      "P": 48879,
+      "V": 1421,
+      "X": 0
+    },
+    "bezugsterminart_counts": {
+      "D": 45373,
+      "W": 4927
+    },
+    "decomposed_sample_record": {
+      "Standortnr": "3680010000001",
+      "Stellennr": "01",
+      "QID": "00286916",
+      "Hauptstellenart": "GF",
+      "Bezugsquelle": "P",
+      "Leistungswert": "0000037034",
+      "Bezugsterminart": "D",
+      "Gueltigkeit_von": "D01",
+      "Gueltigkeit_bis": "D34"
+    }
+  }
+}
