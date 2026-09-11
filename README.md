@@ -38,12 +38,6 @@ Code — see **[docs/WORKFLOW.md](docs/WORKFLOW.md)**. In short:
    API check, no LLM) flags a new AdCP release between refreshes — so stale
    content can't quietly pass for current.
 
-### One-time setup
-
-- Add the `ANTHROPIC_API_KEY` repository secret (or run
-  `/install-github-app` from the Claude Code CLI).
-- Settings → Pages → Build and deployment → Source: **Deploy from a branch**,
-  Branch: **main**, Folder: **/ (root)**.
 
 ## Local development
 
