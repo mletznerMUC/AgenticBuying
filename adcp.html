@@ -34,10 +34,10 @@
     <h1>AdCP — Ad Context Protocol</h1>
     <p class="lead">A deep dive into the Ad Context Protocol: what it standardizes, who
     governs it, and which capabilities are real today.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · both AdCP
-    release-line claims were re-checked on that date; every other claim was re-checked on
-    <time datetime="2026-09-02">2 September 2026</time>, and each claim carries its own
-    verification date in its source line</p>
+    <p class="page-meta">Updated <time datetime="2026-09-15">15 September 2026</time> · the AdCP
+    release-line, membership and agent-registry claims were re-checked on that date; every other
+    claim was re-checked on <time datetime="2026-09-02">2 September 2026</time>, and each claim
+    carries its own verification date in its source line</p>
     <p class="source">Primary source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a></p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
@@ -108,19 +108,20 @@
     <p>Version 3.1 is the current stable minor
     version, and every 3.1 change is additive over 3.0: new fields are optional and no required
     field was removed, so a 3.0-conformant client keeps working. On GitHub the spec is on an active
-    v3.1.x line — the latest tagged release is v3.1.20, published September 2, 2026, following
-    v3.1.19 of August 21 and v3.1.18 of August 20, at a weekly-plus cadence; v3.1.20 is a patch
-    release, correcting the schema used to validate universal creative-format pagination and the
-    OpenRTB and AdCOM content-taxonomy mappings — while a parallel
+    v3.1.x line — the latest tagged release is v3.1.23, published September 14, 2026, following
+    v3.1.22 of September 13, v3.1.21 of September 9 and v3.1.20 of September 2, at a weekly-plus
+    cadence. The documentation site's what's-new page for 3.1 still links its normative
+    specification at the 3.1.21 distribution path, one release behind the latest tag. A parallel
     v3.0.x maintenance line still receives releases (v3.0.22 on July 24, the same day as v3.1.5;
-    v3.0.25 on August 19; v3.0.26 on August 21, the same day as v3.1.19). Release v3.1.3 was
+    v3.0.25 on August 19; v3.0.26 on August 21, the same day as v3.1.19), and v3.0.26 remains its
+    latest tag. Release v3.1.3 was
     withdrawn: the project states
     it "added a stable protocol schema field in a patch release, violating the 3.1.x release
     contract," and directs implementers to 3.1.2 as the stable 3.1 target, which is the version the
     documentation pins.</p>
-    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · the v3.1.20 release last verified 2026-09-04, the rest 2026-09-02</p>
+    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · the release lines last verified 2026-09-15, the v3.1.3 withdrawal 2026-09-02</p>
     <p><span class="badge announced">announced</span> A 3.2 line has begun as a pre-release: AdCP
-    published v3.2.0-beta.0 on August 17, 2026 and has run through v3.2.0-rc.0 on September 3,
+    published v3.2.0-beta.0 on August 17, 2026 and has run through v3.2.0-rc.3 on September 14,
     with no stable 3.2 release. The changelog for beta.0 to beta.3 lists a promoted
     media-channel taxonomy, Trusted Match changes to publisher authentication and context targeting,
     cross-role governance enforcement, new portable and issuer-bound attestation schemas, and
@@ -137,10 +138,15 @@
     with product-scoped timezone-mode declarations, experimental product-scoped identity-absence
     and reach-methodology declarations requiring a reach unit on frequency-only delivery, and
     digital-out-of-home share of voice defined as a duration-weighted time share with
-    seller-packaged slot contiguity parameters. The line adds no eighth negotiation surface —
+    seller-packaged slot contiguity parameters. Three further candidates follow: rc.1 of
+    September 5 deprecates cross-buy delivery aggregates and adds a Reliable Reporting capability
+    with vendor measurement disclosure, rc.2 of September 13 adds buyer and orchestrator
+    storyboards, restored viewability constraints and cursor pagination, and rc.3 of September 14
+    adds media-buy frequency capping and request-only targeting schemas. The line adds no eighth
+    negotiation surface —
     the changes extend the seven above. The list was read from the rendered changelog rather than
     diffed against the schema files.</p>
-    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-04</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-15</p>
     <p><span class="badge speculative">speculative</span> This page previously reported that
     secondary sources listed curation, creative generation, and performance attribution as AdCP
     roadmap items still to come. That list is no longer traceable: re-checked on September 2, 2026,
@@ -154,23 +160,23 @@
     <h2>Adoption &amp; ecosystem</h2>
     <p>A first-party membership figure is now
     published: both adcontextprotocol.org and AgenticAdvertising.org state on their homepages that
-    132+ companies have joined, up from the 127+ both stated on August 20, 2026. That is above the
+    142+ companies have joined, up from the 132+ both stated on September 2, 2026. That is above the
     113+ the most recent secondary count gives, so this site carries the organization's own figure
     rather than the secondary one. Two caveats attach to it: the
     organization does not date the figure, and its About, Membership, and member-directory pages
-    state no aggregate count and list no membership at that size, so 132+ cannot be reconciled
+    state no aggregate count and list no membership at that size, so 142+ cannot be reconciled
     against a name-by-name list. Members named across sources include Yahoo, PubMatic, Scope3,
     Samba TV, The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till, Raptive, and
     Affinity.</p>
-    <p class="source">Source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a>; <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a>; <a href="https://agenticadvertising.org/about" rel="noopener">About</a>; <a href="https://agenticadvertising.org/members" rel="noopener">member directory</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> (the secondary range); <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land (Affinity)</a> · last verified 2026-09-02</p>
+    <p class="source">Source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a>; <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a>; <a href="https://agenticadvertising.org/about" rel="noopener">About</a>; <a href="https://agenticadvertising.org/members" rel="noopener">member directory</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> (the secondary range); <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land (Affinity)</a> · last verified 2026-09-15</p>
     <p>The organization also runs a public agent
     registry listing sales, creative, and signals agents that implement AdCP, filterable by agent
-    type, status, and compliance. Its public API returned 32 registered agents on September 2, 2026 —
-    27 sales agents, three signals agents, one creative agent, and one buying agent — up from 30 on
-    August 20. All of that growth was on the sell side: the single buying agent is the same count a
-    July 31, 2026 third-party snapshot recorded, so the registry remains overwhelmingly
-    sell-side.</p>
-    <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a>; <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory</a> (the July 31 snapshot) · last verified 2026-09-02</p>
+    type, status, and compliance. Its public API returned 35 registered agents on September 15, 2026 —
+    29 sales agents, three signals agents, one creative agent, one buying agent, and one
+    uncategorized — up from 32 on September 2. That growth remains concentrated on the sell side:
+    the single buying agent is the same count a July 31, 2026 third-party snapshot recorded, so the
+    registry remains overwhelmingly sell-side.</p>
+    <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a>; <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory</a> (the July 31 snapshot) · last verified 2026-09-15</p>
     <h3>Deployments</h3>
     <p>The first agent-to-agent media buy was a real
     transaction rather than a demonstration: a Scope3 buyer agent and a Swivel seller agent
@@ -244,8 +250,8 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-07/08</th>
-            <td role="cell" data-label="Development">Active v3.1.x cadence (weekly-plus), reaching v3.1.19 on August 21. A v3.0.x maintenance line runs alongside it, through v3.0.26; v3.1.3 was withdrawn for adding a schema field in a patch release.</td>
+            <th role="rowheader" scope="row">2026-07 to 09</th>
+            <td role="cell" data-label="Development">Active v3.1.x cadence (weekly-plus), reaching v3.1.23 on September 14. A v3.0.x maintenance line runs alongside it, through v3.0.26; v3.1.3 was withdrawn for adding a schema field in a patch release.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
@@ -254,8 +260,8 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-08-17 to 09-03</th>
-            <td role="cell" data-label="Development">v3.2.0-beta.0 opens a 3.2 pre-release line — taxonomy promotion, Trusted Match and governance changes, attestation schemas, deprecations — running through rc.0, which adds CTV, DOOH, audio, brand-identity and daypart-timezone surface. No stable 3.2 release yet.</td>
+            <th role="rowheader" scope="row">2026-08-17 to 09-14</th>
+            <td role="cell" data-label="Development">v3.2.0-beta.0 opens a 3.2 pre-release line — taxonomy promotion, Trusted Match and governance changes, attestation schemas, deprecations — running through rc.3, which adds CTV, DOOH, audio, brand-identity, daypart-timezone, reliable-reporting and frequency-capping surface. No stable 3.2 release yet.</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
