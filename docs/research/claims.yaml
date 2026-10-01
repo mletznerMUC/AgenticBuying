@@ -26,7 +26,7 @@
 #   volatility    high | medium | low — how fast the fact tends to move
 meta:
   schema: 1
-  updated: 2026-09-15
+  updated: 2026-10-01
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -973,3 +973,52 @@ claims:
       - https://github.com/openooh/venue-taxonomy
     last_verified: 2026-09-08
     volatility: medium
+  - id: aamp-3-0-openproposal
+    pages: [legal.html]
+    claim: "IAB Tech Lab announced AAMP 3.0 on 22 September 2026. Its new part, OpenProposal, is at v3.0-draft-1 with public comment open until 22 October 2026: 71 fields in four categories (merchandising, optimization, commitment, reconciliation), only three of which need a negotiation round trip, with line items mapped to OpenDirect 2.1, the Deals API or OpenRTB 2.6."
+    status: announced
+    sources:
+      - https://github.com/IABTechLab/OpenProposal
+      - https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30
+    last_verified: 2026-10-01
+    volatility: high
+  - id: aamp-agent-registry-size
+    pages: [legal.html]
+    claim: "At the AAMP 3.0 announcement the Agent Registry held about ten entries, Amazon among them, in three deployment classes: remote, local and private."
+    status: reported
+    sources:
+      - https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/
+    last_verified: 2026-10-01
+    volatility: high
+  - id: adcp-aamp-13-function-overlap
+    pages: [legal.html]
+    claim: "IAB Tech Lab's chief operating officer has said AdCP and AAMP overlap on 13 functions, according to PPC Land; no primary statement has been located."
+    status: reported
+    sources:
+      - https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/
+    last_verified: 2026-10-01
+    volatility: low
+  - id: adcp-governance-human-review
+    pages: [legal.html]
+    claim: "AdCP 3.0's governance protocol runs in audit, advisory or enforce mode; plans whose policy categories touch fair housing, fair lending, fair employment or pharmaceutical advertising must set human_review_required, and approvals travel as a signed JWS governance_context."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-10-01
+    volatility: medium
+  - id: adcp-create-media-buy-contract-states
+    pages: [legal.html]
+    claim: "AdCP's create_media_buy returns completed, working or submitted; sellers must return submitted for guaranteed products when they require insertion-order approval; idempotency_key is optional; confirmed packages carry immutable, timestamped committed_metrics described as a binding reporting contract."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/docs/media-buy/task-reference/create_media_buy
+    last_verified: 2026-10-01
+    volatility: medium
+  - id: aamp-artf-latency
+    pages: [legal.html]
+    claim: "IAB Tech Lab says ARTF cuts latency by 90%; no independent benchmark has been located."
+    status: announced
+    sources:
+      - https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/
+    last_verified: 2026-10-01
+    volatility: low

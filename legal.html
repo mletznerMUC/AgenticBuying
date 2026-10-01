@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agentic buying step by step for legal readers: what the agents exchange under AdCP and AAMP, and where liability sits at each step.">
+  <title>Legal lens · AgenticBuying</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/legal.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-title" href="index.html">AgenticBuying</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="adcp.html">AdCP</a></li>
+          <li><a href="aamp.html">AAMP</a></li>
+          <li><a href="releases.html">Releases</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="ooh.html">OOH</a>
+            <ul class="site-subnav">
+              <li><a href="sdaw.html">SDAW</a></li>
+            </ul>
+          </li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="workflows.html">Workflows</a></li>
+          <li><a href="legal.html" aria-current="page">Legal lens</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>Agentic buying through a legal lens</h1>
+    <p class="lead">How AI agents plan, negotiate, buy and report advertising on behalf of
+    companies, step by step, mapped to the two current protocol families (AdCP, the Ad Context
+    Protocol, and AAMP, IAB Tech Lab's Agentic Advertising Management Protocols), and where
+    liability sits at each step. Written for in-house counsel, contract managers and compliance
+    teams who need to understand the process before they can allocate its risks.</p>
+    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · all claims on this page verified on that date</p>
+    <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
+    <ul class="badge-legend">
+      <li><span class="badge shipped">shipped</span> released or in production</li>
+      <li><span class="badge announced">announced</span> committed, not yet shipped</li>
+      <li><span class="badge reported">reported</span> secondary sources only, or disputed</li>
+      <li><span class="badge speculative">speculative</span> interpretation, not settled fact</li>
+      <li><span class="badge primary-nonpublic">primary-nonpublic</span> primary document, not publicly retrievable</li>
+    </ul>
+
+    <p><span class="badge speculative">speculative</span> <strong>This page is not legal
+    advice.</strong> The protocol descriptions are verified against the specifications. The
+    legal readings in each "Legal lens" block and in the liability map are an interpretation
+    from an EU and German law perspective. Neither protocol allocates liability, so those
+    readings apply general law to a new process. The actual allocation in any deal depends on
+    the contracts in place. Both protocol families are evolving quickly, so check the current
+    versions before relying on a specific field or task name.</p>
+
+    <h2 id="principles">Four principles to start from</h2>
+    <ol>
+      <li><strong>Agents are not legal persons.</strong> Every declaration an agent sends is
+      attributed to the company that deployed it.</li>
+      <li><strong>Protocols define messages, not liability.</strong> AdCP and AAMP standardize
+      data exchange. Who pays when something goes wrong is decided by contract and statute.</li>
+      <li><strong>Human checkpoints exist, so use them.</strong> Both families allow human
+      approval steps. Contracts should say which ones are mandatory.</li>
+      <li><strong>Logs are your evidence.</strong> Signed messages and audit logs are what the
+      parties will rely on in a dispute.</li>
+    </ol>
+
+    <h2 id="process">The process at a glance</h2>
+    <p>Nine parties take part in an agentic buy. Three are companies, where people make the
+    decisions: the advertiser, its agency and the publisher. Six are software: the buyer and
+    sales agents that do the negotiating, and four services they call. The figure shows where
+    each sits. Each of the nine steps below lists the messages exchanged between these parties.
+    With JavaScript enabled, the figure becomes an animated walkthrough: play the tour or
+    pick a step, and each message travels between the parties in order, with the step's
+    details and legal lens beside it.</p>
+    <figure id="process-figure" class="walkthrough-figure">
+      <div class="figure-wrap">
+        <svg id="process-diagram" viewBox="0 0 1000 540" role="img" aria-labelledby="fig-parties-title">
+          <title id="fig-parties-title">The nine parties in an agentic buy, in three zones. Buy side, people: the advertiser and its agency or operator. Agent layer, software: the buyer agent in the middle, the registry above it, the governance and signals agents below it, the sales agent to its right, and the creative agent below that. Sell side, people: the publisher or seller.</title>
+          <defs>
+            <marker id="wt-arr-agent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="wt-arr-agent" d="M 0 0 L 10 5 L 0 10 z" /></marker>
+            <marker id="wt-arr-human" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="wt-arr-human" d="M 0 0 L 10 5 L 0 10 z" /></marker>
+            <marker id="wt-arr-none" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="wt-arr-none" d="M 0 0 L 10 5 L 0 10 z" /></marker>
+          </defs>
+          <rect class="wt-zone wt-zone-side" x="14" y="12" width="250" height="516" rx="18" />
+          <text class="wt-zone-label" x="28" y="34">BUY SIDE · PEOPLE</text>
+          <rect class="wt-zone wt-zone-agent" x="270" y="12" width="470" height="516" rx="18" />
+          <text class="wt-zone-label" x="284" y="34">AGENT LAYER</text>
+          <rect class="wt-zone wt-zone-side" x="746" y="12" width="240" height="516" rx="18" />
+          <text class="wt-zone-label" x="760" y="34">SELL SIDE · PEOPLE</text>
+          <g id="wt-flows"></g>
+          <g class="wt-node kind-human" data-node="adv" data-cx="110" data-cy="110" data-info="The company whose money is spent and whose brand appears. Ultimately bound by the orders its agents place." transform="translate(32,81)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="52" height="18" rx="5" />
+            <text class="wt-tag" x="36" y="4" text-anchor="middle">HUMAN</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Advertiser</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">brand · principal</text>
+          </g>
+          <g class="wt-node kind-human" data-node="agy" data-cx="110" data-cy="345" data-info="Runs and configures the buyer agent; sometimes the advertiser itself. AdCP calls this role the operator." transform="translate(32,316)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="52" height="18" rx="5" />
+            <text class="wt-tag" x="36" y="4" text-anchor="middle">HUMAN</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Agency / operator</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">configures the agent</text>
+          </g>
+          <g class="wt-node kind-agent" data-node="buy" data-cx="345" data-cy="235" data-info="Software that discovers inventory, negotiates and places orders for the buyer within its mandate." transform="translate(267,206)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="28" height="18" rx="5" />
+            <text class="wt-tag" x="24" y="4" text-anchor="middle">AI</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Buyer agent</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">AI · acts for buyer</text>
+          </g>
+          <g class="wt-node kind-infra" data-node="reg" data-cx="520" data-cy="62" data-info="Directory of verified agents: the AAMP Agent Registry, or the AgenticAdvertising.org registry for AdCP." transform="translate(442,33)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="40" height="18" rx="5" />
+            <text class="wt-tag" x="30" y="4" text-anchor="middle">INFRA</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Registry</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">identity &amp; discovery</text>
+          </g>
+          <g class="wt-node kind-agent" data-node="gov" data-cx="345" data-cy="455" data-info="Checks plans and buys against budget authority, brand-safety and regulatory rules, and escalates to a person." transform="translate(267,426)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="28" height="18" rx="5" />
+            <text class="wt-tag" x="24" y="4" text-anchor="middle">AI</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Governance agent</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">policy · brand safety</text>
+          </g>
+          <g class="wt-node kind-agent" data-node="sig" data-cx="565" data-cy="455" data-info="Offers and activates audience or contextual data segments, often from third-party data providers." transform="translate(487,426)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="28" height="18" rx="5" />
+            <text class="wt-tag" x="24" y="4" text-anchor="middle">AI</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Signals agent</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">audience data</text>
+          </g>
+          <g class="wt-node kind-agent" data-node="sal" data-cx="690" data-cy="235" data-info="Software acting for the publisher: describes products and prices, answers briefs and accepts orders." transform="translate(612,206)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="28" height="18" rx="5" />
+            <text class="wt-tag" x="24" y="4" text-anchor="middle">AI</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Sales agent</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">AI · acts for seller</text>
+          </g>
+          <g class="wt-node kind-human" data-node="pub" data-cx="895" data-cy="235" data-info="The media owner (website, app, connected TV, out-of-home screens). Delivers the ads and invoices." transform="translate(817,206)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="52" height="18" rx="5" />
+            <text class="wt-tag" x="36" y="4" text-anchor="middle">HUMAN</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Publisher / seller</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">owns the inventory</text>
+          </g>
+          <g class="wt-node kind-agent" data-node="cre" data-cx="790" data-cy="455" data-info="Generates or adapts ad creatives, often with generative AI, to the formats each seller requires." transform="translate(712,426)">
+            <rect class="wt-box" width="156" height="58" rx="12" />
+            <rect class="wt-tag-box" x="10" y="-9" width="28" height="18" rx="5" />
+            <text class="wt-tag" x="24" y="4" text-anchor="middle">AI</text>
+            <text class="wt-node-title" x="78" y="28" text-anchor="middle">Creative agent</text>
+            <text class="wt-node-sub" x="78" y="45" text-anchor="middle">builds ad assets</text>
+          </g>
+          <g id="wt-labels"></g>
+        </svg>
+      </div>
+      <figcaption class="source">Figure 1 — Parties in an agentic buy. Color marks the kind of
+      party: people (orange, tagged HUMAN), AI agents (blue, tagged AI) and infrastructure (gray,
+      dashed, tagged INFRA); the registry is a directory, not a party to the deal. Both protocol
+      families use the same set of roles; where one family names a role and the other does not,
+      the step below says so. Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing the AAMP initiative</a> · last verified 2026-10-01</figcaption>
+    </figure>
+
+    <p>How to read the message tables: a row whose "Who acts" column says <em>person</em> is a
+    human decision or approval, not a machine message. "Not specified" means the protocol
+    family has no published component for that message.</p>
+
+    <!-- ===================== STEP 1 ===================== -->
+    <section class="legal-step" id="step-mandate" aria-labelledby="step-mandate-h" data-question="Who is the agent acting for, and within which limits?" data-hitl="A person sets the limits" data-exposure="high">
+      <h2 id="step-mandate-h">Step 1 — Mandate and set-up</h2>
+      <p><strong>The question:</strong> who is the agent acting for, and within which limits?
+      · <strong>Human in the loop:</strong> a person sets the limits · <strong>Legal exposure:</strong> high</p>
+      <p>Before anything is bought, a person decides what the agent may do: total budget,
+      campaign goals, brand rules, which sellers are allowed and the maximum value of a single
+      order. The buyer agent is configured with these limits. It then opens a commercial account
+      with each seller, which records who the brand is, who operates the agent, and who receives
+      the invoice. In legal terms this is a power of attorney written in machine-readable form,
+      plus opening a customer account with a supplier.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="adv" data-to="agy" data-human="">
+              <th role="rowheader" scope="row">Advertiser → agency</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Mandate: budget, goals, limits</td><td role="cell" data-label="AAMP">Mandate: budget, goals, limits</td>
+            </tr>
+            <tr role="row" data-from="agy" data-to="buy">
+              <th role="rowheader" scope="row">Agency → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>sync_plans</code>, <code>brand.json</code></td><td role="cell" data-label="AAMP">Buyer agent configuration</td>
+            </tr>
+            <tr role="row" data-from="buy" data-to="sal">
+              <th role="rowheader" scope="row">Buyer agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>sync_accounts</code></td><td role="cell" data-label="AAMP">OpenDirect account set-up</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li>The accounts protocol models four entities: brand, account, operator and agent.
+        Tasks: <code>sync_accounts</code>, <code>list_accounts</code>.</li>
+        <li>Two billing models: the operator (or a brand buying direct) is invoiced, or the agent
+        consolidates billing.</li>
+        <li><code>brand.json</code> publishes the company's identity, agent endpoints and
+        signing keys.</li>
+        <li><code>sync_plans</code> registers the campaign plan for later governance checks.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>The buyer agent is an open-source reference implementation in AAMP's agentic
+        protocols pillar.</li>
+        <li>Account set-up uses OpenDirect, the existing IAB Tech Lab standard for guaranteed
+        buys that AAMP builds on.</li>
+        <li><span class="badge speculative">speculative</span> AAMP publishes no dedicated
+        "mandate" object. Authority limits stay in the buyer's own systems and contracts.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>High exposure — attribution of agent declarations</summary>
+        <p>An AI agent has no legal capacity. Under the prevailing German and EU view, orders it
+        generates are attributed to the company that deploys it, as "computer declarations".
+        The agency rules of §§ 164 ff. BGB apply at most by analogy. The principal can be bound
+        even by unexpected outputs.</p>
+        <p><strong>Risk sits with:</strong> the advertiser, and the agency if it contracts in its own name.<br>
+        <strong>Mitigation:</strong> a written mandate defining scope; hard caps per order, per
+        day and in total; an explicit clause that the agent's output binds only within its
+        configured limits.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — who is the contracting party and debtor?</summary>
+        <p>The billing model decides who owes payment: operator-billed or agent-consolidated.
+        That affects credit risk, the agency's role (acting as agent or trading as principal)
+        and its transparency duties toward the advertiser.</p>
+        <p><strong>Risk sits with:</strong> the agency as operator, and the advertiser.<br>
+        <strong>Mitigation:</strong> fix the billing model and the contracting entity in the
+        framework agreement and mirror it in the account set-up.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — liability of the agent's provider</summary>
+        <p>If the agent software malfunctions, recourse against its vendor depends on the license
+        or SaaS terms, which often cap liability. The revised Product Liability Directive
+        (EU) 2024/2853 treats software as a product; member states must transpose it by
+        9 December 2026.</p>
+        <p><strong>Risk sits with:</strong> the agent technology provider, to the extent agreed.<br>
+        <strong>Mitigation:</strong> service levels, a warranty that configured limits are
+        enforced, carve-outs from the liability cap for orders outside the mandate, insurance.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Who in our organization may change the agent's limits, and is that logged?</li>
+        <li>What is the maximum value of a single agent-placed order?</li>
+        <li>Which billing model applies, and who is the debtor?</li>
+        <li>Does the agent vendor contract cover losses from orders outside configured limits?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://www.gesetze-im-internet.de/bgb/__164.html" rel="noopener">§ 164 BGB</a>;
+      <a href="https://eur-lex.europa.eu/eli/dir/2024/2853/oj" rel="noopener">Directive (EU) 2024/2853</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 2 ===================== -->
+    <section class="legal-step" id="step-discovery" aria-labelledby="step-discovery-h" data-question="Is the counterparty who it claims to be?" data-hitl="Automated" data-exposure="medium">
+      <h2 id="step-discovery-h">Step 2 — Discovery and identity check</h2>
+      <p><strong>The question:</strong> is the counterparty who it claims to be?
+      · <strong>Human in the loop:</strong> none, automated · <strong>Legal exposure:</strong> medium</p>
+      <p>The buyer agent looks for suitable sellers and checks that the sales agent is actually
+      authorized to sell that publisher's inventory. It consults a registry and a file the
+      publisher publishes on its own website listing its authorized agents. This stops spoofed
+      sellers and unauthorized resellers from taking the money.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="reg">
+              <th role="rowheader" scope="row">Buyer agent → registry</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Registry lookup</td><td role="cell" data-label="AAMP">Agent Registry lookup</td>
+            </tr>
+            <tr role="row" data-from="reg" data-to="buy">
+              <th role="rowheader" scope="row">Registry → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Verified entity</td><td role="cell" data-label="AAMP">Identity and disclosure</td>
+            </tr>
+            <tr role="row" data-from="buy" data-to="pub">
+              <th role="rowheader" scope="row">Buyer agent → publisher site</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>/.well-known/adagents.json</code></td><td role="cell" data-label="AAMP"><code>ads.txt</code> / <code>sellers.json</code></td>
+            </tr>
+            <tr role="row" data-from="pub" data-to="buy">
+              <th role="rowheader" scope="row">Publisher site → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Authorized sales agents</td><td role="cell" data-label="AAMP">Authorized sellers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li><code>adagents.json</code> under <code>/.well-known/</code> on the publisher's
+        domain declares its properties and which agents may sell them.</li>
+        <li>The AgenticAdvertising.org registry resolves agents and entities.</li>
+        <li>RFC 9421 HTTP message signatures are optional in 3.0 and mandatory under the
+        "AdCP Verified" label.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>The Agent Registry provides "agent identity, verification, and disclosure", in IAB
+        Tech Lab's words, so participants know who or what they are transacting with.</li>
+        <li><span class="badge reported">reported</span> The registry held about ten entries,
+        Amazon among them, at the AAMP 3.0 announcement, sorted into three deployment classes:
+        remote, local and private.</li>
+        <li>The existing IAB Tech Lab authorization files, <code>ads.txt</code> and
+        <code>sellers.json</code>, remain the established seller check.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a>;
+      <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> (registry count) · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>Medium exposure — impersonation and unauthorized resale</summary>
+        <p>A buyer that pays an agent the publisher never authorized may have paid the wrong
+        party. Recovery is then a fraud or unjust-enrichment claim against a party that may be
+        unreachable.</p>
+        <p><strong>Risk sits with:</strong> the buyer, unless the contract shifts the verification duty.<br>
+        <strong>Mitigation:</strong> require verification against <code>adagents.json</code> or
+        the registry and signed requests; a warranty of authorization from the seller.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — relying on a registry</summary>
+        <p>A registry listing is a technical identity statement, not a certificate of legal
+        compliance or solvency. Check the registry's terms; it will usually disclaim
+        liability.</p>
+        <p><strong>Risk sits with:</strong> the party relying on the listing.<br>
+        <strong>Mitigation:</strong> treat the registry as one input; keep your own
+        know-your-customer, sanctions and vendor checks.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Lower exposure — the publisher's duty to keep its files current</summary>
+        <p>Outdated authorization files can let former partners keep selling. The publisher
+        controls the file, so it carries the risk of keeping it current.</p>
+        <p><strong>Risk sits with:</strong> the publisher.<br>
+        <strong>Mitigation:</strong> an internal process that updates the authorization files
+        when a sales contract ends.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Do we require cryptographically signed requests from counterparties?</li>
+        <li>Who verifies the counterparty, and is the check logged?</li>
+        <li>Does the seller contractually warrant that its agent is authorized?</li>
+      </ul>
+    </section>
+
+    <!-- ===================== STEP 3 ===================== -->
+    <section class="legal-step" id="step-proposal" aria-labelledby="step-proposal-h" data-question="From a request for proposals to a priced offer: are we negotiating yet?" data-hitl="Optional, seller side" data-exposure="medium">
+      <h2 id="step-proposal-h">Step 3 — Brief and proposal</h2>
+      <p><strong>The question:</strong> from a request for proposals to a priced offer — are
+      the parties negotiating yet? · <strong>Human in the loop:</strong> optional, on the seller
+      side · <strong>Legal exposure:</strong> medium</p>
+      <p>The buyer agent sends a brief, in natural language plus structured fields: target
+      group, budget, dates, goals. The sales agent replies with matching products, prices and
+      delivery forecasts, sometimes as a complete proposal. A person on the seller side may
+      review the reply, especially for large or custom deals. This is the agentic version of the
+      request-for-proposals exchange that used to run on email and spreadsheets.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="sal">
+              <th role="rowheader" scope="row">Buyer agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_products</code> with a brief</td><td role="cell" data-label="AAMP">OpenProposal brief</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="pub" data-human="">
+              <th role="rowheader" scope="row">Sales agent → publisher</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Inventory and price check</td><td role="cell" data-label="AAMP">Inventory and price check</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="buy">
+              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Products, pricing, forecasts</td><td role="cell" data-label="AAMP">OpenProposal response</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li><code>get_products</code> accepts a natural-language brief and returns products with
+        pricing, targeting and delivery forecasts.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li><span class="badge announced">announced</span> OpenProposal, the new part of AAMP
+        3.0 announced on 22 September 2026, is a machine-readable format for seller products
+        and responses to briefs. It is at <code>v3.0-draft-1</code>, with public comment open
+        until 22 October 2026.</li>
+        <li>The draft has 71 fields in four categories: merchandising, optimization, commitment
+        and reconciliation. Only three of the fields need a negotiation round trip.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>;
+      <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>Medium exposure — binding offer or invitation to treat?</summary>
+        <p>Is a proposal a binding offer the buyer agent can accept, or only an invitation to
+        make an offer? Neither protocol says. Forecasts are estimates, not promises.</p>
+        <p><strong>Risk sits with:</strong> both sides, as uncertainty.<br>
+        <strong>Mitigation:</strong> terms stating that proposals are non-binding until a
+        defined message confirms them (see step 6), and that forecasts are not guaranteed.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — confidential information in briefs</summary>
+        <p>Briefs carry budgets and strategy and pass through third-party agents and possibly
+        language-model providers. Trade-secret protection under Directive (EU) 2016/943 and the
+        German GeschGehG requires "appropriate secrecy measures".</p>
+        <p><strong>Risk sits with:</strong> the advertiser and agency.<br>
+        <strong>Mitigation:</strong> confidentiality agreements with agent vendors; no-training
+        and data-retention clauses; sending only the fields a seller needs.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — algorithmic price coordination</summary>
+        <p>Agents exchanging structured pricing data at scale could facilitate collusion under
+        Art. 101 TFEU (Treaty on the Functioning of the European Union), even without human
+        intent.</p>
+        <p><strong>Risk sits with:</strong> sellers and buyers deploying agents.<br>
+        <strong>Mitigation:</strong> a competition-law review of which pricing data is shared;
+        no competitor-sensitive data through shared vendors.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Lower exposure — misleading product descriptions</summary>
+        <p>Inaccurate statements about reach or audience quality can trigger pre-contractual
+        liability (culpa in contrahendo, § 311(2) BGB).</p>
+        <p><strong>Risk sits with:</strong> the seller.<br>
+        <strong>Mitigation:</strong> accuracy obligations for structured product data and an
+        agreed source of truth.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Which message turns a proposal into a binding contract?</li>
+        <li>Can briefs contain personal data or trade secrets, and who may see them?</li>
+        <li>Do agent vendors retain or train on our brief data?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://eur-lex.europa.eu/eli/dir/2016/943/oj" rel="noopener">Directive (EU) 2016/943</a>;
+      <a href="https://www.gesetze-im-internet.de/geschgehg/" rel="noopener">GeschGehG</a>;
+      <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12008E101" rel="noopener">Art. 101 TFEU</a>;
+      <a href="https://www.gesetze-im-internet.de/bgb/__311.html" rel="noopener">§ 311 BGB</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 4 ===================== -->
+    <section class="legal-step" id="step-signals" aria-labelledby="step-signals-h" data-question="Whose data is used to target the ad?" data-hitl="Automated" data-exposure="high">
+      <h2 id="step-signals-h">Step 4 — Audience and data signals</h2>
+      <p><strong>The question:</strong> whose data is used to target the ad?
+      · <strong>Human in the loop:</strong> none, automated · <strong>Legal exposure:</strong> high</p>
+      <p>To reach the right people, the buyer agent asks a signals agent for suitable audience
+      or context data, such as "in-market for cars" or "sports content". It then activates the
+      chosen segment on the seller's platform. Data providers are paid per use.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="sig">
+              <th role="rowheader" scope="row">Buyer agent → signals agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_signals</code></td><td role="cell" data-label="AAMP">Agentic Audiences request</td>
+            </tr>
+            <tr role="row" data-from="sig" data-to="buy">
+              <th role="rowheader" scope="row">Signals agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Segments and pricing</td><td role="cell" data-label="AAMP">Audience signals</td>
+            </tr>
+            <tr role="row" data-from="buy" data-to="sig">
+              <th role="rowheader" scope="row">Buyer agent → signals agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>activate_signal</code></td><td role="cell" data-label="AAMP">Activate segment</td>
+            </tr>
+            <tr role="row" data-from="sig" data-to="sal">
+              <th role="rowheader" scope="row">Signals agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Segment deployed</td><td role="cell" data-label="AAMP">Segment deployed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li>The signals protocol covers discovery and activation: <code>get_signals</code>,
+        <code>activate_signal</code>, and <code>report_usage</code> so data providers can bill.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>Agentic Audiences, one of AAMP's agentic protocols, carries audience signals between
+        agents.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>High exposure — lawful basis and consent</summary>
+        <p>Audience segments are usually personal data. Access to a user's device needs consent
+        under Art. 5(3) of the ePrivacy Directive, in Germany § 25 TDDDG; profiling needs a
+        lawful basis under Art. 6 GDPR. The Court of Justice of the EU held in C-604/22
+        (IAB Europe) that a consent string of the Transparency and Consent Framework can be
+        personal data.</p>
+        <p><strong>Risk sits with:</strong> the advertiser, data provider and publisher, depending on their roles.<br>
+        <strong>Mitigation:</strong> consent signals travel with the data; warranties of lawful
+        collection; audit rights.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — controller roles</summary>
+        <p>Several parties deciding on purposes and means can be joint controllers (Art. 26
+        GDPR; Court of Justice, C-40/17 Fashion ID). An agent that chooses segments by itself
+        does not remove the deploying company's role as controller.</p>
+        <p><strong>Risk sits with:</strong> the advertiser, data provider and platform together.<br>
+        <strong>Mitigation:</strong> joint-controller or processor agreements (Art. 26 or 28
+        GDPR) that cover activations an agent initiates.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — prohibited targeting</summary>
+        <p>On online platforms, the Digital Services Act bans ads based on profiling with
+        special-category data (Art. 26(3)) and profiling-based ads to minors (Art. 28(2)).
+        Inferred interests can reveal health, religion or sexuality.</p>
+        <p><strong>Risk sits with:</strong> the platform and the advertiser.<br>
+        <strong>Mitigation:</strong> block lists of sensitive segments in the agent's
+        configuration; the governance check in step 5.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Is each segment backed by documented consent or another lawful basis?</li>
+        <li>Have we mapped controller and processor roles for data an agent activates?</li>
+        <li>Are sensitive and minor-related segments technically excluded?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" rel="noopener">GDPR (EU) 2016/679</a>;
+      <a href="https://eur-lex.europa.eu/eli/dir/2002/58/oj" rel="noopener">ePrivacy Directive 2002/58/EC</a>;
+      <a href="https://www.gesetze-im-internet.de/ttdsg/__25.html" rel="noopener">§ 25 TDDDG</a>;
+      <a href="https://eur-lex.europa.eu/eli/reg/2022/2065/oj" rel="noopener">Digital Services Act (EU) 2022/2065</a>;
+      <a href="https://curia.europa.eu/juris/liste.jsf?num=C-604/22" rel="noopener">C-604/22</a>;
+      <a href="https://curia.europa.eu/juris/liste.jsf?num=C-40/17" rel="noopener">C-40/17</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 5 ===================== -->
+    <section class="legal-step" id="step-governance" aria-labelledby="step-governance-h" data-question="Does the plan comply with policy and law before money is committed?" data-hitl="Escalation to a person" data-exposure="high">
+      <h2 id="step-governance-h">Step 5 — Governance and compliance check</h2>
+      <p><strong>The question:</strong> does the plan comply with policy and law before money
+      is committed? · <strong>Human in the loop:</strong> escalation to a person
+      · <strong>Legal exposure:</strong> high</p>
+      <p>Before money is committed, a governance agent checks the plan: budget authority, brand
+      safety, allowed websites and sector rules. If a rule is triggered or a limit exceeded,
+      the decision is escalated to a person, whose approval is recorded and travels with the
+      transaction.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="gov">
+              <th role="rowheader" scope="row">Buyer agent → governance agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>check_governance</code></td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+            <tr role="row" data-from="gov" data-to="buy">
+              <th role="rowheader" scope="row">Governance agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Decision, per audit, advisory or enforce mode</td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+            <tr role="row" data-from="gov" data-to="agy" data-human="">
+              <th role="rowheader" scope="row">Governance agent → agency</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP"><code>human_review_required</code></td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+            <tr role="row" data-from="agy" data-to="gov" data-human="">
+              <th role="rowheader" scope="row">Agency → governance agent</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Human decision, signed</td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li>The governance protocol, new in 3.0, covers property lists, content standards and
+        campaign governance: <code>sync_plans</code>, <code>check_governance</code>,
+        <code>report_plan_outcome</code>, <code>get_plan_audit_logs</code>.</li>
+        <li>A governance agent runs in audit, advisory or enforce mode.</li>
+        <li>Plans whose policy categories touch fair housing, fair lending, fair employment or
+        pharmaceutical advertising must set <code>human_review_required</code>; the schema
+        does not let buyers opt out.</li>
+        <li>An approval travels as <code>governance_context</code>, a JSON Web Signature signed
+        with the governance agent's key, which sellers can verify.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>IAB Tech Lab's published AAMP components include no dedicated governance or
+        compliance protocol. The Agent Registry adds disclosure.</li>
+        <li><span class="badge speculative">speculative</span> In practice, policy enforcement
+        stays with the platforms and the contracts between the parties.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a>;
+      <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repository</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>High exposure — automation is no defense</summary>
+        <p>Sector rules apply in full: pharmaceutical advertising (HWG), gambling (the German
+        state treaty GlüStV), financial promotions, and the anti-discrimination rules for job
+        and housing ads (AGG). Liability stays with the advertiser and, depending on the rule,
+        the publisher.</p>
+        <p><strong>Risk sits with:</strong> the advertiser first, the publisher second.<br>
+        <strong>Mitigation:</strong> make enforce mode and human review mandatory for
+        regulated categories, by contract and by internal policy.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — advisory or enforce matters in court</summary>
+        <p>If governance only advised and the agent went ahead anyway, it will be hard to argue
+        that adequate organizational measures were in place.</p>
+        <p><strong>Risk sits with:</strong> the operator and the advertiser.<br>
+        <strong>Mitigation:</strong> document which mode is used and why; review escalations
+        regularly.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — audit logs as evidence</summary>
+        <p>A signed record of who approved what, and when, is strong evidence of compliance and
+        of the scope of authority.</p>
+        <p><strong>Risk sits with:</strong> all parties.<br>
+        <strong>Mitigation:</strong> retention periods and access rights for audit logs in the
+        contract.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Which ad categories always require human approval?</li>
+        <li>Does governance run in enforce mode for those?</li>
+        <li>Who on the buyer side may approve escalations?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://www.gesetze-im-internet.de/heilmwerbg/" rel="noopener">HWG</a>;
+      <a href="https://www.gesetze-im-internet.de/agg/" rel="noopener">AGG</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 6 ===================== -->
+    <section class="legal-step" id="step-buy" aria-labelledby="step-buy-h" data-question="The moment a binding contract is formed" data-hitl="Required for guaranteed deals" data-exposure="high">
+      <h2 id="step-buy-h">Step 6 — Commitment: the media buy</h2>
+      <p><strong>The question:</strong> when is a binding contract formed?
+      · <strong>Human in the loop:</strong> required for guaranteed deals
+      · <strong>Legal exposure:</strong> high</p>
+      <p>The buyer agent places the order: products, budget, flight dates, purchase order
+      number. Small or standard orders may be confirmed at once. Larger or guaranteed deals go
+      to a person on the seller side for approval, like signing an insertion order. The buyer
+      receives a confirmation ID and the metrics the seller commits to report. For lawyers this
+      is the key step: offer, acceptance and terms.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="sal">
+              <th role="rowheader" scope="row">Buyer agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>create_media_buy</code></td><td role="cell" data-label="AAMP">Order via OpenDirect, Deals API or OpenRTB</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="pub" data-human="">
+              <th role="rowheader" scope="row">Sales agent → publisher</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP"><code>submitted</code>: insertion-order review</td><td role="cell" data-label="AAMP">Order or deal approval</td>
+            </tr>
+            <tr role="row" data-from="pub" data-to="sal" data-human="">
+              <th role="rowheader" scope="row">Publisher → sales agent</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Approved</td><td role="cell" data-label="AAMP">Approved</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="buy">
+              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>media_buy_id</code>, <code>committed_metrics</code></td><td role="cell" data-label="AAMP">Order or deal ID confirmed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li><code>create_media_buy</code> requires an account, a brand, flight dates, and either
+        packages or a <code>proposal_id</code> with a total budget. <code>po_number</code> and
+        <code>invoice_recipient</code> are optional.</li>
+        <li>The response is <code>completed</code> (synchronous, with a <code>media_buy_id</code>),
+        <code>working</code> (short-running) or <code>submitted</code> (hours or days). Sellers
+        must return <code>submitted</code> when a guaranteed product is ordered and the seller
+        requires insertion-order approval.</li>
+        <li>An optional <code>idempotency_key</code> makes retries safe: a repeated message is not
+        a second order.</li>
+        <li>Confirmed packages carry <code>committed_metrics</code>, described as a binding
+        reporting contract, which are timestamped and immutable.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li><span class="badge announced">announced</span> In the OpenProposal draft, each line
+        item maps to one of three execution standards by how it is transacted: OpenDirect 2.1,
+        the Deals API or OpenRTB 2.6.</li>
+        <li>Agentic Direct provides the communication layer between buyer and seller agents.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/media-buy/task-reference/create_media_buy" rel="noopener">AdCP, create_media_buy reference</a>;
+      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>High exposure — when exactly is the contract concluded?</summary>
+        <p>With an instant <code>completed</code> response, acceptance is arguably immediate.
+        With <code>submitted</code>, it comes only after human approval. The protocols describe
+        states; they do not define legal acceptance.</p>
+        <p><strong>Risk sits with:</strong> both sides, as uncertainty.<br>
+        <strong>Mitigation:</strong> a framework agreement that maps protocol states to legal
+        effect, for example "an order is accepted when a media buy ID or deal ID is issued".</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — agent errors, such as ten times the budget</summary>
+        <p>Rescission for mistake under § 119 BGB is disputed for autonomous systems, because
+        the error lies in the system, not in a human declaration. Relying on rescission is
+        risky.</p>
+        <p><strong>Risk sits with:</strong> the buyer, by default.<br>
+        <strong>Mitigation:</strong> a contractual correction window (cancel without cost within
+        a set number of hours for obvious errors); hard caps; plausibility checks on the seller
+        side.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — whose terms apply?</summary>
+        <p>Agents exchange commercial fields, not legal terms. Without a framework agreement,
+        each side's terms may conflict (the "battle of the forms"), and incorporating terms
+        through an agent message is doubtful.</p>
+        <p><strong>Risk sits with:</strong> both sides.<br>
+        <strong>Mitigation:</strong> a master agreement, signed by people, that governs all
+        agent-placed orders.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — duplicate orders</summary>
+        <p>A retried message could double an order. An idempotency key is technical evidence
+        that the second message was a retry, not a new order.</p>
+        <p><strong>Risk sits with:</strong> both sides.<br>
+        <strong>Mitigation:</strong> require idempotency keys, and agree that messages with the
+        same key are one order.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Which protocol status counts as legal acceptance in our contracts?</li>
+        <li>Is there a cost-free correction window for obvious agent errors?</li>
+        <li>Is a signed framework agreement in place with every seller our agent can reach?</li>
+        <li>Above which value is human approval mandatory on our side too?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://www.gesetze-im-internet.de/bgb/__119.html" rel="noopener">§ 119 BGB</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 7 ===================== -->
+    <section class="legal-step" id="step-creative" aria-labelledby="step-creative-h" data-question="Who owns, approves and answers for the ad content?" data-hitl="Seller review" data-exposure="high">
+      <h2 id="step-creative-h">Step 7 — Creative and rights</h2>
+      <p><strong>The question:</strong> who owns, approves and answers for the ad content?
+      · <strong>Human in the loop:</strong> seller review · <strong>Legal exposure:</strong> high</p>
+      <p>A creative agent generates or adapts the ad, often with generative AI, to each
+      seller's formats. The buyer agent submits it, and the seller reviews it before it goes
+      live. Brand and talent rights, such as a logo or a celebrity's likeness, may need to be
+      licensed.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="buy" data-to="cre">
+              <th role="rowheader" scope="row">Buyer agent → creative agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>build_creative</code></td><td role="cell" data-label="AAMP">Agentic Ad Objects</td>
+            </tr>
+            <tr role="row" data-from="cre" data-to="buy">
+              <th role="rowheader" scope="row">Creative agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Creative asset</td><td role="cell" data-label="AAMP">Creative asset</td>
+            </tr>
+            <tr role="row" data-from="buy" data-to="sal">
+              <th role="rowheader" scope="row">Buyer agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>sync_creatives</code></td><td role="cell" data-label="AAMP">Creative submission</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="pub" data-human="">
+              <th role="rowheader" scope="row">Sales agent → publisher</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Creative review</td><td role="cell" data-label="AAMP">Creative review</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li>The creative protocol includes <code>build_creative</code>,
+        <code>list_creative_formats</code> and <code>sync_creatives</code>.</li>
+        <li>Briefs can carry compliance fields: <code>required_disclosures</code>,
+        <code>prohibited_claims</code> and disclosure positions.</li>
+        <li>The brand protocol licenses brand or talent rights with <code>get_rights</code>,
+        <code>acquire_rights</code> and <code>update_rights</code>.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>Agentic Ad Objects, derived from AdCOM (the Advertising Common Object Model), give
+        agents a shared vocabulary for creatives and placements.</li>
+        <li>No rights-licensing protocol is published among the AAMP components.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>High exposure — intellectual property in AI-generated creatives</summary>
+        <p>Purely AI-generated content may lack copyright protection for want of human
+        authorship, so competitors could reuse it. Outputs may also infringe third-party works
+        or trademarks.</p>
+        <p><strong>Risk sits with:</strong> the advertiser, as the party publishing the ad; the
+        creative-agent provider through an indemnity.<br>
+        <strong>Mitigation:</strong> an IP indemnity from the creative-agent vendor; human
+        sign-off on creatives; clearance checks.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>High exposure — likeness and personality rights</summary>
+        <p>Synthetic voices or faces resembling real people need consent. A license acquired by
+        an agent must match the actual use: territory, duration and media.</p>
+        <p><strong>Risk sits with:</strong> the advertiser.<br>
+        <strong>Mitigation:</strong> check the license scope automatically against flight dates
+        and markets.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — transparency and misleading ads</summary>
+        <p>Art. 50 of the AI Act requires disclosure of deepfakes and other synthetic content,
+        applicable from 2 August 2026; watch for changes through the EU's Digital Omnibus
+        proposals. Unfair-competition law (UWG) prohibits misleading claims and requires ads to
+        be recognizable as ads.</p>
+        <p><strong>Risk sits with:</strong> the advertiser; the publisher for labeling.<br>
+        <strong>Mitigation:</strong> map the disclosure and prohibited-claim fields to the legal
+        requirements of each market.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Who signs off creatives before they go live — a person, or only the agent?</li>
+        <li>Does our creative-AI vendor give an IP indemnity?</li>
+        <li>Are AI-generated assets labeled where the law requires it?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" rel="noopener">AI Act (EU) 2024/1689</a>;
+      <a href="https://www.gesetze-im-internet.de/uwg_2004/" rel="noopener">UWG</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== STEP 8 ===================== -->
+    <section class="legal-step" id="step-live" aria-labelledby="step-live-h" data-question="Agents keep acting while the campaign runs" data-hitl="Stop switch" data-exposure="medium">
+      <h2 id="step-live-h">Step 8 — Live delivery and optimization</h2>
+      <p><strong>The question:</strong> what may the agents change while the campaign runs?
+      · <strong>Human in the loop:</strong> a stop switch · <strong>Legal exposure:</strong> medium</p>
+      <p>Once the campaign is live, the agents keep optimizing: shifting budget between
+      placements, pausing poor performers, reacting to brand-safety incidents. Under AAMP's
+      execution framework, a buyer's agent service can even run inside the seller's platform
+      to decide in real time.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="pub" data-to="sal">
+              <th role="rowheader" scope="row">Publisher → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Delivery data</td><td role="cell" data-label="AAMP">ARTF, OpenRTB</td>
+            </tr>
+            <tr role="row" data-from="sal" data-to="buy">
+              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP">Signed status webhook</td><td role="cell" data-label="AAMP">Delivery signals</td>
+            </tr>
+            <tr role="row" data-from="buy" data-to="sal">
+              <th role="rowheader" scope="row">Buyer agent → sales agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>update_media_buy</code></td><td role="cell" data-label="AAMP">Agent service in the host (ARTF)</td>
+            </tr>
+            <tr role="row" data-from="agy" data-to="buy" data-human="">
+              <th role="rowheader" scope="row">Agency → buyer agent</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Pause or stop</td><td role="cell" data-label="AAMP">Pause or stop</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li><code>update_media_buy</code> pauses, resumes or reallocates a buy.</li>
+        <li>Signed webhooks push status changes as the buy moves through
+        <code>pending_creatives</code>, <code>pending_start</code>, <code>active</code> and
+        <code>paused</code>.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li>ARTF (the Agentic Real-Time Framework) defines how agent services can "safely and
+        deterministically operate within advertising systems", in IAB Tech Lab's words.</li>
+        <li><span class="badge announced">announced</span> IAB Tech Lab says ARTF cuts latency
+        by 90%; no independent benchmark has been located.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <a href="https://docs.adcontextprotocol.org/docs/media-buy/task-reference/create_media_buy" rel="noopener">AdCP, create_media_buy reference</a>;
+      <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>Medium exposure — changes inside or outside the mandate</summary>
+        <p>Each budget shift is a new contractual declaration. Changes must stay within the
+        original order and the mandate from step 1.</p>
+        <p><strong>Risk sits with:</strong> the buyer.<br>
+        <strong>Mitigation:</strong> define in the contract which changes need no new approval.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — third-party code in the seller's platform</summary>
+        <p>Hosting a buyer's agent raises questions of access rights, confidentiality of bid
+        data, IT security and liability for faults the guest code causes.</p>
+        <p><strong>Risk sits with:</strong> the publisher as host and the buyer as code owner.<br>
+        <strong>Mitigation:</strong> hosting terms covering sandboxing, audit, data-use limits
+        and fault allocation.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — fraud, brand-safety incidents, outages</summary>
+        <p>Invalid traffic, ads next to harmful content, or runaway spend. Make-goods and
+        refunds are a contract matter.</p>
+        <p><strong>Risk sits with:</strong> whoever the contract names.<br>
+        <strong>Mitigation:</strong> a duty to provide a stop switch, incident notification
+        times, make-good rules and invalid-traffic thresholds.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>Who can stop all agent activity immediately, and how fast?</li>
+        <li>Which in-flight changes need human approval?</li>
+        <li>If we host third-party agent code, on what terms?</li>
+      </ul>
+    </section>
+
+    <!-- ===================== STEP 9 ===================== -->
+    <section class="legal-step" id="step-report" aria-labelledby="step-report-h" data-question="Proving what happened and settling the money" data-hitl="Reconciliation by people" data-exposure="medium">
+      <h2 id="step-report-h">Step 9 — Reporting, billing and audit</h2>
+      <p><strong>The question:</strong> how is what happened proven, and the money settled?
+      · <strong>Human in the loop:</strong> reconciliation by people · <strong>Legal exposure:</strong> medium</p>
+      <p>The seller reports delivery against the committed metrics, data providers report
+      usage, and the buyer side reconciles and pays. The audit log shows every decision, who or
+      what made it, and under which authority. It is the evidence base if anything is
+      disputed.</p>
+      <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+      <div class="table-wrap table-stack">
+        <table role="table" class="flow-table">
+          <thead role="rowgroup">
+            <tr role="row"><th role="columnheader" scope="col">Message</th><th role="columnheader" scope="col">Who acts</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row" data-from="sal" data-to="buy">
+              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_media_buy_delivery</code></td><td role="cell" data-label="AAMP">OpenProposal reconciliation fields</td>
+            </tr>
+            <tr role="row" data-from="sig" data-to="buy">
+              <th role="rowheader" scope="row">Signals agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>report_usage</code> (data fees)</td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+            <tr role="row" data-from="gov" data-to="agy">
+              <th role="rowheader" scope="row">Governance agent → agency</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_plan_audit_logs</code></td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
+            </tr>
+            <tr role="row" data-from="agy" data-to="adv" data-human="">
+              <th role="rowheader" scope="row">Agency → advertiser</th><td role="cell" data-label="Who acts">person</td><td role="cell" data-label="AdCP">Report and invoice</td><td role="cell" data-label="AAMP">Report and invoice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>AdCP</h3>
+      <ul>
+        <li><code>get_media_buy_delivery</code> reports delivery, measured against the immutable
+        <code>committed_metrics</code> from step 6.</li>
+        <li><code>get_plan_audit_logs</code> returns the governance decision trail;
+        <code>report_usage</code> settles data fees.</li>
+      </ul>
+      <h3>AAMP</h3>
+      <ul>
+        <li><span class="badge announced">announced</span> Reconciliation is one of the four
+        field categories of the OpenProposal draft.</li>
+        <li>No standardized governance audit log is published among the AAMP components.</li>
+      </ul>
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a> · last verified 2026-10-01</p>
+      <h3>Legal lens</h3>
+      <details class="legal-risk" open>
+        <summary>Medium exposure — which numbers count?</summary>
+        <p>The seller's measurement and a third party's often differ. Without an agreed source of
+        truth, invoices get disputed.</p>
+        <p><strong>Risk sits with:</strong> both sides.<br>
+        <strong>Mitigation:</strong> the contract names the measurement source for each metric
+        and a discrepancy threshold.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Medium exposure — logs as evidence, and how long to keep them</summary>
+        <p>Signed messages and audit logs are strong evidence; German courts assess evidence
+        freely (§ 286 ZPO). Commercial and tax retention duties of six to ten years (§ 257 HGB,
+        § 147 AO) conflict with the GDPR's data minimization where logs contain personal
+        data.</p>
+        <p><strong>Risk sits with:</strong> all parties.<br>
+        <strong>Mitigation:</strong> a log retention policy; personal data kept apart from
+        commercial logs; access and audit rights.</p>
+      </details>
+      <details class="legal-risk">
+        <summary>Lower exposure — agency transparency</summary>
+        <p>If the agent consolidates billing, the advertiser needs visibility of actual media
+        costs, data fees and rebates.</p>
+        <p><strong>Risk sits with:</strong> the agency.<br>
+        <strong>Mitigation:</strong> audit rights and cost-transparency clauses in the agency
+        agreement.</p>
+      </details>
+      <h4>Questions to ask the business</h4>
+      <ul>
+        <li>What is the contractual source of truth for delivery numbers?</li>
+        <li>How long do we keep agent logs, and do they contain personal data?</li>
+        <li>Do we have audit rights over the agency's and vendors' agent logs?</li>
+      </ul>
+      <p class="source">Legal sources: <a href="https://www.gesetze-im-internet.de/zpo/__286.html" rel="noopener">§ 286 ZPO</a>;
+      <a href="https://www.gesetze-im-internet.de/hgb/__257.html" rel="noopener">§ 257 HGB</a>;
+      <a href="https://www.gesetze-im-internet.de/ao_1977/__147.html" rel="noopener">§ 147 AO</a> · last verified 2026-10-01</p>
+    </section>
+
+    <!-- ===================== LIABILITY ===================== -->
+    <h2 id="liability">Who carries the risk?</h2>
+    <p>Neither AdCP nor AAMP allocates liability: both are technical specifications. Liability
+    follows the usual rules — contract (framework agreements, terms and conditions, insertion
+    orders), statute (data protection, consumer and competition law, intellectual property,
+    product liability) and attribution (whose agent made the declaration). The practical
+    consequence: <strong>people sign the framework, agents fill in the orders.</strong> Every
+    party below should have a signed framework agreement before its agents transact.</p>
+    <p><span class="badge speculative">speculative</span> The default positions below are
+    indicative, based on an EU and German law reading. The contracts in place decide the
+    actual allocation.</p>
+
+    <ul class="card-grid">
+      <li class="card">
+        <h3>Advertiser</h3>
+        <p>The principal: its money, its brand.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Orders its own or its agency's agent places within the mandate</li>
+          <li>Ad content, claims and sector rules (pharmaceuticals, gambling, finance, anti-discrimination)</li>
+          <li>Targeting, often as a joint controller under the GDPR</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>A written mandate with hard caps</li>
+          <li>Framework agreements before agents transact</li>
+          <li>Mandatory human review for regulated categories</li>
+          <li>IP and data indemnities from vendors</li>
+        </ul>
+      </li>
+      <li class="card">
+        <h3>Agency (operator)</h3>
+        <p>Configures and runs the buyer agent.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Configuring limits and the governance mode correctly</li>
+          <li>Payment, where it is the contracting party under the operator billing model</li>
+          <li>Transparency to the advertiser on costs and rebates</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>A clear split of configuration responsibility with the advertiser</li>
+          <li>Logged change control</li>
+          <li>A liability cap in the agency agreement</li>
+          <li>Vendor service levels passed through</li>
+        </ul>
+      </li>
+      <li class="card">
+        <h3>Agent technology provider</h3>
+        <p>Builds the buyer, sales or creative agent software.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Service levels, warranties and IP indemnity, as agreed</li>
+          <li>Defective software under the revised Product Liability Directive, once transposed</li>
+          <li>Processor duties where it handles personal data (Art. 28 GDPR)</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>A clear specification of what "within limits" means</li>
+          <li>Liability caps with defined carve-outs</li>
+          <li>No-training and confidentiality clauses for client data</li>
+        </ul>
+      </li>
+      <li class="card">
+        <h3>Publisher (seller)</h3>
+        <p>Owns the inventory and runs the sales agent.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Accurate product data and authorization files</li>
+          <li>Delivery against committed metrics</li>
+          <li>Ad labeling, platform duties under the Digital Services Act, consent collection on its properties</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>Terms defining when an agent's order is accepted</li>
+          <li>Auto-approval limits, with human review for guaranteed deals</li>
+          <li>Plausibility checks against obvious buyer errors</li>
+        </ul>
+      </li>
+      <li class="card">
+        <h3>Data or signals provider</h3>
+        <p>Supplies audience segments.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Lawful collection of, and consent for, its segments</li>
+          <li>Profiling, as controller or joint controller</li>
+          <li>Accurate usage reports for billing</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>Documented data provenance</li>
+          <li>Art. 26 or 28 GDPR agreements</li>
+          <li>Excluding sensitive and minor-related segments</li>
+        </ul>
+      </li>
+      <li class="card">
+        <h3>Standards bodies and registries</h3>
+        <p>AgenticAdvertising.org for AdCP, IAB Tech Lab for AAMP.</p>
+        <h4>Primarily answers for</h4>
+        <ul>
+          <li>Publishing specifications and registries as they are</li>
+          <li>Generally nothing in an individual transaction</li>
+        </ul>
+        <h4>How to protect yourself</h4>
+        <ul>
+          <li>Do not treat a specification or registry listing as legal assurance</li>
+          <li>Track versions: AAMP 3.0's OpenProposal is still a draft</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="liability-matrix">Risk scenarios by party</h3>
+    <p>"Primary" means primary exposure by default; "shared" means secondary or shared exposure,
+    through contract or joint responsibility; a dash means typically none.</p>
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row"><th role="columnheader" scope="col">Risk scenario</th><th role="columnheader" scope="col">Advertiser</th><th role="columnheader" scope="col">Agency</th><th role="columnheader" scope="col">Agent provider</th><th role="columnheader" scope="col">Publisher</th><th role="columnheader" scope="col">Data provider</th><th role="columnheader" scope="col">Standards bodies</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row"><th role="rowheader" scope="row">Order outside the mandate, or agent error</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">shared</td><td role="cell" data-label="Publisher">—</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Counterparty impersonation</th><td role="cell" data-label="Advertiser">shared</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">—</td><td role="cell" data-label="Publisher">shared</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Unlawful targeting, GDPR breach</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">shared</td><td role="cell" data-label="Publisher">shared</td><td role="cell" data-label="Data provider">primary</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Regulated-category ad violation</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">—</td><td role="cell" data-label="Publisher">shared</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">IP or likeness infringement in a creative</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">shared</td><td role="cell" data-label="Publisher">shared</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Dispute over contract formation</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">—</td><td role="cell" data-label="Publisher">primary</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Delivery or measurement dispute</th><td role="cell" data-label="Advertiser">shared</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">—</td><td role="cell" data-label="Publisher">primary</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Leak of confidential briefs</th><td role="cell" data-label="Advertiser">primary</td><td role="cell" data-label="Agency">shared</td><td role="cell" data-label="Agent provider">shared</td><td role="cell" data-label="Publisher">—</td><td role="cell" data-label="Data provider">—</td><td role="cell" data-label="Standards bodies">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===================== PROTOCOLS ===================== -->
+    <h2 id="protocols">Where the two families differ, for legal purposes</h2>
+    <p>A fuller side-by-side is on the <a href="comparison.html">comparison page</a>. The rows
+    below are the differences that change what a contract has to cover.</p>
+    <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
+    <div class="table-wrap table-stack">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row"><th role="columnheader" scope="col">Topic</th><th role="columnheader" scope="col">AdCP</th><th role="columnheader" scope="col">AAMP</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row"><th role="rowheader" scope="row">Steward</th><td role="cell" data-label="AdCP">AgenticAdvertising.org</td><td role="cell" data-label="AAMP">IAB Tech Lab</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Identity and trust</th><td role="cell" data-label="AdCP"><code>adagents.json</code>, <code>brand.json</code>, registry; signed requests for "AdCP Verified"</td><td role="cell" data-label="AAMP">Agent Registry; existing <code>ads.txt</code> and <code>sellers.json</code></td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Contract execution</th><td role="cell" data-label="AdCP"><code>create_media_buy</code>; <code>submitted</code> state for insertion-order approval</td><td role="cell" data-label="AAMP">OpenProposal hands off to OpenDirect 2.1, Deals API or OpenRTB 2.6</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Governance</th><td role="cell" data-label="AdCP">Governance protocol with mandatory human review for regulated categories</td><td role="cell" data-label="AAMP">No dedicated governance protocol published</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Rights licensing</th><td role="cell" data-label="AdCP">Brand protocol: <code>acquire_rights</code> and related tasks</td><td role="cell" data-label="AAMP">No rights-licensing protocol published</td></tr>
+          <tr role="row"><th role="rowheader" scope="row">Audit trail</th><td role="cell" data-label="AdCP"><code>get_plan_audit_logs</code>; signed governance approvals</td><td role="cell" data-label="AAMP">No standardized audit log published</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
+    <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a>;
+    <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">OpenProposal repository</a> · last verified 2026-10-01</p>
+    <p>The two families overlap and partly compete. <span class="badge reported">reported</span>
+    IAB Tech Lab's chief operating officer has said they overlap on 13 functions, according to
+    PPC Land; no primary statement has been located. In practice a seller may need to support
+    both, so contracts are more durable if they are protocol-neutral and refer to
+    "agent-transmitted orders" rather than to one protocol.</p>
+    <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> · last verified 2026-10-01</p>
+
+    <h2 id="glossary">Glossary</h2>
+    <dl>
+      <dt>Agent</dt>
+      <dd>Software, usually built on a large language model, that takes actions by itself within limits its operator sets.</dd>
+      <dt>Buyer agent, sales agent</dt>
+      <dd>The agent acting for the advertiser, and the one acting for the publisher.</dd>
+      <dt>Operator</dt>
+      <dd>The company that runs and configures an agent, often the agency. AdCP models it explicitly.</dd>
+      <dt>MCP, A2A</dt>
+      <dd>Model Context Protocol and Agent2Agent protocol: the transports agents use to talk to each other.</dd>
+      <dt>Insertion order</dt>
+      <dd>The traditional signed order document for a media buy. Agents create its digital equivalent.</dd>
+      <dt>Deal ID</dt>
+      <dd>The identifier of a pre-negotiated private deal that is executed through programmatic auctions (OpenRTB).</dd>
+      <dt>Idempotency key</dt>
+      <dd>A unique identifier per order that stops a retried message from creating a duplicate order.</dd>
+      <dt>RFC 9421 signature</dt>
+      <dd>Cryptographic signing of HTTP messages, which proves who sent a message and that it was not altered.</dd>
+    </dl>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <p>AgenticBuying — an independent tracker of agentic buying protocols.
+      Content is verified against primary sources; every claim carries a source and date.
+      <a href="https://github.com/mletznerMUC/AgenticBuying" rel="noopener">Source on GitHub</a>.</p>
+      <p><strong>AI transparency notice.</strong> The content of this site is researched and
+      drafted with AI assistance, with a human editor in the loop: every change is reviewed and
+      approved by a person before publication, and Markus Letzner holds editorial responsibility
+      for the published content. This disclosure follows the transparency provisions of the
+      EU AI Act (Regulation (EU) 2024/1689).</p>
+      <p>&copy; 2026 Markus Letzner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

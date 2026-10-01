@@ -18,6 +18,13 @@
   --speculative-bg: #f1e6fb;
   --primary-nonpublic: #0b5d6b;
   --primary-nonpublic-bg: #dff1f4;
+  /* Party-kind colors: legal.html walkthrough only (docs/DESIGN.md §7.1). */
+  --role-human: #9a5212;
+  --role-human-bg: #fbeedd;
+  --role-agent: #2f5bd3;
+  --role-agent-bg: #e3e9fb;
+  --role-infra: #5b6472;
+  --role-infra-bg: #eceef1;
   --max-width: 68rem;
 }
 
@@ -40,6 +47,12 @@
     --speculative-bg: #2a1838;
     --primary-nonpublic: #67cfe0;
     --primary-nonpublic-bg: #0e2b31;
+    --role-human: #e3a25f;
+    --role-human-bg: #3a2b1b;
+    --role-agent: #7d9cf5;
+    --role-agent-bg: #232c45;
+    --role-infra: #9aa3b2;
+    --role-infra-bg: #2a2e36;
   }
 }
 
@@ -400,6 +413,602 @@ figure figcaption {
 
 .dgm-arrow {
   fill: var(--text-muted);
+}
+
+/* Legal lens walkthrough (legal.html) — the animated visualization, built by
+   assets/js/legal.js. Its exceptions to the house rules (motion, party-kind
+   colors, a wide canvas, uppercase kind tags) are scoped to this figure by
+   docs/DESIGN.md §7.1. Without JS only the static parties figure shows. */
+#process-diagram {
+  min-width: 44rem;
+}
+
+.walkthrough-figure.is-interactive {
+  width: min(84rem, calc(100vw - 2rem));
+  margin-left: calc(50% - min(42rem, 50vw - 1rem));
+  margin-right: 0;
+}
+
+.wt-zone-side {
+  fill: var(--role-human-bg);
+  opacity: 0.55;
+}
+
+.wt-zone-agent {
+  fill: var(--bg-alt);
+}
+
+.wt-zone-label {
+  fill: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.wt-node {
+  transition: opacity 0.45s;
+}
+
+.is-interactive .wt-node {
+  cursor: pointer;
+}
+
+.wt-node.is-dim {
+  opacity: 0.22;
+}
+
+.wt-box {
+  fill: var(--bg);
+  stroke-width: 1.5;
+}
+
+.wt-tag-box {
+  stroke-width: 1;
+}
+
+.wt-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.kind-human .wt-box,
+.kind-human .wt-tag-box {
+  stroke: var(--role-human);
+}
+
+.kind-human .wt-tag-box {
+  fill: var(--role-human-bg);
+}
+
+.kind-human .wt-tag {
+  fill: var(--role-human);
+}
+
+.kind-agent .wt-box,
+.kind-agent .wt-tag-box {
+  stroke: var(--role-agent);
+}
+
+.kind-agent .wt-tag-box {
+  fill: var(--role-agent-bg);
+}
+
+.kind-agent .wt-tag {
+  fill: var(--role-agent);
+}
+
+.kind-infra .wt-box,
+.kind-infra .wt-tag-box {
+  stroke: var(--role-infra);
+}
+
+.kind-infra .wt-box {
+  stroke-dasharray: 5 4;
+}
+
+.kind-infra .wt-tag-box {
+  fill: var(--role-infra-bg);
+}
+
+.kind-infra .wt-tag {
+  fill: var(--role-infra);
+}
+
+.wt-node-title {
+  fill: var(--text);
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.wt-node-sub {
+  fill: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.wt-node:focus {
+  outline: none;
+}
+
+.wt-node:focus-visible .wt-box {
+  stroke-width: 3.5;
+  stroke: var(--accent);
+}
+
+.wt-node.is-pulse .wt-box {
+  animation: wt-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes wt-pulse {
+  0%, 100% { stroke-width: 1.5; }
+  50% { stroke-width: 3.5; }
+}
+
+.wt-flow {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.wt-flow-agent { stroke: var(--role-agent); }
+.wt-flow-human { stroke: var(--role-human); }
+.wt-flow-none { stroke: var(--text-muted); }
+.wt-flow-human.is-done { stroke-dasharray: 8 6; }
+.wt-flow-none.is-done { stroke-dasharray: 2 6; }
+
+.wt-arr-agent, .wt-packet-agent { fill: var(--role-agent); }
+.wt-arr-human, .wt-packet-human { fill: var(--role-human); }
+.wt-arr-none, .wt-packet-none { fill: var(--text-muted); }
+
+.wt-packet {
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+.wt-label {
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.wt-label.is-shown {
+  opacity: 1;
+}
+
+.wt-label rect {
+  fill: var(--bg);
+  stroke-width: 1;
+}
+
+.wt-label-agent rect { stroke: var(--role-agent); }
+.wt-label-human rect { stroke: var(--role-human); }
+.wt-label-none rect { stroke: var(--text-muted); }
+
+.wt-label-num {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wt-label-agent .wt-label-num { fill: var(--role-agent); }
+.wt-label-human .wt-label-num { fill: var(--role-human); }
+.wt-label-none .wt-label-num { fill: var(--text-muted); }
+
+.wt-label-text {
+  fill: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.wt-label-none .wt-label-text {
+  fill: var(--text-muted);
+  font-style: italic;
+}
+
+.wt-label-human {
+  fill: var(--role-human);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* Stepper and progress */
+.wt-stepper {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.15rem 0.15rem 0.65rem;
+  list-style: none;
+  overflow-x: auto;
+}
+
+.wt-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.wt-step-num {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  font-size: 0.75rem;
+}
+
+.wt-step.is-done .wt-step-num {
+  color: var(--role-agent);
+  background: var(--role-agent-bg);
+}
+
+.wt-step.is-current {
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--role-agent-bg);
+}
+
+.wt-step.is-current .wt-step-num {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
+
+.wt-progress {
+  height: 3px;
+  margin: 0 0.15rem 1rem;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.wt-progress i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.5s ease;
+}
+
+/* Stage: diagram card beside the details panel on wide screens */
+.wt-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .wt-stage {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+
+  .wt-panel {
+    position: sticky;
+    top: 0.75rem;
+  }
+}
+
+.wt-card {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--bg);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 6px 20px rgb(0 0 0 / 6%);
+}
+
+.wt-diagram {
+  padding: 0.85rem;
+}
+
+.wt-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.25rem 0.5rem;
+}
+
+.wt-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.wt-kicker {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.wt-seg {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.wt-seg button {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.wt-seg button[aria-pressed="true"] {
+  color: var(--text);
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.wt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0.4rem 0 0;
+  padding: 0 0.35rem;
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.wt-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.wt-legend i {
+  display: inline-block;
+  width: 1.15rem;
+  border-top: 2.5px solid;
+}
+
+.wt-legend .wt-key-agent { border-color: var(--role-agent); }
+.wt-legend .wt-key-human { border-color: var(--role-human); border-top-style: dashed; }
+.wt-legend .wt-key-none { border-color: var(--text-muted); border-top-style: dotted; }
+
+.wt-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.25rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.wt-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wt-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+.wt-btn:hover {
+  border-color: var(--text-muted);
+}
+
+.wt-btn-primary {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.wt-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.wt-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Details panel */
+.wt-panel {
+  overflow: hidden;
+}
+
+.wt-panel-head {
+  padding: 0.9rem 1.1rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.wt-panel-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.wt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
+}
+
+.wt-chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--bg-alt);
+}
+
+.wt-chip-human {
+  color: var(--role-human);
+  background: var(--role-human-bg);
+  border-color: transparent;
+}
+
+.wt-tabs {
+  display: flex;
+  overflow-x: auto;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+
+.wt-tabs button {
+  flex: 1 0 auto;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+}
+
+.wt-tabs button[aria-selected="true"] {
+  color: var(--text);
+  background: var(--bg);
+  border-bottom-color: var(--accent);
+}
+
+.wt-tab-body {
+  max-height: min(70vh, 40rem);
+  overflow: auto;
+  padding: 1rem 1.1rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.wt-tab-body > :first-child {
+  margin-top: 0;
+}
+
+.wt-tab-body ul {
+  padding-left: 1.2rem;
+}
+
+.wt-std-head {
+  font-weight: 700;
+}
+
+.wt-kindtag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.wt-kindtag.kind-human { color: var(--role-human); background: var(--role-human-bg); }
+.wt-kindtag.kind-agent { color: var(--role-agent); background: var(--role-agent-bg); }
+.wt-kindtag.kind-infra { color: var(--role-infra); background: var(--role-infra-bg); }
+
+.wt-link {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0 0.6rem 0 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wt-step:focus-visible,
+.wt-seg button:focus-visible,
+.wt-btn:focus-visible,
+.wt-tabs button:focus-visible,
+.wt-tab-body:focus-visible,
+.wt-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 35rem) {
+  .wt-step-label {
+    display: none;
+  }
+
+  .wt-step {
+    padding: 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wt-node,
+  .wt-label,
+  .wt-step,
+  .wt-progress i {
+    transition: none;
+  }
+
+  .wt-node.is-pulse .wt-box {
+    animation: none;
+  }
+}
+
+/* Legal lens risks: one disclosure per risk, readable with JS off. */
+.legal-risk {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  margin: 0 0 0.6rem;
+}
+
+.legal-risk summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.legal-risk summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.legal-risk p {
+  margin: 0.5rem 0;
+}
+
+.legal-step h4,
+.card h4 {
+  margin: 1rem 0 0.35rem;
+  font-size: 1rem;
+}
+
+dl dt {
+  font-weight: 700;
+  margin-top: 0.6rem;
+}
+
+dl dd {
+  margin-left: 0;
+  max-width: 46rem;
 }
 
 table {

@@ -6,6 +6,16 @@ note here.
 
 ## Current notes
 
+- [`legal-2026-10-01.md`](legal-2026-10-01.md) — *Agentic buying through a legal lens*,
+  verified 2026-10-01. **The note behind `legal.html`.** A new-topic note, not a refresh
+  run: it records how a contributed legal explainer was checked before publication. Most
+  protocol claims held against the AdCP documentation and IAB Tech Lab's own pages; one was
+  corrected (`idempotency_key` on `create_media_buy` is optional, not required) and four
+  AdCP task names were dropped because the documentation read does not carry them. It is
+  the first note to record AAMP 3.0 (announced 22 September 2026, OpenProposal at
+  `v3.0-draft-1`, comment period to 22 October), which post-dates the 2026-09-15 refresh,
+  so the AAMP and release pages still describe 2.4.x until the next refresh. The legal
+  readings are interpretation and are badged `speculative` once, at their scope.
 - [`adcp-aamp-2026-09-15.md`](adcp-aamp-2026-09-15.md) — *AdCP and AAMP refresh*,
   verified 2026-09-15. **The latest note; read it for the current state of the
   release lines and counts.** A volatility-sharded cycle, not a full-manifest one:
