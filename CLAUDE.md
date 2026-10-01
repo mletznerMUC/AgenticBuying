@@ -29,8 +29,10 @@ ooh.html               OOH channel deep dive: protocol coverage, worldwide POCs,
 sdaw.html              OOH sub-page: SDAW, the German poster exchange format, mapped onto AdCP and AAMP
 tools.html             Tools & platform directory
 workflows.html         Sample agentic buying workflows
+legal.html             Legal lens: the process step by step, and who is liable at each step
 resources.html         Specs, articles, talks, repos
 assets/css/            Shared stylesheet(s)
+assets/js/             Progressive-enhancement scripts (legal.html walkthrough only)
 docs/DESIGN.md         Design guide: visual system, badge rules, imagery, a11y
 docs/WORKFLOW.md       The agent-based development workflow
 docs/COST-CONTROL.md   Generated: per-run API spend by workflow and agent stage
@@ -46,10 +48,13 @@ scripts/               Deterministic helpers (cost capture + reporting, review o
 The website pages live at the **repository root** so GitHub Pages can publish
 directly from the `main` branch ("Deploy from a branch" → `main` → `/ (root)`).
 
-The site currently ships **no JavaScript** — navigation and everything else work
-with plain HTML and CSS. JavaScript is permitted (see Tech constraints below); if
-it is ever added, it belongs in `assets/js/`, kept minimal and progressive so the
-site stays fully readable with JS disabled.
+The site ships one script, `assets/js/legal.js`, which turns the parties figure on
+`legal.html` into an animated step-by-step walkthrough. Its exceptions to the design
+rules (motion, party-kind colors, a wide canvas) are scoped to that one figure by
+`docs/DESIGN.md` §7.1. It reads the step tables already on the
+page, so the page is complete without it. Navigation and everything else work with
+plain HTML and CSS. Any further JavaScript belongs in `assets/js/`, kept minimal and
+progressive so the site stays fully readable with JS disabled.
 
 ## Tech constraints
 

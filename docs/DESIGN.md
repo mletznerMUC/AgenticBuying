@@ -255,7 +255,47 @@ nodes fits component names that a three-column grid of 170-unit nodes clips.
 **The three built figures** — copy their structure rather than inventing a new one:
 `comparison.html` (the stack: both families over MCP/A2A, AdCP parallel to OpenRTB vs. AAMP
 extending it), `aamp.html` (the AAMP component map), `workflows.html` (the six-message
-agent-to-agent buy sequence).
+agent-to-agent buy sequence). The fourth figure, the animated walkthrough on `legal.html`,
+follows its own rules in §7.1 and is not a template for other pages.
+
+### 7.1 Exception: the animated walkthrough on `legal.html`
+
+The legal lens exists to make a process legible to readers who have never seen one — in-house
+counsel, contract managers, compliance teams. For that audience, watching a message travel
+from one party to another, and seeing at a glance which boxes are people and which are
+software, carries information a static diagram does not: order, direction, and who acts.
+That passes the §1 test, so the walkthrough is allowed to break the following rules, and
+**only** these, **only** inside `figure#process-figure` on `legal.html`:
+
+| Rule relaxed | What the walkthrough may do instead |
+|---|---|
+| §7 static figures | Animate: arrows draw themselves, a packet travels each arrow, the sending and receiving boxes pulse, labels fade in, a tour advances through the steps. |
+| §3 "status colors only" | Use three **party-kind** colors — `--role-human` (orange), `--role-agent` (blue), `--role-infra` (gray), each with a `-bg` pair — for boxes, arrows, packets, labels and kind tags. They mean *who acts*, never evidence status, and appear nowhere else on the site. |
+| §7 "~560 units, under 10 KB" | Use a 1000 × 540 canvas, and break out of the 68rem column to up to 84rem so labels stay readable. Below that width the figure scrolls (`min-width: 44rem`), the page does not. |
+| §4 "no uppercase" | Use uppercase kind tags (HUMAN, AI, INFRA) and zone labels inside the SVG, as short signifiers, not running text. |
+| §8 "no new component without a second use" | Carry a stepper, a protocol switch (Both / AdCP / AAMP), playback controls and a details panel with tabs. |
+
+What stays binding, without exception:
+
+- **Readable without JavaScript.** The static SVG shows every party, and every step's messages,
+  protocol notes and legal lens are plain HTML in the step sections. The script builds the
+  walkthrough *from* those sections (`data-*` attributes on the sections and flow-table rows),
+  so the animation can never say something the page does not.
+- **Reduced motion.** Under `prefers-reduced-motion: reduce` nothing moves: arrows and labels
+  appear at once, no packets, no pulse, no smooth scrolling.
+- **Meaning never by color alone.** Human decisions are dashed and tagged HUMAN, missing
+  messages are dotted and italic, infrastructure boxes are dashed and tagged INFRA.
+- **Protocol neutrality (§3 rule 2).** AdCP and AAMP get no colors of their own. The protocol
+  switch changes the label text only, and the identical grammar applies to both.
+- **Status colors stay reserved.** Legal-exposure levels are written out ("High legal
+  exposure") on neutral chips, not colored red, amber or green — those hues are the evidence
+  badges'.
+- **Contrast.** Each role color meets 4.5:1 against its `-bg` and against `--bg` in both
+  schemes; `--role-human` is darkened to `#9a5212` in light mode for that reason.
+- Keyboard: every box, step and control is focusable with a visible focus state; ← and →
+  move between steps while focus is inside the walkthrough.
+
+Any other page that wants motion or role colors needs its own amendment here first.
 
 ## 8. Component inventory
 
@@ -274,6 +314,8 @@ Existing, and to be reused rather than reinvented:
 | Empty state | `div.todo-content` | Sections awaiting the content pipeline |
 | Figure | `figure > div.figure-wrap > svg`, then `figcaption.source` | Diagrams (§7) |
 | Nav sub-level | `li > ul.site-subnav > li > a` inside `.site-nav` | Channel sub-pages, e.g. OOH › SDAW |
+| Walkthrough | `figure.walkthrough-figure` + `.wt-*` (built by `assets/js/legal.js`) | The animated legal walkthrough only (§7.1) |
+| Legal risk | `details.legal-risk > summary` | One disclosure per risk in a "Legal lens" block |
 | Diagram parts | `.dgm-band`, `.dgm-node`, `.dgm-title`, `.dgm-text`, `.dgm-line`, `.dgm-line-dashed`, `.dgm-lifeline`, `.dgm-arrow` | The shared drawing grammar (§7) |
 
 **Nav hierarchy.** A page that belongs to another page's topic is a nested `<ul class="site-subnav">`
@@ -408,5 +450,6 @@ Deliberately deferred, in priority order. Each is a separate change, not a rewri
 ---
 
 *This guide reflects a design council review of the site conducted 2026-08-04, amended
-2026-09-09 to add the `primary-nonpublic` evidence state (§3, §5, §8, §9). Amend it with
+2026-09-09 to add the `primary-nonpublic` evidence state (§3, §5, §8, §9), and 2026-10-01
+to scope the animated legal walkthrough's exceptions (§7.1). Amend it with
 the change that motivates the amendment — never let a page and this document disagree.*
