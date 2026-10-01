@@ -496,6 +496,11 @@ jobs:
           path: _discoveries
           name: discoveries
 
+      - name: Set the run date
+        # Handed to the prompt so the agent never needs `date`, which its
+        # Bash allowlist denies.
+        run: echo "RUN_DATE=$(date -u +%F)" >> "$GITHUB_ENV"
+
       - name: Report the inputs apply actually received
         # One legible line saying what reached this job. Without it, a run that
         # lost a stage's output looks exactly like a quiet cycle with little to
@@ -527,7 +532,7 @@ jobs:
             reviewed-quality edits and a pull request. Read CLAUDE.md,
             docs/DESIGN.md (follow it exactly), and docs/research/README.md first.
 
-            Today's date is the run date. Never write a "last verified" or
+            Today's date is ${{ env.RUN_DATE }} — the run date. Never write a "last verified" or
             "verified" date that the verdicts below do not actually support — a
             date that launders an unchecked claim is worse than a stale one.
 
@@ -584,6 +589,24 @@ jobs:
                synthesizing the verdicts and discoveries. Do not overwrite older
                notes — they are an evidence trail. Point docs/research/README.md's
                "Current notes" at it and refresh the carried-forward open questions.
+
+            ## Tools you have — and the ones you do not
+
+            Shell access is limited to three command families: `git …`,
+            `gh pr create …` / `gh pr list …`, and
+            `npx --yes html-validate …`. Every other shell command — python3,
+            sed, awk, head, cat, date, cp, `gh api`, `gh pr view` — is denied,
+            and each denied attempt wastes a turn. A run on 2026-10-01 spent 18
+            of them that way and stopped before opening its PR. So:
+
+            - Read files with Read, search with Grep and Glob, and change them
+              with Edit or Write — including claims.yaml, one entry at a time.
+              Do not write a script to apply the verdicts.
+            - The run date is given above; do not shell out for it.
+            - To re-check a GitHub release or changelog, use WebFetch on its
+              github.com page, not `gh api`.
+            - If a command is denied, switch to the tool above that does the
+              same job; never retry it in another form.
 
             ## Rules that matter more than completeness
 
