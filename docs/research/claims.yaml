@@ -30,22 +30,22 @@ meta:
 claims:
   - id: adcp-latest-release
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
-    claim: "AdCP's latest tagged release on the v3.1.x line is v3.1.23, published 14 September 2026 and marked Latest on the releases page, continuing a weekly-plus cadence; it followed v3.1.22 of 13 September 2026, v3.1.21 of 9 September 2026 and v3.1.20 of 2 September 2026. The documentation site's what's-new page for 3.1 still links its normative spec at the 3.1.21 distribution path, one release behind the latest tag. Versions and contents were read from CHANGELOG.md, which carries no dates; the datelines come from the releases page."
+    claim: "AdCP's latest stable release is v3.2.1, published 1 October 2026 and marked Latest on the releases page, the first stable 3.2 release. The v3.1.x line continues alongside it: its latest tag is v3.1.24 of 23 September 2026, after v3.1.23 of 14 September, v3.1.22 of 13 September and v3.1.21 of 9 September 2026. Versions and contents were read from CHANGELOG.md, which carries no dates; the datelines come from the releases page. The 2026-09-15 finding that the 3.1 what's-new page links its normative spec one release behind the latest tag was not re-checked."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: adcp-v3-2-0-beta
     pages: [index.html, adcp.html, comparison.html, tools.html, resources.html, releases.html]
-    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line has run through v3.2.0-rc.0 of 3 September 2026 with no stable 3.2 release. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. Beta.11 of 2 September is a patch pair (training and compliance guidance aligned to the beta.10 bundle; get_principal added alongside sync_principal in the MCP media-buy role profile), and rc.0 of 3 September lists minor changes as well as patches: inventory-local and IANA timezone semantics for daypart targeting with product-scoped timezone-mode declarations, experimental product-scoped identity-absence and reach-methodology declarations requiring a reach unit on frequency-only delivery plus sales-DOOH conformance for frequency-cap rejection, and DOOH share of voice defined as a duration-weighted time share with seller-packaged slot contiguity parameters. Three further candidates follow: rc.1 of 5 September deprecates cross-buy delivery aggregates and adds a Reliable Reporting capability plus vendor measurement disclosure, rc.2 of 13 September adds buyer and orchestrator storyboards, restored viewability constraints and cursor pagination, and rc.3 of 14 September adds media-buy frequency capping and request-only targeting schemas. The line adds no eighth negotiation surface. CHANGELOG.md carries no dates; the datelines come from the releases page."
-    status: announced
+    claim: "AdCP published v3.2.0-beta.0 on 17 August 2026, the first pre-release of a 3.2 line, and the line ran through release candidates to v3.2.0-rc.7 of 27 September 2026 before reaching a stable release as v3.2.1 on 1 October 2026. There is no v3.2.0 stable tag: the changelog states that 3.2.0 is a permanently withdrawn version number, accidentally cut on 30 June 2026 and never released, so 3.2 general availability ships as 3.2.1 with the wire-protocol pin staying at 3.2. The changelog lists a promoted media-channel taxonomy, Trusted Match publisher-authentication and context-targeting changes, cross-role governance enforcement, portable and issuer-bound attestation schemas, and several deprecations in beta.0 to beta.3; beta.4 to beta.10, published 20-28 August and 1 September 2026, add CTV experience profiles against the IAB CTV Ad Portfolio, DOOH compliance and static-OOH posting evidence, audio VAST delivery with Nielsen audio demographic notation, buyer-authored creative revision identity, and principal-layer authentication and brand identity through a brand.json Agent URL. Beta.11 of 2 September is a patch pair (training and compliance guidance aligned to the beta.10 bundle; get_principal added alongside sync_principal in the MCP media-buy role profile), and rc.0 of 3 September lists minor changes as well as patches: inventory-local and IANA timezone semantics for daypart targeting with product-scoped timezone-mode declarations, experimental product-scoped identity-absence and reach-methodology declarations requiring a reach unit on frequency-only delivery plus sales-DOOH conformance for frequency-cap rejection, and DOOH share of voice defined as a duration-weighted time share with seller-packaged slot contiguity parameters. Three further candidates follow: rc.1 of 5 September deprecates cross-buy delivery aggregates and adds a Reliable Reporting capability plus vendor measurement disclosure, rc.2 of 13 September adds buyer and orchestrator storyboards, restored viewability constraints and cursor pagination, and rc.3 of 14 September adds media-buy frequency capping and request-only targeting schemas. rc.4 (20 September), rc.6 (24 September) and rc.7 (27 September) followed; their contents were not itemized this cycle. The line adds no eighth negotiation surface. CHANGELOG.md carries no dates; the datelines come from the releases page."
+    status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: adcp-parallel-v3-0-x-maintenance-line
     pages: [index.html, adcp.html, comparison.html, releases.html]
@@ -53,7 +53,7 @@ claims:
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: adcp-v3-1-3-withdrawn
     pages: [index.html, adcp.html, tools.html, resources.html]
@@ -139,7 +139,7 @@ claims:
     sources:
       - https://github.com/adcontextprotocol/adcp
       - https://agenticadvertising.org/about
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: adcp-aao-board-and-tiers
     pages: [adcp.html, comparison.html]
@@ -167,11 +167,11 @@ claims:
       - https://adgentek.ai/glossary/ad-context-protocol/
       - https://www.thecurrent.com/data-privacy-iab-tech-lab-ai-agentic-roadmap-adcp
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: adcp-membership-count
     pages: [adcp.html, comparison.html, tools.html]
-    claim: "AgenticAdvertising.org and adcontextprotocol.org both state a first-party membership figure of 142+ companies on their homepages, above the 113+ the most recent secondary count reports; the figure is undated by the organization and its About, Membership, and member-directory pages state no aggregate count — the directory rendered no populated count on 15 September 2026. Named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity."
+    claim: "AgenticAdvertising.org and adcontextprotocol.org both state a first-party membership figure of 148+ companies on their homepages as of 1 October 2026, up from 142+ on 15 September 2026 and above the 113+ the most recent secondary count reports; the figure is undated by the organization and its About, Membership, and member-directory pages state no aggregate count. Named members include Yahoo, PubMatic, Scope3, Samba TV, Magnite, and Affinity; Magnite and Affinity were not seen in the member lists extracted on 1 October 2026 and rest on their earlier sources."
     status: shipped
     sources:
       - https://adcontextprotocol.org
@@ -180,25 +180,25 @@ claims:
       - https://agenticadvertising.org/members
       - https://adgentek.ai/blog/agentic-advertising-statistics/
       - https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: adcp-agent-registry
     pages: [adcp.html, tools.html, resources.html]
-    claim: "AgenticAdvertising.org runs a public agent registry listing sales, creative, and signals agents that implement AdCP, filterable by type, status, and compliance; its API returned 35 registered agents on 15 September 2026 — 29 sales, 3 signals, 1 creative, 1 buying, and 1 uncategorized agent, up from 32 on 2 September 2026, with the growth still concentrated on the sell side."
+    claim: "AgenticAdvertising.org runs a public agent registry listing sales, creative, and signals agents that implement AdCP, filterable by type, status, and compliance; its API returned 34 registered agents on 1 October 2026 — 28 sales, 3 signals, 1 creative, 1 buying, and 1 uncategorized agent — one fewer than the 35 of 15 September 2026, the first decline recorded, with the registry still concentrated on the sell side."
     status: shipped
     sources:
       - https://agenticadvertising.org/registry/
       - https://adcontextprotocol.org/api/registry/agents
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: first-agent-to-agent-buy
     pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
-    claim: "The first agent-to-agent media buy was a real transaction: a Scope3 buyer agent and a Swivel seller agent transacted LG Ads inventory with two humans approving, dated 15 or 16 October 2025 by differing sources."
+    claim: "The first agent-to-agent media buy: a Scope3 buyer agent and a Swivel seller agent transacted LG Ads inventory with two humans approving, dated 15 or 16 October 2025 by differing sources. MediaPost describes it as a demonstration in which the buyer acted for a fictional brand (Ematini), so whether it was a real commercial transaction is not established."
     status: reported
     sources:
       - https://www.mediapost.com/publications/article/409937/the-first-agentic-media-buy-more-to-come.html
       - https://adcontextprotocol.org
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: nbcuniversal-cross-platform-buys
     pages: [adcp.html, comparison.html, tools.html, workflows.html, resources.html]
@@ -215,15 +215,16 @@ claims:
     sources:
       - https://together.nbcuni.com/insights/news/nbcuniversal-rpa-freewheel-and-newton-research-introduce-agentic-ai-buying-across-linear-and-digital-for-premium-video/
       - https://adgentek.ai/blog/agentic-advertising-statistics/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: pubmatic-butlertill-clubtails
     pages: [adcp.html, comparison.html, tools.html, workflows.html, resources.html]
-    claim: "PubMatic and Butler/Till ran an AdCP-enabled agentic connected-TV campaign for Clubtails, announced 15 December 2025, planned and optimized by agents with no demand-side platform workflow."
-    status: shipped
+    claim: "PubMatic and Butler/Till ran an AdCP-enabled agentic connected-TV campaign for Clubtails, announced 15 December 2025, planned and optimized by agents with no demand-side platform workflow. On 1 October 2026 PubMatic's own release returned HTTP 403 and its investor mirror timed out; a trade reprint confirms the date, AdCP, Clubtails and connected TV but not the DSP-free workflow."
+    status: reported
     sources:
       - https://pubmatic.com/news/pubmatic-and-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/
       - https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html
+      - https://www.advanced-television.com/2025/12/15/pubmatic-butler-till-launch-adcp-enabled-agentic-ai-campaign-across-ctv/
     last_verified: 2026-09-02
     volatility: medium
   - id: optable-pubmatic-agenticos
@@ -233,7 +234,7 @@ claims:
     sources:
       - https://ppc.land/optables-audience-agent-plugs-into-pubmatic-agenticos-for-privacy-safe-ad-buying/
       - https://www.optable.co/newsroom/optable-and-pubmatic-partner
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: pubmatic-agenticos-guardrails
     pages: [index.html, tools.html]
@@ -242,14 +243,15 @@ claims:
     sources:
       - https://www.mediapost.com/publications/article/417034/agentic-guardrails-create-custom-ad-framework.html
       - https://ppc.land/pubmatic-guardrails-block-ai-agents-from-unapproved-ad-inventory/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: inmobi-buyer-hub-agent
     pages: [index.html, tools.html]
-    claim: "InMobi Advertising launched a conversational AI agent for media buyers on its self-serve deal platform Buyer Hub on 13 August 2026 and opened Buyer Hub to agencies and managed-service DSPs with role-based access controls; the located coverage attributes it to neither protocol family."
-    status: shipped
+    claim: "InMobi Advertising launched a conversational AI agent for media buyers on its self-serve deal platform Buyer Hub on 13 August 2026 and opened Buyer Hub to agencies and managed-service DSPs with role-based access controls; the located coverage attributes it to neither protocol family. On 1 October 2026 the Business Wire release returned HTTP 403, and only secondary coverage confirmed the launch."
+    status: reported
     sources:
       - https://www.businesswire.com/news/home/20260813541744/en/InMobi-Advertising-Launches-A-Conversational-AI-Agent-for-Media-Buyers
+      - https://ppc.land/agencies-gain-direct-access-to-inmobi-ad-inventory-through-buyer-hub/
     last_verified: 2026-09-02
     volatility: medium
   - id: horizon-blu-orchestration-layer
@@ -260,7 +262,7 @@ claims:
       - https://www.prnewswire.com/news-releases/horizon-media-launches-agentic-orchestration-layer-for-real-time-media-decisioning-302803722.html
       - https://www.mediapost.com/publications/article/415896/horizon-adds-media-buying-agents-to-its-blu-platfo.html
       - https://www.adweek.com/agencies/horizon-media-builds-the-plumbing-for-agentic-ad-buying/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: danads-sigma-sales-agent
     pages: [index.html, adcp.html, comparison.html, tools.html, workflows.html, resources.html]
@@ -268,7 +270,7 @@ claims:
     status: shipped
     sources:
       - https://www.exchangewire.com/blog/2026/06/25/danads-sigma-software-bring-trusted-agentic-ai-to-advertising-with-the-launch-of-sales-agent-for-publishers/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: prebid-sales-agent
     pages: [adcp.html, tools.html, resources.html]
@@ -281,35 +283,35 @@ claims:
     volatility: low
   - id: wpp-buyer-agent-for-video
     pages: [index.html, tools.html, workflows.html, resources.html]
-    claim: "WPP launched its Buyer Agent for Video in June 2026, an AI-driven planning tool that recommends video buys for human approval; the coverage does not state which protocol it uses."
-    status: shipped
+    claim: "WPP launched its Buyer Agent for Video on 19 June 2026, an AI-driven planning tool that recommends video buys for human approval, described as co-built with IAB Tech Lab and Prebid.org; the coverage does not state which protocol it uses, and no WPP primary source has been located."
+    status: reported
     sources:
       - https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: yahoo-dsp-agent-network
     pages: [index.html, tools.html, resources.html]
-    claim: "Yahoo announced an Agent Network for its DSP in June 2026, a 23-partner ecosystem connecting advertisers to AI-powered tools; the coverage does not state which protocol it uses."
-    status: shipped
+    claim: "Yahoo announced an Agent Network for its DSP on 19 June 2026, a 23-partner ecosystem connecting advertisers to AI-powered tools; the coverage does not state which protocol it uses, and no Yahoo primary source has been located."
+    status: reported
     sources:
       - https://martechedition.com/news/agentic-media-buying-governance-wpp-yahoo-dsp-2026/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: microsoft-advertising-mcp-server
     pages: [index.html, tools.html, resources.html]
-    claim: "Microsoft Advertising shipped an official, read-only MCP server on 17 June 2026: agents can read live campaign data but changes still require a human."
-    status: shipped
+    claim: "Microsoft Advertising launched an official, read-only MCP server on 17 June 2026 as an open pilot with nine named partners, not generally available: agents can read live campaign data but changes still require a human. The account is secondary; no Microsoft primary source has been located."
+    status: reported
     sources:
       - https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: pinterest-ads-mcp-server
     pages: [index.html, tools.html, resources.html]
-    claim: "Pinterest launched an MCP server for its ads API in the same period as Microsoft's; the coverage does not detail whether agents can write as well as read."
-    status: shipped
+    claim: "Pinterest launched an MCP server for its ads API on 17 June 2026, the same day as Microsoft's: it is read-only (campaign performance, analytics, keyword insights and Taste Graph data) and in alpha with named partners only, with no write capability confirmed."
+    status: announced
     sources:
       - https://www.digitalapplied.com/blog/advertising-mcp-servers-pinterest-microsoft-2026-guide
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: adform-open-standards-commitment
     pages: [index.html, tools.html, resources.html]
@@ -317,7 +319,7 @@ claims:
     status: announced
     sources:
       - https://www.exchangewire.com/blog/2026/07/08/adform-reinforces-commitment-to-open-standards-for-agentic-advertising/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: omnicom-agent-to-agent-buys
     pages: [tools.html, resources.html]
@@ -326,7 +328,7 @@ claims:
     sources:
       - https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html
       - https://themediaonline.co.za/2026/07/what-happened-to-agentic-media-buying/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: aamp-what-it-is
     pages: [aamp.html, comparison.html, resources.html]
@@ -371,7 +373,7 @@ claims:
     sources:
       - https://github.com/IABTechLab/AAMP
       - https://github.com/orgs/IABTechLab/repositories?q=agentic
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: aamp-additional-components
     pages: [aamp.html]
@@ -388,7 +390,7 @@ claims:
     sources:
       - https://iabtechlab.com/press-releases/iab-tech-lab-unveils-agentic-roadmap-for-digital-advertising/
       - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: aamp-2-0-sdks
     pages: [aamp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -400,7 +402,7 @@ claims:
       - https://www.iab.org.nz/news-resources/iab-tech-lab-agentic-advertising-update-aamp-2.0
       - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
       - https://github.com/IABTechLab/seller-agent/releases
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: aamp-2-0-date-disputed
     pages: [aamp.html, resources.html, releases.html]
@@ -412,7 +414,7 @@ claims:
       - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
       - https://github.com/IABTechLab/seller-agent/releases
       - https://dev.to/aleksuix/aamp-vs-adcp-the-two-standards-stacks-racing-to-define-agentic-advertising-3ogn
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: aamp-2-3-release
     pages: [index.html, aamp.html, comparison.html, tools.html, resources.html, releases.html]
@@ -422,7 +424,7 @@ claims:
       - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
       - https://ppc.land/aamp-2-3-blocks-ai-agents-from-inventing-ad-prices-iab-tech-lab-says/
       - https://www.mediapost.com/publications/article/416892/iab-tech-lab-advances-agentic-protocols.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: aamp-independent-component-versioning
     pages: [aamp.html, comparison.html, releases.html]
@@ -436,13 +438,13 @@ claims:
     volatility: low
   - id: aamp-component-releases-past-2-3
     pages: [index.html, aamp.html, tools.html, releases.html]
-    claim: "AAMP component repositories tagged releases after the 2.3 milestone — seller-agent v2.4.0 and v2.4.1 (4 and 5 August 2026), buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 (10 August 2026), and buyer-agent and seller-agent v2.4.2 (18 August 2026) — but no IAB Tech Lab announcement names an AAMP 2.4, so the version framing is unconfirmed."
+    claim: "AAMP component repositories tagged releases after the 2.3 milestone — seller-agent v2.4.0 and v2.4.1 (4 and 5 August 2026), buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 (10 August 2026), and buyer-agent and seller-agent v2.4.2 (18 August 2026) — but no IAB Tech Lab announcement names an AAMP 2.4, so the version framing is unconfirmed. Re-checked on 1 October 2026, none of the three repositories had tagged a newer release."
     status: reported
     sources:
       - https://github.com/IABTechLab/buyer-agent/releases
       - https://github.com/IABTechLab/seller-agent/releases
       - https://github.com/IABTechLab/iab-agentic-primitives/releases
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: aamp-agentic-direct-commit-gap
     pages: [aamp.html]
@@ -450,7 +452,7 @@ claims:
     status: shipped
     sources:
       - https://github.com/IABTechLab/agentic-direct/commits/main/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: agentic-audiences-v1-0-disputed
     pages: [aamp.html]
@@ -461,7 +463,7 @@ claims:
       - https://github.com/IABTechLab/agentic-audiences/blob/main/specs/v1.0/embedding-exchange.md
       - https://github.com/IABTechLab/agentic-audiences/releases
       - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: aamp-2-3-platform-support-code-trace
     pages: [aamp.html, releases.html]
@@ -472,7 +474,7 @@ claims:
       - https://github.com/databricks-industry-solutions/databricks-iab-aamp-buy-sell
       - https://www.databricks.com/blog/agentic-media-buying-cannot-scale-without-right-foundation-see-how-buyers-and-sellers-get
       - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: adcp-aamp-overlap-characterizations
     pages: [index.html, comparison.html, resources.html]
@@ -483,7 +485,7 @@ claims:
       - https://iabtechlab.com/feed/
       - https://nofluffadvisory.com/writing/adcp-vs-aamp/
       - https://ppc.land/rival-agentic-ad-protocols-overlap-on-13-functions-iab-tech-lab-says/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: aamp-2-3-date-discrepancy
     pages: [aamp.html, resources.html]
@@ -493,15 +495,15 @@ claims:
       - https://iabtechlab.com/press-releases/
       - https://iabtechlab.com/feed/
       - https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: artf-latency-claim
     pages: [aamp.html, tools.html, resources.html]
-    claim: "IAB Tech Lab claims ARTF's containerized, same-data-center architecture can cut bid request-response latency by up to roughly 80% (600–800 ms to about 100 ms); the vendor claim is not independently benchmarked, and its sole cited source still returned HTTP 403 to repeated fetches on 15 September 2026, so the figure could not be re-confirmed."
+    claim: "IAB Tech Lab claims ARTF's containerized, same-data-center architecture can cut bid request-response latency by up to roughly 80% (600–800 ms to about 100 ms); the vendor claim is not independently benchmarked. Its cited source, blocked with HTTP 403 for three consecutive cycles, was reachable again on 1 October 2026 and states the figure as given."
     status: reported
     sources:
       - https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/
-    last_verified: 2026-08-04
+    last_verified: 2026-10-01
     volatility: low
   - id: artf-v1-public-comment
     pages: [aamp.html, tools.html, resources.html]
@@ -518,16 +520,16 @@ claims:
     status: shipped
     sources:
       - https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: kochava-stationone-beta
     pages: [aamp.html, comparison.html, tools.html, resources.html]
-    claim: "Kochava integrated the AAMP Buyer Agent SDK into its StationOne open-source 'IAB Workspace', announced 24 March 2026 with an open beta in Q1–Q2 2026 on OpenDirect 2.1 without real spend."
+    claim: "Kochava integrated the AAMP Buyer Agent SDK into its StationOne open-source 'IAB Workspace', announced 24 March 2026 as leaving closed beta, with sandboxed testing on OpenDirect 2.1 without real transactions. The Q1–Q2 2026 beta window this site previously gave was not found in either source on 1 October 2026."
     status: shipped
     sources:
       - https://www.globenewswire.com/news-release/2026/03/24/3261411/0/en/Kochava-Announces-Open-Source-StationOne-AI-Workspace-using-IAB-Tech-Lab-s-AAMP-Buyer-Agent.html
       - https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: adoption-inevitable-but-incremental
     pages: [aamp.html, comparison.html, tools.html, resources.html]
@@ -543,7 +545,7 @@ claims:
     status: reported
     sources:
       - https://www.adexchanger.com/publishers/new-chairman-joel-meyer-dishes-on-prebids-reset-for-the-agentic-ad-tech-era/
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: fox-agentic-platform
     pages: [tools.html, resources.html]
@@ -552,7 +554,7 @@ claims:
     sources:
       - https://www.foxcorporation.com/news/corp-press-releases/2026/fox-advertising-to-launch-industrys-first-end-to-end-agentic-advertising-platform-powered-by-fox-adstudio/
       - https://www.mediapost.com/publications/article/415901/fox-is-making-agentic-transactions-real-in-the-tv.html
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: medium
   - id: standards-showdown-framing
     pages: [comparison.html]
@@ -566,13 +568,13 @@ claims:
     volatility: low
   - id: no-formal-interoperability
     pages: [comparison.html, resources.html]
-    claim: "Whether AdCP and AAMP compete or complement is analyst disagreement; no formal interoperability agreement, liaison, or joint working group is documented as of 2 September 2026, and IAB Tech Lab's AAMP page does not mention AdCP."
+    claim: "Whether AdCP and AAMP compete or complement is analyst disagreement; no formal interoperability agreement, liaison, or joint working group is documented as of 1 October 2026, and IAB Tech Lab's AAMP page does not mention AdCP."
     status: speculative
     sources:
       - https://star.global/posts/agentic-advertising-standards-adcp-and-aamp/
       - https://perform.digital/blogs/adcp-vs-aamp/
       - https://ripleymedia.substack.com/p/adcp-vs-iab-tech-lab-ive-seen-this
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   - id: mcp-transport
     pages: [resources.html]
@@ -609,43 +611,43 @@ claims:
     volatility: low
   - id: visa-tap-x402-mastercard-agent-pay
     pages: [resources.html]
-    claim: "Visa TAP, Coinbase x402, and Mastercard Agent Pay are further agent-payment protocols placed at different layers and typically composed together; their individual shipped status varies and rests on secondary sources. The cited write-ups cover Visa TAP and x402 in detail but name Mastercard Agent Pay nowhere, so that entry is unconfirmed by them."
+    claim: "Visa TAP, Coinbase x402, and Mastercard Agent Pay are further agent-payment protocols placed at different layers and typically composed together; their individual shipped status varies and rests on secondary sources. The cited write-ups split: PayRam covers Visa TAP and x402 and never names Mastercard Agent Pay, while Crossmint does not treat Visa TAP as a standalone protocol and names Mastercard only as a member of the AP2 coalition, not Agent Pay as a product, so the Mastercard Agent Pay entry is unconfirmed by them."
     status: reported
     sources:
       - https://www.payram.com/blog/acp-vs-ap2-vs-tap
       - https://www.crossmint.com/learn/agentic-payments-protocols-compared
-    last_verified: 2026-09-02
+    last_verified: 2026-10-01
     volatility: low
   # --- OOH channel deep dive (ooh.html), seeded from docs/research/ooh-2026-09-04.md ---
   # Volatility is deliberately split: the agentic layer moves weekly, the standards
   # and measurement layer moves in quarters, and the dated POCs do not move at all.
   - id: ooh-adcp-dooh-in-stable-release
     pages: [ooh.html]
-    claim: "DOOH is one of the twenty media channels AdCP recognized at 3.0 general availability, the first stable release to name the medium; AdCP's DOOH creative channel documents proof-of-play impression-tracker macros for screen identifier, play timestamp, venue latitude and longitude, and venue type, and its flat-rate product schema types DOOH deals with share-of-voice, loop-duration, minimum-plays-per-hour, venue-package, duration and daypart fields plus isochrone, radius and GeoJSON geo targeting. Both descriptions rest on search-indexed extracts and secondary technical synthesis; neither page was opened directly."
+    claim: "DOOH is one of the twenty media channels AdCP recognizes at 3.0, carried over unchanged from v2 rather than newly named at 3.0; AdCP's DOOH creative channel, opened directly on 1 October 2026, documents proof-of-play impression-tracker macros including screen identifier and venue type. Its flat-rate product schema is described as typing DOOH deals with share-of-voice, loop-duration, minimum-plays-per-hour, venue-package, duration and daypart fields plus isochrone, radius and GeoJSON geo targeting; that schema description rests on search-indexed extracts and secondary technical synthesis and was not re-confirmed."
     status: reported
     sources:
       - https://docs.adcontextprotocol.org/docs/creative/channels/dooh
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
       - https://nofluffadvisory.com/standards/dooh-place-based-media/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-adcp-3-2-structured-schema
     pages: [ooh.html]
-    claim: "AdCP's structured out-of-home schema work exists only in the unreleased 3.2 pre-release line, which reached v3.2.0-rc.3 on 14 September 2026: DOOH placement attributes for slot duration, loop duration, screen resolution and motion; an out-of-home metrics block for static inventory covering panels, posting periods, share of voice, illuminated hours and a modeled impression estimate; a DOOH sales specialism; share of voice defined as a duration-weighted time share; and versioned OpenOOH venue identifiers. The static-OOH contract states that static units have no play events, that delivery is a period-level modeled audience estimate, and that settlement rests on proof of posting per OAAA conventions."
-    status: announced
+    claim: "AdCP's structured out-of-home schema work shipped in the 3.2 line, which reached a stable release as v3.2.1 on 1 October 2026 after release candidates through v3.2.0-rc.7; the 3.2.1 changelog lists it, and marks the static out-of-home channel contract experimental in 3.2: DOOH placement attributes for slot duration, loop duration, screen resolution and motion; an out-of-home metrics block for static inventory covering panels, posting periods, share of voice, illuminated hours and a modeled impression estimate; a DOOH sales specialism; share of voice defined as a duration-weighted time share; and versioned OpenOOH venue identifiers. The static-OOH contract states that static units have no play events, that delivery is a period-level modeled audience estimate, and that settlement rests on proof of posting per OAAA conventions. Status set by the apply stage of the 2026-10-01 refresh, which read the 3.2.1 changelog section directly after the verifier suggested announced."
+    status: shipped
     sources:
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
       - https://github.com/adcontextprotocol/adcp/releases
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: ooh-aamp-future-scope-not-current
     pages: [ooh.html]
-    claim: "IAB Tech Lab's AAMP standards page describes the initiative as applying globally to digital advertising, with out-of-home named alongside linear television and radio as a planned future extension rather than current scope; an independent analysis finds DOOH present in AAMP's OpenDirect-based agent SDKs only as media-type enumeration values and demonstration catalog entries, with no dedicated transaction path, in contrast to the dedicated path linear television receives."
+    claim: "IAB Tech Lab's AAMP standards page was recorded on 4 September 2026 as describing the initiative as applying globally to digital advertising, with out-of-home named alongside linear television and radio as a planned future extension rather than current scope; that wording was not visible on the page as fetched on 1 October 2026, so it is unconfirmed. An independent analysis, re-checked on 1 October 2026, finds DOOH present in AAMP's OpenDirect-based agent SDKs only as media-type enumeration values and demonstration catalog entries, with no dedicated transaction path, in contrast to the dedicated path linear television receives."
     status: reported
     sources:
       - https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/
       - https://nofluffadvisory.com/writing/adcp-vs-aamp/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-aamp-component-surface
     pages: [ooh.html]
@@ -655,7 +657,7 @@ claims:
       - https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md
       - https://raw.githubusercontent.com/IABTechLab/agentic-direct/main/opendirect.json
       - https://github.com/IABTechLab/agentic-direct/commits/main/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-legacy-programmatic-rails
     pages: [ooh.html]
@@ -675,7 +677,7 @@ claims:
     sources:
       - https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html
       - https://invidis.com/sixteen-nine/2026/02/11/oaaa-releases-updated-openooh-taxonomy-to-streamline-dooh-buying/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-measurement-currencies
     pages: [ooh.html]
@@ -692,15 +694,15 @@ claims:
     status: announced
     sources:
       - https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-dooh-playout-latency-unaddressed
     pages: [ooh.html]
-    claim: "DOOH real-time bidding resolves in roughly 100 to 300 milliseconds per request even though some inventory is prefetched minutes or hours before it plays, and no primary AdCP or AAMP statement addressing DOOH playout latency was located; agent-mediated negotiation sits at planning time, outside the bid path, rather than solving the constraint."
+    claim: "DOOH bid requests are often prefetched minutes or hours before playout, against the 100 to 200 millisecond window a vendor technical write-up gives as standard for web real-time bidding, and no primary AdCP or AAMP statement addressing DOOH playout latency was located; agent-mediated negotiation sits at planning time, outside the bid path, rather than solving the constraint. The 100 to 300 millisecond DOOH figure this site previously gave is not in the source."
     status: reported
     sources:
       - https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: low
   - id: ooh-poc-broadsign-draftdigital-global-nl
     pages: [ooh.html]
@@ -710,12 +712,12 @@ claims:
       - https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/
       - https://www.digitalsignagetoday.com/news/broadsign-ai-agent-executes-agentic-ai-ooh-campaign/
       - https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: low
   - id: ooh-poc-viooh-seller-agent
     pages: [ooh.html]
-    claim: "VIOOH's Seller Agent automated the curation of more than 100 premium DOOH deal-package requests during the first half of 2026, announced at Cannes Lions on 26 June 2026, returning deal packages in seconds to minutes as sell-side packaging rather than a negotiated buy, and delivered as a managed service with VIOOH staff involved."
-    status: shipped
+    claim: "VIOOH's Seller Agent automated the curation of more than 100 premium DOOH deal-package requests during the first half of 2026, announced at Cannes Lions on 26 June 2026, returning deal packages in seconds to minutes as sell-side packaging rather than a negotiated buy, and delivered as a managed service with VIOOH staff involved. The lbbonline.com primary report returned HTTP 403 on 15 September and 1 October 2026; only PPC Land's secondary report was reached, and it does not carry the Cannes date."
+    status: reported
     sources:
       - https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026
       - https://ppc.land/vioohs-seller-agent-automated-100-dooh-deals-in-h1-2026/
@@ -723,7 +725,7 @@ claims:
     volatility: medium
   - id: ooh-viooh-selfserve-and-registration
     pages: [ooh.html]
-    claim: "VIOOH's self-serve Seller Agent rollout and its stated registration with both AdCP and AAMP were described as planned for the third quarter of 2026 in its 26 June 2026 announcement; no source located as of 4 September 2026 confirms either as complete, and on 15 September 2026 the sole cited source returned HTTP 403 to repeated fetches with no archive copy recoverable, so the plan itself could not be re-confirmed."
+    claim: "VIOOH's self-serve Seller Agent rollout and its stated registration with both AdCP and AAMP were described as planned for the third quarter of 2026 in its 26 June 2026 announcement; no source located as of 4 September 2026 confirms either as complete, and on 15 September and again on 1 October 2026 the sole cited source returned HTTP 403 with no archive copy recoverable, so the plan itself could not be re-confirmed. The quarter it named ended on 30 September 2026 with no completion announcement located."
     status: reported
     sources:
       - https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026
@@ -731,16 +733,16 @@ claims:
     volatility: high
   - id: ooh-poc-displayce-mcp-agents
     pages: [ooh.html]
-    claim: "Displayce, JCDecaux's connected DSP operating in 80 countries, launched an Agentic DOOH suite of three agents reachable over MCP -- brief intake and inventory curation, campaign activation, and post-campaign analysis -- announced 25 June 2026 at Cannes Lions and usable from general assistants; no located source confirms a media buy transacted through them."
+    claim: "Displayce, JCDecaux's connected DSP operating in 80 countries, launched an Agentic DOOH suite of three agents reachable over MCP -- campaign planning from a brief, sales-presentation preparation, and performance analysis -- announced 25 June 2026 at Cannes Lions and usable from general assistants; neither source describes a campaign-activation agent, and no located source confirms a media buy transacted through them."
     status: shipped
     sources:
       - https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/
       - https://ppc.land/displayce-launches-agentic-dooh-agents-via-mcp-at-cannes-lions-2026/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-poc-adquick-mcp
     pages: [ooh.html]
-    claim: "AdQuick offers AdQuick MCP, an MCP server connecting its out-of-home inventory and planning data to AI agents, and states on its own site that a Cannes Lions 2026 campaign was conceived, planned, purchased and measured entirely through its platform and AI agent; no independent third party or counterpart agent is named, and the page was not opened directly."
+    claim: "AdQuick offers AdQuick MCP, an MCP server connecting its out-of-home inventory and planning data to AI agents, and states on its own site that a Cannes Lions 2026 campaign was conceived, planned, purchased and measured entirely through its platform and AI agent; no independent third party or counterpart agent is named, and the page was not opened directly -- it returned HTTP 403 on 1 October 2026."
     status: reported
     sources:
       - https://www.adquick.com/ooh-mcp
@@ -753,7 +755,7 @@ claims:
     sources:
       - https://ppc.land/perion-bets-on-ai-agents-as-ctv-and-dooh-surge-in-q1-2026/
       - https://www.magnite.com/press/introducing-magnite-orchestration-powering-the-future-of-agentic-advertising/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-poc-regional-absence
     pages: [ooh.html]
@@ -763,7 +765,7 @@ claims:
       - https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/
       - https://invidis.com/news/2026/01/dooh-al-arabia-wins-uae-mall-network-and-saudi-airport-contracts/
       - https://meedia.de/news/beitrag/24776-neues-stroeer-werbeformat-integriert-interaktive-ki-beratung-fuer-kunden.html
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-media-owner-absence
     pages: [ooh.html]
@@ -771,7 +773,7 @@ claims:
     status: reported
     sources:
       - https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   - id: ooh-cross-channel-absence
     pages: [ooh.html]
@@ -779,7 +781,7 @@ claims:
     status: reported
     sources:
       - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
-    last_verified: 2026-09-04
+    last_verified: 2026-10-01
     volatility: medium
   # --- SDAW market deep dive (sdaw.html), rebuilt from the norm on 2026-09-09 ---
   # Superseded on 2026-09-09. Every SDAW-side row used to be a reconstruction from a
@@ -944,15 +946,16 @@ claims:
     status: announced
     sources:
       - https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md
-    last_verified: 2026-09-15
+    last_verified: 2026-10-01
     volatility: high
   - id: sdaw-adcp-release-state-rc1
     pages: [sdaw.html]
-    claim: "AdCP's release lines stood at v3.1.23 stable, published 14 September 2026 and marked Latest, and v3.2.0-rc.3 pre-release, also published 14 September 2026 -- three release candidates beyond the rc.1 state recorded on 8 September. No stable 3.2 release exists, so every static out-of-home surface remains pre-release."
+    claim: "AdCP's 3.2 line reached a stable release as v3.2.1 on 1 October 2026, marked Latest, after release candidates through v3.2.0-rc.7 of 27 September; the 3.1 line stands at v3.1.24 of 23 September 2026. The 3.2.1 changelog carries the static out-of-home channel contract (an ooh_metrics delivery block) marked experimental in 3.2, while specs/static-ooh.md remains a design draft; whether its ooh property type and panel_id identifier are in the released schema was not checked."
     status: shipped
     sources:
       - https://github.com/adcontextprotocol/adcp/releases
-    last_verified: 2026-09-15
+      - https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md
+    last_verified: 2026-10-01
     volatility: high
   - id: sdaw-opendirect-nearest-model
     pages: [sdaw.html]
