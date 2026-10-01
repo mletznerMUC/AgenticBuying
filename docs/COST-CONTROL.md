@@ -2,7 +2,7 @@
 
 Per-run API spend for every agent this repository runs. **Generated file — do not edit.** `scripts/cost_report.py` rewrites it from [`cost/ledger.jsonl`](cost/ledger.jsonl) after every agent run; any hand-edit is lost on the next run.
 
-Last updated: **2026-09-15T11:35:55Z** · 90 runs recorded
+Last updated: **2026-10-01T09:22:37Z** · 91 runs recorded
 
 ## What these numbers are
 
@@ -13,18 +13,17 @@ Three limits worth knowing before you act on a number:
 1. **List price, not invoice.** Any negotiated rate makes the real bill lower. Use these to compare stages against each other, and the Anthropic Console for what was actually charged.
 2. **Per stage, not per subagent.** Cost is attributable to one agent invocation. When `apply` spawns `site-reviewer`, that subagent's tokens roll into `apply`'s total. The per-model breakdown below is the only subagent signal available — a stage on Opus showing Sonnet spend is its subagents.
 3. **Agents only.** The deterministic jobs — CI, the freshness check, the AdCP release watch, the refresh preflight — call no model and never appear here. That is the point of them.
-4. **49 of these 90 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
+4. **49 of these 91 rows were reconstructed** from GitHub Actions job logs by `scripts/backfill_cost.py`, covering runs from before the capture existed. Their costs are real — the action prints its result block to the log — but the logged form is reduced: **no token counts and no per-model breakdown**, so those cells are blank and those runs are absent from the *By model* table. Actions logs are kept 90 days, so this cannot be re-run indefinitely.
 
-## Current month — 2026-09
+## Current month — 2026-10
 
-**$47.6272** across 33 runs.
+**$0.1792** across 1 run.
 
 ### By workflow
 
 | Workflow | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- |
-| Research Refresh | 22 | — | $39.2199 | $1.7827 |
-| Claude PR Review | 11 | — | $8.4073 | $0.7643 |
+| Claude PR Review | 1 | — | $0.1792 | $0.1792 |
 
 ### By stage
 
@@ -32,20 +31,7 @@ One row per agent. A refresh shard shows as `verify-0`, `verify-1`, … — they
 
 | Workflow | Stage | Tier | Runs | Unmeasured | Total | Mean/run |
 | --- | --- | --- | --- | --- | --- | --- |
-| Research Refresh | `apply` | opus | 2 | — | $27.7780 | $13.8890 |
-| Claude PR Review | `review` | sonnet | 11 | — | $8.4073 | $0.7643 |
-| Research Refresh | `discover` | sonnet | 2 | — | $3.7769 | $1.8884 |
-| Research Refresh | `verify-0` | sonnet | 3 | — | $1.6698 | $0.5566 |
-| Research Refresh | `verify-1` | sonnet | 3 | — | $1.3222 | $0.4407 |
-| Research Refresh | `verify-3` | sonnet | 2 | — | $0.8481 | $0.4240 |
-| Research Refresh | `verify-2` | sonnet | 2 | — | $0.6619 | $0.3309 |
-| Research Refresh | `verify-4` | sonnet | 2 | — | $0.6239 | $0.3120 |
-| Research Refresh | `verify-8` | sonnet | 1 | — | $0.5520 | $0.5520 |
-| Research Refresh | `verify-7` | sonnet | 1 | — | $0.4908 | $0.4908 |
-| Research Refresh | `verify-9` | sonnet | 1 | — | $0.4775 | $0.4775 |
-| Research Refresh | `verify-5` | sonnet | 1 | — | $0.4036 | $0.4036 |
-| Research Refresh | `verify-6` | sonnet | 1 | — | $0.3549 | $0.3549 |
-| Research Refresh | `verify-10` | sonnet | 1 | — | $0.2602 | $0.2602 |
+| Claude PR Review | `review` | sonnet | 1 | — | $0.1792 | $0.1792 |
 
 ### By model
 
@@ -53,14 +39,14 @@ From each run's per-model breakdown. Spend attributed to a model the stage was n
 
 | Model | Cost | Input tokens | Output tokens |
 | --- | --- | --- | --- |
-| `claude-opus-5[1m]` | $27.7743 | 550 | 161,292 |
-| `claude-sonnet-5` | $15.8663 | 1,348 | 455,823 |
-| `claude-haiku-4-5-20251001` | $3.9866 | 2,794,527 | 84,423 |
+| `claude-sonnet-5-5` | $0.1778 | 20 | 3,572 |
+| `claude-haiku-4-5-20251001` | $0.0014 | 1,311 | 14 |
 
 ## By month
 
 | Month | Runs | Unmeasured | Total | Largest workflow |
 | --- | --- | --- | --- | --- |
+| 2026-10 | 1 | — | $0.1792 | Claude PR Review |
 | 2026-09 | 33 | — | $47.6272 | Research Refresh |
 | 2026-08 | 57 | — | $83.6310 | Research Refresh |
 
@@ -68,6 +54,7 @@ From each run's per-model breakdown. Spend attributed to a model the stage was n
 
 | When (UTC) | Workflow | Stage | Tier | Cost | Turns | Tokens |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-10-01 09:22 | Claude PR Review | `review` | sonnet | $0.1792 | 19 | 3,592 |
 | 2026-09-15 11:35 | Claude PR Review | `review` | sonnet | $0.8860 | 37 | 22,979 |
 | 2026-09-15 11:30 | Research Refresh | `apply` | opus | $8.4181 | 163 | 60,003 |
 | 2026-09-15 11:18 | Research Refresh | `verify-0` | sonnet | $0.5900 | 31 | 12,900 |
@@ -92,7 +79,6 @@ From each run's per-model breakdown. Spend attributed to a model the stage was n
 | 2026-09-02 08:00 | Research Refresh | `verify-5` | sonnet | $0.4036 | 18 | 9,322 |
 | 2026-09-02 07:58 | Research Refresh | `verify-3` | sonnet | $0.3207 | 21 | 7,927 |
 | 2026-09-02 07:57 | Research Refresh | `verify-2` | sonnet | $0.4621 | 25 | 10,889 |
-| 2026-09-02 07:54 | Research Refresh | `verify-1` | sonnet | $0.4712 | 19 | 11,588 |
 
 ---
 
