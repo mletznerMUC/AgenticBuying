@@ -37,10 +37,10 @@
     on behalf of advertisers — in production, with real money. This site tracks that shift — with a focus on the two emerging
     protocol families, <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> — and
     keeps every claim sourced and dated.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-15">15 September 2026</time> · both AdCP
-    release-line claims were re-checked on that date and the developments below were added; the
-    2 September refresh re-checked every claim in the site's manifest against its sources; each
-    entry carries the date it was last verified in its own source line</p>
+    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · the AdCP and
+    AAMP release-line claims were re-checked on that date and the three newest developments below
+    were added; the 2 September refresh re-checked every claim in the site's manifest against its
+    sources; each entry carries the date it was last verified in its own source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -52,6 +52,35 @@
 
     <h2>What changed</h2>
     <ol class="changelog">
+      <li>
+        <p class="changelog-date"><time datetime="2026-10-01">1 October 2026</time></p>
+        <p>AdCP 3.2 reached its first stable release as v3.2.1, now marked Latest on the releases
+        page. There is no 3.2.0: the changelog states that the version number was accidentally cut
+        on 30 June 2026, withdrawn permanently and never released, so 3.2 general availability
+        ships as 3.2.1 while the wire-protocol version stays at "3.2". The release follows a
+        pre-release line that opened on 17 August with v3.2.0-beta.0 and ran through release
+        candidates to v3.2.0-rc.7 on 27 September. Its changelog carries the digital out-of-home
+        placement fields, a <code>sales-dooh</code> specialism and a static out-of-home channel
+        contract, the last marked experimental in 3.2.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · last verified 2026-10-01</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-09-23">23 September 2026</time></p>
+        <p>The AdCP 3.1 line took another tag, v3.1.24, after v3.1.23 of September 14. With 3.2
+        now stable, 3.1.x continues as a maintenance line alongside it, as v3.0.x does at v3.0.26.
+        The tag was read from the release feed's title and date, not from its changelog.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-10-01</p>
+      </li>
+      <li>
+        <p class="changelog-date"><time datetime="2026-09-22">22 September 2026</time></p>
+        <p><span class="badge announced">announced</span> IAB Tech Lab announced AAMP 3.0. Its new
+        part, OpenProposal, is a draft, not a ratified standard, with public comment open from
+        September 22 to October 22, 2026. The draft defines 71 fields, of which only three need a
+        round trip to the counterparty, and routes each line item to OpenDirect 2.1, the Deals API
+        or OpenRTB 2.6. The <a href="legal.html">legal lens</a> covers what the draft changes for
+        the people who sign a buy.</p>
+        <p class="source">Source: <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>; <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> · last verified 2026-10-01</p>
+      </li>
       <li>
         <p class="changelog-date"><time datetime="2026-09-14">14 September 2026</time></p>
         <p>The AdCP stable line moved to v3.1.23, the third tag in eight days: v3.1.21 on
@@ -133,55 +162,12 @@
         their individual changelogs.</p>
         <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-09-02</p>
       </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-19">19 August 2026</time></p>
-        <p>Both AdCP release lines moved again: v3.1.16 replaced v3.1.15 as the latest tagged
-        3.1.x release, and the parallel v3.0.x maintenance line reached v3.0.25.
-        <span class="badge announced">announced</span> The 3.2 pre-release line also advanced, with
-        v3.2.0-beta.1 through v3.2.0-beta.3 following beta.0 on 18 and 19 August; there is still no
-        stable 3.2 release. These five tags were read from the release feed's titles and dates, not
-        from their individual changelogs.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-20</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-18">18 August 2026</time></p>
-        <p>AAMP's buyer-agent and seller-agent repositories both tagged v2.4.2, extending the
-        component releases that already sat above the 2.3 milestone.
-        <span class="badge reported">reported</span> IAB Tech Lab's press-release page still names
-        no "AAMP 2.4," so these tags continue to document component work rather than an announced
-        protocol version.</p>
-        <p class="source">Source: <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">IABTechLab buyer-agent releases</a>; <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a>; <a href="https://iabtechlab.com/press-releases/" rel="noopener">IAB Tech Lab press releases</a> · last verified 2026-08-20</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-17">17 August 2026</time></p>
-        <p><span class="badge announced">announced</span> AdCP published v3.2.0-beta.0, the first
-        pre-release of a 3.2 line. Its changelog lists a promoted media-channel taxonomy, Trusted
-        Match changes to publisher authentication and context targeting, cross-role governance
-        enforcement, new portable and issuer-bound attestation schemas, and several deprecations —
-        the top-level media-buy lifecycle status property, the publisher_domain filter on
-        get_products, and inline provider credentials. It adds no eighth negotiation surface: the
-        changes extend the existing seven. The list was read from the rendered changelog and not
-        diffed against the schema files.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-18</p>
-      </li>
-      <li>
-        <p class="changelog-date"><time datetime="2026-08-16">16 August 2026</time></p>
-        <p>AdCP tagged v3.1.15, the most recent of five v3.1.x patch releases since 4 August
-        (v3.1.11 through v3.1.15). Between them they covered pixel-ratio registry metadata,
-        compliance-storyboard fixes, request-signing documentation, billing-permission handling for
-        sellers without agent billing support, three schema fields whose inline enumerations omitted
-        values from their canonical definitions, and a clarification that exhausting a rate-limit
-        trip runner without observing a RATE_LIMITED response is a test-coverage gap. The v3.0.x
-        maintenance line continued alongside it with v3.0.23 and v3.0.24 on 15 and 16 August.
-        <span class="badge reported">reported</span> The itemized contents of those two v3.0.x
-        patches could not be confirmed beyond their release tags and dates.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · last verified 2026-08-18</p>
-      </li>
     </ol>
     <p class="source">Older developments — AdCP's launch, the first agent-to-agent buy, the
     PubMatic and Butler/Till connected-TV campaign, the NBCUniversal cross-platform buys, Optable's
     Audience Agent inside PubMatic AgenticOS, the DanAds and Sigma Software Sales Agent for
-    Publishers, AAMP 2.0, AAMP 2.3, the AAMP component tags past 2.3, the v3.1.10 release run, the
+    Publishers, AAMP 2.0, AAMP 2.3, the AAMP component tags past 2.3 (through v2.4.2 on August 18),
+    the opening of the AdCP 3.2 beta line on August 17, the v3.1.10 to v3.1.16 release runs, the
     August 1 deprecation of AdCP v2, PMG's Alli integration, and Kochava's open beta — are kept in
     the timeline tables on the
     <a href="adcp.html">AdCP</a> and <a href="aamp.html">AAMP</a> pages; the two scope-overlap

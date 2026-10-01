@@ -6,6 +6,20 @@ note here.
 
 ## Current notes
 
+- [`adcp-aamp-2026-10-01.md`](adcp-aamp-2026-10-01.md) — *AdCP and AAMP refresh*, verified
+  2026-10-01. **The latest note; read it for the current state of the release lines, counts and
+  out-of-home rows.** A volatility-sharded cycle over ten shards: 59 claims, 54 reaching their
+  sources. Its headline is that **AdCP 3.2 is stable as v3.2.1** (1 October 2026). There is no 3.2.0;
+  the changelog records it as accidentally cut and permanently withdrawn. That closes the
+  convergence question the 2026-09-15 note led with. The apply stage confirmed the release and
+  the out-of-home schema items directly against the 3.2.1 changelog, so AdCP's structured DOOH
+  schema is now `shipped`; the static-OOH contract is marked experimental. AAMP 3.0 is carried
+  onto the protocol pages as `announced`. Membership rose to 148+ and the registry fell to 34, its
+  first decline. Six tool and deployment claims were re-graded to match the badge rules: WPP, Yahoo
+  and Microsoft moved to `reported` as secondary-only, Pinterest to `announced`, and InMobi and
+  Clubtails to `reported` after their primary sources returned 403. Five wording corrections: the
+  first buy was a demonstration, DOOH predates 3.0, the latency range, Displayce's agents, and
+  Kochava's beta window. martech.org is reachable again. No discovery pass ran.
 - [`legal-2026-10-01.md`](legal-2026-10-01.md) — *Agentic buying through a legal lens*,
   verified 2026-10-01. **The note behind `legal.html`.** A new-topic note, not a refresh
   run: it records how a contributed legal explainer was checked before publication. Most
@@ -13,12 +27,12 @@ note here.
   corrected (`idempotency_key` on `create_media_buy` is optional, not required) and four
   AdCP task names were dropped because the documentation read does not carry them. It is
   the first note to record AAMP 3.0 (announced 22 September 2026, OpenProposal at
-  `v3.0-draft-1`, comment period to 22 October), which post-dates the 2026-09-15 refresh,
-  so the AAMP and release pages still describe 2.4.x until the next refresh. The legal
+  `v3.0-draft-1`, comment period to 22 October), which post-dates the 2026-09-15 refresh;
+  the 2026-10-01 refresh carried it onto the AAMP, comparison and release pages. The legal
   readings are interpretation and are badged `speculative` once, at their scope.
 - [`adcp-aamp-2026-09-15.md`](adcp-aamp-2026-09-15.md) — *AdCP and AAMP refresh*,
-  verified 2026-09-15. **The latest note; read it for the current state of the
-  release lines and counts.** A volatility-sharded cycle, not a full-manifest one:
+  verified 2026-09-15. **Superseded on the release lines and counts by the note above.** A
+  volatility-sharded cycle, not a full-manifest one:
   eleven due claims, nine reaching their sources, and nothing on the site found to
   be wrong. Five claims moved, all in the direction the site already described.
   Its organizing finding is that the two protocols' cadences have diverged — AdCP
@@ -165,30 +179,42 @@ record of what was believed when.
 ## Open questions carried forward
 
 The 2026-09-02 refresh closed four and opened three; the 2026-09-04 OOH note opened six
-more; the 2026-09-08 SDAW note opened seven, listed first below and also published on
-`sdaw.html`; the 2026-09-15 refresh closed none and opened four, listed immediately
-below because they bear on claims the site publishes today. The ones that most affect
-the site's accuracy:
+more; the 2026-09-08 SDAW note opened seven, listed below and also published on
+`sdaw.html`; the 2026-09-15 refresh closed none and opened four; the 2026-10-01 refresh
+closed two, narrowed one and opened five, listed first because they bear on claims the
+site publishes today. The ones that most affect the site's accuracy:
 
-- **Whether AdCP 3.2 is converging at all.** This replaces the narrower question of
-  whether the line has an intended stable date. It has now run sixteen pre-releases
-  over twenty-eight days, and each of its four release candidates added capability
-  rather than only fixing — Reliable Reporting and a deprecation in rc.1, storyboards
-  and cursor pagination in rc.2, frequency capping and new targeting schemas in rc.3.
-  A candidate that keeps taking minor changes is not behaving as a candidate, so the
-  site should not read the "rc" label as nearness to stable. Newly open.
-- **Whether the AdCP documentation site tracks the release tags.** Its what's-new page
-  for 3.1 links the normative spec at the 3.1.21 path while the latest tag is v3.1.23.
-  At three tags in eight days it matters whether the docs are generated from tags or
-  updated by hand, because the site cites both for the same facts. Newly open.
-- **What the agent registry's "uncategorized" agent type means.** The API returned one
-  agent with no type among 35 on 2026-09-15 — a data-entry gap, a new category, or an
-  agent fitting none of sales, creative, signals or buying. Not answerable from the API
-  response alone. Newly open.
-- **Whether AAMP's component work has stopped or merely paused.** Four weeks with no tag
-  on seller-agent, buyer-agent or iab-agentic-primitives, after a fortnight of weekly
-  releases, with the Agentic Direct commit gap now approaching eight months. The site
-  records the pause as a fact; what it means is not sourced. Newly open.
+- **What v3.2.1 contains beyond the out-of-home items, and what rc.4 to rc.7 added.** The
+  2026-10-01 apply stage read the 3.2.1 changelog section for the DOOH, static-OOH,
+  identity-absence, slot-contiguity and slot-to-loop items only, all of which are present. The
+  releases listing showed no rc.5. Newly open.
+- **Whether `specs/static-ooh.md`'s `ooh` property type and `panel_id` are in the released
+  schema.** The 3.2.1 changelog carries the `ooh_metrics` contract as experimental; the
+  identifiers a German binding needs were not checked against the schema files. This replaces
+  the SDAW question below about whether the draft advances into a released schema. Newly open.
+- **Which registry agent left between 15 September and 1 October.** The sales count fell from 29
+  to 28; the API response does not say whether an agent was removed or reclassified. Newly open.
+- **Whether IAB Tech Lab's AAMP standards page still names out-of-home as future scope.** The
+  wording recorded on 2026-09-04 was not visible on the 2026-10-01 fetch. `ooh.html` and the
+  `sdaw.html` overview now say so. The `sdaw.html` upstream row still cites a separate IAB Tech Lab
+  "framing" post for the same point, and that post was not re-checked. Newly open.
+- **Whether the AdCP documentation site tracks the release tags.** Its 3.1 what's-new page linked
+  the spec one release behind on 2026-09-15. That was not re-checked this cycle, and the site no
+  longer carries the remark. Carried forward.
+- **What the agent registry's "uncategorized" agent type means.** Still one such agent among 34
+  on 2026-10-01. Carried forward.
+- **Whether AAMP's component work has stopped or merely paused.** It is now six weeks with no tag
+  on seller-agent, buyer-agent or iab-agentic-primitives. AAMP 3.0 was announced in that window
+  as a draft spec, not as component releases. Carried forward.
+- **Whether WPP's, Yahoo's and Microsoft's June 2026 launches have a primary source.** All three
+  moved to `reported` on 2026-10-01 because only secondary coverage was located. A company
+  release would restore them. Newly open.
+
+Closed on 2026-10-01: **whether AdCP 3.2 is converging** (it is: v3.2.1 on 1 October 2026,
+with 3.2.0 withdrawn), and **the ARTF latency figure on a blocked source** (martech.org is
+reachable and carries the figure; it stays `reported` as an unbenchmarked vendor claim).
+Narrowed: **Mastercard Agent Pay**. Crossmint names Mastercard only as an AP2 coalition member,
+and neither write-up names the Agent Pay product.
 
 - **Whether SDAW is still actively exchanged in German poster trading in 2026, and whether
   B|A|M still maintains it.** No public source discusses the format after roughly 2013 and
@@ -224,6 +250,8 @@ the site's accuracy:
   source, returned HTTP 403 on repeated fetches with no archive copy recoverable, so the
   plan itself is no longer retrievable. The claim moved to `reported` on `ooh.html` and
   keeps its 2026-09-04 date. A completion announcement would resolve both halves at once.
+  On 2026-10-01 the source returned 403 again, the quarter it named had ended, and the VIOOH
+  Seller Agent row, which shares the source, also moved to `reported`.
 - **Whether any DACH-region agentic OOH pilot exists.** A targeted search found nothing
   tying Ströer, or any other DACH media owner, to agentic out-of-home buying. Given this
   project's vantage point, worth a dedicated German-language follow-up rather than
@@ -248,26 +276,16 @@ the site's accuracy:
   the Media Buy/Curation/Signals framing of v2.0.0; both are now badged `reported`
   on the pages carrying them. Newly open.
 - **Whether Mastercard Agent Pay belongs in the adjacent-protocols list.** Neither
-  cited write-up names it, though both cover Visa TAP and x402 in detail. Newly
-  open — the next step is a source naming it, or removal.
-- **Whether AdCP 3.2 has an intended stable date.** Superseded on 2026-09-15 by the
-  broader convergence question listed at the top of this section; the whole line stays
-  `announced` until a spec release exists.
-- **Is the AdCP/AAO membership figure precise?** The number moved to 142+ on
-  2026-09-15, still undated on both homepages and still not reconcilable against
-  any member list — the members directory rendered no populated count on that date.
-- **The ARTF latency figure rests on a source blocked for three consecutive cycles.**
-  martech.org returned HTTP 403 to repeated fetches on 2026-09-02 and again on
-  2026-09-15, so the ~80% claim has not been re-confirmed; it is badged `reported` and
-  keeps its 2026-08-04 date. The "if the block persists" condition has now been met, so
-  the choice is between a different source for the figure and removing it from the pages
-  that carry it — keeping it indefinitely on a permanently unreachable citation is the
-  one option the site's sourcing rules do not support.
+  cited write-up names the product: PayRam never mentions Mastercard, and Crossmint names it only
+  as an AP2 coalition member (2026-10-01). The next step is a source naming it, or removal.
+- **Is the AdCP/AAO membership figure precise?** The number moved to 148+ on
+  2026-10-01, still undated on both homepages and still not reconcilable against
+  any member list; Magnite and Affinity were not seen in the lists extracted that day.
 - **Whether Agentic Audiences' "v1.0" names a spec generation or a maturity
   level.** A spec file inside a directory named `specs/v1.0` is headed "Draft
   v0.1," which contradicts AAMP 2.3's "ready for transactions." Unchanged.
 - **Whether an "AAMP 2.4" exists as a protocol version.** Component repos are at
-  v2.4.2 as of 18 August 2026 and, re-checked on 2026-09-15, still have not moved,
+  v2.4.2 as of 18 August 2026 and, re-checked on 2026-10-01, still have not moved,
   but no IAB Tech Lab announcement names a 2.4 release, so the version framing on
   the site is badged `reported`.
 - **Whether IAB Tech Lab regards the Databricks accelerator as the integration
