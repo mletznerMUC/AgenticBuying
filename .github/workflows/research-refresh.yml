@@ -610,17 +610,43 @@ jobs:
           claude_args: |
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(git:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(npx --yes html-validate:*)"
 
+      - name: Check that apply opened a PR
+        # The agent's own "success" only means it stopped talking. On 2026-10-01
+        # it returned success after 98 turns (a full pass takes ~160) and 18
+        # permission denials, having pushed the manifest commit alone — no page
+        # edits, no note, no PR — and the run went green. A finished apply
+        # always ends in an open PR, so its absence is the failure, and failing
+        # here also routes the branch to the salvage step below.
+        id: opened
+        if: steps.agent.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          branch=$(git for-each-ref --format='%(refname:short)' 'refs/heads/claude/research-refresh-*' | head -1)
+          if [ -z "$branch" ]; then
+            echo "::error::apply returned success but created no research-refresh branch."
+            exit 1
+          fi
+          existing=$(gh pr list --repo "${GITHUB_REPOSITORY}" --head "${branch}" --state open --json number --jq '.[].number')
+          if [ -z "$existing" ]; then
+            echo "::error::apply returned success but opened no PR for ${branch}."
+            exit 1
+          fi
+          echo "::notice::apply opened PR #${existing} from ${branch}."
+
       - name: Preserve partial work if apply did not finish
         # The other half of "commit as you go": the prompt makes the agent push
         # after each phase, and this makes those pushes visible without a human
         # knowing to go looking for an orphan branch. Runs whenever the agent
-        # step did not succeed — timeout, API rejection, or its own error.
+        # step did not succeed — timeout, API rejection, or its own error — and
+        # when it claimed success without opening a PR (see the check above).
         #
         # The agent's app token is revoked inside its own composite step, so this
         # re-authenticates with the job's GITHUB_TOKEN. A PR opened with that
         # token does not trigger CI, which is fine here: the PR is a draft and
         # explicitly unvalidated, and the next push to it runs CI normally.
-        if: always() && steps.agent.outcome != 'success'
+        if: always() && (steps.agent.outcome != 'success' || steps.opened.outcome == 'failure')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -676,6 +702,19 @@ jobs:
           workflow: Research Refresh
           stage: apply
           model-tier: opus
+
+      - name: Upload apply transcript
+        # The job log carries only the agent's final tally, not what it did or
+        # which tool calls were denied, so a short run cannot be diagnosed after
+        # the fact. Kept briefly: it is for debugging this run, not a record.
+        if: always() && steps.agent.outputs.execution_file != ''
+        continue-on-error: true
+        uses: actions/upload-artifact@v7
+        with:
+          name: apply-transcript
+          path: ${{ steps.agent.outputs.execution_file }}
+          retention-days: 14
+          if-no-files-found: warn
 
   # ---------------------------------------------------------------------------
   # Record what the run cost. Separate job because the agent jobs above hold
