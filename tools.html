@@ -34,10 +34,11 @@
     <h1>Tools &amp; platforms</h1>
     <p class="lead">A curated directory of tools, SDKs, and platforms in the agentic
     buying ecosystem — what they do and which protocols they speak.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-04">4 September 2026</time> · every claim
-    in this directory was re-checked against its sources on that date, except the ARTF latency
-    figure, whose sole source could not be reached; each entry carries its own verification date in
-    its source line</p>
+    <p class="page-meta">Updated <time datetime="2026-09-15">15 September 2026</time> · the AdCP
+    release-line, membership, agent-registry and AAMP component-tag claims were re-checked on that
+    date; every other claim was re-checked on <time datetime="2026-09-04">4 September 2026</time>,
+    except the ARTF latency figure, whose sole source still could not be reached; each entry
+    carries its own verification date in its source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -73,12 +74,12 @@
         serve-time execution, with tasks carried over MCP or Google's Agent2Agent (A2A) transport.
         It is licensed Apache 2.0 with express patent grants, and spec governance is deliberately
         separated from implementation — the sell-side reference implementation is listed under
-        supply-side tools below. The latest tagged release is v3.1.20 (September 2, 2026) on a
+        supply-side tools below. The latest tagged release is v3.1.23 (September 14, 2026) on a
         weekly-plus cadence; implementers targeting the 3.1 line are directed to 3.1.2, since 3.1.3
         was withdrawn. <span class="badge announced">announced</span> A v3.2.0-beta.0 pre-release
-        opened a 3.2 line on August 17, 2026 and had reached a release candidate, v3.2.0-rc.0, by
-        September 3; there is no stable 3.2 release to build against yet.</p>
-        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation</a> · the two AdCP release-line claims last verified 2026-09-04, the rest 2026-09-02</p>
+        opened a 3.2 line on August 17, 2026 and had reached its fourth release candidate,
+        v3.2.0-rc.3, by September 14; there is no stable 3.2 release to build against yet.</p>
+        <p class="source">Source: <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP GitHub repository</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation</a> · the two AdCP release-line claims last verified 2026-09-15, the rest 2026-09-02</p>
       </li>
       <li class="card">
         <h3>AAMP protocol repositories</h3>
@@ -88,13 +89,13 @@
         iab-agentic-primitives (a shared contract library), and agentic-mobile. Release tags
         continued into August 2026 — seller-agent v2.4.1 on August 5, buyer-agent v2.4.1 and
         iab-agentic-primitives v0.5.1 on August 10, and both agents at v2.4.2 on August 18, with no
-        further tags as of September 2 — and licensing is mixed across repositories:
+        further tags as of September 15 — and licensing is mixed across repositories:
         most are Apache 2.0, the Agentic Real Time Framework is AGPL v3, Agentic Audiences carries a
         non-standard license declaration, and the registry example carries none.
         <span class="badge reported">reported</span> Those tags sit above AAMP 2.3, but no IAB Tech
         Lab announcement names an "AAMP 2.4," so a component tag is not the same thing as an
         announced protocol version.</p>
-        <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; the <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent</a>, <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent</a>, and <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives</a> release feeds · last verified 2026-09-02</p>
+        <p class="source">Source: <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP GitHub repository</a>; <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; the <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent</a>, <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent</a>, and <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives</a> release feeds · the release tags last verified 2026-09-15, the licensing 2026-09-02</p>
       </li>
       <li class="card">
         <h3>AAMP Buyer &amp; Seller Agent SDKs</h3>
@@ -118,7 +119,7 @@
         100&nbsp;ms); that figure is a vendor performance claim, has not been independently
         benchmarked, and its sole source returned HTTP 403 to repeated fetches on September 2, 2026,
         so it stands on its August 4, 2026 reading.</p>
-        <p class="source">Source: <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire</a> · last verified 2026-09-02; the latency figure from <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04, unreachable on 2026-09-02</p>
+        <p class="source">Source: <a href="https://github.com/orgs/IABTechLab/repositories?q=agentic" rel="noopener">IABTechLab agentic repositories</a>; <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment-302613712.html" rel="noopener">PR Newswire</a> · last verified 2026-09-02; the latency figure from <a href="https://martech.org/iab-tech-lab-unveils-agentic-rtb-framework-to-boost-real-time-ad-trading-efficiency/" rel="noopener">MarTech</a> · last verified 2026-08-04, still unreachable on 2026-09-15</p>
       </li>
     </ul>
 
@@ -186,12 +187,13 @@
         <h3>AgenticAdvertising.org agent registry</h3>
         <p>The AdCP side's equivalent directory: a public registry of sales, creative, and signals
         agents that implement AdCP, filterable by agent type, status, and compliance. Its public API
-        returned 32 registered agents on September 2, 2026 — 27 sales, three signals, one creative,
-        and one buying agent, up from 30 on August 20 — so it is a useful map of the sell side and
-        close to silent on the buy side. Every agent added in that window was a sales agent. The two
+        returned 35 registered agents on September 15, 2026 — 29 sales, three signals, one creative,
+        one buying, and one uncategorized, up from 32 on September 2 — so it is a useful map of the
+        sell side and close to silent on the buy side. Every agent added in that window was a sales
+        agent or uncategorized. The two
         protocol families each run their own registry; no shared or federated registry
         between them is documented.</p>
-        <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a> · last verified 2026-09-02</p>
+        <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a> · last verified 2026-09-15</p>
       </li>
       <li class="card">
         <h3>Publishers &amp; sell-side platforms in the AdCP coalition</h3>
@@ -349,14 +351,14 @@
     <h2>Gaps in this directory</h2>
     <p>The sell-side picture is no longer a single case: the Swivel, FreeWheel, DanAds/Sigma, and
     Prebid entries above are all documented, and RTL AdAlliance and theScore are named publishers.
-    It is still much shorter than AgenticAdvertising.org's own count of 132+ member companies, and
-    shorter than its agent registry, which listed 32 agents on September 2, 2026 — of which exactly
+    It is still much shorter than AgenticAdvertising.org's own count of 142+ member companies, and
+    shorter than its agent registry, which listed 35 agents on September 15, 2026 — of which exactly
     one was a buying agent. Membership is not evidence of a live endpoint. The same caution applies on
     the AAMP side with one correction: PMG's Alli integration is production use, while Kochava's
     beta remains a sandbox rather than real spend. Trade press in July 2026 characterized adoption
     overall as "inevitable, but incremental," with governance running ahead of transaction
     volume.</p>
-    <p class="source">Source: <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a> and its <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">registry API</a> (the member and agent counts); <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · last verified 2026-09-02</p>
+    <p class="source">Source: <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a> and its <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">registry API</a> (the member and agent counts); <a href="https://www.prnewswire.com/news-releases/pmg-integrates-iab-tech-lab-aamp-standards-into-alli-operating-system-302734906.html" rel="noopener">PR Newswire (PMG)</a>; <a href="https://ppc.land/kochava-puts-iab-tech-labs-aamp-into-open-beta-for-agentic-ad-buying/" rel="noopener">PPC Land</a>; <a href="https://www.mediapost.com/publications/article/416552/what-happened-to-agentic-media-buying.html" rel="noopener">MediaPost</a> · the member and agent counts last verified 2026-09-15, the rest 2026-09-02</p>
     <p>Two claims were removed from this directory at the August 4, 2026 check because their
     citations did not support them. A HorizonOS Blu entry stated that Horizon Media runs buying
     agents in that platform, but neither cited article mentioned Horizon Media. At the August 18,
