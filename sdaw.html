@@ -39,10 +39,11 @@
     Context Protocol). The finding that organizes everything else is that SDAW's gap is one of
     transport and digital data model, not of process scope — it describes a complete commercial
     chain from panel master data to invoicing, in a shape no agent can call.</p>
-    <p class="page-meta">Updated <time datetime="2026-09-15">15 September 2026</time> · the AdCP
-    release versions and the AdCP static out-of-home design draft were re-verified on that date and
-    both were unchanged in substance; every other claim on this page was verified on
-    <time datetime="2026-09-09">9 September 2026</time></p>
+    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · the AdCP
+    release versions and the AdCP static out-of-home design draft were re-verified on that date,
+    and the release state changed: AdCP 3.2 is now a stable release; every other claim on this page
+    was verified on <time datetime="2026-09-09">9 September 2026</time>, and each claim carries its
+    own verification date in its source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -104,7 +105,7 @@
             <th role="columnheader" scope="col">Dimension</th>
             <th role="columnheader" scope="col">SDAW v004</th>
             <th role="columnheader" scope="col">AAMP 2.3</th>
-            <th role="columnheader" scope="col">AdCP 3.1 and the 3.2 pre-release</th>
+            <th role="columnheader" scope="col">AdCP 3.1 and 3.2</th>
           </tr>
         </thead>
         <tbody role="rowgroup">
@@ -112,65 +113,65 @@
             <th role="rowheader" scope="row">Owner</th>
             <td role="cell" data-label="SDAW v004">B|A|M Bundesverband Aussenmedien, the renamed Fachverband Außenwerbung</td>
             <td role="cell" data-label="AAMP 2.3">IAB Tech Lab</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">AgenticAdvertising.org</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">AgenticAdvertising.org</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Current version</th>
             <td role="cell" data-label="SDAW v004">Version 004 since 2002/2003, amended in place; last revision 11 June 2025</td>
             <td role="cell" data-label="AAMP 2.3">2.3, released 30 July 2026</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">v3.1.23 stable, 14 September 2026; v3.2.0-rc.3 pre-release, 14 September 2026</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">v3.2.1 stable, 1 October 2026, the first stable 3.2 release (there is no v3.2.0); v3.1.24 on the 3.1 line, 23 September 2026</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Unit of exchange</th>
             <td role="cell" data-label="SDAW v004">A zipped fixed-width text file, across 29 record types</td>
             <td role="cell" data-label="AAMP 2.3">A call on a seller agent, or OpenDirect-shaped order management</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">A task with a lifecycle, carried over the Model Context Protocol or an agent-to-agent transport</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">A task with a lifecycle, carried over the Model Context Protocol or an agent-to-agent transport</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Encoding</th>
             <td role="cell" data-label="SDAW v004">Fixed 1-based character positions, space-padded, no escaping; Windows-1252</td>
             <td role="cell" data-label="AAMP 2.3">JSON Schema, with an extension prefix for unknown fields</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Versioned JSON Schemas with an extension object on core types</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Versioned JSON Schemas with an extension object on core types</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Process coverage</th>
             <td role="cell" data-label="SDAW v004">Complete: master data, availability, offer, option, booking, confirmation, posting order, proof of posting, billing</td>
             <td role="cell" data-label="AAMP 2.3">Discovery through order management; no posting or settlement</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Discovery through delivery reporting; posting evidence in the pre-release line, no settlement</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Discovery through delivery reporting; posting evidence experimental in 3.2, no settlement</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Panel identity</th>
             <td role="cell" data-label="SDAW v004">QID, a market-wide identifier from the central FAW database, independent of the lessee</td>
             <td role="cell" data-label="AAMP 2.3">An inherited frames targeting unit, with no frame object behind it</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Panel identifiers inside the delivery-report block only</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Panel identifiers inside the delivery-report block only</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Transport</th>
             <td role="cell" data-label="SDAW v004">ZIP files on named masks, registered with the FAW; no request or response</td>
             <td role="cell" data-label="AAMP 2.3">Bearer API key with a role, plus an agent registry</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Signed requests for mutating and financial operations from 3.1</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Signed requests for mutating and financial operations from 3.1</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Specification access</th>
             <td role="cell" data-label="SDAW v004">Association document, not publicly retrievable</td>
             <td role="cell" data-label="AAMP 2.3">Open repositories, Apache-2.0</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Open repositories, Apache-2.0</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Open repositories, Apache-2.0</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Out-of-home coverage</th>
             <td role="cell" data-label="SDAW v004">Native and exclusive — classic poster, with digital sites carried as object classes</td>
-            <td role="cell" data-label="AAMP 2.3">Named as future scope; no dedicated path</td>
-            <td role="cell" data-label="AdCP 3.1 and the 3.2 pre-release">Digital out-of-home (DOOH) modeled; static out-of-home only in the pre-release line</td>
+            <td role="cell" data-label="AAMP 2.3">No dedicated path; the standards page's framing of out-of-home as future scope, recorded on 4 September 2026, was not visible on 1 October 2026</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">Digital out-of-home (DOOH) modeled; static out-of-home as a channel contract marked experimental in 3.2</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://aussenmedien.de/" rel="noopener">B|A|M</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab on AAMP</a> · <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repositories</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP repository</a> · the AdCP release versions last verified 2026-09-15, the rest 2026-09-09</p>
+    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://aussenmedien.de/" rel="noopener">B|A|M</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab on AAMP</a> · <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repositories</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP repository</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry · the AdCP release versions, AdCP static out-of-home status and AAMP standards-page wording last verified 2026-10-01, the rest 2026-09-09</p>
 
     <figure>
       <div class="figure-wrap">
         <svg viewBox="0 0 560 572" role="img" aria-labelledby="fig-sdaw-title">
-          <title id="fig-sdaw-title">A four-band stack showing where the gap between SDAW and the agentic protocols actually falls. At the top, the agentic protocols: AAMP 2.3 with no out-of-home object model, and AdCP 3.1 with the 3.2 pre-release, where digital out-of-home is modeled and static out-of-home is experimental. Below them, what the protocols lack in order to represent German classic out-of-home: a bookable panel object, a market-wide panel identifier field, geo-coordinates on inventory, illumination and physical dimensions, a posting-cycle calendar, and inventory-side category exclusions. Below that, the narrower set of things SDAW lacks in order to be agentically transactable: a request and response transport, credentials and request signing, digital playout concepts such as screens, loops and slots, and an impression currency. At the bottom, SDAW itself: 29 record types covering the commercial chain from panel master data through to billing, carried as fixed-width files inside ZIP archives, under a norm amended as recently as June 2025.</title>
+          <title id="fig-sdaw-title">A four-band stack showing where the gap between SDAW and the agentic protocols actually falls. At the top, the agentic protocols: AAMP 2.3 with no out-of-home object model, and AdCP 3.1 and 3.2, where digital out-of-home is modeled and static out-of-home is experimental. Below them, what the protocols lack in order to represent German classic out-of-home: a bookable panel object, a market-wide panel identifier field, geo-coordinates on inventory, illumination and physical dimensions, a posting-cycle calendar, and inventory-side category exclusions. Below that, the narrower set of things SDAW lacks in order to be agentically transactable: a request and response transport, credentials and request signing, digital playout concepts such as screens, loops and slots, and an impression currency. At the bottom, SDAW itself: 29 record types covering the commercial chain from panel master data through to billing, carried as fixed-width files inside ZIP archives, under a norm amended as recently as June 2025.</title>
 
           <rect class="dgm-band" x="8" y="8" width="544" height="112" rx="6" />
           <text class="dgm-title" x="280" y="31" text-anchor="middle">Agentic protocols</text>
@@ -181,7 +182,7 @@
           <text class="dgm-text" x="146" y="100" text-anchor="middle">no OOH object model</text>
 
           <rect class="dgm-node" x="288" y="58" width="252" height="52" rx="6" />
-          <text class="dgm-title" x="414" y="80" text-anchor="middle">AdCP 3.1 / 3.2 pre-release</text>
+          <text class="dgm-title" x="414" y="80" text-anchor="middle">AdCP 3.1 / 3.2</text>
           <text class="dgm-text" x="414" y="100" text-anchor="middle">DOOH modeled, static experimental</text>
 
           <rect class="dgm-band" x="8" y="132" width="544" height="192" rx="6" />
@@ -232,7 +233,7 @@
       B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the
       author) ·
       <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> ·
-      <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-09-09</figcaption>
+      <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-10-01 for the AdCP draft, 2026-09-09 for the rest</figcaption>
     </figure>
 
     <h2>The record types</h2>
@@ -535,7 +536,7 @@
             <th role="rowheader" scope="row">Proof of posting</th>
             <td role="cell" data-label="SDAW record type"><code>SVE</code>, <code>SVT</code>, <code>AUS</code>, <code>BLD</code>, <code>REK</code></td>
             <td role="cell" data-label="AAMP equivalent">None; OpenDirect's statistics object is unused</td>
-            <td role="cell" data-label="AdCP equivalent">Posting events with geotagged evidence, in the pre-release line</td>
+            <td role="cell" data-label="AdCP equivalent">Posting events with geotagged evidence, experimental in 3.2</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Billing</th>
@@ -549,8 +550,8 @@
     <p class="source">Source: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/IABTechLab/agentic-direct" rel="noopener">Agentic Direct</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · last verified 2026-09-09</p>
 
     <p><strong>The comparison moves in SDAW's favor, and it should be said plainly.</strong> The
-    earlier reading held that SDAW's weakest steps were exactly where AdCP's pre-release work is
-    strongest. That was an artifact of the reconstruction: the steps looked weak because they were
+    earlier reading held that SDAW's weakest steps were exactly where AdCP's then pre-release out-of-home
+    work was strongest. That was an artifact of the reconstruction: the steps looked weak because they were
     invisible, not because they were absent. On the norm, SDAW's process coverage is the
     <em>more</em> complete of the two — it reaches settlement, which neither agentic protocol does,
     and it has carried complaint handling and posting evidence as first-class record types for
@@ -802,8 +803,8 @@
     <p>The table maps each SDAW concept to the nearest construct on each side, and rates the
     result. <strong>Covered</strong> means a semantically equivalent target exists.
     <strong>Lossy</strong> means a target exists but loses part of the meaning.
-    <strong>Experimental</strong> means the target exists only in a pre-release or report-only
-    surface. <strong>No target</strong> means there is nothing to map onto. Ratings describe the
+    <strong>Experimental</strong> means the target exists only in a surface marked experimental,
+    a design draft or a report-only block. <strong>No target</strong> means there is nothing to map onto. Ratings describe the
     strongest available target rather than the average case.</p>
 
     <!-- [html-validate-disable-block no-redundant-role -- below 40rem the CSS stacks this table into cards, which strips a table's implicit semantics; the explicit roles restore them for assistive technology] -->
@@ -851,7 +852,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">Illumination class</th>
             <td role="cell" data-label="Nearest AAMP construct">None</td>
-            <td role="cell" data-label="Nearest AdCP construct">Illuminated hours in the pre-release out-of-home metrics block, report-only</td>
+            <td role="cell" data-label="Nearest AdCP construct">Illuminated hours in the out-of-home metrics block, experimental in 3.2 and report-only</td>
             <td role="cell" data-label="Coverage">Lossy — hours of light are not a fixture class</td>
           </tr>
           <tr role="row">
@@ -905,7 +906,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · <a href="https://github.com/IABTechLab/agentic-direct" rel="noopener">Agentic Direct</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://github.com/openooh/venue-taxonomy" rel="noopener">OpenOOH venue taxonomy</a> · last verified 2026-09-09</p>
+    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · <a href="https://github.com/IABTechLab/agentic-direct" rel="noopener">Agentic Direct</a> · <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://github.com/openooh/venue-taxonomy" rel="noopener">OpenOOH venue taxonomy</a> · last verified 2026-09-09; the AdCP release state 2026-10-01</p>
 
     <h2>The gap in both directions</h2>
     <h3>What SDAW would need to be agentically transactable</h3>
@@ -990,13 +991,13 @@
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Static out-of-home property and panel identifiers</th>
-            <td role="cell" data-label="Where">AdCP's static out-of-home design draft</td>
+            <td role="cell" data-label="Where">AdCP's static out-of-home design draft, still a draft; whether its <code>ooh</code> property type and <code>panel_id</code> are in the released 3.2 schema was not checked</td>
             <td role="cell" data-label="Why it matters here">Where a QID and a German measurement authority prefix would belong</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Whether static out-of-home graduates from experimental</th>
-            <td role="cell" data-label="Where">The 3.2 pre-release line and its cross-channel work</td>
+            <td role="cell" data-label="Where">AdCP 3.2, whose stable v3.2.1 changelog marks the static out-of-home channel contract experimental</td>
             <td role="cell" data-label="Why it matters here">Experimental fields may change shape, so an early binding carries rework risk</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
@@ -1021,7 +1022,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab on AAMP's scope</a> · <a href="https://ppc.land/aamp-and-adcp-overlap-on-13-functions-iab-tech-lab-coo-says/" rel="noopener">PPC Land on the thirteen shared functions</a> · last verified 2026-09-09</p>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab on AAMP's scope</a> · <a href="https://ppc.land/aamp-and-adcp-overlap-on-13-functions-iab-tech-lab-coo-says/" rel="noopener">PPC Land on the thirteen shared functions</a> · the AdCP static out-of-home draft and release rows last verified 2026-10-01, the rest 2026-09-09</p>
 
     <h2>What this implies for a German seller</h2>
     <p>These follow from the field-level findings above. They are consequences, not advice about
@@ -1075,14 +1076,16 @@
       published, and this page carries no detail beyond that.</li>
       <li>Whether any SDAW-to-IDOOH or SDAW-to-OpenOOH mapping exists. None was located.</li>
       <li>Whether AdCP's static out-of-home draft advances into a released schema, and on what
-      version, since the identifiers a German binding would need are drafted rather than
-      shipped.</li>
+      version. The stable v3.2.1 changelog carries a static out-of-home channel contract with an
+      <code>ooh_metrics</code> delivery block, marked experimental in 3.2, but whether the draft's
+      <code>ooh</code> property type and <code>panel_id</code> identifier — the fields a German
+      binding would need — are in the released schema was not checked.</li>
       <li>Whether AAMP's out-of-home intent produces an artifact, or whether its OpenDirect-derived
       vocabulary remains the only out-of-home surface it has.</li>
       <li>Whether any German or wider DACH media owner has an agentic out-of-home implementation,
       which the channel deep dive also carries as an open question.</li>
     </ul>
-    <p class="source">Source: <a href="https://github.com/mletznerMUC/AgenticBuying/tree/main/docs/research" rel="noopener">this site's research notes</a> · last verified 2026-09-09</p>
+    <p class="source">Source: <a href="https://github.com/mletznerMUC/AgenticBuying/tree/main/docs/research" rel="noopener">this site's research notes</a> · last verified 2026-09-09; the AdCP item updated 2026-10-01</p>
   </main>
   <footer class="site-footer">
     <div class="inner">
