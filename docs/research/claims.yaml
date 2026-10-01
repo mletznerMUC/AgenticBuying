@@ -74,7 +74,7 @@ claims:
     volatility: low
   - id: adcp-3-1-additive-over-3-0
     pages: [index.html, adcp.html, comparison.html]
-    claim: "AdCP 3.1 is the current stable minor version and is additive over 3.0, so a 3.0-conformant client keeps working."
+    claim: "AdCP 3.1 is additive over 3.0, so a 3.0-conformant client keeps working. It was the current stable minor version until 3.2 reached a stable release as v3.2.1 on 1 October 2026 (see adcp-latest-release); the additive contract was last read on 2 September 2026."
     status: shipped
     sources:
       - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1
@@ -977,7 +977,7 @@ claims:
     last_verified: 2026-09-08
     volatility: medium
   - id: aamp-3-0-openproposal
-    pages: [legal.html]
+    pages: [legal.html, index.html, aamp.html, comparison.html, releases.html]
     claim: "IAB Tech Lab announced AAMP 3.0 on 22 September 2026. Its new part, OpenProposal, is at v3.0-draft-1 with public comment open until 22 October 2026: 71 fields in four categories (merchandising, optimization, commitment, reconciliation), only three of which need a negotiation round trip, with line items mapped to OpenDirect 2.1, the Deals API or OpenRTB 2.6."
     status: announced
     sources:
