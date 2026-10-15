@@ -39,7 +39,7 @@
     Protocol, and AAMP, IAB Tech Lab's Agentic Advertising Management Protocols), and where
     liability sits at each step. Written for in-house counsel, contract managers and compliance
     teams who need to understand the process before they can allocate its risks.</p>
-    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · all claims on this page verified on that date</p>
+    <p class="page-meta">Updated <time datetime="2026-10-15">15 October 2026</time> · the OpenProposal and Agent Registry claims were re-checked on that date, and the OpenProposal field description corrected; all other claims on this page were verified on <time datetime="2026-10-01">1 October 2026</time></p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -315,7 +315,7 @@
       </ul>
       <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
       <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a>;
-      <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> (registry count) · last verified 2026-10-01</p>
+      <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> (registry count) · the registry count last verified 2026-10-15, the rest 2026-10-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
         <summary>Medium exposure — impersonation and unauthorized resale</summary>
@@ -392,12 +392,15 @@
         3.0 announced on 22 September 2026, is a machine-readable format for seller products
         and responses to briefs. It is at <code>v3.0-draft-1</code>, with public comment open
         until 22 October 2026.</li>
-        <li>The draft has 71 fields in four categories: merchandising, optimization, commitment
-        and reconciliation. Only three of the fields need a negotiation round trip.</li>
+        <li>The draft has 71 fields. Only three of them need a round trip to the counterparty.
+        Its README describes seven mutability markers for fields: immutable, seller-set,
+        selectable, settable, supplied, requestable and derived. The four field categories this
+        page gave before (merchandising, optimization, commitment and reconciliation) were not
+        found in the README on 15 October 2026 and have been removed.</li>
       </ul>
       <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
       <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>;
-      <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> · last verified 2026-10-01</p>
+      <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> · the OpenProposal claims last verified 2026-10-15, the AdCP claim 2026-10-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
         <summary>Medium exposure — binding offer or invitation to treat?</summary>
@@ -911,7 +914,7 @@
           </thead>
           <tbody role="rowgroup">
             <tr role="row" data-from="sal" data-to="buy">
-              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_media_buy_delivery</code></td><td role="cell" data-label="AAMP">OpenProposal reconciliation fields</td>
+              <th role="rowheader" scope="row">Sales agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>get_media_buy_delivery</code></td><td role="cell" data-label="AAMP">OpenProposal draft; reconciliation fields not confirmed</td>
             </tr>
             <tr role="row" data-from="sig" data-to="buy">
               <th role="rowheader" scope="row">Signals agent → buyer agent</th><td role="cell" data-label="Who acts">software</td><td role="cell" data-label="AdCP"><code>report_usage</code> (data fees)</td><td role="cell" data-label="AAMP" data-none="">Not specified</td>
@@ -934,13 +937,16 @@
       </ul>
       <h3>AAMP</h3>
       <ul>
-        <li><span class="badge announced">announced</span> Reconciliation is one of the four
-        field categories of the OpenProposal draft.</li>
+        <li><span class="badge announced">announced</span> This page previously said that
+        reconciliation is one of four field categories in the OpenProposal draft. The draft's
+        README, re-read on 15 October 2026, describes seven mutability markers for fields, and the
+        four categories could not be found there, so how the draft covers reconciliation is not
+        established.</li>
         <li>No standardized governance audit log is published among the AAMP components.</li>
       </ul>
       <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
       <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
-      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a> · last verified 2026-10-01</p>
+      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a> · the OpenProposal claim last verified 2026-10-15, the AdCP claims 2026-10-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
         <summary>Medium exposure — which numbers count?</summary>
