@@ -35,8 +35,8 @@
     <h1>Release tracker — AdCP and AAMP</h1>
     <p class="lead">The last three releases of each protocol: what changed, why it matters, and
     how strong the evidence is. Version numbers are not comparable between the two projects.</p>
-    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · every row on
-    this page was re-checked on that date, and the AAMP 3.0 row was added; the AdCP documentation
+    <p class="page-meta">Updated <time datetime="2026-11-01">1 November 2026</time> · every row on
+    this page was re-checked on that date, and the AdCP 3.3 pre-release row was added; the AdCP documentation
     claims were last verified on <time datetime="2026-09-02">2 September 2026</time></p>
     <p class="source">Primary sources: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">AAMP standards page</a></p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
@@ -54,8 +54,9 @@
     never be read across them.</p>
     <p><strong>AdCP tags the specification itself.</strong> Releases land on GitHub at a
     weekly-plus cadence, and three lines are active at once: 3.2 as the current stable line since
-    1 October 2026, and 3.1 and 3.0 still receiving maintenance releases. Version numbers can be
-    skipped: 3.2 shipped as 3.2.1 because 3.2.0 was withdrawn.</p>
+    1 October 2026, and 3.1 and 3.0 still receiving maintenance releases; a 3.3 pre-release line
+    opened on 22 October 2026. Version numbers can be skipped: 3.2 shipped as 3.2.1 because 3.2.0
+    was withdrawn.</p>
     <p><strong>AAMP announces framework milestones and versions its component repositories
     separately.</strong> Component tags run ahead of the announced milestones — buyer-agent and
     seller-agent passed through v2.1.x and v2.2.x between the 2.0 and 2.3 announcements, and
@@ -77,27 +78,33 @@
         </thead>
         <tbody role="rowgroup">
           <tr role="row">
-            <th role="rowheader" scope="row">3.2 — current stable<br>v3.2.1 · <time datetime="2026-10-01">1 Oct 2026</time></th>
-            <td role="cell" data-label="What changed">First stable 3.2, after seven release candidates (rc.7 on 27 September). Adds CTV, DOOH and static-OOH surface, audio VAST, <code>brand.json</code> authentication, Reliable Reporting, storyboards, cursor pagination and frequency capping. No 3.2.0: it was cut by accident and withdrawn.</td>
+            <th role="rowheader" scope="row">3.2 — current stable<br>v3.2.8 · <time datetime="2026-10-28">28 Oct 2026</time></th>
+            <td role="cell" data-label="What changed">First stable as v3.2.1 on 1 October, after seven release candidates (rc.7 on 27 September), then stable tags through v3.2.8, marked Latest; the contents of v3.2.2 to v3.2.8 were not read. The line adds CTV, DOOH and static-OOH surface, audio VAST, <code>brand.json</code> authentication, Reliable Reporting, storyboards, cursor pagination and frequency capping. No 3.2.0: it was cut by accident and withdrawn.</td>
             <td role="cell" data-label="Why it matters">The stable base now extends past display into out-of-home and audio. The static out-of-home contract is marked experimental in 3.2.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">3.1 — maintenance<br>v3.1.24 · <time datetime="2026-09-23">23 Sep 2026</time></th>
-            <td role="cell" data-label="What changed">Weekly-plus tags continued through September — v3.1.21, v3.1.22, v3.1.23, then v3.1.24 — after v3.1.20 of 2 September.</td>
+            <th role="rowheader" scope="row">3.1 — maintenance<br>v3.1.31 · <time datetime="2026-10-30">30 Oct 2026</time></th>
+            <td role="cell" data-label="What changed">Weekly-plus tags continued through September and October — v3.1.24 on 23 September, v3.1.30 on 28 October, then v3.1.31.</td>
             <td role="cell" data-label="Why it matters">Stable until 3.2.1, and why this site withdrew its former roadmap section: those &#8220;future&#8221; items ship here.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">3.0 — maintenance<br>v3.0.26 · <time datetime="2026-08-21">21 Aug 2026</time></th>
-            <td role="cell" data-label="What changed">Maintenance continues alongside 3.1: v3.0.22 on 24 July, v3.0.25 on 19 August, then v3.0.26 tagged the same day as v3.1.19 and still the line's latest tag.</td>
+            <th role="rowheader" scope="row">3.0 — maintenance<br>v3.0.28 · <time datetime="2026-10-07">7 Oct 2026</time></th>
+            <td role="cell" data-label="What changed">Maintenance continues alongside 3.1: v3.0.22 on 24 July, v3.0.25 on 19 August, v3.0.26 on 21 August, then v3.0.28 on 7 October.</td>
             <td role="cell" data-label="Why it matters">A 3.0 deployment is still supported, not stranded. No GA date for the 3.0 line was ever published.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
+          </tr>
+          <tr role="row">
+            <th role="rowheader" scope="row">3.3 — pre-release<br>v3.3.0-beta.3 · <time datetime="2026-10-31">31 Oct 2026</time></th>
+            <td role="cell" data-label="What changed">A new pre-release line: v3.3.0-beta.0 on 22 October, then betas through beta.3. Its changelog was not read.</td>
+            <td role="cell" data-label="Why it matters">Not a release to build on: the beta.0 notes say to use it in development and staging, not production.</td>
+            <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">What&#8217;s new in 3.1</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">What&#8217;s new in v3</a> · the three release lines last verified 2026-10-01, the documentation claims 2026-09-02</p>
+    <p class="source">Sources: <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">What&#8217;s new in 3.1</a> · <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">What&#8217;s new in v3</a> · the release tags and dates last verified 2026-11-01, the 3.2 changelog contents 2026-10-01, the documentation claims 2026-09-02</p>
 
     <h2>AAMP</h2>
     <p>One release is either an announced framework milestone or a tagged component release.
@@ -111,7 +118,7 @@
         <tbody role="rowgroup">
           <tr role="row">
             <th role="rowheader" scope="row">AAMP 3.0<br>Announced milestone · <time datetime="2026-09-22">22 Sep 2026</time></th>
-            <td role="cell" data-label="What changed">Adds OpenProposal, a draft proposal format of 71 fields, only three needing a round trip to the counterparty, that routes line items to OpenDirect 2.1, the Deals API or OpenRTB 2.6. Public comment runs to 22 October 2026.</td>
+            <td role="cell" data-label="What changed">Adds OpenProposal, a draft proposal format of 71 fields, only three needing a round trip to the counterparty, that routes line items to OpenDirect 2.1, the Deals API or OpenRTB 2.6. Public comment was set to close on 22 October 2026. <span class="badge reported">reported</span> PPC Land reports it extended to 10 November 2026.</td>
             <td role="cell" data-label="Why it matters">A draft, not a ratified standard: nothing in it is yet a release to build on.</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
@@ -130,13 +137,13 @@
           <tr role="row">
             <th role="rowheader" scope="row">Components v2.4.2<br>Component release · <time datetime="2026-08-18">18 Aug 2026</time></th>
             <td role="cell" data-label="What changed">seller-agent v2.4.0 and v2.4.1 on 4 and 5 August, buyer-agent v2.4.1 and iab-agentic-primitives v0.5.1 on 10 August, then buyer-agent and seller-agent v2.4.2 on 18 August.</td>
-            <td role="cell" data-label="Why it matters">SDK maintenance, not a new framework generation: no announcement names an &#8220;AAMP 2.4&#8221;. No component has tagged since, as of 1 October 2026.</td>
+            <td role="cell" data-label="Why it matters">SDK maintenance, not a new framework generation: no announcement names an &#8220;AAMP 2.4&#8221;. No component has tagged since, as of 1 November 2026.</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (AAMP 2.3)</a> · <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a> · <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent releases</a> · <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a> · <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a> · <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">OpenProposal repository</a> and <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> (AAMP 3.0) · last verified 2026-10-01</p>
+    <p class="source">Sources: <a href="https://www.prnewswire.com/news-releases/iab-tech-lab-releases-aamp-2-3--bringing-enterprise-grade-infrastructure-and-privacy-diligence-to-agentic-advertising-302838652.html" rel="noopener">PR Newswire (AAMP 2.3)</a> · <a href="https://iabtechlab.com/aamp-2-0-release-brings-transaction-ready-buyer-and-seller-agent-sdks/" rel="noopener">IAB Tech Lab (AAMP 2.0)</a> · <a href="https://github.com/IABTechLab/buyer-agent/releases" rel="noopener">buyer-agent releases</a> · <a href="https://github.com/IABTechLab/seller-agent/releases" rel="noopener">seller-agent releases</a> · <a href="https://github.com/IABTechLab/iab-agentic-primitives/releases" rel="noopener">iab-agentic-primitives releases</a> · <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">OpenProposal repository</a> and <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> (AAMP 3.0) · <a href="https://ppc.land/iab-tech-lab-extends-ai-ad-buying-standard-comments-to-november-10/" rel="noopener">PPC Land</a> (the comment-period extension) · last verified 2026-11-01</p>
   </main>
   <footer class="site-footer">
     <div class="inner">

@@ -39,7 +39,11 @@
     Protocol, and AAMP, IAB Tech Lab's Agentic Advertising Management Protocols), and where
     liability sits at each step. Written for in-house counsel, contract managers and compliance
     teams who need to understand the process before they can allocate its risks.</p>
-    <p class="page-meta">Updated <time datetime="2026-10-01">1 October 2026</time> · all claims on this page verified on that date</p>
+    <p class="page-meta">Updated <time datetime="2026-11-01">1 November 2026</time> · the AAMP 3.0,
+    agent-registry, overlap and AdCP governance and contract-state claims were re-checked on that
+    date; the remaining claims, including every legal source, were last verified on
+    <time datetime="2026-10-01">1 October 2026</time>; each claim carries its own verification date
+    in its source line</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -315,7 +319,7 @@
       </ul>
       <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP 3.0, what's new</a>;
       <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a>;
-      <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> (registry count) · last verified 2026-10-01</p>
+      <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> (registry count, re-checked 2026-11-01) · last verified 2026-10-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
         <summary>Medium exposure — impersonation and unauthorized resale</summary>
@@ -390,14 +394,18 @@
       <ul>
         <li><span class="badge announced">announced</span> OpenProposal, the new part of AAMP
         3.0 announced on 22 September 2026, is a machine-readable format for seller products
-        and responses to briefs. It is at <code>v3.0-draft-1</code>, with public comment open
-        until 22 October 2026.</li>
-        <li>The draft has 71 fields in four categories: merchandising, optimization, commitment
-        and reconciliation. Only three of the fields need a negotiation round trip.</li>
+        and responses to briefs. It is at <code>v3.0-draft-1</code>, with public comment set to
+        close on 22 October 2026. <span class="badge reported">reported</span> PPC Land reports
+        the period extended to 10 November 2026; the repository still showed 22 October on
+        1 November.</li>
+        <li>The draft has 71 fields, and only three of them need a negotiation round trip. The
+        repository marks each field's mutability with seven markers; the four-category grouping
+        this page gave earlier was not found there.</li>
       </ul>
-      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a>;
+      <p class="source">Source: <a href="https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro" rel="noopener">AdCP introduction (3.1.21)</a> · last verified 2026-10-01;
       <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>;
-      <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a> · last verified 2026-10-01</p>
+      <a href="https://www.iabuk.com/news-article/iab-tech-lab-introduces-aamp-30" rel="noopener">IAB UK</a>;
+      <a href="https://ppc.land/iab-tech-lab-extends-ai-ad-buying-standard-comments-to-november-10/" rel="noopener">PPC Land</a> (the extension) · last verified 2026-11-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
         <summary>Medium exposure — binding offer or invitation to treat?</summary>
@@ -666,8 +674,8 @@
         requires insertion-order approval.</li>
         <li>An optional <code>idempotency_key</code> makes retries safe: a repeated message is not
         a second order.</li>
-        <li>Confirmed packages carry <code>committed_metrics</code>, described as a binding
-        reporting contract, which are timestamped and immutable.</li>
+        <li>Confirmed packages may carry <code>committed_metrics</code>, an optional field
+        described as a binding reporting contract, which is timestamped and immutable.</li>
       </ul>
       <h3>AAMP</h3>
       <ul>
@@ -677,7 +685,7 @@
         <li>Agentic Direct provides the communication layer between buyer and seller agents.</li>
       </ul>
       <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/media-buy/task-reference/create_media_buy" rel="noopener">AdCP, create_media_buy reference</a>;
-      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a>;
+      <a href="https://github.com/IABTechLab/OpenProposal" rel="noopener">IAB Tech Lab OpenProposal repository</a> · last verified 2026-11-01;
       <a href="https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/" rel="noopener">IAB Tech Lab, framing AAMP</a> · last verified 2026-10-01</p>
       <h3>Legal lens</h3>
       <details class="legal-risk" open>
@@ -1140,7 +1148,7 @@
     PPC Land; no primary statement has been located. In practice a seller may need to support
     both, so contracts are more durable if they are protocol-neutral and refer to
     "agent-transmitted orders" rather than to one protocol.</p>
-    <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> · last verified 2026-10-01</p>
+    <p class="source">Source: <a href="https://ppc.land/iab-tech-lab-gives-industry-until-october-22-to-weigh-in-on-aamp-3-0/" rel="noopener">PPC Land</a> · last verified 2026-11-01</p>
 
     <h2 id="glossary">Glossary</h2>
     <dl>
