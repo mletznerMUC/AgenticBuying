@@ -193,7 +193,7 @@ The 2026-09-02 refresh closed four and opened three; the 2026-09-04 OOH note ope
 more; the 2026-09-08 SDAW note opened seven, listed below and also published on
 `sdaw.html`; the 2026-09-15 refresh closed none and opened four; the 2026-10-01 refresh
 closed two, narrowed one and opened five; the 2026-11-01 refresh closed one, narrowed three
-and opened four, listed first because they bear on claims the site publishes today. The ones
+and opened five, listed first because they bear on claims the site publishes today. The ones
 that most affect the site's accuracy:
 
 - **What AdCP v3.2.2 to v3.2.8 and the 3.3 betas contain**, including whether any touches the
