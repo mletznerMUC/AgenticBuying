@@ -37,12 +37,14 @@
     parts of the agentic buying protocols reach the medium, what has actually been piloted and
     where, and why a medium that addresses places rather than people fits the protocols'
     primitives badly.</p>
-    <p class="page-meta">Updated <time datetime="2026-11-01">1 November 2026</time> · the AdCP,
-    AAMP, taxonomy and proof-of-concept claims were re-checked on that date; the measurement-pilot,
-    VIOOH, AdQuick and regional-absence claims, whose sources could not be reached or were not
-    re-searched, and the remaining standards claims keep earlier dates; each claim carries its own
-    verification date in its source line. This run touched no SDAW norm-level claim; the local
-    norm folder was not reachable from it</p>
+    <p class="page-meta">Updated <time datetime="2026-11-09">9 November 2026</time> · the AdCP
+    out-of-home schema, the VIOOH Seller Agent row and the regional-absence rows were re-checked on
+    that date, the latter two against their cited secondary sources; the AAMP, taxonomy and other
+    proof-of-concept claims on <time datetime="2026-11-01">1 November 2026</time>; the
+    measurement-pilot, VIOOH rollout and AdQuick claims, whose sources could not be reached, and the
+    remaining standards claims keep earlier dates; each claim carries its own verification date in
+    its source line. This run touched no SDAW norm-level claim; the local norm folder was not
+    reachable from it</p>
     <p class="source">Claims are badged by evidence strength; unbadged statements are verified against their cited source.</p>
     <ul class="badge-legend">
       <li><span class="badge shipped">shipped</span> released or in production</li>
@@ -64,7 +66,7 @@
     <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6 specification</a>; <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md" rel="noopener">AdCOM 1.0</a>; <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect</a> · last verified 2026-09-04</p>
     <p>The <strong>agentic layer</strong> on top is thin and new. AdCP's (Ad Context Protocol)
     structured out-of-home schema work reached a stable release only on October 1, 2026, in v3.2.1
-    (the 3.2 line has since moved to v3.2.8), and its static out-of-home contract is marked
+    (the 3.2 line has since moved to v3.2.9), and its static out-of-home contract is marked
     experimental in 3.2; AAMP (Agentic Advertising
     Management Protocols) carries out-of-home only as an enumeration value, with no dedicated
     transaction path. The consequence for a buyer is specific: the channel's programmatic plumbing
@@ -155,9 +157,10 @@
     <p class="source">Sources: <a href="https://docs.adcontextprotocol.org/docs/creative/channels/dooh" rel="noopener">AdCP DOOH creative channel documentation</a>; <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3" rel="noopener">AdCP — what's new in v3</a>; <a href="https://nofluffadvisory.com/standards/dooh-place-based-media/" rel="noopener">No Fluff Advisory, DOOH and place-based media standards</a> · the channel page and the twenty-channel count last verified 2026-11-01; the No Fluff Advisory synthesis 2026-10-01</p>
     <p>The richer, structured out-of-home work shipped in the 3.2 line, which reached a stable
     release as <code>v3.2.1</code> on October 1, 2026, after release candidates through
-    <code>v3.2.0-rc.7</code>, and has since taken stable tags through <code>v3.2.8</code> of
-    October 28; whether those later tags or the 3.3 pre-releases change the out-of-home items was
-    not read. There is no <code>v3.2.0</code>: the changelog records 3.2.0 as a
+    <code>v3.2.0-rc.7</code>, and has since taken stable tags through <code>v3.2.9</code> of
+    November 9; whether those later tags change the out-of-home items was not read. The 3.3
+    pre-release changelog, read from beta.5 back to partway through beta.1, contains no
+    out-of-home item. There is no <code>v3.2.0</code>: the changelog records 3.2.0 as a
     permanently withdrawn version number, accidentally cut on June 30, 2026 and never released. The
     3.2.1 changelog lists DOOH placement attributes for slot duration, loop duration, screen
     resolution, and motion; an out-of-home metrics block for static and classic inventory covering
@@ -166,13 +169,13 @@
     OpenOOH venue identifiers. The static out-of-home channel contract is marked experimental in
     3.2. The same line carries connected-television experience profiles and audio delivery, so
     out-of-home arrives as one of several channel extensions rather than as a standalone module.</p>
-    <p class="source">Sources: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · the release tags, the DOOH placement attributes and the sales specialism last verified 2026-11-01; the metrics block, OpenOOH identifiers and experimental marking 2026-10-01</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · the release tags, the DOOH placement attributes, the sales specialism, the metrics block, the OpenOOH identifiers, the duration-weighted share of voice and the experimental marking last verified 2026-11-09</p>
     <p>One entry in that release is worth quoting for what it concedes. The static-out-of-home
     contract states that static units have no play events, that delivery is a period-level modeled
     audience estimate, and that settlement rests on proof of posting per the conventions of the
     OAAA (Out of Home Advertising Association of America). A protocol built for counted impressions
     is, in that sentence, writing down the fact that a poster cannot be counted.</p>
-    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry · last verified 2026-10-01</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry · last verified 2026-11-09</p>
 
     <h3>AAMP</h3>
     <p><span class="badge reported">reported</span> IAB Tech Lab's AAMP standards page was recorded
@@ -255,7 +258,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">Advance Measurement System</th>
             <td role="cell" data-label="What it provides">A next-generation United States audience currency intended to succeed the current Geopath system</td>
-            <td role="cell" data-label="Governance and date">Geopath and OAAA, with Ipsos selected 31 Mar 2026; pilot in H2 2026, transition from 2027, adoption targeted 2028. The sole source returned HTTP 403 on 1 Nov 2026</td>
+            <td role="cell" data-label="Governance and date">Geopath and OAAA, with Ipsos selected 31 Mar 2026; pilot in H2 2026, transition from 2027, adoption targeted 2028. The sole source returned HTTP 403 on 1 and 9 Nov 2026</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -267,7 +270,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://oaaa.org/news/oaaa-partners-with-iab-tech-lab-to-align-dooh-with-openrtb-trade-associations-announce-collaboration-via-task-force/" rel="noopener">OAAA on the OpenRTB task force</a> · <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md" rel="noopener">AdCOM 1.0</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://www.iab.com/guidelines/dooh-measurement-guide/" rel="noopener">IAB DOOH Measurement Guide</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://www.route.org.uk/audience.php" rel="noopener">Route</a> · last verified 2026-11-01 for the OpenOOH row (against invidis; the OAAA release returned HTTP 403), 2026-10-01 for the Advance Measurement System row, whose source returned HTTP 403 on 2026-11-01, 2026-09-04 for the others</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://oaaa.org/news/oaaa-partners-with-iab-tech-lab-to-align-dooh-with-openrtb-trade-associations-announce-collaboration-via-task-force/" rel="noopener">OAAA on the OpenRTB task force</a> · <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md" rel="noopener">AdCOM 1.0</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://www.iab.com/guidelines/dooh-measurement-guide/" rel="noopener">IAB DOOH Measurement Guide</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://www.route.org.uk/audience.php" rel="noopener">Route</a> · last verified 2026-11-01 for the OpenOOH row (against invidis; the OAAA release returned HTTP 403), 2026-10-01 for the Advance Measurement System row, whose source returned HTTP 403 on 2026-11-01 and 2026-11-09, 2026-09-04 for the others</p>
     <p><span class="badge reported">reported</span> The taxonomy row is badged because its own
     sources disagree and part of it can no longer be re-read. OAAA's press release carries a
     February 10, 2026 dateline and trade coverage a February 11 one, while the
@@ -348,7 +351,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">Measurement fragmentation</th>
             <td role="cell" data-label="What breaks">Geopath, Route and national bodies use different methods and are not interoperable currencies</td>
-            <td role="cell" data-label="Where the answer stands">The Geopath, OAAA and Ipsos pilot targets a United States currency, though its sole source could not be re-read on 1 November 2026; no cross-border initiative located</td>
+            <td role="cell" data-label="Where the answer stands">The Geopath, OAAA and Ipsos pilot targets a United States currency, though its sole source could not be re-read on 1 or 9 November 2026; no cross-border initiative located</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -360,7 +363,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/creative/channels/dooh" rel="noopener">AdCP DOOH creative channel</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/" rel="noopener">Trillboards on the DOOH bid stream</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis on the Broadsign campaign</a> · last verified 2026-11-01, except the Geopath release (2026-10-01, HTTP 403 on 2026-11-01) and OpenRTB 2.6 (2026-09-04)</p>
+    <p class="source">Sources: <a href="https://raw.githubusercontent.com/InteractiveAdvertisingBureau/openrtb2.x/main/2.6.md" rel="noopener">OpenRTB 2.6</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · <a href="https://docs.adcontextprotocol.org/docs/creative/channels/dooh" rel="noopener">AdCP DOOH creative channel</a> · <a href="https://www.globenewswire.com/news-release/2026/02/10/3235451/0/en/oaaa-releases-updated-openooh-taxonomy-to-advance-industry-standardization-transparency.html" rel="noopener">OAAA on OpenOOH v1.2.1</a> · <a href="https://trillboards.com/blog/openrtb-2-6-dooh-bid-stream-technical-deep-dive/" rel="noopener">Trillboards on the DOOH bid stream</a> · <a href="https://www.globenewswire.com/news-release/2026/03/31/3265565/0/en/ooh-industry-advances-effort-to-modernize-audience-measurement-and-selects-ipsos-for-pilot-program.html" rel="noopener">Geopath, OAAA and Ipsos</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis on the Broadsign campaign</a> · last verified 2026-11-01, except the Geopath release (2026-10-01, HTTP 403 on 2026-11-01 and 2026-11-09) and OpenRTB 2.6 (2026-09-04)</p>
     <p>Two rows deserve emphasis because they are where the medium and the protocols meet most
     awkwardly. The identity row is the one AdCP addresses most directly: its 3.2 line adds
     experimental product-scoped identity-absence declarations and DOOH sales conformance for
@@ -406,7 +409,7 @@
             <th role="rowheader" scope="row">VIOOH Seller Agent</th>
             <td role="cell" data-label="When">H1 2026, announced 26 Jun 2026</td>
             <td role="cell" data-label="Region">United Kingdom</td>
-            <td role="cell" data-label="What was demonstrated">Automated curation of 100-plus premium deal-package requests — sell-side packaging as a managed service, not a negotiated buy. The primary report returned HTTP 403 on 15 September, 1 October and 1 November 2026; only a secondary report was reached, and it carries the 26 June Cannes Lions date</td>
+            <td role="cell" data-label="What was demonstrated">Automated curation of 100-plus premium deal-package requests — sell-side packaging as a managed service, not a negotiated buy. The primary report returned HTTP 403 on 15 September, 1 October, 1 November and 9 November 2026; only a secondary report was reached, and it carries the 26 June Cannes Lions date</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -420,7 +423,7 @@
             <th role="rowheader" scope="row">AdQuick MCP</th>
             <td role="cell" data-label="When">2026, exact date unconfirmed</td>
             <td role="cell" data-label="Region">United States</td>
-            <td role="cell" data-label="What was demonstrated">An MCP server over its inventory and planning data, plus a vendor statement that a Cannes Lions 2026 campaign ran end to end through its own agent; no counterpart agent named. The vendor page returned HTTP 403 on 1 October and 1 November 2026</td>
+            <td role="cell" data-label="What was demonstrated">An MCP server over its inventory and planning data, plus a vendor statement that a Cannes Lions 2026 campaign ran end to end through its own agent; no counterpart agent named. The vendor page returned HTTP 403 on 1 October, 1 November and 9 November 2026</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -454,7 +457,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: <a href="https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/" rel="noopener">OAAA</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis</a> · <a href="https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026" rel="noopener">LBBOnline on VIOOH</a> · <a href="https://ppc.land/vioohs-seller-agent-automated-100-dooh-deals-in-h1-2026/" rel="noopener">PPC Land on VIOOH</a> · <a href="https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/" rel="noopener">ExchangeWire on Displayce</a> · <a href="https://ppc.land/displayce-launches-agentic-dooh-agents-via-mcp-at-cannes-lions-2026/" rel="noopener">PPC Land on Displayce</a> · <a href="https://www.adquick.com/ooh-mcp" rel="noopener">AdQuick</a> · <a href="https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/" rel="noopener">PPC Land on JCDecaux in Latin America</a> · <a href="https://invidis.com/news/2026/01/dooh-al-arabia-wins-uae-mall-network-and-saudi-airport-contracts/" rel="noopener">invidis on Gulf contracts</a> · the Broadsign and Displayce rows last verified 2026-11-01; the regional rows 2026-10-01; the VIOOH and AdQuick rows 2026-09-04, their primary sources having returned HTTP 403 on 2026-10-01 and 2026-11-01</p>
+    <p class="source">Sources: <a href="https://oaaa.org/blog-posts/broadsigns-sell-side-ai-agent-joins-with-global-netherlands-and-draft-digital-to-deliver-first-ever-end-to-end-agentic-ai-powered-ooh-campaign/" rel="noopener">OAAA</a> · <a href="https://invidis.com/news/2026/05/ooh-broadsign-tests-agentic-ai-in-ooh-campaign-buying/" rel="noopener">invidis</a> · <a href="https://lbbonline.com/news/VIOOH-Scales-Agentic-AI-Across-H1-2026" rel="noopener">LBBOnline on VIOOH</a> · <a href="https://ppc.land/vioohs-seller-agent-automated-100-dooh-deals-in-h1-2026/" rel="noopener">PPC Land on VIOOH</a> · <a href="https://www.exchangewire.com/blog/2026/06/29/displayce-launches-its-agentic-dooh-offering-a-suite-of-agents-available-via-mcp/" rel="noopener">ExchangeWire on Displayce</a> · <a href="https://ppc.land/displayce-launches-agentic-dooh-agents-via-mcp-at-cannes-lions-2026/" rel="noopener">PPC Land on Displayce</a> · <a href="https://www.adquick.com/ooh-mcp" rel="noopener">AdQuick</a> · <a href="https://ppc.land/jcdecaux-gains-100-programmatic-reach-in-latin-america-across-4-600-screens/" rel="noopener">PPC Land on JCDecaux in Latin America</a> · <a href="https://invidis.com/news/2026/01/dooh-al-arabia-wins-uae-mall-network-and-saudi-airport-contracts/" rel="noopener">invidis on Gulf contracts</a> · the regional rows last verified 2026-11-09 against their cited sources, without a new regional search; the VIOOH Seller Agent row 2026-11-09 against PPC Land; the Broadsign and Displayce rows 2026-11-01; the AdQuick row 2026-09-04; the VIOOH and AdQuick primary sources returned HTTP 403 on 2026-10-01, 2026-11-01 and 2026-11-09</p>
 
     <h3>The one end-to-end case, and what it does not prove</h3>
     <p><span class="badge reported">reported</span> The best-documented agent-to-agent out-of-home
@@ -506,7 +509,7 @@
           <tr role="row">
             <th role="rowheader" scope="row">VIOOH (JCDecaux)</th>
             <td role="cell" data-label="Role in the channel">Supply-side platform</td>
-            <td role="cell" data-label="What is publicly documented">A self-serve Seller Agent rollout and registration with both AdCP and AAMP, described as planned for Q3 2026; neither was confirmed complete as of 4 September 2026. The announcement carrying the plan returned HTTP 403 on 15 September, 1 October and 1 November 2026, and the quarter ended 30 September 2026 with no completion announcement located. Its H1 2026 automation is in the table above</td>
+            <td role="cell" data-label="What is publicly documented">A self-serve Seller Agent rollout and registration with both AdCP and AAMP, described as planned for Q3 2026; neither was confirmed complete as of 4 September 2026. The announcement carrying the plan returned HTTP 403 on 15 September, 1 October, 1 November and 9 November 2026, and the quarter ended 30 September 2026 with no completion announcement located. Its H1 2026 automation is in the table above</td>
             <td role="cell" data-label="Status"><span class="badge reported">reported</span></td>
           </tr>
           <tr role="row">
@@ -573,7 +576,7 @@
     or a buy inside out-of-home, not a plan that trades it off against anything else. The
     <a href="workflows.html">workflows page</a> documents the cross-platform agentic buys that do
     exist, across linear and digital video — out-of-home is not among them.</p>
-    <p class="source">Source: survey of 2026 cross-channel reach and frequency coverage and of every case listed above, run as of 2026-09-04 and not repeated; no qualifying source located; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> re-checked on 2026-10-01 and, through the 3.3.0-beta.3 entries only, on 2026-11-01 · last verified 2026-11-01</p>
+    <p class="source">Source: survey of 2026 cross-channel reach and frequency coverage and of every case listed above, run as of 2026-09-04 and not repeated; no qualifying source located; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> re-checked on 2026-10-01 and, through the 3.3.0-beta.3 entries only, on 2026-11-01; its 3.3.0-beta.5 to beta.1 entries, read on 2026-11-09, contain no out-of-home item · last verified 2026-11-01</p>
     <p>The structural reason sits in Figure 1. A cross-channel frequency cap needs a common unit
     across channels, and out-of-home's unit is a modeled audience per play attached to a place. Until
     an agent can convert between "reached this person three times" and "was present at this

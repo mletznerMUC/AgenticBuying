@@ -39,9 +39,10 @@
     Context Protocol). The finding that organizes everything else is that SDAW's gap is one of
     transport and digital data model, not of process scope — it describes a complete commercial
     chain from panel master data to invoicing, in a shape no agent can call.</p>
-    <p class="page-meta">Updated <time datetime="2026-11-01">1 November 2026</time> · the AdCP
-    release versions, the AdCP static out-of-home design draft, the protocol-side gap rows and the
-    IDOOH lineage were re-verified on that date; no SDAW norm-level claim was touched, and the
+    <p class="page-meta">Updated <time datetime="2026-11-09">9 November 2026</time> · the AdCP
+    release versions, the AdCP static out-of-home design draft and the OpenDirect 2.1 vocabulary
+    were re-verified on that date; the protocol-side gap rows and the IDOOH lineage on
+    <time datetime="2026-11-01">1 November 2026</time>; no SDAW norm-level claim was touched, and the
     folder holding the norm was not reachable from this run, so the norm rows keep their
     <time datetime="2026-09-09">9 September 2026</time> verification; each claim carries its own
     verification date in its source line</p>
@@ -120,7 +121,7 @@
             <th role="rowheader" scope="row">Current version</th>
             <td role="cell" data-label="SDAW v004">Version 004 since 2002/2003, amended in place; last revision 11 June 2025</td>
             <td role="cell" data-label="AAMP 2.3">2.3, released 30 July 2026</td>
-            <td role="cell" data-label="AdCP 3.1 and 3.2">v3.2.8 stable, 28 October 2026, on the 3.2 line first stable as v3.2.1 on 1 October 2026 (there is no v3.2.0); v3.1.31 on the 3.1 line, 30 October 2026; a 3.3 pre-release line at v3.3.0-beta.3</td>
+            <td role="cell" data-label="AdCP 3.1 and 3.2">v3.2.9 stable, 9 November 2026, on the 3.2 line first stable as v3.2.1 on 1 October 2026 (there is no v3.2.0); v3.1.32 on the 3.1 line, 5 November 2026; a 3.3 pre-release line at v3.3.0-beta.5, 7 November 2026</td>
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Unit of exchange</th>
@@ -167,7 +168,7 @@
         </tbody>
       </table>
     </div>
-    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://aussenmedien.de/" rel="noopener">B|A|M</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab on AAMP</a> · <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repositories</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP repository</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry · the AdCP release versions and AAMP standards-page wording last verified 2026-11-01, the AdCP static out-of-home status 2026-10-01, the rest 2026-09-09</p>
+    <p class="source">Sources: SDAW v004, revision date 11 June 2025, B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the author) · <a href="https://aussenmedien.de/" rel="noopener">B|A|M</a> · <a href="https://iabtechlab.com/standards/aamp-agentic-advertising-management-protocols/" rel="noopener">IAB Tech Lab on AAMP</a> · <a href="https://github.com/IABTechLab/AAMP" rel="noopener">AAMP repositories</a> · <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP releases</a> · <a href="https://github.com/adcontextprotocol/adcp" rel="noopener">AdCP repository</a> · <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>, <code>3.2.1</code> entry · the AdCP release versions and the AdCP static out-of-home status last verified 2026-11-09, the AAMP standards-page wording 2026-11-01, the rest 2026-09-09</p>
 
     <figure>
       <div class="figure-wrap">
@@ -234,7 +235,7 @@
       B|A|M Bundesverband Aussenmedien (association document, not publicly retrievable; read by the
       author) ·
       <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> ·
-      <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-11-01 for the AdCP draft and the Deals API, 2026-09-09 for the rest</figcaption>
+      <a href="https://raw.githubusercontent.com/IABTechLab/deal-api/main/deal1.0.md" rel="noopener">IAB Tech Lab Agentic Deals API</a> · last verified 2026-11-09 for the AdCP draft, 2026-11-01 for the Deals API, 2026-09-09 for the rest</figcaption>
     </figure>
 
     <h2>The record types</h2>
@@ -956,12 +957,14 @@
     <h2>Where the nearest out-of-home data model actually sits</h2>
     <p>The closest thing to an IAB out-of-home data model is not AAMP but OpenDirect 2.1, built in
     2024 with the out-of-home trade bodies: it has frames, named audience datasources, share of
-    time, cost per frame and a proof-of-posting statistics object. AAMP inherits that vocabulary
+    time, cost per frame and posting and display statistics. Re-read on 9 November 2026, the
+    specification carries all of these, though no object in it is literally named proof of posting.
+    AAMP inherits that vocabulary
     shell through its OpenDirect-based order surface without binding out-of-home semantics to it.
     AdCP's static out-of-home draft reaches the same conclusion from the other side, stating that
     it borrows OpenDirect's vocabulary — lead times, flight bounds, frame references and proof of
     posting as a first-class statistic — and not its order-management API.</p>
-    <p class="source">Sources: <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · last verified 2026-09-09</p>
+    <p class="source">Sources: <a href="https://github.com/InteractiveAdvertisingBureau/OpenDirect/blob/master/OpenDirect.v2.1.final.md" rel="noopener">OpenDirect 2.1</a> · <a href="https://oaaa.org/news/digital-out-of-home-integration-into-opendirect/" rel="noopener">OAAA on OpenDirect 2.1</a> · <a href="https://github.com/adcontextprotocol/adcp/blob/main/specs/static-ooh.md" rel="noopener">AdCP static out-of-home design draft</a> · the OpenDirect 2.1 vocabulary last verified 2026-11-09; the 2024 date and the trade bodies' role 2026-09-09</p>
     <p>For the digital half of a German estate the lineage is different again: IDOOH, formerly the
     Digital Media Institute, publishes German DOOH venue-taxonomy and media-data standards that are
     deliberately distinct from OpenOOH's with a stated mapping intent. A German-to-international
@@ -1000,7 +1003,7 @@
           </tr>
           <tr role="row">
             <th role="rowheader" scope="row">Whether static out-of-home graduates from experimental</th>
-            <td role="cell" data-label="Where">AdCP 3.2, whose stable v3.2.1 changelog marks the static out-of-home channel contract experimental; whether v3.2.2 to v3.2.8 or the 3.3 betas change that was not read</td>
+            <td role="cell" data-label="Where">AdCP 3.2, whose stable v3.2.1 changelog marks the static out-of-home channel contract experimental; whether v3.2.2 to v3.2.9 change that was not read, and the 3.3 beta sections read (beta.5 back to partway through beta.1) contain no out-of-home item</td>
             <td role="cell" data-label="Why it matters here">Experimental fields may change shape, so an early binding carries rework risk</td>
             <td role="cell" data-label="Status"><span class="badge announced">announced</span></td>
           </tr>
@@ -1080,7 +1083,7 @@
       published, and this page carries no detail beyond that.</li>
       <li>Whether any SDAW-to-IDOOH or SDAW-to-OpenOOH mapping exists. None was located.</li>
       <li>Whether AdCP's static out-of-home draft advances into a released schema, and on what
-      version. AdCP's stable line has moved to v3.2.8 since this was first written. The v3.2.1 changelog carries a static out-of-home channel contract with an
+      version. AdCP's stable line has moved to v3.2.9 since this was first written. The v3.2.1 changelog carries a static out-of-home channel contract with an
       <code>ooh_metrics</code> delivery block, marked experimental in 3.2, but whether the draft's
       <code>ooh</code> property type and <code>panel_id</code> identifier — the fields a German
       binding would need — are in the released schema was not checked.</li>
