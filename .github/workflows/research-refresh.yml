@@ -399,7 +399,15 @@ jobs:
             Today's date is the run date. Search for developments since the last
             verification date: new AdCP/AAMP spec releases and version numbers,
             adoption and partnership announcements, governance changes, and
-            anything that contradicts what a page currently says. Then work
+            anything that contradicts what a page currently says. Also search
+            the legal frame behind legal.html (its note is
+            docs/research/legal-2026-10-01.md): EU AI Act application dates and
+            Digital Omnibus changes, the Product Liability Directive's
+            transposition (Germany especially), CJEU judgments and regulator
+            decisions on ad targeting, consent or agent liability, and changes
+            to the German statutes the page cites. Report legal items as facts
+            with an official source (EUR-Lex, curia, gesetze-im-internet.de, a
+            regulator); never as legal advice. Then work
             through the open questions carried in docs/research/README.md and try
             to close them.
             ${{ inputs.focus && format('Prioritize this focus topic: {0}', inputs.focus) || '' }}
@@ -581,6 +589,11 @@ jobs:
                * Add genuinely new developments (from discoveries.md) to the
                  ol.changelog on index.html, newest first, each with its own
                  source line.
+               * Legal developments (AI Act dates, PLD transposition, case law,
+                 statute changes) go into the matching "Legal lens" block and
+                 its "Legal sources" line on legal.html, not the index
+                 changelog. Keep that page's legal readings under its single
+                 `speculative` scope statement; change only the facts they cite.
                * Update a page's p.page-meta "Updated" line ONLY if a claim on
                  that page was actually re-verified this run.
             3. WRITE A NEW dated note docs/research/<topic>-<run-date>.md in the

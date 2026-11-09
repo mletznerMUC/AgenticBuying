@@ -196,6 +196,11 @@ closed two, narrowed one and opened five; the 2026-11-01 refresh closed one, nar
 and opened five, listed first because they bear on claims the site publishes today. The ones
 that most affect the site's accuracy:
 
+- **Whether the EU Digital Omnibus changes AI Act Art. 50's application date (2 August 2026)
+  or the Product Liability Directive's transposition deadline (9 December 2026)**, both cited
+  on `legal.html`. Opened by the 2026-10-01 legal note and not carried here until the legal
+  lens joined the refresh; tracked as `legal-ai-act-art50-date` and
+  `legal-pld-software-transposition`.
 - **What AdCP v3.2.2 to v3.2.8 and the 3.3 betas contain**, including whether any touches the
   out-of-home schema or graduates the static-OOH contract from experimental. This recasts the
   2026-10-01 question about rc.4 to rc.7: no release notes were readable on 2026-11-01. Newly open.

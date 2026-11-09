@@ -1026,3 +1026,82 @@ claims:
       - https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/
     last_verified: 2026-10-01
     volatility: low
+  # --- Legal lens (legal.html) ------------------------------------------------
+  # The legal readings on legal.html are interpretation, badged `speculative`
+  # once at their scope; they are not rows here. These rows are the checkable
+  # facts the readings rest on: application dates, transposition deadlines, the
+  # statutes and judgments cited, and the protocol features each step maps.
+  - id: legal-pld-software-transposition
+    pages: [legal.html]
+    claim: "The revised Product Liability Directive (EU) 2024/2853 treats software as a product; member states must transpose it by 9 December 2026."
+    status: shipped
+    sources:
+      - https://eur-lex.europa.eu/eli/dir/2024/2853/oj
+    last_verified: 2026-10-01
+    volatility: high
+  - id: legal-ai-act-art50-date
+    pages: [legal.html]
+    claim: "Art. 50 of the AI Act (EU) 2024/1689 requires disclosure of deepfakes and other synthetic content and applies from 2 August 2026; the EU's Digital Omnibus proposals may change this."
+    status: shipped
+    sources:
+      - https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+    last_verified: 2026-10-01
+    volatility: high
+  - id: legal-tdddg-device-access-consent
+    pages: [legal.html]
+    claim: "Access to a user's device needs consent under Art. 5(3) of the ePrivacy Directive 2002/58/EC, implemented in Germany by § 25 TDDDG."
+    status: shipped
+    sources:
+      - https://eur-lex.europa.eu/eli/dir/2002/58/oj
+      - https://www.gesetze-im-internet.de/ttdsg/__25.html
+    last_verified: 2026-10-01
+    volatility: low
+  - id: legal-cjeu-c604-22-tcf-string
+    pages: [legal.html]
+    claim: "The Court of Justice of the EU held in C-604/22 (IAB Europe) that a Transparency and Consent Framework consent string can be personal data."
+    status: shipped
+    sources:
+      - https://curia.europa.eu/juris/liste.jsf?num=C-604/22
+    last_verified: 2026-10-01
+    volatility: low
+  - id: legal-cited-statutes-in-force
+    pages: [legal.html]
+    claim: "The other statutes and judgments legal.html cites resolve at their official URLs and are in force as cited: §§ 119, 164 and 311 BGB, § 257 HGB, § 147 AO, § 286 ZPO, UWG, GeschGehG, HWG, AGG, GDPR (EU) 2016/679, DSA (EU) 2022/2065, Trade Secrets Directive (EU) 2016/943, Art. 101 TFEU, and CJEU C-40/17 (Fashion ID)."
+    status: shipped
+    sources:
+      - https://www.gesetze-im-internet.de/bgb/__119.html
+      - https://www.gesetze-im-internet.de/bgb/__164.html
+      - https://www.gesetze-im-internet.de/bgb/__311.html
+      - https://www.gesetze-im-internet.de/hgb/__257.html
+      - https://www.gesetze-im-internet.de/ao_1977/__147.html
+      - https://www.gesetze-im-internet.de/zpo/__286.html
+      - https://www.gesetze-im-internet.de/uwg_2004/
+      - https://www.gesetze-im-internet.de/geschgehg/
+      - https://www.gesetze-im-internet.de/heilmwerbg/
+      - https://www.gesetze-im-internet.de/agg/
+      - https://eur-lex.europa.eu/eli/reg/2016/679/oj
+      - https://eur-lex.europa.eu/eli/reg/2022/2065/oj
+      - https://eur-lex.europa.eu/eli/dir/2016/943/oj
+      - https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12008E101
+      - https://curia.europa.eu/juris/liste.jsf?num=C-40/17
+    last_verified: 2026-10-01
+    volatility: low
+  - id: legal-adcp-task-surface
+    pages: [legal.html]
+    claim: "AdCP's documentation lists get_products with a brief (returning products with pricing, targeting and forecasts), update_media_buy, get_media_buy_delivery, build_creative, list_creative_formats, sync_creatives and signed webhooks; briefs can carry required_disclosures and prohibited_claims; the brand protocol licenses rights with get_rights, acquire_rights and update_rights; get_plan_audit_logs returns the governance decision trail. legal.html cites the 3.1.21 introduction, which is no longer the latest release."
+    status: shipped
+    sources:
+      - https://docs.adcontextprotocol.org/dist/docs/3.1.21/intro
+      - https://docs.adcontextprotocol.org/docs/reference/whats-new-in-v3
+    last_verified: 2026-10-01
+    volatility: medium
+  - id: legal-aamp-component-gaps
+    pages: [legal.html]
+    claim: "Among the published AAMP components there is no governance protocol, no rights-licensing protocol and no standardized governance audit log; AAMP's pillars are ARTF, the agentic protocols (Agentic Direct, Agentic Audiences, Agentic Mobile, Agentic Ad Objects from AdCOM) and the Agent Registry for agent identity, verification and disclosure."
+    status: shipped
+    sources:
+      - https://iabtechlab.com/framing-the-agentic-advertising-management-protocols-aamp-initiative/
+      - https://github.com/IABTechLab/AAMP
+      - https://github.com/IABTechLab/OpenProposal
+    last_verified: 2026-10-01
+    volatility: medium
