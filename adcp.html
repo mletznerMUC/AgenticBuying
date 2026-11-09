@@ -35,9 +35,9 @@
     <h1>AdCP — Ad Context Protocol</h1>
     <p class="lead">A deep dive into the Ad Context Protocol: what it standardizes, who
     governs it, and which capabilities are real today.</p>
-    <p class="page-meta">Updated <time datetime="2026-11-01">1 November 2026</time> · the AdCP
-    release-line, tax-status, membership, agent-registry and deployment claims were re-checked on
-    that date; the roadmap note was last re-checked on
+    <p class="page-meta">Updated <time datetime="2026-11-09">9 November 2026</time> · the AdCP
+    release-line, membership and agent-registry claims were re-checked on that date; the tax-status
+    and deployment claims on <time datetime="2026-11-01">1 November 2026</time>; the roadmap note was last re-checked on
     <time datetime="2026-10-01">1 October 2026</time>; the remaining claims were last re-checked on
     <time datetime="2026-09-02">2 September 2026</time>, and each claim carries its own verification
     date in its source line</p>
@@ -113,22 +113,28 @@
     <p>Every 3.1 change is additive over 3.0: new
     fields are optional and no required field was removed, so a 3.0-conformant client keeps
     working. Version 3.1 was the current stable minor version until 3.2 reached a stable release on
-    October 1, 2026 (below); the v3.1.x line still takes tags — the latest is v3.1.31, published
-    October 30, 2026, after v3.1.30 of October 28 and v3.1.24 of September 23. A parallel
+    October 1, 2026 (below); the v3.1.x line still takes tags — the latest is v3.1.32, published
+    November 5, 2026, after v3.1.31 of October 30 and v3.1.24 of September 23. A parallel
     v3.0.x maintenance line still receives releases (v3.0.22 on July 24, the same day as v3.1.5;
     v3.0.25 on August 19; v3.0.26 on August 21, the same day as v3.1.19), and its latest tag is
-    now v3.0.28 of October 7, 2026. Release v3.1.3 was
+    still v3.0.28 of October 7, 2026. Release v3.1.3 was
     withdrawn: the project states
     it "added a stable protocol schema field in a patch release, violating the 3.1.x release
     contract," and directs implementers to 3.1.2 as the stable 3.1 target, which is the version the
     documentation pins.</p>
-    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · the release lines last verified 2026-11-01, the additive contract and the v3.1.3 withdrawal 2026-09-02</p>
+    <p class="source">Source: <a href="https://docs.adcontextprotocol.org/docs/reference/whats-new-in-3-1" rel="noopener">AdCP documentation — what's new in 3.1</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a>; <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a> · the release lines last verified 2026-11-09, the additive contract and the v3.1.3 withdrawal 2026-09-02</p>
     <p>Version 3.2 is AdCP's latest stable minor version. It reached a stable release as v3.2.1 on
-    October 1, 2026, and the latest tag on the line is v3.2.8, published October 28, 2026 and
-    marked Latest on the releases page, after v3.2.5 (October 16), v3.2.6 (October 23) and v3.2.7
-    (October 24); what v3.2.2 to v3.2.8 change was not read for this page. A 3.3 pre-release line
-    opened with v3.3.0-beta.0 on October 22 and reached v3.3.0-beta.3 on October 31, 2026; its
-    first notes say to use it in development and staging, not production. There is no 3.2.0 — the changelog states that the number was
+    October 1, 2026, and the latest tag on the line is v3.2.9, published November 9, 2026 and
+    marked Latest on the releases page, after v3.2.5 (October 16), v3.2.6 (October 23), v3.2.7
+    (October 24) and v3.2.8 (October 28); what v3.2.2 to v3.2.9 change was not read for this page.
+    A 3.3 pre-release line
+    opened with v3.3.0-beta.0 on October 22 and reached v3.3.0-beta.5 on November 7, 2026; its
+    first notes say to use it in development and staging, not production. Its betas add
+    <code>request_account</code>, measurement provenance, seller offers, live creative updates and
+    match-key schemas, each marked experimental, plus audience-evidence targets, reporting
+    subscriptions and creative provenance support, and they move the <code>sales-fixed-rate</code>
+    specialism from preview to stable; the changelog sections read stop partway through beta.1.
+    There is no 3.2.0 — the changelog states that the number was
     accidentally cut on June 30, 2026, permanently withdrawn and never released, so 3.2 general
     availability ships as 3.2.1 with the wire-protocol version pinned at "3.2". The line opened as a
     pre-release with v3.2.0-beta.0 on August 17, 2026 and ran through release candidates to
@@ -157,7 +163,7 @@
     eighth negotiation surface —
     the changes extend the seven above. The list was read from the rendered changelog rather than
     diffed against the schema files.</p>
-    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · release tags and dates last verified 2026-11-01; the itemized 3.2 changelog contents were last read 2026-10-01</p>
+    <p class="source">Source: <a href="https://raw.githubusercontent.com/adcontextprotocol/adcp/main/CHANGELOG.md" rel="noopener">AdCP CHANGELOG.md</a>; <a href="https://github.com/adcontextprotocol/adcp/releases" rel="noopener">AdCP GitHub releases</a> · release tags and dates and the 3.3 beta changelog contents last verified 2026-11-09; the itemized 3.2 changelog contents were last read 2026-10-01</p>
     <p><span class="badge speculative">speculative</span> This page previously reported that
     secondary sources listed curation, creative generation, and performance attribution as AdCP
     roadmap items still to come. That list is no longer traceable: re-checked on September 2, 2026,
@@ -170,25 +176,26 @@
 
     <h2>Adoption &amp; ecosystem</h2>
     <p>A first-party membership figure is now
-    published: AgenticAdvertising.org's homepage states that 157+ companies have joined as of
-    November 1, 2026, up from the 148+ it and adcontextprotocol.org gave on October 1, 142+ on
-    September 15 and 132+ on September 2, 2026. That is
+    published: AgenticAdvertising.org's and adcontextprotocol.org's homepages both state that 159+
+    companies have joined as of November 9, 2026, up from 157+ on November 1, 148+ on October 1,
+    142+ on September 15 and 132+ on September 2, 2026. That is
     above the 113+ the most recent secondary count gives, so this site carries the organization's
     own figure rather than the secondary one. Two caveats attach to it: the
     organization does not date the figure, and its About, Membership, and member-directory pages
-    state no aggregate count and list no membership at that size, so 157+ cannot be reconciled
+    state no aggregate count and list no membership at that size, so 159+ cannot be reconciled
     against a name-by-name list. Members named across sources include Yahoo, PubMatic, Scope3,
-    Samba TV, The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till, Raptive, and
-    Affinity.</p>
-    <p class="source">Source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a>; <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a>; <a href="https://agenticadvertising.org/about" rel="noopener">About</a>; <a href="https://agenticadvertising.org/members" rel="noopener">member directory</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> (the secondary range); <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land (Affinity)</a> · the AgenticAdvertising.org homepage figure last verified 2026-11-01; the adcontextprotocol.org figure and the member lists 2026-10-01, when Magnite and Affinity were not seen in the lists read and rested on their earlier sources</p>
+    Samba TV, The Weather Company, Magnite, MiQ, LG Ad Solutions, Butler/Till, Raptive, Kargo,
+    Wunderkind, Sightly, and Affinity; Magnite and Affinity were not seen in the homepage list on
+    November 9 and rest on their earlier sources.</p>
+    <p class="source">Source: <a href="https://adcontextprotocol.org" rel="noopener">adcontextprotocol.org</a>; <a href="https://agenticadvertising.org" rel="noopener">AgenticAdvertising.org</a>; <a href="https://agenticadvertising.org/about" rel="noopener">About</a>; <a href="https://agenticadvertising.org/members" rel="noopener">member directory</a>; <a href="https://adgentek.ai/blog/agentic-advertising-statistics/" rel="noopener">Adgentek statistics</a> (the secondary range); <a href="https://www.samba.tv/press-releases/industry-coalition-launches-ad-context-protocol-adcp-open-standard-for-agentic-advertising-infrastructure" rel="noopener">Samba TV</a>; <a href="https://ppc.land/affinity-joins-adcp-to-put-oem-and-browser-inventory-into-agentic-ad-standards/" rel="noopener">PPC Land (Affinity)</a> · both homepage figures and the homepage member list last verified 2026-11-09; the member-directory lists 2026-10-01</p>
     <p>The organization also runs a public agent
     registry listing sales, creative, and signals agents that implement AdCP, filterable by agent
-    type, status, and compliance. Its public API returned 33 registered agents on November 1, 2026 —
-    27 sales agents, three signals agents, one creative agent, one buying agent, and one
-    uncategorized — down from 34 on October 1 and 35 on September 15, a second consecutive decline,
-    with the sales count falling from 29 to 28 and then to 27. The single buying agent is the same count a
+    type, status, and compliance. Its public API returned 35 registered agents on November 9, 2026 —
+    28 sales agents, four signals agents, one creative agent, one buying agent, and one
+    uncategorized — up from 33 on November 1, after declines from 35 on September 15 to 34 on
+    October 1 and 33; the sales count went from 29 to 28, 27 and back to 28. The single buying agent is the same count a
     July 31, 2026 third-party snapshot recorded, so the registry remains overwhelmingly sell-side.</p>
-    <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a>; <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory</a> (the July 31 snapshot) · last verified 2026-11-01</p>
+    <p class="source">Source: <a href="https://agenticadvertising.org/registry/" rel="noopener">AgenticAdvertising.org — agent registry</a>; <a href="https://adcontextprotocol.org/api/registry/agents" rel="noopener">AdCP registry API</a>; <a href="https://nofluffadvisory.com/writing/adcp-vs-aamp/" rel="noopener">No Fluff Advisory</a> (the July 31 snapshot) · last verified 2026-11-09</p>
     <h3>Deployments</h3>
     <p><span class="badge reported">reported</span> The first agent-to-agent media buy: a Scope3
     buyer agent and a Swivel seller agent transacted LG Ads programmatic inventory, with two humans
@@ -268,8 +275,8 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-07 to 10</th>
-            <td role="cell" data-label="Development">Active v3.1.x cadence (weekly-plus), reaching v3.1.24 on September 23 and v3.1.31 on October 30. A v3.0.x maintenance line runs alongside it, through v3.0.28 of October 7; v3.1.3 was withdrawn for adding a schema field in a patch release.</td>
+            <th role="rowheader" scope="row">2026-07 to 11</th>
+            <td role="cell" data-label="Development">Active v3.1.x cadence (weekly-plus), reaching v3.1.24 on September 23, v3.1.31 on October 30 and v3.1.32 on November 5. A v3.0.x maintenance line runs alongside it, through v3.0.28 of October 7; v3.1.3 was withdrawn for adding a schema field in a patch release.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
@@ -288,13 +295,13 @@
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-10-16 to 10-28</th>
-            <td role="cell" data-label="Development">The 3.2 line continues through stable tags v3.2.2 to v3.2.8, including v3.2.5 to v3.2.8 in this window; v3.2.8 of October 28 is marked Latest. Their contents were not read for this page.</td>
+            <th role="rowheader" scope="row">2026-10-16 to 11-09</th>
+            <td role="cell" data-label="Development">The 3.2 line continues through stable tags v3.2.2 to v3.2.9, including v3.2.5 to v3.2.9 in this window; v3.2.9 of November 9 is marked Latest. Their contents were not read for this page.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
-            <th role="rowheader" scope="row">2026-10-22 to 10-31</th>
-            <td role="cell" data-label="Development">v3.3.0-beta.0 to beta.3 open a 3.3 pre-release line, published as pre-releases for development and staging rather than production.</td>
+            <th role="rowheader" scope="row">2026-10-22 to 11-07</th>
+            <td role="cell" data-label="Development">v3.3.0-beta.0 to beta.5 open a 3.3 pre-release line, published as pre-releases for development and staging rather than production; the betas add experimental account requests, seller offers, measurement provenance, live creative updates and match keys.</td>
             <td role="cell" data-label="Status"><span class="badge shipped">shipped</span></td>
           </tr>
           <tr role="row">
