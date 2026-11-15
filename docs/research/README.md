@@ -6,8 +6,22 @@ note here.
 
 ## Current notes
 
+- [`adcp-aamp-2026-11-15.md`](adcp-aamp-2026-11-15.md) — *AdCP and AAMP refresh*, verified
+  2026-11-15. **The latest note; read it for the current release lines and counts.**
+  - **Scope.** Four verify shards and no discovery output. Twenty claims were due and fifteen
+    reached their source. Geopath, the VIOOH rollout and AdQuick returned 403 again, and EUR-Lex
+    returned empty content for both legal dates.
+  - **Release lines.** AdCP moved to **v3.2.11** (13 November), v3.1.33 and **v3.3.0-beta.6**. The
+    contents of v3.2.2 to v3.2.11 and beta.6 were not read.
+  - **Counts.** Membership is 162+ and the registry 36 (29 sales).
+  - **AAMP.** The components have gone about thirteen weeks without a tag. OpenProposal is still at
+    v3.0-draft-1 after the reported 10 November close.
+  - **Badges.** The PLD deadline and the AI Act Art. 50 date on `legal.html` moved to `reported`
+    because EUR-Lex could not be read. They keep their 2026-10-01 verification. Nothing on the
+    site was found to be wrong.
+  - **Out-of-home.** No SDAW norm-level claim was touched.
 - [`adcp-aamp-2026-11-09.md`](adcp-aamp-2026-11-09.md) — *AdCP and AAMP refresh*, verified
-  2026-11-09. **The latest note; read it for the current release lines and counts.**
+  2026-11-09. **Superseded on the release lines and counts by the note above.**
   - **Scope.** A volatility-sharded cycle over four shards plus a discovery pass. Of 22 due
     claims, 14 reached their cited source and four more were confirmed against their cited
     secondary. Three sources returned 403 (Geopath, VIOOH rollout, AdQuick) and one claim was
@@ -207,24 +221,28 @@ The 2026-09-02 refresh closed four and opened three; the 2026-09-04 OOH note ope
 more; the 2026-09-08 SDAW note opened seven, listed below and also published on
 `sdaw.html`; the 2026-09-15 refresh closed none and opened four; the 2026-10-01 refresh
 closed two, narrowed one and opened five; the 2026-11-01 refresh closed one, narrowed three
-and opened five; the 2026-11-09 refresh closed none, narrowed two and opened none. The ones
-that most affect the site's accuracy:
+and opened five; the 2026-11-09 refresh closed none, narrowed two and opened none; the
+2026-11-15 refresh closed none, sharpened one and opened none. The ones that most affect the
+site's accuracy:
 
 - **Whether the EU Digital Omnibus changes AI Act Art. 50's application date (2 August 2026)
   or the Product Liability Directive's transposition deadline (9 December 2026)**, both cited
-  on `legal.html`. Opened by the 2026-10-01 legal note and not carried here until the legal
-  lens joined the refresh; tracked as `legal-ai-act-art50-date` and
-  `legal-pld-software-transposition`.
-- **What AdCP v3.2.2 to v3.2.9 contain**, including whether any 3.2.x patch touches the
-  out-of-home schema or graduates the static-OOH contract from experimental. Narrowed on
-  2026-11-09. The 3.3 betas are now partly read (beta.5 back to partway through beta.1): they add
-  experimental account requests, seller offers, measurement provenance, live creative updates and
-  match keys, and contain no out-of-home item. The 3.2.x sections lie beyond the first 100k
-  characters of the changelog and are still unread. Next step: read the raw file from an offset.
-- **Whether IAB Tech Lab itself announced the OpenProposal comment-period extension to 10
-  November.** Only PPC Land reports it. The repository still showed 22 October on 2026-11-01 and
-  2026-11-09. The period closes on 10 November, so the next run should read the repository for
-  the closed-comment state and any first revision.
+  on `legal.html`. Opened by the 2026-10-01 legal note; tracked as `legal-ai-act-art50-date` and
+  `legal-pld-software-transposition`. Sharpened on 2026-11-15. EUR-Lex returned empty content
+  (HTTP 202) to the refresh's fetch, so neither date could be re-read, and both are now badged
+  `reported` with their 2026-10-01 date kept. The PLD deadline falls on 9 December, so the next
+  run should read the text by another route, such as the Official Journal PDF or a member-state
+  transposition notice, and check the Omnibus legislative file.
+- **What AdCP v3.2.2 to v3.2.11 and v3.3.0-beta.6 contain**, including whether any 3.2.x patch
+  touches the out-of-home schema or graduates the static-OOH contract from experimental. Widened
+  on 2026-11-15 by v3.2.10, v3.2.11 and beta.6. The 3.3 betas are partly read (beta.5 back to
+  partway through beta.1): they add experimental account requests, seller offers, measurement
+  provenance, live creative updates and match keys, and contain no out-of-home item. The 3.2.x
+  sections lie beyond the first 100k characters of the changelog and are still unread. Next step:
+  read the raw file from an offset.
+- **Whether OpenProposal's comment period has closed, and when its first revision appears.** Only
+  PPC Land reports the extension to 10 November. On 2026-11-15, five days after that date, the
+  repository still showed the 22 October close and v3.0-draft-1, with no revision.
 - **Where AdCP's DOOH proof-of-play macros went.** Seen on 2026-10-01, absent on 2026-11-01;
   `ooh.html` now carries the claim as `reported`. There is still no trace in the 3.3 sections
   read on 2026-11-09.
@@ -250,8 +268,9 @@ has stopped** (about eleven weeks without a tag while the 3.0 spec work continue
   the SDAW question below about whether the draft advances into a released schema. Newly open.
 - **Which registry agents left after 15 September, and whether the movement is churn or
   reclassification.** The sales count fell from 29 to 28 to 27 (2026-11-01). It then recovered
-  to 28, with the total back at 35 and signals at 4, on 2026-11-09. The API response does not say
-  whether agents were removed, added or reclassified. Narrowed.
+  to 28, with the total back at 35 and signals at 4, on 2026-11-09, and to 29 sales and 36 in
+  total on 2026-11-15. The API response does not say whether agents were removed, added or
+  reclassified. Narrowed.
 - **Whether IAB Tech Lab's AAMP standards page still names out-of-home as future scope.** The
   wording recorded on 2026-09-04 was not visible on the 2026-10-01 fetch. `ooh.html` and the
   `sdaw.html` overview now say so. The `sdaw.html` upstream row still cites a separate IAB Tech Lab
@@ -261,8 +280,8 @@ has stopped** (about eleven weeks without a tag while the 3.0 spec work continue
   longer carries the remark. Carried forward.
 - **What the agent registry's "uncategorized" agent type means.** Still one such agent among 34
   on 2026-10-01. Carried forward.
-- **Whether AAMP's component work has stopped or merely paused.** It is now about twelve weeks
-  (2026-11-09; eleven on 2026-11-01) with no tag on seller-agent, buyer-agent or iab-agentic-primitives, while the AAMP
+- **Whether AAMP's component work has stopped or merely paused.** It is now about thirteen weeks
+  (2026-11-15; twelve on 2026-11-09, eleven on 2026-11-01) with no tag on seller-agent, buyer-agent or iab-agentic-primitives, while the AAMP
   3.0 spec effort continues with an extended comment window. That reads as a shift of effort to
   the spec, not a stop. Narrowed.
 - **Whether WPP's, Yahoo's and Microsoft's June 2026 launches have a primary source.** All three
